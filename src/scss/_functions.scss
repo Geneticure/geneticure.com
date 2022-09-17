@@ -1,0 +1,83 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+// Same as map.get but throws error if not found and allows default value
+@function get($map, $key, $default: null) {
+	$item: map.get($map, $key);
+	@if $item {
+		@return $item;
+	} @else if $default != null {
+		@return $default;
+	} @else {
+		@error 'Property `#{$key}` does not exist in the given map.';
+	}
+}
+
+@function indexof($iterable, $target) {
+	$list: $iterable;
+
+	@if type-of($list) == map {
+		$map: $iterable;
+		$list: keys($map);
+	}
+
+	@for $index from 1 through list.length($list) {
+		$item: list.nth($list, $index);
+		@if $item == $target {
+			@return $index;
+		}
+	}
+}
+
+@function join($list, $delimeter) {
+	$output: '';
+	$length: list.length($list);
+	@for $index from 1 through $length {
+		$item: list.nth($list, $index);
+		$output: $output + $item;
+		@if $index < $length {
+			$output: $output + $delimeter;
+		}
+	}
+	@return $output;
+}
+
+@function keys($map) {
+	$keys: ();
+	@each $key, $value in $map {
+		$keys: list.append($keys, $key);
+	}
+	@return $keys;
+}
+
+@mixin map-to-props($map) {
+	@each $property, $value in $map {
+		#{$property}: #{$value};
+	}
+}
+
+@function reverse($list) {
+	$output: ();
+
+	$length: list.length($list);
+	@for $index from 0 through $length - 1 {
+		$output: list.append($output, list.nth($list, $length - $index));
+	}
+
+	@return $output;
+}
+
+@function round-to($num, $places: 2) {
+	$factor: math.pow(10, $places);
+	@return math.div(math.round($num * $factor), $factor);
+}
+
+// https://css-tricks.com/snippets/sass/strip-unit-function/
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return math.div($number, ($number * 0 + 1));
+	}
+
+	@return $number;
+}

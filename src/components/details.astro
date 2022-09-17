@@ -1,0 +1,129 @@
+---
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props);
+---
+
+<details class={`details ${props.class}`} {...rest}>
+	<summary
+		class="details__trigger text--hdg--2"
+		title="Click to expand"
+	>
+		<span class="icon">&rsaquo;</span>
+
+		<span class="details__trigger__text">
+			<slot name="title">Expand</slot>
+		</span>
+	</summary>
+
+	<template>
+		<div class="details__body">
+			<slot />
+		</div>
+	</template>
+</details>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+$height: 80px;
+$border__radius: $height * .5;
+$border__width: 3px;
+
+.details {
+	border: $border__width solid vars.$color--brand--offset--sink;
+	border-radius: $border__radius;
+	box-sizing: border-box;
+	transition: border-color .2s;
+	width: 100%;
+
+	&:not([open]):hover {
+		border-color: vars.$color--brand--offset;
+	}
+
+	&[open] {
+		border-color: vars.$color--brand--offset;
+	}
+}
+
+.details__trigger {
+	align-items: center;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: flex;
+	list-style: none;
+	min-height: #{$height - (2 * $border__width)};
+	padding: 10px $border__radius 10px 0;
+	position: relative;
+	user-select: none;
+
+	.icon {
+		@include vars.bounce((
+			bounciness: .6,
+			delay--after: 3,
+			delay--before: 3,
+			distance: 10px,
+			distance--min: 2px,
+			duration: .2,
+			property: bottom,
+		));
+
+		color: vars.$color--brand--offset--sink;
+		flex-shrink: 0;
+		font-size: 50px;
+		line-height: 0;
+		margin-bottom: 5px; // Stupid glyph isn't aligned right
+		position: relative;
+		text-align: center;
+		transform: rotateZ(0deg);
+		transform-origin: center;
+		transition: color .2s, transform .2s;
+	}
+
+	.details:not([open]):hover & .icon {
+		color: vars.$color--brand;
+	}
+
+	.details[open] & .icon {
+		color: vars.$color--brand--sink;
+		transform: rotateZ(90deg);
+	}
+
+	.details[open] & .icon,
+	&:hover .icon,
+	&:active .icon,
+	&:focus .icon {
+		animation: none;
+	}
+}
+
+.details__body {
+	overflow: hidden;
+}
+
+@include vars.if-viewport('<', lg) {
+	.details__trigger {
+		.icon {
+			width: 60px;
+		}
+	}
+
+	.details__body {
+		padding: 20px;
+		padding-top: 0 !important;
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.details__trigger {
+		.icon {
+			width: $height;
+		}
+	}
+
+	.details__body {
+		padding: $height;
+		padding-top: 20px !important;
+	}
+}
+</style>

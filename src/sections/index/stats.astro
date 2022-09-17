@@ -1,0 +1,159 @@
+---
+import Cite_ from 'src/components/cite.astro';
+import Pie_ from 'src/components/pie.astro';
+import Section_ from 'src/components/section.astro';
+
+import { statsById } from 'src/text/stats';
+
+const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsById[id]);
+---
+
+<Section_ class="stats" cols={0}>
+	<div class="stats">
+		<h2 class="text--hdg--2">Using the DNA on a cheek swab, Geneticure recommends which hypertension medication(s) may give you <em>the biggest drop in blood pressure</em>:</h2>
+
+		<div class="stats__figures">
+			{stats.map((stat) =>
+				<figure class="figure">
+					<Pie_
+						segments={[[100 - stat.value]]}
+						total={100}
+					>
+						<div class="text--hdg--1 figure__value">
+							{stat.value}
+							<sup class="figure__value__symbol">%</sup>
+						</div>
+					</Pie_>
+
+					<figcaption class="text--hdg--3 figure__text">
+						<strong class="figure__value">
+
+						</strong>
+
+						<span class="figure__description">
+							{stat.title}<Cite_ to={stat.cite} />
+						</span>
+					</figcaption>
+				</figure>,
+			)}
+		</div>
+
+		<aside>Our research supports that the Geneticure approach of DNA-guided therapy is associated with ~7mmHg lower systolic blood pressure and ~6mmHg diastolic blood pressure. This is 22% and 39% lower respectively versus non-genetically matched care.<Cite_ to="article-algorithm" /></aside>
+	</div>
+
+	<Fragment slot="background"></Fragment>
+</Section_>
+
+<style lang="scss">
+@use 'sass:list';
+
+@use 'src/scss/vars';
+
+.stats {
+	--background-width: 0;
+	--columns-qty: 0;
+	--columns-width: 0;
+	--pie-diameter: 0;
+
+	width: 100%;
+}
+
+.stats__img {
+	position: relative;
+
+	img {
+		@include vars.expand;
+
+		left: auto;
+		max-width: none;
+		right: 0;
+		width: 300%;
+	}
+}
+
+.stats :global(.section__bg) {
+	background-image: url('/img/bg/pills-crop.jpg');
+	background-position: center right;
+	background-repeat: no-repeat;
+	background-size: var(--background-width);
+}
+
+.stats__figures {
+	display: grid;
+	grid-gap: 50px 30px;
+	grid-template-columns: repeat(var(--columns-qty), minmax(0, 1fr));
+	margin-bottom: 50px;
+	margin-top: 50px;
+	position: relative;
+	width: var(--columns-width) !important;
+	z-index: 1;
+}
+
+.figure {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	&__value {
+		position: relative;
+
+		&__symbol {
+			left: 100%;
+			line-height: 1em;
+			position: absolute;
+		}
+	}
+
+	&__text {
+		margin-top: 10px;
+		text-align: center;
+	}
+}
+
+.pie {
+	width: var(--pie-diameter) !important;
+}
+
+$colors: (
+	vars.$color--brand,
+	vars.$color--brand,
+	vars.$color--accent,
+	vars.$color--accent,
+);
+@for $index from 1 through list.length($colors) {
+	$color: list.nth($colors, $index);
+	.figure:nth-child(#{$index}) {
+		:global(circle) {
+			fill: $color !important;
+		}
+	}
+}
+
+@include vars.if-viewport('<', lg) {
+	.stats {
+		--background-width: 0;
+		--columns-qty: 2;
+		--columns-width: 100%;
+		--pie-diameter: 100px;
+	}
+}
+
+@include vars.if-viewport('==', lg) {
+	.stats {
+		--background-width: 50%;
+		--columns-qty: 2;
+		--columns-width: 50%;
+		--pie-diameter: 150px;
+	}
+}
+
+@include vars.if-viewport('>', lg) {
+	.stats {
+		--background-width: 30%;
+		--columns-qty: 4;
+		--columns-width: 80%;
+		--pie-diameter: 200px;
+	}
+}
+</style>

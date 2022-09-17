@@ -1,0 +1,355 @@
+@use 'sass:map';
+@use 'src/scss/vars';
+
+* {
+	background: transparent;
+	border: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-decoration: inherit;
+}
+
+:root {
+	@include vars.type(body);
+	@include vars.text--smooth;
+
+	@media print {
+		@include vars.text--print;
+	}
+
+	font-size: vars.$font-size--base + px;
+
+	--content-padding-y: #{vars.$height--nav + 40px};
+	@include vars.if-viewport('==', sm) {
+		--content-padding-x: 30px;
+	}
+
+	@include vars.if-viewport('==', md) {
+		--content-padding-x: 50px;
+	}
+
+	@include vars.if-viewport('==', lg) {
+		--content-padding-x: 50px;
+	}
+
+	@include vars.if-viewport('>=', xl) {
+		--content-padding-x: calc((.5 * (100vw - #{vars.get(vars.$bps, xl)})) + 30px);
+	}
+}
+
+main {
+	min-height: 60vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+
+	em {
+		color: vars.$color--brand;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	&:not(:last-child) {
+		margin-bottom: vars.$margin--text--y;
+	}
+}
+
+a {
+	@include vars.text__underline;
+
+	color: vars.$color--brand--sink;
+	font-weight: 700;
+	transition: color .2s, text-shadow .2s;
+
+	&:hover {
+		color: vars.$color--brand;
+	}
+
+	.text--on-dark & {
+		color: vars.$color--text--on-dark;
+
+		&:hover {
+			text-shadow: 0 0 1px vars.$color--text--on-dark;
+		}
+	}
+}
+
+aside {
+	@include vars.type(small);
+}
+
+b {
+	display: inline-block; // For preventing text from wrapping within key phrases
+}
+
+button {
+	cursor: pointer;
+}
+
+.button,
+.buttonset > * {
+	@include vars.button;
+	@include vars.button--default;
+
+	@media print {
+		display: none !important;
+	}
+}
+
+.button--low {
+	@include vars.button;
+	@include vars.button--low;
+}
+
+.button--high {
+	@include vars.button;
+	@include vars.button--high;
+}
+
+.button--icon {
+	@include vars.button--icon;
+}
+
+.button--hero {
+	@include vars.button;
+	@include vars.button--hero;
+}
+
+.buttonset {
+	display: flex;
+	flex-wrap: wrap;
+
+	& > * {
+		@include vars.space-between(5px, (property: margin));
+
+		margin-bottom: 5px;
+	}
+}
+
+.content {
+	@include vars.content;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex--center {
+	justify-content: center;
+}
+
+.flex-spacer {
+	flex-grow: 1;
+}
+
+form {
+	display: block;
+}
+
+.hero {
+	min-height: 50vh;
+
+	@media print {
+		min-height: 0;
+	}
+
+	img {
+		@include vars.expand;
+
+		object-fit: cover;
+	}
+}
+
+.hidden {
+	height: 0;
+	opacity: 0;
+	position: absolute;
+	width: 0;
+}
+
+hr {
+	background: vars.$color--shadow;
+	border: 0;
+	clear: both;
+	display: block;
+	height: 1px;
+	margin: vars.$margin--text--y auto;
+	width: 100%;
+}
+
+hr.fancy {
+	background-image: linear-gradient(to right, vars.$color--brand, vars.$color--brand--offset);
+	height: 3px;
+	margin-left: 0;
+}
+
+img {
+	content: none !important;
+	display: block;
+	height: auto;
+	max-width: 100%;
+	object-fit: contain;
+	object-position: center;
+}
+
+input {
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+}
+
+.list--dotted {
+	@include vars.list--dotted((
+		border__color: vars.$color--bg--offset--sink,
+		dot__background: vars.$color--bg,
+		dot__color: vars.$color--brand,
+	));
+}
+
+.list--inline--links {
+	a + a::before {
+		color: vars.$color--text;
+		content: '| ';
+		display: inline-block;
+		font-weight: normal;
+		text-decoration: none;
+		white-space: pre;
+	}
+}
+
+.material-icons {
+	font-size: inherit;
+	line-height: inherit;
+	vertical-align: text-bottom;
+
+	a & {
+		vertical-align: middle;
+	}
+}
+
+.overlay {
+	@include vars.overlay;
+}
+
+small {
+	@include vars.type(small);
+}
+
+strong {
+	font-weight: 700;
+}
+
+sup {
+	font-size: .4em;
+}
+
+summary {
+	&::marker,
+	&::-webkit-details-marker {
+		display: none;
+	}
+}
+
+.text-defaults {
+	h1 {
+		@include vars.type(hdg--1);
+	}
+
+	h2 {
+		@include vars.type(hdg--2);
+	}
+
+	h3 {
+		@include vars.type(hdg--3);
+	}
+
+	h4 {
+		@include vars.type(hdg--4);
+	}
+
+	ol,
+	ul {
+		margin-left: 3ex;
+
+		li {
+			list-style-position: outside;
+		}
+	}
+
+	ol li {
+		list-style-type: roman;
+	}
+
+	ul li {
+		list-style-type: disc;
+	}
+
+	li,
+	ol,
+	ul,
+	p {
+		margin-bottom: 1em;
+		margin-top: 1em;
+	}
+
+	figure {
+		background-color: vars.$color--bg--offset;
+		border: 1px solid vars.$color--shadow;
+		margin: 1em auto;
+		padding: 1em;
+
+		@include vars.if-viewport('>=', lg) {
+			width: 40%;
+
+			&.float {
+				float: right;
+				margin: 1em 0 1em 1em;
+			}
+		}
+	}
+
+	figcaption {
+		@include vars.type(small);
+
+		padding-top: 1em;
+		text-align: center;
+	}
+
+	hr {
+		margin: 2em auto;
+	}
+}
+
+@each $typefaceName, $typeface in vars.$typefaces {
+	.text--#{$typefaceName} {
+		@include vars.type($typefaceName);
+	}
+}
+
+.text--center {
+	text-align: center;
+}
+
+.text--on-dark {
+	color: vars.$color--text--on-dark;
+}

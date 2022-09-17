@@ -1,0 +1,61 @@
+---
+import * as fs from 'fs';
+import * as parser from 'htmlparser2';
+import { Element } from 'domhandler';
+import { render } from 'dom-serializer';
+
+import { getProps } from 'src/js/astro';
+
+const defaults = {
+	id: ``,
+	src: ``,
+};
+const patternDefaults = {
+	height: 100,
+	patternTransform: ``,
+	viewbox: `0 0 100 100`,
+	width: 100,
+};
+const { props, rest } = getProps(Astro.props, {
+	...defaults,
+	...patternDefaults,
+});
+
+const file = fs.readFileSync(props.src, `utf8`);
+const doc = parser.parseDocument(file);
+const svg = parser.DomUtils.getElementsByTagName(`svg`, doc)[0];
+const tagsToExclude = [`style`, `defs`];
+let pattern = ``;
+svg.children.forEach((child: Element) => {
+	if (!child.name || tagsToExclude.includes(child.name)) {
+		return;
+	}
+
+	pattern += render(child);
+});
+
+
+for (const propName in patternDefaults) {
+	const propValue = parser.DomUtils.getAttributeValue(svg, propName);
+	patternDefaults[propName] = Astro.props[propName] ?? propValue ?? patternDefaults[propName];
+}
+---
+
+<div class={`${props.id} ${props.class}`} {...rest}>
+	<svg>
+		<pattern id={props.id} patternUnits="userSpaceOnUse" set:html={pattern} {...patternDefaults}></pattern>
+
+		<rect fill={`url('#${props.id}')`} width="100%" height="100%" />
+	</svg>
+</div>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+div,
+svg,
+rect {
+	height: 100%;
+	width: 100%;
+}
+</style>

@@ -1,0 +1,203 @@
+---
+import HomeLayout_ from 'src/layouts/home.astro';
+import Section_ from 'src/components/section.astro';
+
+import { faqs } from 'src/text/faqs';
+---
+
+<HomeLayout_ class="faqs" title="FAQs" navFixed={false}>
+	<Section_ cols={0} class="hero faqs__hero">
+		<div class="overlay faqs__hero__text">
+			<h1 class="text--hdg--1">Frequently asked questions</h1>
+		</div>
+
+		<Fragment slot="background">
+			<img
+				alt="Doctor with patient"
+				class="faqs__hero__bg"
+				src="/img/bg/doctor-consult.jpg"
+			/>
+		</Fragment>
+	</Section_>
+
+	<div class="content faqs__body">
+		<div
+			aria-hidden="true"
+			class="faqs__body__toggle"
+		>
+			<button data-details-toggle>
+				Expand / collapse all
+			</button>
+		</div>
+
+		{
+			faqs.map((section) =>
+				<section class="faqs__body__category">
+					<h2 class="text--hdg--2">{section.title}</h2>
+
+					{
+						section.questions.map((question) =>
+							<details
+								class="faq"
+								id={question.id}
+							>
+								<summary class="faq__trigger">
+									<span class="faq__trigger__text">{question.title}</span>
+									<a
+										class="faq__link"
+										href={`#${question.id}`}
+										title="Link to this answer"
+									>#</a>
+								</summary>
+
+								<p class="faq__body" set:html={question.text}></p>
+							</details>,
+						)
+					}
+				</section>,
+			)
+		}
+	</div>
+</HomeLayout_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.faqs {
+	&__hero {
+		&__bg {
+			object-position: top;
+			transform: scaleX(-1);
+		}
+	}
+
+	&__body {
+		&__category {
+			margin-bottom: 70px;
+		}
+
+		&__toggle button {
+			align-items: center;
+			backdrop-filter: blur(3px);
+			background-color: #{vars.$color--bg}C0;
+			border: 1px solid vars.$color--brand;
+			border-radius: 25px;
+			color: vars.$color--brand--sink;
+			display: flex;
+			height: 50px;
+			padding: 20px;
+			transition: color .2s, background-color .2s;
+			white-space: nowrap;
+			z-index: vars.z(toggle);
+
+			&:hover {
+				background-color: vars.$color--bg;
+				color: vars.$color--brand;
+			}
+
+			&:active {
+				background-color: vars.$color--bg--offset;
+			}
+		}
+	}
+}
+
+@include vars.if-viewport('<', lg) {
+	.faqs {
+		&__body {
+			&__toggle {
+				bottom: 10px;
+				position: fixed;
+				right: 20px;
+			}
+		}
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.faqs {
+		&__body {
+			&__toggle {
+				margin-left: auto;
+				position: sticky;
+				top: 10px;
+
+				button {
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+			}
+		}
+	}
+}
+
+.faq {
+	$icon__margin: 1em;
+
+	margin-bottom: .5em;
+	margin-left: -$icon__margin;
+	transition: margin-bottom .2s;
+
+	&[open] {
+		margin-bottom: 1em;
+	}
+
+	&__trigger {
+		align-items: flex-start;
+		color: vars.$color--brand--sink;
+		cursor: pointer;
+		display: flex;
+		transition: color .2s;
+
+		&:hover {
+			.faq__trigger__text {
+				text-decoration: underline;
+			}
+		}
+
+		&::before {
+			color: vars.$color--lowlight;
+			content: '\025B8';
+			margin-right: 1ex;
+			position: relative;
+			transition: transform .2s;
+
+			.faq[open] & {
+				transform: rotateZ(90deg);
+			}
+		}
+
+		&__text {
+			flex-grow: 1;
+		}
+	}
+
+	&__body {
+		margin-left: $icon__margin;
+		white-space: pre-line;
+	}
+
+	&__link {
+		color: vars.$color--brand--offset;
+		text-decoration: none;
+	}
+}
+</style>
+
+<script>
+const $detailses = Array.from(document.querySelectorAll(`details`));
+const $toggle = document.querySelector(`[data-details-toggle]`);
+
+const state = {
+	open: false,
+};
+
+$toggle.addEventListener(`click`, () => {
+	state.open = !state.open;
+
+	for (const $details of $detailses) {
+		$details.open = state.open;
+	}
+});
+</script>

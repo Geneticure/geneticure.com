@@ -1,0 +1,27 @@
+---
+const props = {
+	gradientTransform: ``,
+	id: ``,
+	stops: 2 as number | Array<number>,
+	...Astro.props,
+};
+
+let stops: Array<number>;
+if (Array.isArray(props.stops)) {
+	stops = props.stops;
+} else {
+	const length = parseInt(props.stops as unknown as string);
+	stops = Array.from(Array(length), (nil, index) => {
+		const offset = Math.round(100 * index / (length - 1)) / 100;
+		return offset;
+	});
+}
+---
+
+<svg aria-hidden="true" class={`hidden ${Astro.props.class} ${props.id}`}>
+	<linearGradient id={props.id} gradientTransform={props.gradientTransform}>
+		{stops.map((offset) =>
+			<stop offset={offset} />,
+		)}
+	</linearGradient>
+</svg>

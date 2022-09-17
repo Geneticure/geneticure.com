@@ -1,0 +1,44 @@
+---
+import LogoList_ from 'src/components/logo-list.astro';
+import Section_ from 'src/components/section.astro';
+
+import { journals, medias } from 'src/text/media';
+---
+
+<Section_ cols={0}>
+	<div class="media">
+		<h2 class="text--hdg--2 text--center">As seen in:</h2>
+
+		<LogoList_ logos={medias} />
+		<LogoList_ logos={journals} />
+	</div>
+</Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.section {
+	background-color: vars.$color--brand--offset;
+}
+
+.media {
+	--logo-width: 0;
+
+	:global(.section__content) {
+		justify-content: center;
+	}
+
+	:global(.logo img) {
+		mix-blend-mode: multiply;
+		width: var(--logo-width);
+	}
+
+	@include vars.if-viewport('<', lg) {
+		--logo-width: 100px;
+	}
+
+	@include vars.if-viewport('>=', lg) {
+		--logo-width: 150px;
+	}
+}
+</style>

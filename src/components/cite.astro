@@ -1,0 +1,94 @@
+---
+import { getProps } from 'src/js/astro';
+
+import { researchById } from 'src/text/research';
+
+const { props, rest } = getProps(Astro.props, {
+	to: ``,
+});
+
+if (!researchById[props.to]) {
+	throw new Error(`'${props.to}' is not a valid citation ID`);
+}
+
+const cite = researchById[props.to];
+---
+<span
+	class="cite"
+	role="tooltip"
+	tabindex="0"
+	{...rest}
+><span class="cite__icon">&sect;</span>
+
+	<span
+		class="cite__text"
+		set:html={cite.full}
+	></span>
+</span>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.cite {
+	display: inline-block;
+	line-height: 1em;
+	position: relative;
+
+	&__text {
+		@include vars.type(small);
+
+		background: vars.$color--bg;
+		border: 1px solid vars.$color--brand--offset--sink;
+		border-radius: 10px;
+		box-shadow: 0 0 10px 5px vars.$color--shadow;
+		color: vars.$color--text;
+		display: none;
+		line-height: 1.3em;
+		max-width: 250px;
+		padding: 10px;
+		position: absolute;
+		text-align: left;
+		top: 100%;
+		width: 100vw;
+		z-index: vars.z(tooltip);
+
+		:global(a) {
+			font-weight: normal;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.cite:hover &,
+		&:hover,
+		.cite:focus &,
+		.cite:focus-within & {
+			display: block;
+		}
+	}
+
+	&:hover {
+		&::after {
+			content: '';
+			cursor: pointer;
+			height: 30px;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 30px;
+		}
+	}
+
+	&__icon {
+		color: vars.$color--brand--sink;
+		cursor: pointer;
+		font-size: .6em;
+		font-weight: bold;
+		position: relative;
+		vertical-align: super;
+		z-index: 1;
+	}
+}
+</style>

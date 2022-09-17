@@ -1,0 +1,99 @@
+---
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props, {
+	background: `` as string,
+	class: `` as string,
+	cols: 2 as number,
+});
+---
+
+<section
+	class={`section section--cols--${props.cols} ${props.class}`}
+	data-viewport-visible
+	{...rest}
+>
+	<div class="section__content">
+		<slot />
+	</div>
+
+	{ Astro.slots.has(`background`) &&
+		<div aria-hidden="true" class="section__bg">
+			<slot name="background" />
+		</div>
+	}
+</section>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.section {
+	align-items: center;
+	box-sizing: content-box;
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.section :global(hr.fancy) {
+	animation: hr-fancy 1.5s ease-in-out;
+	animation-play-state: paused;
+
+	@keyframes hr-fancy {
+		from {
+			width: 0;
+		}
+
+		to {
+			width: 100%;
+		}
+	}
+}
+
+.section[data-viewport-visible='true'] :global(hr.fancy) {
+	animation-play-state: running;
+}
+
+.section__content {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+
+	@include vars.if-viewport('<', lg) {
+		flex-direction: column;
+	}
+}
+
+.section__content > :global(*) {
+	box-sizing: border-box;
+	padding: var(--content-padding-y) var(--content-padding-x);
+
+	@include vars.if-viewport('>=', lg) {
+		.section--cols--2 & {
+			@include vars.space-between(50px);
+
+			flex-grow: 0;
+			flex-shrink: 0;
+			width: 50%;
+		}
+	}
+
+	@include vars.if-viewport('<', lg) {
+		width: 100%;
+
+		.section--cols--2 & {
+			@include vars.space-between(15px, (direction: y));
+		}
+	}
+}
+
+.section__bg {
+	@include vars.expand;
+
+	overflow: hidden;
+	z-index: vars.z(underlay);
+}
+</style>

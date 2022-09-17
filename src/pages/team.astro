@@ -1,0 +1,123 @@
+---
+import HomeLayout_ from 'src/layouts/home.astro';
+import Img_ from 'src/components/img.astro';
+import Section_ from 'src/components/section.astro';
+
+import { team, teamDescription } from 'src/text/team';
+
+---
+
+<HomeLayout_ class="team" title="Our team" navFixed={true} navOpaqueAtTop={true}>
+	<Section_ class="hero team__hero">
+		<div class="overlay">
+			<h1 class="text--hdg--1">Our team</h1>
+		</div>
+
+		<Fragment slot="background">
+			<img
+				alt="Image of chairs"
+				class="team__hero__bg"
+				src="/img/bg/chairs.jpg"
+			/>
+		</Fragment>
+	</Section_>
+
+	<Section_ cols={0}>
+		<div>
+			<p set:html={ teamDescription }></p>
+
+			<ul class="people">
+				{
+					team.map((person) =>
+						<li class="person">
+							<div class="person__img">
+								<Img_
+									alt={person.title}
+									lazy={true}
+									src={person.img}
+								/>
+							</div>
+
+							<div class="person__text">
+								<h2 class="text--hdg--2">
+									{person.name}
+
+									{
+										person.social.map((social) =>
+											<a
+												class="person__social"
+												href={social.href}
+												target="_blank"
+											>
+												<Img_
+													alt={`${social.title} account for ${person.name}`}
+													class="person__social__icon"
+													src={social.img}
+												/>
+											</a>,
+										)
+									}
+								</h2>
+								<p class="text--hdg--3">{person.title}</p>
+
+								<p>{person.description}</p>
+							</div>
+						</li>,
+					)
+				}
+			</ul>
+		</div>
+	</Section_>
+</HomeLayout_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.person {
+	align-items: flex-start;
+	display: flex;
+	padding-top: 80px;
+}
+
+.person__img {
+	aspect-ratio: 1;
+	background-color: vars.$color--bg--offset--sink;
+	border-radius: 50%;
+	flex-shrink: 0;
+	height: auto;
+	overflow: hidden;
+
+	img {
+		height: 100%;
+		object-fit: cover;
+		width: 100%;
+	}
+}
+
+.person__social__icon {
+	display: inline-block;
+	height: .6em;
+	vertical-align: middle;
+	width: auto;
+}
+
+@include vars.if-viewport('==', sm) {
+	.person__img {
+		width: 80px;
+	}
+
+	.person__text {
+		padding-left: 10px;
+	}
+}
+
+@include vars.if-viewport('>', sm) {
+	.person__img {
+		width: 130px;
+	}
+
+	.person__text {
+		padding-left: 30px;
+	}
+}
+</style>

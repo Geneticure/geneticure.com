@@ -1,0 +1,59 @@
+---
+import 'src/scss/index.scss';
+import Footer_ from 'src/sections/footer.astro';
+import Nav_ from 'src/sections/nav.astro';
+
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props, {
+	navFixed: true,
+	navOpaqueAtTop: true,
+	title: `` as string,
+});
+
+const isProd = Boolean(import.meta.env.PROD);
+---
+<html lang="en" class={props.class} {...rest}>
+	<head>
+		<title>
+			Geneticure { props.title && `| ${ props.title }` }
+		</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:type" content="website">
+
+		<meta name="description" content="Geneticure reveals the right medication for you, prescribed by your DNA.">
+		<!-- <meta property="og:title" content="{{ site.title }} | {{ page.title }}">
+		<meta property="og:description" content="{{ site.description }}">
+		<meta property="og:image" content="{{ site.preview_img }}">
+		<meta property="og:image:alt" content="{{ site.preview_img_alt }}">
+		<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+		<meta name="twitter:card" content="summary_large_image"> -->
+		<link rel="icon" href="/img/favicon.ico">
+		<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="/img/favicon.png">
+
+		{ isProd ?
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+			:
+			<link rel="stylesheet" href="/css/localfonts.css">
+		}
+	</head>
+	<body>
+		<Nav_ fixed={props.navFixed} opaqueAtTop={props.navOpaqueAtTop} />
+
+		<main>
+			<slot />
+		</main>
+
+		<Footer_ />
+	</body>
+</html>
+
+<script>
+import 'src/js/index';
+</script>

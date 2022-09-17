@@ -1,0 +1,70 @@
+---
+const { type, ...props } = {
+	type: `tablet`,
+	...Astro.props,
+} as const;
+---
+
+<div class={`frame frame--${type}`} {...props}>
+	<img
+		alt={`${type}-shaped frame around other image`}
+		class="frame__graphic"
+		src={`/img/${type}-frame.svg`}
+		width="60"
+		height="80"
+	/>
+	<slot />
+</div>
+
+<style lang="scss">
+@use 'sass:math';
+@use '/src/scss/vars';
+
+@mixin place($height__in, $height__out, $width__out, $width__in, $top__in) {
+	height: math.percentage(math.div($height__in, $height__out));
+	left: #{50% - (math.percentage(math.div(math.div($width__in, $width__out), 2)))};
+	top: math.percentage(math.div($top__in, $height__out));
+	width: math.percentage(math.div($width__in, $width__out));
+}
+
+.frame {
+	display: block;
+	margin: 0 auto;
+	max-width: 400px;
+	page-break-inside: avoid;
+	position: relative;
+	width: 100%;
+}
+
+.frame__graphic {
+	display: block;
+	width: 100%;
+}
+
+.frame__graphic + :global(img) {
+	object-fit: cover;
+	object-position: top;
+	position: absolute;
+	z-index: 1;
+
+	.frame--laptop & {
+		@include place(
+			$height__in: 46,
+			$height__out: 80,
+			$top__in: 15,
+			$width__in: 74,
+			$width__out: 100,
+		);
+	}
+
+	.frame--tablet & {
+		@include place(
+			$height__in: 58.24,
+			$height__out: 80,
+			$top__in: 10.88,
+			$width__in: 45,
+			$width__out: 60,
+		);
+	}
+}
+</style>

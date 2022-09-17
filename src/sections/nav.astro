@@ -1,0 +1,307 @@
+---
+import Img_ from 'src/components/img.astro';
+
+import { getProps } from 'src/js/astro';
+
+import { menu } from 'src/text/menu';
+import { routes } from 'src/routes';
+
+const { props, rest } = getProps(Astro.props, {
+	fixed: true,
+	opaqueAtTop: false,
+});
+---
+
+<div
+	class={`nav__dummy ${props.class}`}
+	data-viewport-visible
+	{...rest}
+></div>
+
+<nav
+	class={`nav ${props.fixed ? `nav--fixed` : ``} ${props.opaqueAtTop ? `nav--opaque-at-top` : ``}`}
+	data-toggle-index="0"
+	data-toggle-target="nav__links"
+	data-toggle-target-isdefault
+>
+	<div class="nav__bar"></div>
+
+	<a
+		class="nav__logo"
+		href={routes.home}
+	>
+		<Img_
+			alt="Geneticure logo"
+			class="footer__logo"
+			src="/img/logo/geneticure.svg"
+		/>
+	</a>
+
+	<div
+		class="nav__links"
+		data-focus-prevent="main, footer"
+		data-toggle-index="1"
+		data-toggle-target="nav__links"
+	>
+		{
+			menu.map((link) =>
+				<a
+					data-active-href={link.href}
+					href={link.href}
+				>{link.label}</a>,
+			)
+		}
+	</div>
+
+	<div
+		class="nav__links__underlay"
+		data-toggle-index="0"
+		data-toggle-trigger="nav__links"
+	></div>
+
+	<button
+		aria-hidden="true"
+		class="nav__links__trigger"
+		data-toggle-index="+1"
+		data-toggle-trigger="nav__links"
+		type="button"
+	>
+		<span class="button--icon">☰</span>
+	</button>
+</nav>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+@mixin nav__fixed {
+	@include vars.expand;
+
+	position: fixed;
+
+	&.nav--opaque-at-top + :global(*) {
+		margin-top: vars.$height--nav;
+	}
+}
+
+@mixin nav__opaque {
+	.nav__bar {
+		backdrop-filter: blur(5px);
+		background-color: #{vars.$color--bg}FA;
+		box-shadow: vars.$shadow--main;
+	}
+}
+
+.nav {
+	height: vars.$height--nav !important;
+	position: relative;
+	z-index: vars.z(nav);
+}
+
+.nav__dummy {
+	height: vars.$height--nav;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 1px;
+}
+
+.nav__bar {
+	background: transparent;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	transition: background .2s, box-shadow .2s;
+	width: 100%;
+	z-index: vars.z(nav__bar);
+}
+
+.nav__logo {
+	z-index: vars.z(nav__logo);
+
+	img {
+		width: auto;
+	}
+}
+
+.nav__links {
+	a {
+		@include vars.type(cta);
+
+		border: 0 solid transparent;
+		border-width: 2px 0;
+		color: vars.$color--text;
+		text-decoration: none;
+		transition: border-color .2s;
+
+		&:hover {
+			color: vars.$color--brand;
+		}
+
+		&.active-href {
+			border-bottom-color: vars.$color--text;
+			pointer-events: none;
+		}
+	}
+}
+
+@include vars.if-viewport('<', lg) {
+	.nav {
+		@include nav__fixed;
+		@include nav__opaque;
+	}
+
+	.nav__logo {
+		align-items: center;
+		display: flex;
+		height: 100%;
+		left: var(--content-padding-x);
+		position: absolute;
+		top: 0;
+
+		img {
+			height: 30px;
+		}
+	}
+
+	.nav__links__trigger {
+		align-items: center;
+		color: vars.$color--brand--sink;
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: vars.$height--nav;
+		z-index: vars.z(nav__flyout__trigger);
+	}
+
+	.nav__links {
+		$links__width: 300px;
+
+		background: vars.$color--bg;
+		box-shadow: -2px 0 5px 0 vars.$color--shadow;
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		max-width: $links__width;
+		padding-top: vars.$height--nav;
+		position: absolute;
+		top: 0;
+		transition: right .2s, left .2s;
+		width: 90vw;
+		z-index: vars.z(nav__flyout);
+
+		a {
+			padding: .5rem 1rem;
+		}
+
+		&:not(.toggle--on) {
+			right: -$links__width;
+
+			a {
+				display: none;
+			}
+		}
+
+		&.toggle--on {
+			right: 0;
+		}
+	}
+
+	.nav__links__underlay {
+		@include vars.expand;
+
+		background-color: vars.$color--shadow;
+		height: 100vh;
+		transition: left .2s, opacity .2s;
+		width: 100vw;
+		z-index: vars.z(nav__flyout__underlay);
+
+		.nav__links.toggle--on + & {
+			animation: fadein forwards .2s;
+		}
+
+		.nav__links:not(.toggle--on) + & {
+			display: none;
+		}
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.nav--fixed {
+		@include nav__fixed;
+	}
+
+	.nav--opaque-at-top,
+	.nav__dummy[data-viewport-visible='false'] + .nav {
+		@include nav__opaque;
+	}
+
+	.nav__logo,
+	.nav__links {
+		align-items: center;
+		display: flex;
+		height: 100%;
+		position: absolute;
+		top: 0;
+	}
+
+	.nav__logo {
+		left: var(--content-padding-x);
+
+		img {
+			height: 40px;
+		}
+	}
+
+	.nav__links {
+		right: var(--content-padding-x);
+		z-index: vars.z(nav__links);
+
+		a {
+			align-items: center;
+			box-sizing: border-box;
+			display: flex;
+			height: 100%;
+			padding: 0 .6rem;
+		}
+	}
+
+	.nav__links__trigger {
+		display: none;
+	}
+}
+
+@media print {
+	.nav {
+		position: static;
+	}
+
+	.nav + :global(*) {
+		margin-top: 0 !important;
+	}
+
+	.nav__links,
+	.nav__flyout__trigger,
+	.nav__flyout__underlay {
+		display: none;
+	}
+}
+
+@keyframes fadein {
+	0% {
+		display: none;
+		opacity: 0;
+	}
+
+	1% {
+		display: block;
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+</style>

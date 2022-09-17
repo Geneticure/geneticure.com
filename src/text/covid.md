@@ -1,0 +1,36 @@
+---
+---
+
+# Geneticure can help treat Covid-19
+
+We are excited to share some discoveries from a focused effort, led by Dr. Eric Snyder, over the last couple of months we think could make a difference in this battle.
+
+Using our Geneticure platform, our team of scientists has developed a COVID19 solution, potentially creating an important short-term advance until a vaccine. Sharing details here w/the hope to reach the right eyeballs at research/funding partners who want to join us on the mission.
+
+One of the most common co-morbidities in patients who develop severe illness is hypertension, an area where we have profound expertise in the genetics of the disease and treatment response.
+
+Like in hypertension treatment, we have identified genetic influences within the renin-angiotensin-aldosterone system (RAAS) that we believe will be beneficial in predicting the severity of, and guiding treatment for, COVID19 patients.
+
+Many companies and academics are tackling this from various angles leaning on their expertise to help save lives and preserve resources, we hope to do the same. Here's how:
+
+COVID-19, like other coronaviruses, bind to and utilize, angiotensin-converting enzyme 2 (ACE2) as a host receptor in order to infect cells resulting in respiratory illness in humans. This is the lock-and-key allowing entry into the cells.
+
+As we all have learned, some can carry and transmit the virus without any symptoms, some with mild symptoms, and some with severe enough complications resulting in death.
+
+Hypertension can cause changes in the RAAS (as an important counter-regulatory pathway to balance increases in blood pressure) and common blood pressure medications have shown to modulate ACE2 levels in small trials.
+
+Several other clinical comorbidities and demographic variables including diabetes, age, and sex have been shown to cause changes in the RAAS in animal models: these are all associated with differences in COVID-19 presentation.
+
+Using the data that are available from these patients with varying levels of severity, it is clear that differences in endogenous ACE2 levels may alter the risk of disease transmission along with the degree of severity of disease progression.
+
+Not all hypertensives, diabetics, or men develop COVID-19, and many without these factors ultimately develop COVID-19 at varying degrees of severity, suggesting genetics may be one of many factors that is important.
+
+Interestingly, there are important potential differences in the importance of ACE2 pre-vs. post-infection. With high ACE2 levels likely being protective for the heart and lungs post-infection. Given this complex relationship: further study is certainly warranted.
+
+With our cheek-swab test, we can identify patients who likely have low vs. high ACE2 levels, based on genetic variants important in the RAAS, to triage their risk for disease progression. We are beginning clinical research trials on this.
+
+We can also utilize this genetic information to suggest common medication adjustments that can be utilized to reduce ACE2 concentrations, hopefully improving outcomes and saving lives.
+
+Like other scientific hypotheses, and similar to our other panels along similar physiologic pathways, we look forward to performing scientific studies on this hypothesis in hopes to do our part to help with COVID-19, leveraging our expertise on this pathway.
+
+Please reach out if you have feedback or would like to join us on this mission: info@geneticure.com

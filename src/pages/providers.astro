@@ -1,0 +1,25 @@
+---
+import HomeLayout_ from 'src/layouts/home.astro';
+
+import Details_ from 'src/sections/providers/details.astro';
+import Evidence_ from 'src/sections/providers/evidence.astro';
+import Hero_ from 'src/sections/providers/hero.astro';
+import Nextsteps_ from 'src/sections/providers/nextsteps.astro';
+import Stats_ from 'src/sections/providers/stats.astro';
+---
+
+<HomeLayout_
+	class="providers"
+	navOpaqueAtTop={false}
+	title="Providers"
+>
+	<Hero_ />
+
+	<Details_ />
+
+	<Stats_ />
+
+	<Evidence_ />
+
+	<Nextsteps_ />
+</HomeLayout_>

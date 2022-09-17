@@ -1,0 +1,73 @@
+---
+import { getAverageColor } from 'fast-average-color-node';
+import { getProps } from 'src/js/astro';
+import { imageSize } from 'image-size';
+
+const { props, rest } = getProps(Astro.props, {
+	bgColor: false,
+	lazy: false,
+	src: null as string,
+});
+
+const path = `public${props.src}`;
+const dimensions = imageSize(path); // TODO: Figure out how to get `publicDir` at compile time.
+
+const style={
+	...(rest.style || {}),
+};
+if (props.bgColor) {
+	const averageColor = await getAverageColor(path, { algorithm: `dominant` });
+	style[`background-color`] = averageColor.hexa;
+}
+---
+
+<img
+	class={props.class}
+	data-src={props.lazy ? props.src : undefined}
+	data-src-lazy={props.lazy}
+	height={dimensions.height}
+	style={style}
+	src={props.lazy ? `/img/empty.svg` : props.src}
+	width={dimensions.width}
+	{...rest}
+/>
+
+<style lang="scss">
+img[data-src-lazy] {
+	transition: opacity .2s;
+
+	&[data-src] {
+		font-size: 0;
+		opacity: 0;
+	}
+
+	&:not([data-src]) {
+		opacity: 1;
+	}
+}
+</style>
+
+<script>
+import { IsInViewport } from 'src/js/isInViewport';
+
+const ATTR__SRC = `data-src`;
+
+const $imgs = Array.from(document.querySelectorAll(`img[${ATTR__SRC}]`));
+new IsInViewport({
+	callback: (({ $element, isInViewport }) => {
+		if (!isInViewport) {
+			return;
+		}
+
+		const src = $element.getAttribute(ATTR__SRC);
+
+		if (!src) {
+			return;
+		}
+
+		$element.setAttribute(`src`, src);
+		$element.removeAttribute(ATTR__SRC);
+	}),
+	getElements: () => $imgs,
+});
+</script>

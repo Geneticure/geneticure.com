@@ -1,0 +1,14 @@
+{
+	"eslint.enable": true,
+	"eslint.validate": [
+		"astro",
+		"typescript"
+	],
+	"stylelint.enable": true,
+	"stylelint.validate": [
+		"astro",
+		"css",
+		"scss",
+		"markdown"
+	]
+}

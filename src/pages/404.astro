@@ -1,0 +1,26 @@
+---
+import HomeLayout_ from 'src/layouts/home.astro';
+import Section_ from 'src/components/section.astro';
+
+import { routes } from 'src/routes';
+---
+
+<HomeLayout_ title="404: Not found">
+	<Section_ class="_404">
+		<div>
+			<h1 class="text--hdg--1">404: Page not found.</h1>
+
+			<p>If you think this is an error, please <a href={routes.contact}>let us know.</a></p>
+
+			<p>Otherwise, <a href={routes.home}>go to the homepage.</a></p>
+		</div>
+	</Section_>
+</HomeLayout_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+._404 {
+	min-height: 60vh !important;
+}
+</style>

@@ -1,0 +1,111 @@
+---
+import Cite_ from 'src/components/cite.astro';
+import Pie_ from 'src/components/pie.astro';
+import Section_ from 'src/components/section.astro';
+
+import { statsById } from 'src/text/stats';
+
+const stats = [`strokes`, `attacks`, `sprint`, `costs`, `eventrisk`, `htn`].map((id) => statsById[id]);
+
+function uncap(text: string) {
+	return text.substring(0, 1).toLowerCase() + text.substring(1);
+}
+---
+
+<Section_ class="stats" cols={0}>
+	<div class="stats__content">
+		<h2 class="text--hdg--1"><em>Reducing cost</em> and improving care.</h2>
+
+		<div class="stats__figures">
+			{
+				stats.map((stat) =>
+					<figure class="stats__figure">
+						<Pie_
+							class="stats__pie"
+							segments={[[100 - stat.value]]}
+							total={100}
+						></Pie_>
+
+						<figcaption>
+							{stat.value}% {uncap(stat.title)}.<Cite_ to={stat.cite} />
+						</figcaption>
+					</figure>,
+				)
+			}
+		</div>
+	</div>
+</Section_>
+
+<style lang="scss">
+@use 'sass:list';
+
+@use 'src/scss/vars';
+
+$background__color: vars.$color--bg;
+
+.stats {
+	--grid-columns: 0;
+	--grid-gap: 0;
+
+	&__content {
+		width: 100%;
+	}
+
+	&__figures {
+		display: grid;
+		grid-gap: var(--grid-gap);
+		grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+	}
+
+	&__figure {
+		align-items: center;
+		box-sizing: border-box;
+		display: flex;
+		flex-shrink: 0;
+
+		$colors: (
+			vars.$color--brand--offset--sink,
+			vars.$color--brand--offset--sink,
+			vars.$color--brand,
+			vars.$color--brand,
+			vars.$color--accent,
+			vars.$color--accent,
+		);
+
+		@for $index from 1 through list.length($colors) {
+			$color: list.nth($colors, $index);
+			&:nth-child(#{$index}) {
+				:global(circle) {
+					fill: $color !important;
+				}
+			}
+		}
+	}
+
+	&__pie {
+		color: vars.$color--text;
+		flex-shrink: 0;
+		margin-right: 10px;
+		width: 60px !important;
+	}
+
+	&__paper {
+		background-color: vars.$color--brand--offset;
+		width: 100%;
+	}
+}
+
+@include vars.if-viewport('<', lg) {
+	.stats {
+		--grid-columns: 1;
+		--grid-gap: 30px 0;
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.stats {
+		--grid-columns: 3;
+		--grid-gap: 50px 10px;
+	}
+}
+</style>

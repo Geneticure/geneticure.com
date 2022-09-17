@@ -1,0 +1,43 @@
+---
+import Section_ from 'src/components/section.astro';
+
+import { news } from 'src/text/news';
+
+---
+
+<Section_ class="text--on-dark">
+	<div>
+		<h2 class="text--hdg--2">More things we're working on:</h2>
+	</div>
+
+	<div>
+		<ul>
+			{
+				news.map((article) =>
+					<li>
+						<a href={article.route}>{article.title}</a>
+					</li>,
+				)
+			}
+		</ul>
+	</div>
+</Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.section {
+	background-color: vars.$color--brand--sink;
+	color: vars.$color--text--on-dark;
+}
+
+.section a {
+	font-weight: normal;
+}
+
+.section li {
+	list-style-position: outside;
+	list-style-type: disc;
+	margin: 10px 0;
+}
+</style>

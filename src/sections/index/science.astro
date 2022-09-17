@@ -1,0 +1,34 @@
+---
+import Img_ from 'src/components/img.astro';
+import Section_ from 'src/components/section.astro';
+
+import { routes } from 'src/routes';
+---
+
+<Section_ class="science">
+	<div class="science__body">
+		<h2 class="text--hdg--1">
+			Fewer prescriptions.<br />
+			Fewer office visits.<br />
+			<em>Less trial-and-error.</em>
+		</h2>
+
+		<hr class="fancy" />
+
+		<p><strong>Your body is unique.</strong> Doctors don't know if a blood pressure medication will work until you try it. If it doesn't work, they might add or try another. This trial-and-error costs time and money. Some medications can even make your blood pressure go up.</p>
+
+		<p>Geneticure's test looks at 17 genotypes and 11 genes* to determine how your body responds to each medication. Your personalized report helps your doctor <strong>prescribe the right medication from the start.</strong></p>
+
+		<aside>
+			<p>*We respect your privacy and only look at the DNA that is relevant to blood pressure. The rest is discarded. For more information <a href={routes.faqs}>see our FAQs</a>.</p>
+		</aside>
+	</div>
+
+	<div>
+		<Img_
+			alt="Geneticure kit with literature"
+			lazy={true}
+			src="/img/kit/kit-lit.jpg"
+		/>
+	</div>
+</Section_>

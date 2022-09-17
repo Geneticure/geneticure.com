@@ -1,0 +1,218 @@
+---
+import Buttonset_ from 'src/components/buttonset.astro';
+import Img_ from 'src/components/img.astro';
+import Section_ from 'src/components/section.astro';
+import SvgPattern_ from 'src/components/svg-pattern.astro';
+import Svg_ from 'src/components/svg.astro';
+
+import { routes } from 'src/routes';
+
+const steps: Array<[
+	[string, string],
+	string,
+	string,
+	Array<[string, string]>?
+]> = [
+	[
+		[`svg`, `kit`],
+		`Order a kit`,
+		`Purchase a kit online (no prescription required) and we'll get it to your home or office in a few days.`,
+		[
+			[`Buy now`, routes.buy],
+		],
+	],
+	[
+		[`svg`, `computer`],
+		`Activate your kit`,
+		`Log on to geneticure.com to activate your kit. You will receive instructions on how to complete the process and access your results. Included in your services, a physician will review your information and follow up with questions if needed. The physician will approve the test, if appropriate. If not approved for any reason, you will receive a full refund for your kit purchase.`,
+		[
+			[`Log in `, routes.login],
+		],
+	],
+	[
+		[`svg`, `swab`],
+		`Swab your cheek`,
+		`Follow the simple step-by-step instructions included in your kit. Return your sample to Geneticure in the pre-addressed envelope included in your kit.`,
+	],
+	[
+		[`svg`, `dna_tube`],
+		`Lab analysis`,
+		`Once we receive your sample and the independent physician authorization, our CLIA-certified lab will begin to identify the unique markers in your genetic code.`,
+	],
+	[
+		[`svg`, `algorithm`],
+		`Proprietary algorithm`,
+		`Your unique genetic code is analyzed by our patented software and algorithm, supported by hundreds of peer-reviewed papers as well as our own clinical trial data. With your personalized results and the guidance of your doctor, we help identify the best match of blood pressure medications based on the individual differences in your genetic code.`,
+	],
+	[
+		[`img`, `/img/icon/doc.svg`],
+		`Personalized report`,
+		`Approximately 10-15 business days from when our lab receives the sample, you will receive a personalized report that includes prescription recommendations along with the supporting genetic detail. You will also have the opportunity to discuss your results with a genetic counselor at no additional charge. Geneticure partners with PWNHealth, an independent network of healthcare providers. PWNHealth can also discuss the limitations of the test and how best to share your results with your primary healthcare provider.`,
+	],
+	[
+		[`svg`, `doctor`],
+		`Talk to your doctor`,
+		`Share your Geneticure test with your doctor and they may be able to use it to optimize your prescriptions. It is very important that you do not start or stop taking any medications without first consulting your provider.`,
+	],
+];
+---
+
+<Section_ class="howitworks" cols={0}>
+	<div class="howitworks__body">
+		<h2 class="text--hdg--1">How does it <em>work</em>?</h2>
+
+		<hr class="fancy" />
+
+		<ol class="steps list--dotted">
+			{ steps.map(([[iconType, iconSrc], title, body, buttons]) =>
+				<li class="step">
+					{ iconType === `svg` &&
+						<Svg_
+							class="step__icon"
+							src={`public/img/icon/${iconSrc}.svg`}
+						/>
+					}
+					{ iconType === `img` &&
+						<Img_
+							alt={title}
+							class="step__icon"
+							src={iconSrc}
+						/>
+					}
+					<div class="step__body">
+						<h3 class="text--hdg--2 step__body__title" set:html={ title }></h3>
+						<p class="step__body__text" set:html={ body }></p>
+
+						{
+							buttons &&
+							<Buttonset_>
+								{
+									buttons.map(([text, href]) =>
+										<a
+											class="button--default"
+											href={href}
+										>
+											{text}
+										</a>,
+									)
+								}
+							</Buttonset_>
+						}
+					</div>
+				</li>,
+			) }
+		</ol>
+	</div>
+
+	<Fragment slot="background">
+		<SvgPattern_
+			height="100"
+			id="howitworks__bg"
+			patternTransform="rotate(35)"
+			src="public/img/icon/helix-pattern.svg"
+			width="150"
+		/>
+	</Fragment>
+</Section_>
+
+<style lang="scss">
+@use 'sass:math';
+@use '/src/scss/vars';
+
+.steps {
+	margin-left: calc(var(--icon-width) + var(--icon-offset));
+	text-align: left;
+}
+
+.step {
+	display: flex;
+	padding-left: var(--icon-offset);
+	position: relative;
+}
+
+.step__body {
+	position: relative;
+	top: -.4em;
+}
+
+.step__body__title {
+	color: vars.$color--brand;
+	position: relative;
+}
+
+.step__icon {
+	aspect-ratio: 1;
+	position: absolute;
+	right: calc(100% + var(--icon-offset));
+	top: calc((-.5 * var(--icon-width)) + 10px);
+	width: var(--icon-width);
+
+	:global(path) {
+		fill: vars.$color--text;
+	}
+}
+
+.howitworks {
+	--bg-width: 0;
+	--bg-offset: 0;
+
+	&__body {
+		margin-right: auto;
+		max-width: var(--bg-width);
+		width: 100%;
+	}
+
+	&__bg {
+		&::after {
+			@include vars.expand;
+
+			background-image: linear-gradient(270deg, #{vars.$color--bg}00, vars.$color--bg var(--bg-offset));
+			z-index: 1;
+		}
+
+		:global(path) {
+			fill: none;
+			stroke: vars.$color--shadow--sink;
+			// stroke: red;
+			stroke-linecap: round;
+			stroke-width: 2;
+		}
+	}
+}
+
+@include vars.if-viewport('<', lg) {
+	.howitworks {
+		--bg-width: auto;
+		--bg-offset: calc(var(--content-padding-x) + 50px);
+	}
+
+	.steps {
+		--icon-offset: 20px;
+		--icon-width: 50px;
+
+		margin-top: 30px;
+	}
+
+	.step:not(:last-child) {
+		padding-bottom: 30px;
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.howitworks {
+		--bg-width: 1100px;
+		--bg-offset: calc(100vw - var(--bg-width) + 200px);
+	}
+
+	.steps {
+		--icon-offset: 30px;
+		--icon-width: 100px;
+
+		margin-top: 80px;
+	}
+
+	.step:not(:last-child) {
+		padding-bottom: 80px;
+	}
+}
+</style>

@@ -1,0 +1,533 @@
+@forward './bounce';
+@forward './functions';
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+@use './functions' as vars;
+
+// #region Breakpoints and viewports
+$bps: (
+	sm: 0,
+	md: 600px,
+	lg: 960px,
+	xl: 1440px,
+);
+$bps__order: vars.keys($bps);
+
+@function viewport($operator, $bp__name: '') {
+	@if type-of($operator) == 'list' {
+		$result: ();
+		$viewports: $operator;
+		@each $viewport in $viewports {
+			$operator: list.nth($viewport, 1);
+			$bp__name: list.nth($viewport, 2);
+			$result: list.append($result, viewport($operator, $bp__name));
+		}
+		@return $result;
+	}
+
+	$bp: vars.get($bps, $bp__name);
+	$index: vars.indexof($bps__order, $bp__name);
+
+	$bp__prev: null;
+	@if $index > 1 {
+		$bp__prev__name: list.nth($bps__order, $index - 1);
+		$bp__prev: vars.get($bps, $bp__prev__name);
+	}
+
+	$bp__next: null;
+	@if $index < list.length($bps__order) {
+		$bp__next__name: list.nth($bps__order, $index + 1);
+		$bp__next: vars.get($bps, $bp__next__name);
+	}
+
+	@if $operator == '<' {
+		@return '(max-width: #{$bp - 1})';
+	} @else if $operator == '<=' {
+		@if $bp__next {
+			@return '(max-width: #{$bp__next - 1})';
+		} @else {
+			@return '';
+		}
+	} @else if $operator == '>' {
+		@if $bp__next {
+			@return '(min-width: #{$bp__next})';
+		} @else {
+			@error 'There is no viewport size greater than `#{$bp__name}`.';
+		}
+	} @else if $operator == '>=' {
+		@return '(min-width: #{$bp})';
+	} @else if $operator == '==' {
+		@if $bp__next {
+			@return '(min-width: #{$bp}) and (max-width: #{$bp__next - 1})';
+		} @else {
+			@return viewport('>=', $bp__name);
+		}
+	} @else {
+		@error 'Operator `#{$operator}` is invalid.';
+	}
+}
+
+@mixin if-viewport($operator, $bp__name: '') {
+	$viewport: viewport($operator, $bp__name);
+	@media #{$viewport} {
+		@content;
+	}
+}
+// #endregion
+
+
+// #region Fonts
+$font-family--body: 'Nunito', sans-serif;
+$font-size--base: 20;
+
+@function rem($size) {
+	$rem: math.div($size, $font-size--base);
+	$rem: vars.round-to($rem, 2);
+	@return #{$rem}rem;
+}
+// #endregion
+
+
+// #region Colors
+$color--accent: #7700CC;
+$color--accent--sink: #550099;
+$color--bg: #FFFFFF;
+$color--bg--offset: #EEEEEE;
+$color--bg--offset--sink: #CCCCCC;
+$color--brand: #009ADE;
+$color--brand--offset: #E1F5FE;
+$color--brand--offset--sink: #71C8EE;
+$color--brand--sink: #007DB3;
+$color--disabled: #888888;
+$color--error: #FF4444;
+$color--error--offset: #FFE0E0;
+$color--lowlight: #414042;
+$color--lowlight--offset: #555555;
+$color--lowlight--sink: #000000;
+$color--overlay: #FFFFFFC0;
+$color--shadow: rgba(0 0 10 / .07);
+$color--shadow--sink: rgba(0 0 10 / .15);
+$color--social--linkedin: #0A66C2;
+$color--social--twitter: #1DA1F2;
+$color--text: #000000;
+$color--text--on-dark: #FFFFFF;
+
+$shadow--main: 0 1px 2px 0 rgba(0 0 0 / .2);
+// #endregion
+
+
+// #region Z-indexes
+$z-levels: (
+	(underlay -1),
+	(body, 0),
+	tooltip,
+	toggle,
+	(nav, 100),
+	nav__flyout__underlay,
+	nav__flyout,
+	nav__bar,
+	nav__logo,
+	nav__links,
+	nav__flyout__trigger,
+	(overlay, 200),
+);
+
+$z-indexes: ();
+$z-indexes__increment: 10;
+$z-index__name: null;
+$z-index__value: null;
+@each $z-level in $z-levels {
+	@if type-of($z-level) == list {
+		$z-index__name: list.nth($z-level, 1);
+		$z-index__value: list.nth($z-level, 2);
+	} @else {
+		$z-index__name: $z-level;
+		$z-index__value: $z-index__value + $z-indexes__increment;
+	}
+	$z-indexes: map.set($z-indexes, $z-index__name, $z-index__value);
+}
+
+@function z($z-index__name) {
+	@return vars.get($z-indexes, $z-index__name);
+}
+// #endregion
+
+
+// #region Layout
+$height--nav: 60px;
+
+$margin--text--y: 1rem;
+
+@mixin content {
+	box-sizing: border-box;
+	padding: var(--content-padding-y) var(--content-padding-x);
+	width: 100%;
+
+	@media print {
+		padding: 10px 0;
+	}
+}
+
+@mixin space-between($value, $options: ()) {
+	$direction: vars.get($options, direction, x);
+	$property: vars.get($options, property, padding);
+
+	&:not(:first-child, :only-child) {
+		@if $direction == x {
+			#{$property}-left: $value;
+		}
+		@if $direction == y {
+			#{$property}-top: $value;
+		}
+	}
+
+	&:not(:last-child, :only-child) {
+		@if $direction == x {
+			#{$property}-right: $value;
+		}
+		@if $direction == y {
+			#{$property}-bottom: $value;
+		}
+	}
+}
+// #endregion
+
+
+// #region Selectors
+@mixin disabled {
+	&:disabled,
+	&.disabled,
+	&[disabled] {
+		@content;
+	}
+}
+
+@mixin disabled--not() {
+	&:not(:disabled, .disabled, [disabled]) {
+		@content;
+	}
+}
+
+@mixin input--text() {
+	input:not([type='checkbox'], [type='radio'], [type='submit']),
+	select,
+	textarea {
+		@content;
+	}
+}
+// #endregion
+
+
+// #region Type
+$typefaces: (
+	body: (
+		font-family: $font-family--body,
+		font-size: rem($font-size--base),
+		line-height: rem(30),
+	),
+	cta: (
+		font-size: rem(15),
+		font-weight: 700,
+		line-height: rem(18),
+		text-transform: uppercase,
+	),
+	small: (
+		font-size: rem(14),
+		line-height: rem(22),
+	),
+	hdg--1: (
+		font-size: rem(50),
+		line-height: rem(64),
+	),
+	hdg--1--lg: (
+		font-size: rem(36),
+		line-height: rem(44),
+	),
+	hdg--1--sm: (
+		font-size: rem(30),
+		line-height: rem(38),
+	),
+	hdg--2: (
+		font-size: rem(32),
+		line-height: rem(40),
+	),
+	hdg--2--md: (
+		font-size: rem(26),
+		line-height: rem(32),
+	),
+	hdg--3: (
+		font-size: rem(22),
+		line-height: rem(26),
+	),
+	hdg--4: (
+		font-weight: 700,
+	),
+);
+
+@mixin type($type__name) {
+	$type: vars.get($typefaces, $type__name);
+
+	@include vars.map-to-props($type);
+
+	@each $bp__name in vars.reverse($bps__order) {
+		$bp__width: vars.get($bps, $bp__name);
+		$bp--type__name: #{$type__name}--#{$bp__name};
+
+		@if map.has-key($typefaces, $bp--type__name) {
+			$bp--type__overrides: vars.get($typefaces, $bp--type__name);
+
+			@include if-viewport('<=', $bp__name) {
+				@include vars.map-to-props($bp--type__overrides);
+
+				--bp: #{$bp__name};
+			}
+		}
+	}
+}
+
+@mixin text--print {
+	color: #000000 !important;
+	font-size: 12px !important;
+	line-height: 1.4em !important;
+}
+
+@mixin text--smooth {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;
+}
+
+@mixin text__underline {
+	text-decoration: underline;
+	text-decoration-color: currentcolor;
+	text-decoration-thickness: 1px;
+	text-underline-position: under;
+}
+
+@mixin text__gradient {
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+// #endregion
+
+// #region Buttons
+@mixin button {
+	@include type(cta);
+
+	align-items: center;
+	border-radius: rem(17);
+	box-sizing: border-box;
+	cursor: pointer;
+	display: inline-flex;
+	height: rem(34);
+	justify-content: center;
+	padding: 0 1rem;
+	text-decoration: none;
+	text-shadow: none !important;
+	transition: color .2s, background-color .2s;
+
+	@include disabled {
+		&,
+		&:focus,
+		&:hover,
+		&:active {
+			background: $color--disabled;
+			box-shadow: none;
+			color: $color--text--on-dark;
+			cursor: default;
+		}
+	}
+}
+
+@mixin button--low {
+	background: $color--shadow;
+	color: $color--text;
+
+	&:focus,
+	&:hover {
+		background-color: $color--shadow--sink;
+		color: $color--text;
+	}
+
+	&:active {
+		color: $color--brand--sink;
+	}
+}
+
+@mixin button--default {
+	background: $color--brand--sink;
+	color: $color--text--on-dark;
+
+	&:focus,
+	&:hover {
+		background: $color--brand;
+		color: $color--text--on-dark;
+	}
+
+	&:active {
+		color: $color--lowlight;
+	}
+}
+
+@mixin button--high {
+	background: $color--accent;
+	color: $color--text--on-dark;
+
+	&:focus,
+	&:hover {
+		background: $color--accent--sink;
+		color: $color--text--on-dark;
+	}
+
+	&:active {
+		color: $color--text;
+	}
+}
+
+@mixin button--icon($size: 24px) {
+	@include encircle($size);
+
+	font-size: $size;
+	height: $size;
+	line-height: 0;
+	position: relative;
+	width: $size;
+
+	&::after {
+		@include encircle($size);
+
+		left: -#{$size * .5};
+		position: absolute;
+		top: -#{$size * .5};
+		transition: background-color .2s;
+	}
+
+	&:hover::after {
+		background-color: #{$color--brand--sink}20;
+	}
+
+	&:active::after {
+		background-color: #{$color--brand--sink}50;
+	}
+}
+
+@mixin button--hero {
+	background-image: linear-gradient(20deg, $color--accent--sink, $color--accent);
+	border-radius: 30px;
+	box-sizing: border-box;
+	color: $color--text--on-dark !important;
+	display: inline-flex;
+	font-size: 20px;
+	height: 60px;
+	min-width: 200px;
+	padding-left: 60px;
+	padding-right: 60px;
+	transition: box-shadow .2s;
+
+	&:hover {
+		box-shadow: 0 0 0 60px #00000022 inset;
+	}
+
+	&:active {
+		box-shadow: 0 0 0 60px #00000044 inset;
+	}
+}
+// #endregion
+
+
+// #region Misc
+@mixin encircle($radius: 30px) {
+	$diameter: 2 * $radius;
+
+	align-items: center;
+	border-radius: 50%;
+	box-sizing: border-box;
+	content: '';
+	display: inline-flex;
+	height: $diameter;
+	justify-content: center;
+	width: $diameter;
+
+	& > * {
+		position: relative;
+		z-index: 1;
+	}
+}
+
+@mixin expand {
+	content: '';
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+@function gradient-split($color: #FFFFFF, $from: 'CC', $offset: 33%) {
+	@return #{$color}#{$from}, #{$color}FF #{$offset}, #{$color}FF #{100% - $offset}, #{$color}#{$from};
+}
+
+@mixin list--dotted($options: ()) {
+	$border__color: vars.get($options, border__color, #000000);
+	$border__offset: vars.get($options, border__offset, 30px);
+	$border__width: vars.get($options, border__width, 3px);
+	$dot__background: vars.get($options, dot__background, #FFFFFF);
+	$dot__color: vars.get($options, dot__color, red);
+	$dot__diameter: vars.get($options, dot__diameter, 10px);
+
+	& > * {
+		border-left: $border__width solid $border__color;
+		padding-left: $border__offset;
+		position: relative;
+	}
+
+	& > *:last-of-type {
+		border-left-color: transparent;
+	}
+
+	& > *::after {
+		@include encircle($dot__diameter);
+
+		background-color: $dot__color;
+		border: $border__width solid $border__color;
+		box-shadow: 0 0 0 $border__width $dot__background inset;
+		left: -#{(.5 * $border__width) + $dot__diameter};
+		position: absolute;
+		top: 0;
+	}
+}
+
+@mixin overlay($options: ()) {
+	$border__radius: vars.get($options, border__radius, 10px);
+	$breakpoint: vars.get($options, breakpoint, lg);
+	$position: vars.get($options, position, left);
+
+	backdrop-filter: blur(2px);
+	background-color: $color--overlay;
+
+	@include if-viewport('<', $breakpoint) {
+		width: 100%;
+	}
+
+	@include if-viewport('>=', $breakpoint) {
+		@if $position == left {
+			border-radius: 0 $border__radius $border__radius 0;
+			margin-right: auto;
+		} @else if $position == right {
+			border-radius: $border__radius 0 0 $border__radius;
+			margin-left: auto;
+		} @else if $position == center {
+			border-radius: $border__radius;
+			margin-left: auto;
+			margin-right: auto;
+		} @else {
+			@error "'#{$position}' is not a valid overlay position.";
+		}
+	}
+}
+// #endregion

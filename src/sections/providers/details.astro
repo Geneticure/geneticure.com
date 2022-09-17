@@ -1,0 +1,87 @@
+---
+import Img_ from 'src/components/img.astro';
+import Section_ from 'src/components/section.astro';
+import SvgPattern_ from 'src/components/svg-pattern.astro';
+---
+
+<Section_ class="details">
+	<div>
+		<h2 class="text--hdg--1"><em>The right prescriptions</em> with pharmacogenomics.</h2>
+
+		<p>Our CLIA-certified lab sequences your patient's DNA from a standard cheek swab. Then, our patented algorithm uses years of research to predict which treatments will most effectively treat your patient's hypertension. We compile our findings into <strong>a personalized, printable report</strong>.</p>
+
+		<Img_
+			alt="Geneticure test kit"
+			class="details__kit"
+			src="/img/kit/kit-lit.jpg"
+		/>
+	</div>
+
+	<div>
+		<Img_
+			alt="Geneticure report sample"
+			class="details__report"
+			src="/img/report.png"
+		/>
+	</div>
+
+	<Fragment slot="background">
+		<SvgPattern_ id="details__bg" src="public/img/icon/helix-pattern.svg" width="30" height="30"  />
+	</Fragment>
+</Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+h2 em {
+	color: vars.$color--brand;
+}
+
+strong {
+	color: vars.$color--brand--sink;
+	font-weight: bold;
+}
+
+.details {
+	--bg-image: 0;
+
+	&__report {
+		box-shadow: 0 0 20px 5px vars.$color--shadow;
+	}
+
+	&__kit {
+		mix-blend-mode: darken;
+	}
+
+	&__bg {
+		@include vars.expand;
+
+		background-color: vars.$color--brand--offset;
+
+		:global(path) {
+			fill: none;
+			stroke: vars.$color--brand--offset--sink;
+			stroke-width: 3;
+		}
+
+		&::before {
+			@include vars.expand;
+
+			background-image: var(--bg-image);
+			z-index: 1;
+		}
+	}
+}
+
+@include vars.if-viewport('<', lg) {
+	.details {
+		--bg-image: linear-gradient(270deg, #{vars.$color--bg}00, #{vars.$color--bg}FF 20%);
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.details {
+		--bg-image: linear-gradient(270deg, #{vars.$color--bg}00, #{vars.$color--bg}FF 50%);
+	}
+}
+</style>

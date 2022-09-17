@@ -1,0 +1,137 @@
+---
+import { getProps } from 'src/js/astro';
+
+export type Segment = [number, string?];
+
+const { props, rest } = getProps(Astro.props, {
+	animated: true,
+	segments: [
+		[30, `red`],
+		[50, `blue`],
+	] as Array<Segment>,
+	total: `auto` as number | `auto`,
+});
+
+const diameter = 100;
+const total = typeof props.total === `number` ? props.total : props.segments.reduce((total, [value]) => total + value, 0);
+const circumference = Math.round(Math.PI * diameter);
+let offset = 0;
+const segments = props.segments.map(([value, color]) => {
+	const percent = value / total;
+	const length = Math.round(circumference * percent);
+	const remainder = circumference - length;
+	const segment = {
+		color,
+		length,
+		offset,
+		remainder,
+		style: {
+			...(color ? { 'stroke': color } : {}),
+			'stroke-dasharray': `${length} ${remainder}`,
+			'stroke-dashoffset': -offset,
+		},
+	};
+	offset += length;
+	return segment;
+});
+---
+
+<div
+	class={`pie ${props.animated ? `pie--animated` : ``} ${props.class}`}
+	data-viewport-visible={props.animated ? `` : undefined}
+>
+	<svg
+		aria-hidden="true"
+		viewBox={`0 0 ${diameter} ${diameter}`}
+		{...rest}
+	>
+		{segments.map((segment) =>
+			<circle
+				cx="50"
+				cy="50"
+				r="50"
+				style={segment.style}
+			/>,
+		)}
+	</svg>
+
+	{Astro.slots.has(`default`) &&
+		<div class="pie__content">
+			<slot></slot>
+		</div>
+	}
+</div>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.pie {
+	--background: #FFFFFFF0;
+
+	align-items: center;
+	aspect-ratio: 1;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	width: 100px;
+
+	&__content {
+		align-items: center;
+		aspect-ratio: 1;
+		backdrop-filter: blur(5px);
+		background-color: var(--background);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		position: relative;
+		width: 70%;
+		z-index: 1;
+	}
+}
+
+.pie--animated {
+	svg {
+		animation: spin 120s linear infinite;
+	}
+
+	circle {
+		animation: decrease 2s;
+		animation-play-state: paused;
+	}
+
+	&[data-viewport-visible='true'] {
+		circle {
+			animation-play-state: running;
+		}
+	}
+
+	@keyframes decrease {
+		from {
+			stroke-dasharray: 315;
+		}
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotateZ(270deg);
+		}
+	}
+}
+
+svg {
+	aspect-ratio: 1;
+	background: vars.$color--bg;
+	border-radius: 50%;
+	box-shadow: 0 0 30px 0 vars.$color--shadow--sink;
+	position: absolute;
+	transform: rotateZ(-90deg);
+	width: 100%;
+}
+
+circle {
+	fill: none;
+	stroke: #00000070;
+	stroke-width: 100;
+	transform-origin: 50% 50%;
+}
+</style>

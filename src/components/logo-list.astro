@@ -1,0 +1,65 @@
+---
+import Img_ from 'src/components/img.astro';
+
+import { getProps } from 'src/js/astro';
+
+type LogoList = Array<{
+	icon: string,
+	name: string,
+	url: string,
+}>;
+
+const { props, rest } = getProps(Astro.props, {
+	logos: [] as LogoList,
+});
+---
+
+<ul class={`logo-list ${props.class}`} {...rest}>
+	{
+		props.logos.map((logo) =>
+			<li class="logo">
+				<a
+					aria-label="Opens in new window"
+					href={logo.url}
+					target="_blank"
+					title={logo.name}
+				>
+					<Img_
+						alt={logo.name}
+						lazy={true}
+						src={logo.icon}
+					/>
+				</a>
+			</li>,
+		)
+	}
+</ul>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.logo-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.logo {
+	display: block;
+	flex-shrink: 0;
+	margin: 0 20px;
+
+	img {
+		aspect-ratio: 1;
+		filter: grayscale(1);
+		object-fit: contain;
+		object-position: center;
+		transition: filter .2s;
+		width: 100px;
+	}
+
+	&:hover img {
+		filter: none;
+	}
+}
+</style>

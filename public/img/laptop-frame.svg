@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="object" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 80" style="enable-background:new 0 0 100 80;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#929292;}
+	.st1{fill:#333333;}
+	.st2{fill:url(#SVGID_1_);}
+	.st3{fill:url(#Shadow_1_);}
+	.st4{fill:url(#Bottom_1_);}
+	.st5{fill:url(#Base_1_);}
+	.st6{fill:url(#Fingerhole_1_);}
+</style>
+<g id="Screen">
+	<path d="M89.4,62.7V13.9c0-1.1-0.9-2-2.1-2H12.7c-1.1,0-2,0.9-2.1,2v48.8l0,0v1.4h78.7L89.4,62.7L89.4,62.7z M87,61H13V15h74V61z"
+		/>
+	<path id="Edge" class="st0" d="M87.3,11.8c1.1,0,2,0.9,2.1,2v48.9l0,0v1.4H10.6v-1.4l0,0V13.9c0-1.1,1-2,2.1-2L87.3,11.8
+		 M87.3,11.5H12.7c-1.3,0-2.4,1.1-2.4,2.4c0,0,0,0,0,0v50.5h79.5V13.9C89.7,12.5,88.6,11.5,87.3,11.5C87.3,11.5,87.3,11.5,87.3,11.5
+		L87.3,11.5z"/>
+	<rect id="Bar" x="10.6" y="62.7" class="st1" width="78.7" height="1.4"/>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="75.1607" y1="63.1607" x2="22.8347" y2="10.8347">
+		<stop  offset="0" style="stop-color:#000000;stop-opacity:0.1"/>
+		<stop  offset="0.1413" style="stop-color:#000000;stop-opacity:8.586600e-02"/>
+		<stop  offset="1" style="stop-color:#000000;stop-opacity:0"/>
+	</linearGradient>
+	<rect x="13" y="15" class="st2" width="74" height="46"/>
+</g>
+<radialGradient id="Shadow_1_" cx="50" cy="-22475.9609" r="61.43" gradientTransform="matrix(1 0 0 -2.000000e-02 0 -382.33)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0" style="stop-color:#808080;stop-opacity:0.7"/>
+	<stop  offset="0.16" style="stop-color:#818181;stop-opacity:0.66"/>
+	<stop  offset="0.34" style="stop-color:#868686;stop-opacity:0.55"/>
+	<stop  offset="0.52" style="stop-color:#8D8D8D;stop-opacity:0.37"/>
+	<stop  offset="0.65" style="stop-color:#939393;stop-opacity:0.2"/>
+	<stop  offset="0.72" style="stop-color:#9F9F9F;stop-opacity:0"/>
+</radialGradient>
+<path id="Shadow" class="st3" d="M136.8,66.9c0,1.8-31.1,3.4-87.7,3.4s-85.9-1.5-85.9-3.2s29.3-3.3,85.9-3.3S136.8,65.1,136.8,66.9z
+	"/>
+<linearGradient id="Bottom_1_" gradientUnits="userSpaceOnUse" x1="50" y1="15.03" x2="50" y2="16.34" gradientTransform="matrix(1 0 0 -1 0 82)">
+	<stop  offset="0" style="stop-color:#808080"/>
+	<stop  offset="0.74" style="stop-color:#B9B9B9"/>
+	<stop  offset="0.85" style="stop-color:#B6B6B6"/>
+	<stop  offset="0.94" style="stop-color:#ACACAC"/>
+	<stop  offset="1" style="stop-color:#9F9F9F"/>
+</linearGradient>
+<path id="Bottom" class="st4" d="M1,65.7C4.5,66.5,8.1,67,11.6,67h76.7c3.6,0,7.2-0.5,10.6-1.3H1z"/>
+<linearGradient id="Base_1_" gradientUnits="userSpaceOnUse" x1="1" y1="17.11" x2="99" y2="17.11" gradientTransform="matrix(1 0 0 -1 0 82)">
+	<stop  offset="0" style="stop-color:#666666"/>
+	<stop  offset="1.000000e-02" style="stop-color:#D5D5D5"/>
+	<stop  offset="0.97" style="stop-color:#DFDFDF"/>
+	<stop  offset="1" style="stop-color:#ACACAC"/>
+</linearGradient>
+<rect id="Base" x="1" y="64.1" class="st5" width="98" height="1.6"/>
+<linearGradient id="Fingerhole_1_" gradientUnits="userSpaceOnUse" x1="43.03" y1="17.3248" x2="56.97" y2="17.3248" gradientTransform="matrix(1 0 0 -1 0 82)">
+	<stop  offset="0" style="stop-color:#9F9F9F"/>
+	<stop  offset="4.000000e-02" style="stop-color:#ACACAC"/>
+	<stop  offset="0.51" style="stop-color:#E5E5E5"/>
+	<stop  offset="0.96" style="stop-color:#ACACAC"/>
+	<stop  offset="1" style="stop-color:#9F9F9F"/>
+</linearGradient>
+<path id="Fingerhole" class="st6" d="M57,64.1c0,0.3-0.1,0.6-0.3,0.8c-0.2,0.2-0.5,0.3-0.8,0.3H44.2c-0.6,0-1.1-0.5-1.2-1.1
+	c0,0,0,0,0,0H57z"/>
+</svg>

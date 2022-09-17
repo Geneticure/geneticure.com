@@ -1,0 +1,79 @@
+---
+import Details_ from 'src/components/details.astro';
+import LogoList_ from 'src/components/logo-list.astro';
+import Section_ from 'src/components/section.astro';
+
+import { journals } from 'src/text/media';
+import { news } from 'src/text/news';
+import { research } from 'src/text/research';
+import { routes } from 'src/routes';
+---
+
+<Section_ class="evidence" cols={0}>
+	<div>
+		<h2 class="text--hdg--1">An <em>evidence-first approach</em> to personalized medicine.</h2>
+
+		<p>Geneticure goes well beyond drug metabolism. Developed by <a href={routes.team}>scientific leaders in their fields</a>, Geneticure's test assesses hypertension treatment in a comprehensive integrative nature, from drug metabolizing enzymes to receptors that are important to heart, blood vessel, and kidney function, with a focus on and appreciation of the complexity of the disease.</p>
+
+		<h3 class="text--hdg--3 text--center">As seen in:</h3>
+
+		<LogoList_ logos={journals} />
+
+		{
+			research.map((category) =>
+				<Details_ class="evidence__section">
+					<Fragment slot="title">
+						{category.title}
+					</Fragment>
+
+					{
+						category.citations.map((cite) =>
+							<p class="evidence__cite" set:html={cite.full}></p>,
+						)
+					}
+				</Details_>,
+			)
+		}
+
+		<h3 class="text--hdg--2">Other initiatives:</h3>
+
+		<ul>
+			{
+				news.map((article) =>
+					<li>
+						<a href={article.route}>{article.title}</a>
+					</li>,
+				)
+			}
+		</ul>
+	</div>
+</Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.evidence {
+	&__section {
+		margin: 50px 0;
+	}
+
+	&__cite {
+		&:not(:first-child) {
+			margin-top: 30px !important;
+		}
+
+		:global(span) {
+			@include vars.type(small);
+
+			display: block;
+		}
+	}
+
+	li {
+		list-style-position: inside;
+		list-style-type: disc;
+		margin-top: 20px;
+	}
+}
+
+</style>

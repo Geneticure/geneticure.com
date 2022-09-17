@@ -1,0 +1,135 @@
+---
+import LogoList_ from 'src/components/logo-list.astro';
+import Section_ from 'src/components/section.astro';
+import SvgPattern_ from 'src/components/svg-pattern.astro';
+
+import TeamGrid_ from 'src/sections/index/team-grid.astro';
+
+import { partners } from 'src/text/partners';
+import { teamDescription } from 'src/text/team';
+---
+
+<Section_ class="who">
+	<div class="who__text">
+		<h2 class="text--hdg--1">Who is <em>Geneticure</em>?</h2>
+
+		<hr class="fancy" />
+
+		<p set:html={ teamDescription }></p>
+
+		<!-- <p><strong>Join our mailing list</strong> so we can keep you updated with our latest developments!</p>
+
+		<form class="who__mail">
+			<input placeholder="yourname@email.com" type="text" />
+
+			<Buttonset_ class="who__mail__buttons">
+				<button type="button">Submit</button>
+				<a href={routes.contact} class="button--low">Contact us</a>
+			</Buttonset_>
+		</form> -->
+
+		<div class="who__partners">
+			<h2 class="text--hdg--5 text--center">Notable investors:</h2>
+
+			<LogoList_ logos={partners} />
+		</div>
+	</div>
+
+	<div class="who__team">
+		<h2 class="text--hdg--5 text--center who__team__hdg">Our team:</h2>
+
+		<TeamGrid_ />
+	</div>
+
+	<Fragment slot="background">
+		<SvgPattern_
+			class="who__bg"
+			id="who__bg--left"
+			src="public/img/icon/helix-pattern.svg"
+			width="100"
+			height="100"
+		/>
+		<SvgPattern_
+			class="who__bg"
+			id="who__bg--right"
+			src="public/img/icon/helix-pattern.svg"
+			width="100"
+			height="100"
+		/>
+	</Fragment>
+</Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.who {
+	overflow: visible;
+
+	&__partners {
+		margin-top: 100px;
+	}
+
+	&__mail input {
+		border-bottom: 1px solid vars.$color--brand--sink;
+		margin-bottom: 1em;
+		outline-offset: 5px;
+		padding: 5px 0;
+	}
+
+	&__bg {
+		height: 100%;
+		position: absolute;
+		top: 0;
+		width: 50px;
+
+		:global(path) {
+			fill: none;
+			stroke-width: 1;
+		}
+
+		&--left {
+			right: calc(100% - var(--content-padding-x));
+			transform: rotateZ(7deg);
+			transform-origin: top right;
+
+			:global(path) {
+				stroke: vars.$color--brand;
+			}
+		}
+
+		&--right {
+			left: calc(100% - var(--content-padding-x));
+			transform: rotateZ(-7deg);
+			transform-origin: top left;
+
+			:global(path) {
+				stroke: vars.$color--shadow--sink;
+			}
+		}
+	}
+}
+
+@include vars.if-viewport('<', lg) {
+	.who {
+		:global(.team-grid) {
+			--team-columns: 2;
+		}
+
+		&__team__hdg {
+			margin-top: 50px;
+		}
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.who {
+		:global(.team-grid) {
+			--team-columns: 3;
+		}
+
+		&__team__hdg {
+			display: none;
+		}
+	}
+}
+</style>

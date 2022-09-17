@@ -1,0 +1,139 @@
+---
+import Img_ from 'src/components/img.astro';
+import Svg_ from 'src/components/svg.astro';
+
+import { menu } from 'src/text/menu';
+import { routes } from 'src/routes';
+import { socials } from 'src/text/social';
+
+const year = (new Date()).getFullYear();
+---
+
+<footer>
+	<div class="footer__wrap">
+		<div class="content footer">
+			<div>
+				<a href={routes.home}>
+					<Img_
+						alt="Geneticure logo"
+						class="footer__logo"
+						src="/img/logo/geneticure.svg"
+					/>
+				</a>
+
+				<address class="footer__contact">
+					<p>
+						4 3rd Street SW, Suite 305b<br />
+						Rochester, MN 55902<br />
+						<a href={`mailto:${routes.email}`}>{routes.email}</a><br />
+						<a href={`tel:${routes.phone_brand}`}>{routes.phone_brand}</a><br />
+						<a href={`tel:${routes.phone}`}>{routes.phone}</a><br />
+					</p>
+				</address>
+			</div>
+
+			<div class="footer__social">
+				{
+					socials.map((social) =>
+						<a href={social.href}>
+							{social.label}<Svg_ src={social.icon} />
+						</a>,
+					)
+				}
+			</div>
+
+			<div class="footer__links">
+				{
+					menu.map((link) =>
+						<a href={link.href}>{link.label}</a>,
+					)
+				}
+				<a href={routes.contact}>Contact us</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="content disclaimer">
+		<p><small>These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. This test, like all medical tests, should be used by your healthcare provider as an aid in decision making about your health, which includes much more information than genetics. Do not start or stop taking any medications without first consulting your healthcare provider.</small></p>
+
+		<p class="list--inline--links">
+			<small>
+				© {year} Geneticure, Inc. All rights reserved.
+				<a href={routes.terms}>Terms and conditions</a>
+				<a href={routes.privacy}>Privacy</a>
+			</small>
+		</p>
+	</div>
+</footer>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.footer__wrap {
+	background-color: vars.$color--shadow;
+
+	@media print {
+		background-color: transparent;
+		border-top: 1px solid #000000;
+	}
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+
+	@include vars.if-viewport('<', lg) {
+		flex-direction: column;
+	}
+}
+
+.footer a {
+	color: inherit;
+	font-weight: normal;
+
+	&:hover {
+		color: vars.$color--brand--sink;
+	}
+}
+
+.footer__logo {
+	height: 40px;
+	margin-bottom: .5em;
+	width: auto;
+}
+
+.footer__social {
+	font-size: 0;
+
+	svg {
+		height: 40px;
+		width: 40px;
+	}
+
+	a:not(:last-child) {
+		margin-right: 10px;
+	}
+}
+
+.footer__contact {
+	line-height: 2em;
+	margin-bottom: 1em;
+}
+
+.footer__links {
+	display: flex;
+	flex-direction: column;
+
+	@include vars.if-viewport('>=', lg) {
+		align-items: flex-end;
+	}
+}
+
+.footer__links a {
+	margin-bottom: 1em;
+}
+
+.disclaimer {
+	min-height: 0;
+}
+</style>

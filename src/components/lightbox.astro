@@ -1,0 +1,25 @@
+<div class="lightbox"><slot /></div>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.lightbox {
+	cursor: zoom-in;
+	position: relative;
+	z-index: vars.$z--overlay;
+}
+
+.lightbox > :global(*) {
+	transition: background-color .2s, box-shadow .2s, filter .2s, transform .2s;
+	width: 100%;
+}
+
+.lightbox > :global(:hover) {
+	transform: scale(110%) rotateZ(-2deg);
+}
+
+.lightbox > :global(:focus) {
+	filter: drop-shadow(0 0 50px rgba(0 0 0 / .4));
+	transform: scale(200%) rotateZ(0deg);
+}
+</style>

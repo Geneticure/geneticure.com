@@ -1,0 +1,71 @@
+---
+import Img_ from 'src/components/img.astro';
+import Section_ from 'src/components/section.astro';
+
+import { routes } from 'src/routes';
+---
+
+<Section_ class="hero" cols={0}>
+	<div class="overlay hero__fg">
+		<h1 class="text--hdg--1">
+			Treat hypertension with <em>precision</em>.
+		</h1>
+
+		<hr class="fancy" />
+
+		<p>Using a non-invasive cheek swab, Geneticure's patented pharmacogenomic panel analyzes 17 genotypes in 11 genes to recommend <strong>the best hypertension treatment for your patient.</strong></p>
+
+		<p class="text--center">
+			<a
+				class="button--hero"
+				href={routes.register__clinician}
+			>Register now</a>
+		</p>
+	</div>
+
+	<Fragment slot="background">
+		<Img_
+			alt="Photo of a lab technician"
+			bgColor={true}
+			class="hero__bg"
+			src="/img/bg/lab-test.jpg"
+		/>
+	</Fragment>
+</Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+.hero {
+	min-height: 100vh;
+
+	&__bg {
+		@include vars.expand;
+
+		object-fit: cover;
+		object-position: center left;
+	}
+}
+
+h1 {
+	font-weight: bold;
+
+	em {
+		color: vars.$color--brand;
+	}
+}
+
+hr {
+	margin: 35px 0 !important;
+}
+
+.button--hero {
+	margin-top: 10px;
+}
+
+@include vars.if-viewport('>=', md) {
+	.hero__fg {
+		width: 60% !important;
+	}
+}
+</style>

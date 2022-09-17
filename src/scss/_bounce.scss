@@ -1,0 +1,78 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+@use './functions' as vars;
+
+@mixin bounce($options: ()) {
+	$bounciness: vars.get($options, 'bounciness', .5); // Decrease in distance per bounce
+	$delay--after: vars.get($options, 'delay--after', 0);
+	$delay--before: vars.get($options, 'delay--before', 0);
+	$distance: vars.get($options, 'distance', 100px); // Distance of first bounce. TODO: Unitless
+	$distance--min: vars.get($options, 'distance--min', 1px);
+	$duration: vars.get($options, 'duration', .5); // Duration of first bounce
+	$duration--min: vars.get($options, 'duration--min', .01);
+	$name: vars.get($options, 'name', bounce);
+	$property: vars.get($options, 'property', 'bottom');
+
+	@if $bounciness >= 1 or $bounciness < 0 {
+		@error 'Bounciness must be between 0 and 1';
+	}
+
+	$bounce__distance: $distance;
+	$bounce__durations: ();
+	$bounce__durations--total: 0;
+
+	$bounce__duration: $duration;
+	@while $bounce__duration >= $duration--min and $bounce__distance >= $distance--min {
+		$bounce__durations: list.append($bounce__durations, $bounce__duration);
+
+		$bounce__durations__total: $bounce__durations--total + (2 * $bounce__duration); // Up and down
+		$bounce__duration: vars.round-to($bounce__duration * $bounciness, 2);
+		$bounce__distance: vars.round-to($bounce__distance * $bounciness, 2);
+	}
+
+	$animation__duration: $bounce__durations--total + $delay--before + $delay--after;
+
+	$keyframes: ();
+	$keyframe__percent: 0;
+	$keyframe__distance: $distance;
+	@keyframes #{$name} { /* stylelint-disable-line */
+		0% {
+			#{$property}: 0;
+			animation-timing-function: ease-out;
+		}
+
+		$keyframe__percent: vars.round-to(math.div($delay--before, $animation__duration), 4);
+		#{math.percentage($keyframe__percent)} {
+			#{$property}: 0;
+			animation-timing-function: ease-out;
+		}
+
+		@for $index from 1 through length($bounce__durations) {
+			$bounce__duration: list.nth($bounce__durations, $index);
+			$bounce__percent: math.div($bounce__duration, $animation__duration);
+			$bounce__percent: vars.round-to($bounce__percent, 2);
+
+			$keyframe__percent: $keyframe__percent + $bounce__percent;
+			#{math.percentage($keyframe__percent)} {
+				#{$property}: $keyframe__distance;
+				animation-timing-function: ease-in;
+			}
+
+			$keyframe__percent: $keyframe__percent + $bounce__percent;
+			#{math.percentage($keyframe__percent)} { /* stylelint-disable-line */
+				#{$property}: 0;
+				animation-timing-function: ease-out;
+			}
+
+			$keyframe__distance: $keyframe__distance * $bounciness;
+		}
+
+		100% {
+			#{$property}: 0;
+		}
+	}
+
+	animation: $name #{$animation__duration}s linear infinite both;
+}
