@@ -320,11 +320,6 @@ summary {
 
 		@include vars.if-viewport('>=', lg) {
 			width: 40%;
-
-			&.float {
-				float: right;
-				margin: 1em 0 1em 1em;
-			}
 		}
 	}
 

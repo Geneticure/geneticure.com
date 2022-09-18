@@ -120,7 +120,7 @@ export function toggleSetup() {
 			turnOn($target);
 		}
 
-		// TODO: Cache events to replay them on subscribe? Rxjs? :-(
+		// TODO3: Cache events to replay them on subscribe? Rxjs? :-(
 		document.dispatchEvent(new CustomEvent(ToggleEvents.end, { detail: { id, state: state[id] } }));
 	}
 

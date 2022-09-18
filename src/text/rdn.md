@@ -1,4 +1,5 @@
 ---
+# TODO2: Convert images to tables
 ---
 
 # Geneticure Estimates a 250% Increase in Renal Denervation Adoption by Using Genetic Screening to Eliminate Non-responders
@@ -31,33 +32,34 @@ A [recent study by Medtronic](https://news.medtronic.com/2021-11-04-Medtronic-st
 
 ## Geneticure Hypothesis to Improve Response and Adoption of Renal Denervation
 
-<figure class="float">
-    <img alt="Figure 1" src="https://geneticure.com/wp-content/uploads/2022/02/fig1-1024x720.png" />
-    <figcaption>Figure 1. Assessment of blood pressure to response to renal denervation vs sham procedure according to demographic variables (from: N Engl J Med 2014; 370:1393-1401).</figcaption>
-</figure>
 
 The initial trials of renal denervation with radiofrequency ablation (Symplicity-HTN-1 and Symplicity-HTN-2) were very promising and demonstrated that patients who with a denervation procedure had a large drop in BP when compared to patients who did not have this procedure. However, these studies lacked a control (sham procedure) group. Symplicity for HTN-3 included a control group with a sham procedure and the investigators did not find a statistically significant difference between patients who had the procedure and those who did not. However, some individuals did demonstrate a benefit (figure 1).
 
-----
-
-<figure class="float">
-    <img alt="Figure 2" src="https://geneticure.com/wp-content/uploads/2022/02/fig2.png" />
-    <figcaption>Figure 2. Variability of the Response to Denervation (from: Kandzari et al. Lancet 2018).</figcaption>
+<figure>
+    <img alt="Figure 1" src="/img/fig/fig1.png" />
+    <figcaption>Figure 1. Assessment of blood pressure to response to renal denervation vs sham procedure according to demographic variables (from: N Engl J Med 2014; 370:1393-1401).</figcaption>
 </figure>
+
+----
 
 Patients who likely have elevated sympathetic nervous system (SNS) activity (based on age and weight), and patients who have been shown to respond to beta-blockers (based on race) appeared to be a sub-group that demonstrated a drop in blood pressure with the denervation, which initially formed our hypothesis that the genetics of these organ systems can predict responders to renal denervation. Further, regardless of denervation method, most studies demonstrate that 1 in 3 patients do not demonstrate a meaningful (5mmHg according to the American Heart Association) drop in BP and ~20% of individuals have an increase in BP with denervation (red lines denoted in figure 2).
 
+<figure>
+    <img alt="Figure 2" src="/img/fig/fig2.png" />
+    <figcaption>Figure 2. Variability of the Response to Denervation (from: Kandzari et al. Lancet 2018).</figcaption>
+</figure>
+
 ### Few Trials are Hitting the American Heart Association Minimum for a Decrease in Blood Pressure
 
-Recent data published using a newer denervation device from Medtronic (the Symplicity Spyral™ device) has demonstrated a statistically significant drop in 24-hour systolic blood pressure (SBP) of **3.9mmHG** with denervation, when compared to patients who underwent a sham procedure. Importantly, this trial utilized patients who were not on any medications (SPYRAL OFF-MED trial: _Lancet_: VOLUME 395, ISSUE 10234, P1444-1451, MAY 02, 2020). Additional trials from the past two years have demonstrated differences in BP between 0 and 7.4mmHg, even when corrected for physiologic variables (i.e. renin and heart rate), and a recent meta-analysis of denervation trials using >1300 patients has found an average drop in 24-hour SBP of **3.61mmHg**, when compared to sham ([https://www.jacc.org/doi/abs/10.1016/j.jcin.2021.09.020](https://www.jacc.org/doi/abs/10.1016/j.jcin.2021.09.020)) (table 1). One recent trial determined that patients in the RDN group required less intensive stepped-up pharmacologic care and fewer hypertension medications when compared to patients in the sham-controlled group (0.9 vs. 1.3 medications in RDN vs sham, respectively); however, this trial also demonstrated a relatively small difference in daytime ambulatory BP between RDN and sham (2.1mmHg, when not corrected for “medication changes”) ([https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.119.040451](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.119.040451)).
+Recent data published using a newer denervation device from Medtronic (the Symplicity Spyral™ device) has demonstrated a statistically significant drop in 24-hour systolic blood pressure (SBP) of **3.9mmHG** with denervation, when compared to patients who underwent a sham procedure. Importantly, this trial utilized patients who were not on any medications (SPYRAL OFF-MED trial: _Lancet_: VOLUME 395, ISSUE 10234, P1444-1451, MAY 02, 2020). Additional trials from the past two years have demonstrated differences in BP between 0 and 7.4mmHg, even when corrected for physiologic variables (i.e. renin and heart rate), and a recent meta-analysis of denervation trials using >1300 patients has found an average drop in 24-hour SBP of **3.61mmHg**, when compared to sham ([DOI 10.1016/ J.JCIN2021.09.020](https://www.jacc.org/doi/abs/10.1016/j.jcin.2021.09.020)) (table 1). One recent trial determined that patients in the RDN group required less intensive stepped-up pharmacologic care and fewer hypertension medications when compared to patients in the sham-controlled group (0.9 vs. 1.3 medications in RDN vs sham, respectively); however, this trial also demonstrated a relatively small difference in daytime ambulatory BP between RDN and sham (2.1mmHg, when not corrected for “medication changes”) ([DOI 10.1161/ CIRCULATIONAHA.119.040451](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.119.040451)).
 
 <figure>
-    <img alt="Table 1.1" src="https://geneticure.com/wp-content/uploads/2022/02/table1-1024x132.png" />
+    <img alt="Table 1.1" src="/img/fig/table1.png" />
     <figcaption>Table 1.1. Recent Findings with Renal Denervation</figcaption>
 </figure>
 
 <figure>
-    <img alt="Table 1.2" src="https://geneticure.com/wp-content/uploads/2022/02/table1.2-1024x262.png" />
+    <img alt="Table 1.2" src="/img/fig/table1.2.png" />
     <figcaption>Table 1.2. Related publications.</figcaption>
 </figure>
 
@@ -98,7 +100,7 @@ While Symplicity HTN-3 did demonstrate an effect of RDN (approximately 15mmHg bl
 Collectively, based on detailed animal studies and more mechanistic studies in humans, renal denervation acts most like a drug that inhibits the SNS, followed by a β-blocker, an ACE-inhibitor/angiotensin-II receptor blocker and least like a diuretic. Renal denervation decreases catecholamine levels within the kidney as well as catecholamine spillover \[14, 15\] and increases the expression of β1 and β2-adrenergic receptors in the heart (which is a similar physiologic response to β-blockade and demonstrates the importance of these receptors in renal denervation/ablation procedures)(table 2)\[14\]. In heart failure models, renal denervation improves cardiac function, attenuates left-ventricular hypertrophy, and improves left-ventricular function (similar to the expected response of β-blockade)\[16-18\]. Renal denervation also decreases the expression (mRNA) of renin, ACE and the angiotensin-II receptors (therefore acting physiologically similar to an ACE-inhibitor and angiotensin-receptor blocker and demonstrating the importance of the renin-angiotensin aldosterone system on renal denervation/ablation). Based on this previous work, we hypothesize that we can use genetics as a means for determining and categorizing very high responders, moderately high responders, moderate responders, minimal responders, and those who are not likely to respond to a renal denervation procedure and have a compensatory increase in blood pressure \[19\].
 
 <figure>
-    <img alt="Table 2" src="(https://geneticure.com/wp-content/uploads/2022/02/table2-1024x290.png" />
+    <img alt="Table 2" src="/img/fig/table2.png" />
     <figcaption>Table 2. Renal Denervation Compared to Pharmacologic Intervention</figcaption>
 </figure>
 
@@ -125,7 +127,7 @@ Within the gene that encodes the ADRB2, amino acids 16 and 27 have common functi
 The distribution of the alpha adrenergic and β1 and β2-adrenergic receptor variants differs significantly among different racial groups, particularly between white and black individuals.
 
 <figure>
-    <img alt="Table 3" src="https://geneticure.com/wp-content/uploads/2022/02/table3-1024x310.png" />
+    <img alt="Table 3" src="/img/fig/table3.png" />
     <figcaption>Table 3. Genetic Variants of SNS and Cardiac Systems and the Hypothetical Predictive Response to Renal Denervation</figcaption>
 </figure>
 
@@ -146,7 +148,7 @@ A common functional polymorphism of an angiotensin receptor (type-I) has been de
 In addition to angiotensin, angiotensin II receptors and ACE, renin has been shown to be a potent vasoconstrictor that can result in high blood pressure. Renin converts angiotensinogen to angiotensin I which results in vasoconstriction due to the down-stream effects (angiotensin-I conversion to angiotensin II through ACE). There is one functional and common polymorphism of renin that demonstrates an altered blood pressure response to vasodilator therapy, a cytosine to threonine substitution at nucleotide 5312 (rs12750834)\[15\]. Within this polymorphism of renin, the thymine substitution and the heterozygous condition demonstrate higher renin levels as well as a greater reduction in blood pressure in response to valsartan (which is an angiotensin II receptor blocker). Given that renal denervation surgery results in attenuation of renin release and ACE activity, along with down-regulation of the angiotensin-II receptor, according to the hypothesis of the present study, this same variant (thymine) of renin will be one that responds better to renal denervation therapy.
 
 <figure>
-    <img alt="Table 4" src="https://geneticure.com/wp-content/uploads/2022/02/table4-1024x223.png" />
+    <img alt="Table 4" src="/img/fig/table4.png" />
     <figcaption>Table 4. Genetic Variation of the Renin-Angiotensin Aldosterone System and the Hypothetical Predictive Response to Renal Denervation</figcaption>
 </figure>
 
@@ -165,7 +167,7 @@ A functional and common polymorphism of the gene that encodes the epithelial Na+
 It is, therefore, likely that hypertensive patients with a functional polymorphism of the SCNN1A (threonine 663) variant), ADD1 (tryptophan 460 variant), SLC12A3 (alanine 264 variant), and WNK (cytosine for rs1159744, rs227869, and rs2107614) will be most responsive to renal denervation surgery, particularly when all are functional and when the renal system is considered along with the renin-angiotensin aldosterone and cardiac systems.
 
 <figure>
-    <img alt="Table 5" src="https://geneticure.com/wp-content/uploads/2022/02/table5-1024x223.png" />
+    <img alt="Table 5" src="/img/fig/table5.png" />
     <figcaption>Table 5. Genetic Variants Proteins Important in Renal Na+ Handling and the Hypothetical Predictive Response to Renal Denervation</figcaption>
 </figure>
 
