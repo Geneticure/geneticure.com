@@ -11,7 +11,7 @@ Renal denervation has previously demonstrated promise as an interventional proce
 A [recent study by Medtronic](https://news.medtronic.com/2021-11-04-Medtronic-study-shows-patients-with-high-blood-pressure-are-interested-in-an-interventional-procedure-treatment-option) concluded that blood pressure reduction was the most important driver of patient preference over all other attributes like medication burden and treatment (including interventional treatment-related) risks:
 
 -   6.9% of patients would be willing to consider an interventional approach such as RDN with reductions in office blood pressure anticipated at 2.5 mmHg, the minimal acceptable benefit.
--   76.5% of patients would be willing to consider an interventional approach such as RDN with reductions in office blood pressure anticipated at 10 mmHg.
+-   76.5% of patients would be willing to consider an interventional approach such as RDN with reductions in office blood pressure anticipated at 10 mmHg. foo
 
 ----
 
