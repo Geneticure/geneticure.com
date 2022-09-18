@@ -10,7 +10,7 @@ const { props, rest } = getProps(Astro.props, {
 });
 
 const path = `public${props.src}`;
-const dimensions = imageSize(path); // TODO: Figure out how to get `publicDir` at compile time.
+const dimensions = imageSize(path); // TODO3: Figure out how to get `publicDir` at compile time.
 
 const style={
 	...(rest.style || {}),

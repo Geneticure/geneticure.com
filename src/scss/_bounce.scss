@@ -8,7 +8,7 @@
 	$bounciness: vars.get($options, 'bounciness', .5); // Decrease in distance per bounce
 	$delay--after: vars.get($options, 'delay--after', 0);
 	$delay--before: vars.get($options, 'delay--before', 0);
-	$distance: vars.get($options, 'distance', 100px); // Distance of first bounce. TODO: Unitless
+	$distance: vars.get($options, 'distance', 100px); // Distance of first bounce. TODO3: Unitless
 	$distance--min: vars.get($options, 'distance--min', 1px);
 	$duration: vars.get($options, 'duration', .5); // Duration of first bounce
 	$duration--min: vars.get($options, 'duration--min', .01);
