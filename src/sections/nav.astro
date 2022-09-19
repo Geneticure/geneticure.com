@@ -27,12 +27,12 @@ const { props, rest } = getProps(Astro.props, {
 	<div class="nav__bar"></div>
 
 	<Route_
-		class="nav__logo"
+		class="nav__home"
 		to="home"
 	>
 		<Img_
 			alt="Geneticure logo"
-			class="footer__logo"
+			class="nav__logo"
 			src="/img/logo/geneticure.svg"
 		/>
 	</Route_>
@@ -115,12 +115,14 @@ const { props, rest } = getProps(Astro.props, {
 	z-index: vars.z(nav__bar);
 }
 
-.nav__logo {
+.nav__home {
+	align-items: center;
+	display: flex;
+	height: 100%;
+	left: var(--content-padding-x);
+	position: absolute;
+	top: 0;
 	z-index: vars.z(nav__logo);
-
-	img {
-		width: auto;
-	}
 }
 
 .nav__links {
@@ -151,16 +153,7 @@ const { props, rest } = getProps(Astro.props, {
 	}
 
 	.nav__logo {
-		align-items: center;
-		display: flex;
-		height: 100%;
-		left: var(--content-padding-x);
-		position: absolute;
-		top: 0;
-
-		img {
-			height: 30px;
-		}
+		height: 30px;
 	}
 
 	.nav__links__trigger {
@@ -238,25 +231,17 @@ const { props, rest } = getProps(Astro.props, {
 		@include nav__opaque;
 	}
 
-	.nav__logo,
+	.nav__logo {
+		height: 40px;
+	}
+
 	.nav__links {
 		align-items: center;
 		display: flex;
 		height: 100%;
 		position: absolute;
-		top: 0;
-	}
-
-	.nav__logo {
-		left: var(--content-padding-x);
-
-		img {
-			height: 40px;
-		}
-	}
-
-	.nav__links {
 		right: var(--content-padding-x);
+		top: 0;
 		z-index: vars.z(nav__links);
 
 		a {

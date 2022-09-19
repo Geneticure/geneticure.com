@@ -69,12 +69,19 @@ const { props, rest } = getProps(Astro.props, {
 
 .section__content > :global(*) {
 	box-sizing: border-box;
-	padding: var(--content-padding-y) var(--content-padding-x);
+
+	&:not(.section__col--padless) {
+		padding: var(--content-padding-y) var(--content-padding-x);
+
+		.section--cols--2 & {
+			@include vars.if-viewport('>=', lg) {
+				@include vars.space-between(50px);
+			}
+		}
+	}
 
 	@include vars.if-viewport('>=', lg) {
 		.section--cols--2 & {
-			@include vars.space-between(50px);
-
 			flex-grow: 0;
 			flex-shrink: 0;
 			width: 50%;
