@@ -5,6 +5,7 @@ import { imageSize } from 'image-size';
 import { roundTo } from 'src/js/roundTo';
 
 const { props, rest } = getProps(Astro.props, {
+	alt: ``,
 	bgColor: null,
 	lazy: true,
 	src: null as string,
@@ -48,6 +49,7 @@ if (showBgColor) {
 			style={style}
 		>
 			<img
+				alt={props.alt}
 				data-src={props.lazy ? props.src : undefined}
 				data-src-lazy={props.lazy}
 				height={dimensions.height}

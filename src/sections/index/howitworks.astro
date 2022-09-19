@@ -59,7 +59,7 @@ const steps: Array<[
 ---
 
 <Section_ class="howitworks" cols={0}>
-	<div class="howitworks__body">
+	<div class="section__col--padless howitworks__body">
 		<h2 class="text--hdg--1">How does it <em>work</em>?</h2>
 
 		<hr class="fancy" />
@@ -156,6 +156,12 @@ const steps: Array<[
 .howitworks {
 	--bg-width: 0;
 	--bg-offset: 0;
+
+	@include vars.content;
+
+	:global(.section__content) {
+		justify-content: flex-start;
+	}
 
 	&__body {
 		box-sizing: content-box;
