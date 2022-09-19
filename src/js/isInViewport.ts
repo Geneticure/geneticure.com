@@ -14,8 +14,8 @@ export class IsInViewport {
 	/**
 	 * Note: Only tests vertically, not horizontally.
 	 */
-	static test(element: Element) {
-		const boundaries = element.getBoundingClientRect();
+	static test($element: Element) {
+		const boundaries = $element.getBoundingClientRect();
 		const maxHeight = window.innerHeight;
 		return (
 			(boundaries.top >= 0 && boundaries.top < maxHeight) ||
