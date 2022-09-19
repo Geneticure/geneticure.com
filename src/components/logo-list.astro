@@ -25,6 +25,8 @@ const { props, rest } = getProps(Astro.props, {
 				>
 					<Img_
 						alt={logo.name}
+						bgColor={false}
+						class="logo__img"
 						lazy={true}
 						src={logo.icon}
 					/>
@@ -48,17 +50,18 @@ const { props, rest } = getProps(Astro.props, {
 	flex-shrink: 0;
 	margin: 0 20px;
 
-	img {
-		aspect-ratio: 1;
-		filter: grayscale(1);
-		object-fit: contain;
-		object-position: center;
-		transition: filter .2s;
+	&__img {
+		aspect-ratio: 1 !important;
 		width: 100px;
-	}
 
-	&:hover img {
-		filter: none;
+		:global(img) {
+			filter: grayscale(1);
+			transition: filter .2s;
+
+			.logo:hover & {
+				filter: none;
+			}
+		}
 	}
 }
 </style>

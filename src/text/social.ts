@@ -9,7 +9,7 @@ const _socials: Array<
 
 export const socials = _socials.map(([id, label]) => ({
 	href: routes[id],
-	icon: `public/img/icon/${id}.svg`,
+	icon: `/img/icon/${id}.svg`,
 	id,
 	label,
 }));

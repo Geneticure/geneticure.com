@@ -1,5 +1,6 @@
 ---
 import Cite_ from 'src/components/cite.astro';
+import Img_ from 'src/components/img.astro';
 import Pie_ from 'src/components/pie.astro';
 import Section_ from 'src/components/section.astro';
 
@@ -41,7 +42,13 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 		<aside>Our research supports that the Geneticure approach of DNA-guided therapy is associated with ~7mmHg lower systolic blood pressure and ~6mmHg diastolic blood pressure. This is 22% and 39% lower respectively versus non-genetically matched care.<Cite_ to="article-algorithm" /></aside>
 	</div>
 
-	<Fragment slot="background"></Fragment>
+	<Fragment slot="background">
+		<Img_
+			class="stats__bg"
+			css={true}
+			src="/img/bg/pills-crop.jpg"
+		/>
+	</Fragment>
 </Section_>
 
 <style lang="scss">
@@ -56,37 +63,38 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 	--pie-diameter: 0;
 
 	width: 100%;
-}
 
-.stats__img {
-	position: relative;
-
-	img {
+	&__bg {
 		@include vars.expand;
 
-		left: auto;
-		max-width: none;
-		right: 0;
-		width: 300%;
+		background-position: center right;
+		background-repeat: no-repeat;
+		background-size: var(--background-width);
 	}
-}
 
-.stats :global(.section__bg) {
-	background-image: url('/img/bg/pills-crop.jpg');
-	background-position: center right;
-	background-repeat: no-repeat;
-	background-size: var(--background-width);
-}
+	&__img {
+		position: relative;
 
-.stats__figures {
-	display: grid;
-	grid-gap: 50px 30px;
-	grid-template-columns: repeat(var(--columns-qty), minmax(0, 1fr));
-	margin-bottom: 50px;
-	margin-top: 50px;
-	position: relative;
-	width: var(--columns-width) !important;
-	z-index: 1;
+		img {
+			@include vars.expand;
+
+			left: auto;
+			max-width: none;
+			right: 0;
+			width: 300%;
+		}
+	}
+
+	&__figures {
+		display: grid;
+		grid-gap: 50px 30px;
+		grid-template-columns: repeat(var(--columns-qty), minmax(0, 1fr));
+		margin-bottom: 50px;
+		margin-top: 50px;
+		position: relative;
+		width: var(--columns-width) !important;
+		z-index: 1;
+	}
 }
 
 .figure {

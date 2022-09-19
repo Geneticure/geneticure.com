@@ -25,6 +25,7 @@ import { quotes } from 'src/text/quotes';
 		<Carousel_ id="quote" source={quotes}>
 			{quotes.map((quote, index) =>
 				<div
+					class="quote"
 					data-toggle-target="quote"
 					data-toggle-target-isdefault={index === 0}
 					data-toggle-index={index}
@@ -41,16 +42,20 @@ import { quotes } from 'src/text/quotes';
 
 	<div class="quotes__images">
 		<Img_
-			alt="Open Geneticure kit"
-			lazy={true}
-			src="/img/kit/kit-open.png"
-		/>
+			alt="Faces"
+			class="quotes__images__bg"
+			src="/img/bg/faces.jpg"
+		>
+			<Img_
+				alt="Open Geneticure kit"
+				src="/img/kit/kit-open.png"
+			/>
 
-		<Img_
-			alt="Geneticure report"
-			lazy={true}
-			src="/img/report.png"
-		/>
+			<Img_
+				alt="Geneticure report"
+				src="/img/report.png"
+			/>
+		</Img_>
 	</div>
 </Section_>
 
@@ -59,115 +64,133 @@ import { quotes } from 'src/text/quotes';
 
 .quotes {
 	background: vars.$color--bg--offset;
-}
 
-.quotes__images {
-	align-items: center;
-	background-image: url('/img/bg/faces.jpg');
-	background-size: contain;
-	box-sizing: border-box;
-	display: flex;
-	justify-content: center;
-	overflow: hidden;
-	position: relative;
+	&__images {
+		&__bg {
+			align-items: center;
+			background-size: contain;
+			display: flex;
+			justify-content: center;
+			overflow: hidden;
 
-	img {
-		filter: drop-shadow(0 0 50px #000000A0);
-		max-width: 400px;
-		width: 40%;
+			.img {
+				filter: drop-shadow(0 0 50px #000000A0);
+				max-width: 400px;
+				width: 40%;
 
-		&:nth-child(1) {
-			margin-right: -30px;
-			position: relative;
-			z-index: 1;
+				&:nth-child(1) {
+					margin-right: -30px;
+					position: relative;
+					z-index: 1;
+				}
+			}
+		}
+	}
+
+	&__icon {
+		aspect-ratio: 1;
+		display: inline-block;
+		vertical-align: bottom;
+
+		:global(path) {
+			fill: url('#quotes__icon__gradient');
+		}
+
+		&__gradient :global(stop) {
+			&:nth-child(1) {
+				stop-color: vars.$color--brand--sink;
+			}
+
+			&:nth-child(2) {
+				stop-color: vars.$color--brand;
+			}
 		}
 	}
 }
 
-.quotes__icon {
-	aspect-ratio: 1;
-	display: inline-block;
-	vertical-align: bottom;
+.quote {
+	background-color: vars.$color--bg;
+	border-radius: 10px;
+	box-sizing: border-box;
+	padding: 20px;
 
-	:global(path) {
-		fill: url('#quotes__icon__gradient');
-	}
-}
-
-.quotes__icon__gradient :global(stop) {
-	&:nth-child(1) {
-		stop-color: vars.$color--brand--sink;
+	&__body {
+		white-space: pre-wrap;
 	}
 
-	&:nth-child(2) {
-		stop-color: vars.$color--brand;
-	}
-}
+	&__author {
+		margin-left: 50%;
 
-.quote__body {
-	white-space: pre-wrap;
-}
-
-.quote__author {
-	strong {
-		font-weight: bold;
-	}
-
-	&::before {
-		background: vars.$color--brand--sink;
-		content: '';
-		display: inline-block;
-		height: 2px;
-		margin-right: 1ex;
-		vertical-align: middle;
-		width: 30px;
+		&::before {
+			background: vars.$color--brand--sink;
+			content: '';
+			display: inline-block;
+			height: 2px;
+			margin-right: 1ex;
+			vertical-align: middle;
+			width: 30px;
+		}
 	}
 }
 
 @include vars.if-viewport('==', sm) {
-	.quotes :global(.carousel__arrow) {
-		font-size: 60px;
-		width: 30px;
+	.quotes {
+		:global(.carousel__arrow) {
+			font-size: 60px;
+			width: var(--content-padding-x);
+		}
 	}
 }
 
 @include vars.if-viewport('<', lg) {
-	.quotes__icon {
-		width: 40px;
-	}
+	.quotes {
+		&__icon {
+			width: 40px;
+		}
 
-	.quotes__images {
-		order: -1;
-		padding: 50px !important;
-	}
+		&__images {
+			order: -1;
+			padding: 0 !important;
 
-	.quotes__text {
-		padding-bottom: 50px !important;
-		padding-top: 50px !important;
+			&__bg {
+				aspect-ratio: auto !important;
+				padding: 50px !important;
+			}
+		}
+
+		&__text {
+			padding-bottom: 50px !important;
+			padding-top: 50px !important;
+		}
 	}
 }
 
 @include vars.if-viewport('>=', lg) {
-	.quotes__icon {
-		width: 60px;
+	.quotes {
+		&__icon {
+			width: 60px;
+		}
+
+		&__images {
+			padding-bottom: 0 !important;
+			padding-top: 0 !important;
+
+			&__bg {
+				aspect-ratio: 1;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+		}
+
+		&__text {
+			padding-right: 50px !important;
+		}
 	}
 
-	.quote__author {
-		margin-left: 50%;
-	}
-
-	.quotes__images {
-		aspect-ratio: 1;
-		border-radius: 50%;
-		box-sizing: border-box;
-		margin-right: var(--content-padding-x);
-		overflow: hidden;
-		padding-right: 0 !important;
-		width: calc(50% - var(--content-padding-x)) !important;
-	}
-
-	.quotes__text {
-		padding-right: 50px !important;
+	.quote {
+		&__author {
+			margin-left: 50%;
+		}
 	}
 }
 </style>

@@ -1,7 +1,6 @@
 ---
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
-import Svg_ from 'src/components/svg.astro';
 
 import { menu } from 'src/text/menu';
 import { routes } from 'src/routes';
@@ -37,7 +36,7 @@ const year = (new Date()).getFullYear();
 				{
 					socials.map((social) =>
 						<Route_ href={social.href}>
-							{social.label}<Svg_ src={social.icon} />
+							{social.label}<Img_ src={social.icon} />
 						</Route_>,
 					)
 				}
@@ -106,7 +105,8 @@ const year = (new Date()).getFullYear();
 .footer__social {
 	font-size: 0;
 
-	svg {
+	.img {
+		display: inline-block;
 		height: 40px;
 		width: 40px;
 	}

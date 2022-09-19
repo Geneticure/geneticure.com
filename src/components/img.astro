@@ -2,42 +2,73 @@
 import { getAverageColor } from 'fast-average-color-node';
 import { getProps } from 'src/js/astro';
 import { imageSize } from 'image-size';
+import { roundTo } from 'src/js/roundTo';
 
 const { props, rest } = getProps(Astro.props, {
-	bgColor: false,
-	lazy: false,
+	alt: ``,
+	css: null,
+	bgColor: null,
+	lazy: true,
 	src: null as string,
 });
+
+const isBackgroundImage = props.css ?? Astro.slots.has(`default`);
 
 const path = `public${props.src}`;
 const dimensions = imageSize(path); // TODO3: Figure out how to get `publicDir` at compile time.
 
 const style={
+	'aspect-ratio': `${roundTo(dimensions.width, 2)} / ${roundTo(dimensions.height, 2)}`,
 	...(rest.style || {}),
 };
-if (props.bgColor) {
+
+const showBgColor = (props.bgColor ?? (props.src.match(/jpg$/)));
+if (showBgColor) {
 	const averageColor = await getAverageColor(path, { algorithm: `dominant` });
 	style[`background-color`] = averageColor.hexa;
 }
 ---
 
-<img
-	class={props.class}
-	data-src={props.lazy ? props.src : undefined}
-	data-src-lazy={props.lazy}
-	height={dimensions.height}
-	style={style}
-	src={props.lazy ? `/img/empty.svg` : props.src}
-	width={dimensions.width}
-	{...rest}
-/>
+<>
+	{
+		isBackgroundImage &&
+		<span
+			class={`img ${props.class}`}
+			data-src={props.lazy ? props.src : undefined}
+			data-src-lazy={props.lazy}
+			style={style}
+			{...rest}
+		>
+			<slot />
+		</span>
+	}
+
+	{
+		!isBackgroundImage &&
+		<span
+			class={`img ${props.class}`}
+			style={style}
+		>
+			<img
+				alt={props.alt}
+				data-src={props.lazy ? props.src : undefined}
+				data-src-lazy={props.lazy}
+				height={dimensions.height}
+				src={props.lazy ? `data:image/png;base64,` : props.src}
+				width={dimensions.width}
+				{...rest}
+			/>
+		</span>
+	}
+</>
 
 <style lang="scss">
-img[data-src-lazy] {
+@use 'src/scss/vars';
+
+[data-src-lazy] {
 	transition: opacity .2s;
 
 	&[data-src] {
-		font-size: 0;
 		opacity: 0;
 	}
 
@@ -45,29 +76,59 @@ img[data-src-lazy] {
 		opacity: 1;
 	}
 }
+
+span {
+	display: block;
+	position: relative;
+}
+
+img {
+	@include vars.expand;
+
+	height: 100% !important;
+}
 </style>
 
 <script>
 import { IsInViewport } from 'src/js/isInViewport';
 
 const ATTR__SRC = `data-src`;
+const ATTR__LAZY = `data-src-lazy`;
 
-const $imgs = Array.from(document.querySelectorAll(`img[${ATTR__SRC}]`));
+const $images = Array.from(document.querySelectorAll(`[${ATTR__SRC}]`));
+const $imagesLazy: Array<Element> = [];
+
+for (const $image of $images) {
+	if ($image.hasAttribute(ATTR__LAZY)) {
+		$imagesLazy.push($image);
+		continue;
+	}
+
+	setSource($image);
+}
+
 new IsInViewport({
 	callback: (({ $element, isInViewport }) => {
 		if (!isInViewport) {
 			return;
 		}
 
-		const src = $element.getAttribute(ATTR__SRC);
-
-		if (!src) {
-			return;
-		}
-
-		$element.setAttribute(`src`, src);
-		$element.removeAttribute(ATTR__SRC);
+		setSource($element);
 	}),
-	getElements: () => $imgs,
+	getElements: () => $imagesLazy,
 });
+
+function setSource($element: Element) {
+	const source = $element.getAttribute(ATTR__SRC);
+	if (!source) {
+		return;
+	}
+	$element.removeAttribute(ATTR__SRC);
+
+	if ($element.tagName.toLowerCase() === `img`) {
+		$element.setAttribute(`src`, source);
+	} else {
+		($element as HTMLElement).style.setProperty(`background-image`, `url(${source})`);
+	}
+}
 </script>
