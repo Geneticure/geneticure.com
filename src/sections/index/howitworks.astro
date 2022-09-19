@@ -157,6 +157,7 @@ const steps: Array<[
 	--bg-offset: 0;
 
 	&__body {
+		box-sizing: content-box;
 		margin-right: auto;
 		max-width: var(--bg-width);
 		width: 100%;
@@ -173,7 +174,6 @@ const steps: Array<[
 		:global(path) {
 			fill: none;
 			stroke: vars.$color--shadow--sink;
-			// stroke: red;
 			stroke-linecap: round;
 			stroke-width: 2;
 		}
