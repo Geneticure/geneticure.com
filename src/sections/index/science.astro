@@ -30,3 +30,13 @@ import Section_ from 'src/components/section.astro';
 		/>
 	</div>
 </Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+@include vars.if-viewport('==', lg) {
+	.science__body {
+		padding-right: 0 !important;
+	}
+}
+</style>

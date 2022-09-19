@@ -5,6 +5,7 @@ import { routes } from 'src/routes';
 
 const { props, rest } = getProps(Astro.props, {
 	href: `` as string,
+	title: `` as string,
 	to: `` as keyof typeof routes,
 });
 
@@ -23,6 +24,6 @@ const isExternal = !(href.startsWith(`/`));
 	class={props.class}
 	href={href}
 	target={isExternal ? `_blank` : null}
-	title={rest.title || (isExternal ? NOTE__EXTERNAL :  null)}
+	title={props.title ?? (isExternal ? NOTE__EXTERNAL :  null)}
 	{...rest}
 ><slot /></a>

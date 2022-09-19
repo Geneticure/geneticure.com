@@ -29,11 +29,10 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 		</div>
 	</div>
 
-	<div class="section__col--padless hero__images">
+	<div class="hero__images">
 		<Img_
 			alt="Kit with contents"
 			src="/img/kit/kit-w-contents.png"
-			class="hero__img"
 		/>
 	</div>
 
@@ -157,10 +156,10 @@ em {
 
 	.hero__images {
 		order: -1;
-		padding-bottom: 0;
+		padding-bottom: 0 !important;
 		padding-top: var(--content-padding-y) !important;
 
-		img {
+		.img {
 			margin: 0 auto;
 			max-height: 300px;
 			width: 100%;

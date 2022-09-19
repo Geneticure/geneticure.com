@@ -6,18 +6,19 @@ import { roundTo } from 'src/js/roundTo';
 
 const { props, rest } = getProps(Astro.props, {
 	alt: ``,
+	css: null,
 	bgColor: null,
 	lazy: true,
 	src: null as string,
 });
 
-const isBackgroundImage = Astro.slots.has(`default`);
+const isBackgroundImage = props.css ?? Astro.slots.has(`default`);
 
 const path = `public${props.src}`;
 const dimensions = imageSize(path); // TODO3: Figure out how to get `publicDir` at compile time.
 
 const style={
-	'aspect-ratio': roundTo(dimensions.width / dimensions.height, 2),
+	'aspect-ratio': `${roundTo(dimensions.width, 2)} / ${roundTo(dimensions.height, 2)}`,
 	...(rest.style || {}),
 };
 
