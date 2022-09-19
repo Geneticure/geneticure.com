@@ -62,7 +62,6 @@
 		}],
 		"space-before-blocks": ["warn", "always"],
 		"space-before-function-paren": ["warn", "never"],
-		"space-infix-ops": ["warn"],
-		"@typescript-eslint/no-unused-vars": "off"
+		"space-infix-ops": ["warn"]
 	}
 }

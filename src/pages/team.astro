@@ -1,6 +1,7 @@
 ---
 import HomeLayout_ from 'src/layouts/home.astro';
 import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 
 import { team, teamDescription } from 'src/text/team';
@@ -44,17 +45,16 @@ import { team, teamDescription } from 'src/text/team';
 
 									{
 										person.social.map((social) =>
-											<a
+											<Route_
 												class="person__social"
 												href={social.href}
-												target="_blank"
 											>
 												<Img_
 													alt={`${social.title} account for ${person.name}`}
 													class="person__social__icon"
 													src={social.img}
 												/>
-											</a>,
+											</Route_>,
 										)
 									}
 								</h2>

@@ -1,0 +1,28 @@
+---
+import { getProps } from 'src/js/astro';
+
+import { routes } from 'src/routes';
+
+const { props, rest } = getProps(Astro.props, {
+	href: `` as string,
+	to: `` as keyof typeof routes,
+});
+
+const NOTE__EXTERNAL = `Opens in a new window`;
+
+if (props.to && !(props.to in routes)) {
+	throw new Error(`'${props.to}' is not a valid route name.`);
+}
+
+const href = props.to ? routes[props.to] : props.href;
+const isExternal = !(href.startsWith(`/`));
+---
+
+<a
+	aria-label={isExternal ? NOTE__EXTERNAL :  null}
+	class={props.class}
+	href={href}
+	target={isExternal ? `_blank` : null}
+	title={rest.title || (isExternal ? NOTE__EXTERNAL :  null)}
+	{...rest}
+><slot /></a>

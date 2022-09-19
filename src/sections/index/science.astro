@@ -1,8 +1,7 @@
 ---
 import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
-
-import { routes } from 'src/routes';
 ---
 
 <Section_ class="science">
@@ -20,7 +19,7 @@ import { routes } from 'src/routes';
 		<p>Geneticure's test looks at 17 genotypes and 11 genes* to determine how your body responds to each medication. Your personalized report helps your doctor <strong>prescribe the right medication from the start.</strong></p>
 
 		<aside>
-			<p>*We respect your privacy and only look at the DNA that is relevant to blood pressure. The rest is discarded. For more information <a href={routes.faqs}>see our FAQs</a>.</p>
+			<p>*We respect your privacy and only look at the DNA that is relevant to blood pressure. The rest is discarded. For more information <Route_ to="faqs">see our FAQs</Route_>.</p>
 		</aside>
 	</div>
 

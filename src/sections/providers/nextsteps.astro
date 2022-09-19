@@ -1,23 +1,22 @@
 ---
 import Buttonset_ from 'src/components/buttonset.astro';
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
-
-import { routes } from 'src/routes';
 ---
 
 <Section_ class="nextsteps" cols={0}>
 	<div class="text--on-dark">
 		<h2 class="text--hdg--1">Get started with Geneticure</h2>
 
-		<p>Geneticure is offering complimentary testing for providers to demonstrate the value of the technology. <br /><a href={routes.register__clinician}>Register here</a> for your provider account (NPI# required) and we will coordinate testing at no cost.</p>
+		<p>Geneticure is offering complimentary testing for providers to demonstrate the value of the technology. <br /><Route_ to="register__clinician">Register here</Route_> for your provider account (NPI# required) and we will coordinate testing at no cost.</p>
 
 		<Buttonset_>
-			<a href={routes.home}>About us</a>
+			<Route_ href="home">About us</Route_>
 
-			<a class="button--high" href={routes.register__clinician}>Register</a>
+			<Route_ class="button--high" to="register__clinician">Register</Route_>
 
-			<a href={routes.contact}>Contact us</a>
+			<Route_ to="contact">Contact us</Route_>
 		</Buttonset_>
 	</div>
 
