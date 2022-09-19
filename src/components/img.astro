@@ -54,7 +54,7 @@ if (showBgColor) {
 				data-src={props.lazy ? props.src : undefined}
 				data-src-lazy={props.lazy}
 				height={dimensions.height}
-				src={props.lazy ? `/img/empty.svg` : props.src}
+				src={props.lazy ? `data:image/png;base64,` : props.src}
 				width={dimensions.width}
 				{...rest}
 			/>
