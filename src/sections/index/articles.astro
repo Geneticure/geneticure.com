@@ -1,4 +1,5 @@
 ---
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 
 import { news } from 'src/text/news';
@@ -15,7 +16,7 @@ import { news } from 'src/text/news';
 			{
 				news.map((article) =>
 					<li>
-						<a href={article.route}>{article.title}</a>
+						<Route_ href={article.route}>{article.title}</Route_>
 					</li>,
 				)
 			}

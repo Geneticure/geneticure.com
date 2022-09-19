@@ -1,8 +1,7 @@
 ---
 import HomeLayout_ from 'src/layouts/home.astro';
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
-
-import { routes } from 'src/routes';
 ---
 
 <HomeLayout_ title="404: Not found">
@@ -10,9 +9,9 @@ import { routes } from 'src/routes';
 		<div>
 			<h1 class="text--hdg--1">404: Page not found.</h1>
 
-			<p>If you think this is an error, please <a href={routes.contact}>let us know.</a></p>
+			<p>If you think this is an error, please <Route_ to="contact">let us know.</Route_></p>
 
-			<p>Otherwise, <a href={routes.home}>go to the homepage.</a></p>
+			<p>Otherwise, <Route_ to="home">go to the homepage.</Route_></p>
 		</div>
 	</Section_>
 </HomeLayout_>

@@ -1,6 +1,7 @@
 ---
 import Buttonset_ from 'src/components/buttonset.astro';
 import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
 import Svg_ from 'src/components/svg.astro';
@@ -88,12 +89,12 @@ const steps: Array<[
 							<Buttonset_>
 								{
 									buttons.map(([text, href]) =>
-										<a
+										<Route_
 											class="button--default"
 											href={href}
 										>
 											{text}
-										</a>,
+										</Route_>,
 									)
 								}
 							</Buttonset_>

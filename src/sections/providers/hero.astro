@@ -1,5 +1,6 @@
 ---
 import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 
 import { routes } from 'src/routes';
@@ -16,10 +17,10 @@ import { routes } from 'src/routes';
 		<p>Using a non-invasive cheek swab, Geneticure's patented pharmacogenomic panel analyzes 17 genotypes in 11 genes to recommend <strong>the best hypertension treatment for your patient.</strong></p>
 
 		<p class="text--center">
-			<a
+			<Route_
 				class="button--hero"
 				href={routes.register__clinician}
-			>Register now</a>
+			>Register now</Route_>
 		</p>
 	</div>
 

@@ -1,5 +1,6 @@
 ---
 import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
 import Svg_ from 'src/components/svg.astro';
 
 import { menu } from 'src/text/menu';
@@ -13,21 +14,21 @@ const year = (new Date()).getFullYear();
 	<div class="footer__wrap">
 		<div class="content footer">
 			<div>
-				<a href={routes.home}>
+				<Route_ href="home">
 					<Img_
 						alt="Geneticure logo"
 						class="footer__logo"
 						src="/img/logo/geneticure.svg"
 					/>
-				</a>
+				</Route_>
 
 				<address class="footer__contact">
 					<p>
 						4 3rd Street SW, Suite 305b<br />
 						Rochester, MN 55902<br />
-						<a href={`mailto:${routes.email}`}>{routes.email}</a><br />
-						<a href={`tel:${routes.phone_brand}`}>{routes.phone_brand}</a><br />
-						<a href={`tel:${routes.phone}`}>{routes.phone}</a><br />
+						<Route_ href={`mailto:${routes.email}`}>{routes.email}</Route_><br />
+						<Route_ href={`tel:${routes.phone_brand}`}>{routes.phone_brand}</Route_><br />
+						<Route_ href={`tel:${routes.phone}`}>{routes.phone}</Route_><br />
 					</p>
 				</address>
 			</div>
@@ -35,9 +36,9 @@ const year = (new Date()).getFullYear();
 			<div class="footer__social">
 				{
 					socials.map((social) =>
-						<a href={social.href}>
+						<Route_ href={social.href}>
 							{social.label}<Svg_ src={social.icon} />
-						</a>,
+						</Route_>,
 					)
 				}
 			</div>
@@ -45,10 +46,10 @@ const year = (new Date()).getFullYear();
 			<div class="footer__links">
 				{
 					menu.map((link) =>
-						<a href={link.href}>{link.label}</a>,
+						<Route_ href={link.href}>{link.label}</Route_>,
 					)
 				}
-				<a href={routes.contact}>Contact us</a>
+				<Route_ to="contact">Contact us</Route_>
 			</div>
 		</div>
 	</div>
@@ -59,8 +60,8 @@ const year = (new Date()).getFullYear();
 		<p class="list--inline--links">
 			<small>
 				© {year} Geneticure, Inc. All rights reserved.
-				<a href={routes.terms}>Terms and conditions</a>
-				<a href={routes.privacy}>Privacy</a>
+				<Route_ href="terms">Terms and conditions</Route_>
+				<Route_ href="privacy">Privacy</Route_>
 			</small>
 		</p>
 	</div>

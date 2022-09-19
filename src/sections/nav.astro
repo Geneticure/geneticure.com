@@ -1,10 +1,10 @@
 ---
 import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
 
 import { getProps } from 'src/js/astro';
 
 import { menu } from 'src/text/menu';
-import { routes } from 'src/routes';
 
 const { props, rest } = getProps(Astro.props, {
 	fixed: true,
@@ -26,16 +26,16 @@ const { props, rest } = getProps(Astro.props, {
 >
 	<div class="nav__bar"></div>
 
-	<a
+	<Route_
 		class="nav__logo"
-		href={routes.home}
+		to="home"
 	>
 		<Img_
 			alt="Geneticure logo"
 			class="footer__logo"
 			src="/img/logo/geneticure.svg"
 		/>
-	</a>
+	</Route_>
 
 	<div
 		class="nav__links"
@@ -45,10 +45,10 @@ const { props, rest } = getProps(Astro.props, {
 	>
 		{
 			menu.map((link) =>
-				<a
+				<Route_
 					data-active-href={link.href}
 					href={link.href}
-				>{link.label}</a>,
+				>{link.label}</Route_>,
 			)
 		}
 	</div>
