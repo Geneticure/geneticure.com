@@ -26,7 +26,7 @@ export const _faqs: Array<[
 				`science`,
 				`Is this test validated by science?`,
 				`Yes. In Geneticure's retrospective clinical trial, the data suggests the Geneticure approach is associated with a 7.1mm Hg lower systolic blood pressure (top number) and 5.4mm Hg lower diastolic Blood Pressure (bottom number). This is meaningfully better than the current standard of care -- about 22% and 39% lower, respectively.`,
-				`Blood pressure reductions like this have been shown in previous studies to lead to a 40% reduction in stroke and 25% reduction in heart attacks. Several well published studies (New England Journal of Medicine, American Heart Association, The Journal of the American Medical Association) praise similar therapy reductions in blood pressure when assessing new therapies against placebo. This is particularly meaningful when our genotyping guided-therapy is going head-to-head against standard of care drug therapy in a very well controlled population on multiple medications. For more information, please see <a href="${routes.providers}">our research</a>.`,
+				`Here's some more text. Blood pressure reductions like this have been shown in previous studies to lead to a 40% reduction in stroke and 25% reduction in heart attacks. Several well published studies (New England Journal of Medicine, American Heart Association, The Journal of the American Medical Association) praise similar therapy reductions in blood pressure when assessing new therapies against placebo. This is particularly meaningful when our genotyping guided-therapy is going head-to-head against standard of care drug therapy in a very well controlled population on multiple medications. For more information, please see <a href="${routes.providers}">our research</a>.`,
 			],
 			[
 				`evidence`,
@@ -36,7 +36,7 @@ export const _faqs: Array<[
 			[
 				`interactions`,
 				`Does your test examine my existing medications and whether new drugs will interact?`,
-				`Our provider network will look at your medication list and will promptly inform you of any counter-indications of medications you may be taking. Please enter medication names with correct spelling for accurate assessment.`,
+				`Blah blah balh. Our provider network will look at your medication list and will promptly inform you of any counter-indications of medications you may be taking. Please enter medication names with correct spelling for accurate assessment.`,
 			],
 			[
 				`which-genes`,
