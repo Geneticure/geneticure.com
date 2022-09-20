@@ -6,8 +6,8 @@ import { roundTo } from 'src/js/roundTo';
 
 const { props, rest } = getProps(Astro.props, {
 	alt: ``,
-	css: null,
 	bgColor: null,
+	css: null,
 	lazy: true,
 	src: null as string,
 });
@@ -29,38 +29,36 @@ if (showBgColor) {
 }
 ---
 
-<>
-	{
-		isBackgroundImage &&
-		<span
-			class={`img ${props.class}`}
+{
+	isBackgroundImage &&
+	<span
+		class={`img ${props.class}`}
+		data-src={props.lazy ? props.src : undefined}
+		data-src-lazy={props.lazy}
+		style={style}
+		{...rest}
+	>
+		<slot />
+	</span>
+}
+
+{
+	!isBackgroundImage &&
+	<span
+		class={`img ${props.class}`}
+		style={style}
+	>
+		<img
+			alt={props.alt}
 			data-src={props.lazy ? props.src : undefined}
 			data-src-lazy={props.lazy}
-			style={style}
+			height={dimensions.height}
+			src={props.lazy ? `data:image/png;base64,` : props.src}
+			width={dimensions.width}
 			{...rest}
-		>
-			<slot />
-		</span>
-	}
-
-	{
-		!isBackgroundImage &&
-		<span
-			class={`img ${props.class}`}
-			style={style}
-		>
-			<img
-				alt={props.alt}
-				data-src={props.lazy ? props.src : undefined}
-				data-src-lazy={props.lazy}
-				height={dimensions.height}
-				src={props.lazy ? `data:image/png;base64,` : props.src}
-				width={dimensions.width}
-				{...rest}
-			/>
-		</span>
-	}
-</>
+		/>
+	</span>
+}
 
 <style lang="scss">
 @use 'src/scss/vars';
