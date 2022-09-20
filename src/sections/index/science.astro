@@ -23,7 +23,7 @@ import Section_ from 'src/components/section.astro';
 		</aside>
 	</div>
 
-	<div>
+	<div class="science__img">
 		<Img_
 			alt="Geneticure kit with literature"
 			src="/img/kit/kit-lit.jpg"
@@ -33,6 +33,19 @@ import Section_ from 'src/components/section.astro';
 
 <style lang="scss">
 @use 'src/scss/vars';
+
+@include vars.if-viewport('<', lg) {
+	.science {
+		&__body {
+			padding-top: 0 !important;
+		}
+
+		&__img {
+			order: -1;
+			padding-bottom: 0 !important;
+		}
+	}
+}
 
 @include vars.if-viewport('==', lg) {
 	.science__body {
