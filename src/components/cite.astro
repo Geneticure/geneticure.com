@@ -22,6 +22,7 @@ const cite = researchById[props.to];
 
 	<span
 		class="cite__text"
+		data-align-viewport
 		set:html={cite.full}
 	></span>
 </span>
@@ -34,7 +35,7 @@ const cite = researchById[props.to];
 	line-height: 1em;
 	position: relative;
 
-	&__text { // TODO2: Change alignment based on side of window
+	&__text {
 		@include vars.type(small);
 
 		background: vars.$color--bg;
@@ -50,7 +51,6 @@ const cite = researchById[props.to];
 		text-align: left;
 		top: 100%;
 		width: 100vw;
-		z-index: vars.z(tooltip);
 
 		:global(a) {
 			font-weight: normal;
@@ -66,6 +66,7 @@ const cite = researchById[props.to];
 		.cite:focus &,
 		.cite:focus-within & {
 			display: block;
+			z-index: vars.z(tooltip);
 		}
 	}
 
@@ -88,7 +89,6 @@ const cite = researchById[props.to];
 		font-weight: bold;
 		position: relative;
 		vertical-align: super;
-		z-index: 1;
 	}
 }
 </style>
