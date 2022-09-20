@@ -14,6 +14,7 @@ export class IsInViewport {
 	/**
 	 * Note: Only tests vertically, not horizontally.
 	 */
+	// TODO3: Use IntersectionObserver
 	static test($element: Element) {
 		const boundaries = $element.getBoundingClientRect();
 		const maxHeight = window.innerHeight;
