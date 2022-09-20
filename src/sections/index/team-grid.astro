@@ -10,6 +10,7 @@ import { team } from 'src/text/team';
 		team.map((person) =>
 			<li
 				class="person"
+				data-person
 				tabindex={0}
 			>
 				<div class="person__header">
@@ -24,23 +25,26 @@ import { team } from 'src/text/team';
 				</div>
 
 				<div class="person__body">
-					<p>
-						{person.description}
-						{
-							person.social.map((social) =>
-								<Route_
-									class="person__social"
-									href={social.href}
-								>
-									<Img_
-										alt={`${social.title} account for ${person.name}`}
-										class="person__social__icon"
-										src={social.img}
-									/>
-								</Route_>,
-							)
-						}
-					</p>
+					<template>
+						<p>
+							{person.description}
+							{
+								person.social.map((social) =>
+									<Route_
+										class="person__social"
+										href={social.href}
+									>
+										<Img_
+											alt={`${social.title} account for ${person.name}`}
+											class="person__social__icon"
+											lazy={false}
+											src={social.img}
+										/>
+									</Route_>,
+								)
+							}
+						</p>
+					</template>
 				</div>
 			</li>,
 		)
@@ -168,10 +172,12 @@ $person__z: 9;
 	border-radius: $person__border__radius;
 	border-top: $person__border__width solid $person__border__color;
 	box-shadow: 0 0 50px 20px #00001020;
+	box-sizing: border-box;
 	left: 0;
 	margin-top: 5px;
 	padding: 20px;
 	position: absolute;
+	width: 100%;
 	z-index: 8;
 
 	.person:not(:focus, :focus-within) & {
@@ -200,3 +206,18 @@ $person__z: 9;
 	width: auto;
 }
 </style>
+
+<script>
+import * as Templates from 'src/js/templates';
+
+const $people = Array.from(document.querySelectorAll(`[data-person]`));
+for (const $person of $people) {
+	$person.addEventListener(`focus`, renderPerson);
+}
+
+function renderPerson() {
+	const $person = this as HTMLElement;
+	const $template = $person.querySelector(`template`);
+	Templates.render($template);
+}
+</script>
