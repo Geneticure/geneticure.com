@@ -53,7 +53,7 @@ if (showBgColor) {
 			data-src={props.lazy ? props.src : undefined}
 			data-src-lazy={props.lazy}
 			height={dimensions.height}
-			src={props.lazy ? `data:image/png;base64,` : props.src}
+			src={props.lazy ? `data:image/svg+xml;utf8,<svg</svg>` : props.src}
 			width={dimensions.width}
 			{...rest}
 		/>
@@ -121,12 +121,15 @@ function setSource($element: Element) {
 	if (!source) {
 		return;
 	}
-	$element.removeAttribute(ATTR__SRC);
 
 	if ($element.tagName.toLowerCase() === `img`) {
 		$element.setAttribute(`src`, source);
+		$element.addEventListener(`load`, () => {
+			$element.removeAttribute(ATTR__SRC);
+		}, { once: true });
 	} else {
 		($element as HTMLElement).style.setProperty(`background-image`, `url(${source})`);
+		$element.removeAttribute(ATTR__SRC);
 	}
 }
 </script>

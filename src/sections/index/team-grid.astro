@@ -17,6 +17,7 @@ import { team } from 'src/text/team';
 					<span class="person__img">
 						<Img_
 							alt={person.title}
+							bgColor={false}
 							src={person.img}
 						/>
 					</span>
@@ -122,8 +123,13 @@ $person__z: 9;
 	transition: background-color .2s;
 	width: $person__img__diameter;
 
-	img {
+	:global(img) {
 		mix-blend-mode: multiply;
+
+		.person:focus &,
+		.person:focus-within & {
+			filter: sepia(.2);
+		}
 	}
 
 	.person:hover & {
@@ -133,10 +139,6 @@ $person__z: 9;
 	.person:focus &,
 	.person:focus-within & {
 		background-color: #FFFFFF;
-
-		img {
-			filter: sepia(.2);
-		}
 	}
 }
 
