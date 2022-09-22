@@ -1,3 +1,5 @@
+// TODO2: Instead of templates, load from remote endpoints
+
 export function render($template: HTMLTemplateElement) {
 	if (!$template) {
 		return;

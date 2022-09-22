@@ -1,0 +1,73 @@
+---
+import HomeLayout_ from 'src/layouts/home.astro';
+import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
+import Section_ from 'src/components/section.astro';
+---
+
+<HomeLayout_ title="Order confirmation">
+	<Section_ class="thanks" cols={0}>
+		<div class="overlay thanks__text">
+			<h1 class="text--hdg--1">Thanks for your order!</h1>
+
+			<hr class="fancy" />
+
+			<p>We're so excited to be working with you toward your health goals!</p>
+
+			<p>Your kit will be shipped within the next 1 - 2 business days. In the meantime you can <Route_ to="register">register your account</Route_> on the Geneticure patient and provider portal. This is how we'll keep track of your kit and deliver your personalized report.</p>
+
+			<p>Questions? Feel free to <Route_ to="contact">contact us</Route_>.</p>
+
+			<p class="text--center">
+				<Route_
+					class="button--hero"
+					to="register"
+				>Register</Route_>
+			</p>
+		</div>
+
+		<Img_
+			class="thanks__img"
+			src="/img/bg/heart-pills.jpg"
+		/>
+	</Section_>
+</HomeLayout_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+@include vars.if-viewport('<', lg) {
+	.thanks {
+		min-height: 100vh;
+
+		&__text {
+			z-index: 1;
+		}
+
+		&__img {
+			@include vars.expand;
+
+			:global(img) {
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.thanks {
+		:global(.section__content) {
+			flex-wrap: nowrap;
+		}
+
+		&__img {
+			height: calc(100vh - #{vars.$height--nav});
+			max-width: 50%;
+
+			:global(img) {
+				object-fit: cover;
+			}
+		}
+	}
+}
+</style>

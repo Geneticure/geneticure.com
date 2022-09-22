@@ -1,36 +1,10 @@
 ---
-import HomeLayout_ from 'src/layouts/home.astro';
-import Img_ from 'src/components/img.astro';
-import Route_ from 'src/components/route.astro';
-import Section_ from 'src/components/section.astro';
 ---
 
-<HomeLayout_ title="Order a kit">
-	<Section_>
-		<div>
-			<h1 class="text--hdg--1">Order a kit</h1>
+<head>
+	<script>
+	import { routes } from 'src/routes';
 
-			<hr class="fancy" />
-
-			<p>We're putting the finishing touches on making our test kits available for purchase. Please check back within the next couple of days!</p>
-
-			<p>In the meantime you can <Route_ to="register__user">register your account</Route_> on the Geneticure patient and provider portal. This is how we'll keep track of your kit and deliver your personalized report.</p>
-
-			<p>Questions? Feel free to <Route_ to="contact">contact us</Route_>.</p>
-
-			<p class="text--center">
-				<Route_
-					class="button--hero"
-					to="register__user"
-				>Register now</Route_>
-			</p>
-		</div>
-
-		<div>
-			<Img_
-				alt="Geneticure kit"
-				src="/img/kit/kit-w-contents.png"
-			/>
-		</div>
-	</Section_>
-</HomeLayout_>
+	window.location.href = routes.buy;
+	</script>
+</head>

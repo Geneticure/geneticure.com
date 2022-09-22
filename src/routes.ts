@@ -1,5 +1,5 @@
 export const routes = {
-	buy: `/buy`,
+	buy: `https://buy.stripe.com/3cseVHfRO0Hwgz6145`,
 	faqs: `/faqs`,
 	home: `/`,
 	privacy: `/privacy`,

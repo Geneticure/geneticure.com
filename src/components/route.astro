@@ -3,13 +3,13 @@ import { getProps } from 'src/js/astro';
 
 import { routes } from 'src/routes';
 
-const { props, rest } = getProps(Astro.props, {
-	href: `` as string,
-	title: `` as string,
-	to: `` as keyof typeof routes,
-});
-
 const NOTE__EXTERNAL = `Opens in a new window`;
+
+const { props, rest } = getProps(Astro.props, {
+	href: null as string,
+	title: null as string,
+	to: null as keyof typeof routes,
+});
 
 if (props.to && !(props.to in routes)) {
 	throw new Error(`'${props.to}' is not a valid route name.`);
