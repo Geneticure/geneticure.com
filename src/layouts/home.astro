@@ -32,9 +32,7 @@ const title = `Geneticure` + (props.title && (` | ` + props.title ));
 		<meta property="og:image:alt" content={title}>
 		<meta property="og:url" content={`https://geneticure.com${Astro.url.href}`}>
 		<meta name="twitter:card" content="summary_large_image">
-		<link rel="icon" href="/img/favicon.ico">
-		<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-		<link rel="apple-touch-icon" href="/img/favicon.png">
+		<link rel="icon" href="/img/favicon.svg">
 
 		{ isProd ?
 			<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +50,7 @@ const title = `Geneticure` + (props.title && (` | ` + props.title ));
 
 			gtag('config', 'UA-58090183-1');
 		</script>
+		<script src="src/js/index"></script>
 	</head>
 	<body>
 		<Nav_ fixed={props.navFixed} opaqueAtTop={props.navOpaqueAtTop} />
@@ -63,7 +62,3 @@ const title = `Geneticure` + (props.title && (` | ` + props.title ));
 		<Footer_ />
 	</body>
 </html>
-
-<script>
-import 'src/js/index';
-</script>
