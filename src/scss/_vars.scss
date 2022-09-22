@@ -107,7 +107,7 @@ $color--error--offset: #FFE0E0;
 $color--lowlight: #414042;
 $color--lowlight--offset: #555555;
 $color--lowlight--sink: #000000;
-$color--overlay: #FFFFFFC0;
+$color--overlay: #FFFFFFE0;
 $color--shadow: rgba(0 0 10 / .07);
 $color--shadow--sink: rgba(0 0 10 / .15);
 $color--social--linkedin: #0A66C2;
@@ -504,17 +504,12 @@ $typefaces: (
 
 @mixin overlay($options: ()) {
 	$border__radius: vars.get($options, border__radius, 10px);
-	$breakpoint: vars.get($options, breakpoint, lg);
 	$position: vars.get($options, position, left);
 
-	backdrop-filter: blur(2px);
+	backdrop-filter: blur(3px);
 	background-color: $color--overlay;
 
-	@include if-viewport('<', $breakpoint) {
-		width: 100%;
-	}
-
-	@include if-viewport('>=', $breakpoint) {
+	@include if-viewport('>=', lg) {
 		@if $position == left {
 			border-radius: 0 $border__radius $border__radius 0;
 			margin-right: auto;

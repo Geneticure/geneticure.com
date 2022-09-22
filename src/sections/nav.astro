@@ -144,6 +144,10 @@ const { props, rest } = getProps(Astro.props, {
 			border-bottom-color: vars.$color--text;
 			pointer-events: none;
 		}
+
+		&:last-child {
+			color: vars.$color--accent;
+		}
 	}
 }
 
