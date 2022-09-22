@@ -1,3 +1,4 @@
-import { defineConfig } from 'astro/config';
+import type { AstroUserConfig } from "astro";
+import compress from "astro-compress";
 
-export default defineConfig({});
+export default (): AstroUserConfig => ({ integrations: [compress()] });
