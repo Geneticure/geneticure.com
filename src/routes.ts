@@ -1,10 +1,10 @@
 export const routes = {
 	buy: `https://buy.stripe.com/3cseVHfRO0Hwgz6145`,
+	company: `/company`,
 	faqs: `/faqs`,
 	home: `/`,
 	privacy: `/privacy`,
 	providers: `/providers`,
-	team: `/team`,
 	terms: `/terms`,
 
 	article__covid: `/covid19`,
