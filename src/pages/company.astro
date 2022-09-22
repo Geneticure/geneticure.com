@@ -1,24 +1,26 @@
 ---
+import Contact_ from 'src/sections/contact.astro';
 import HomeLayout_ from 'src/layouts/home.astro';
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
+import SvgPattern_ from 'src/components/svg-pattern.astro';
 
 import { team, teamDescription } from 'src/text/team';
 
 ---
 
-<HomeLayout_ class="team" title="Our team" navFixed={true} navOpaqueAtTop={true}>
+<HomeLayout_ class="team" title="Company" navFixed={true} navOpaqueAtTop={true}>
 	<Section_ class="hero team__hero">
 		<div class="overlay">
 			<h1 class="text--hdg--1">Our team</h1>
 		</div>
 
 		<Fragment slot="background">
-			<img
-				alt="Image of chairs"
+			<Img_
+				alt="Rochester, MN skyline"
 				class="team__hero__bg"
-				src="/img/bg/chairs.jpg"
+				src="/img/bg/rochester.jpg"
 			/>
 		</Fragment>
 	</Section_>
@@ -26,6 +28,11 @@ import { team, teamDescription } from 'src/text/team';
 	<Section_ cols={0}>
 		<div>
 			<p set:html={ teamDescription }></p>
+
+			<div class="team__contact">
+				<strong>Geneticure, LLC</strong>
+				<Contact_ class="team__contact" />
+			</div>
 
 			<ul class="people">
 				{
@@ -67,10 +74,75 @@ import { team, teamDescription } from 'src/text/team';
 			</ul>
 		</div>
 	</Section_>
+
+	<SvgPattern_
+		class="team__bg"
+		id="team__bg--left"
+		src="public/img/icon/helix-pattern.svg"
+		width="100"
+		height="100"
+	/>
+
+	<SvgPattern_
+		class="team__bg"
+		id="team__bg--right"
+		src="public/img/icon/helix-pattern.svg"
+		width="100"
+		height="100"
+	/>
 </HomeLayout_>
 
 <style lang="scss">
 @use 'src/scss/vars';
+
+.team {
+	:global(main) {
+		position: relative;
+	}
+
+	&__hero {
+		position: relative;
+		z-index: 1;
+
+		&__bg {
+			position: static;
+		}
+	}
+
+	&__contact {
+		line-height: 2em;
+		text-align: center;
+	}
+
+	&__bg {
+		height: 100%;
+		position: absolute;
+		top: 0;
+		width: 50px;
+		z-index: -1;
+
+		:global(path) {
+			fill: none;
+			stroke-width: 1;
+		}
+
+		&--left {
+			right: calc(100% - var(--content-padding-x) + 10px);
+
+			:global(path) {
+				stroke: vars.$color--brand--offset--sink;
+			}
+		}
+
+		&--right {
+			left: calc(100% - var(--content-padding-x) + 10px);
+
+			:global(path) {
+				stroke: vars.$color--shadow--sink;
+			}
+		}
+	}
+}
 
 .person {
 	align-items: flex-start;

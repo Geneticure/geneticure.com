@@ -1,9 +1,9 @@
 ---
+import Contact_ from 'src/sections/contact.astro';
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 
 import { menu } from 'src/text/menu';
-import { routes } from 'src/routes';
 import { socials } from 'src/text/social';
 
 const year = (new Date()).getFullYear();
@@ -21,15 +21,7 @@ const year = (new Date()).getFullYear();
 					/>
 				</Route_>
 
-				<address class="footer__contact">
-					<p>
-						4 3rd Street SW, Suite 305b<br />
-						Rochester, MN 55902<br />
-						<Route_ href={`mailto:${routes.email}`}>{routes.email}</Route_><br />
-						<Route_ href={`tel:${routes.phone_brand}`}>{routes.phone_brand}</Route_><br />
-						<Route_ href={`tel:${routes.phone}`}>{routes.phone}</Route_><br />
-					</p>
-				</address>
+				<Contact_ class="footer__contact" />
 			</div>
 
 			<div class="footer__social">
@@ -103,6 +95,7 @@ const year = (new Date()).getFullYear();
 
 .footer__social {
 	font-size: 0;
+	margin-bottom: 20px;
 
 	.img {
 		display: inline-block;
@@ -117,7 +110,7 @@ const year = (new Date()).getFullYear();
 
 .footer__contact {
 	line-height: 2em;
-	margin-bottom: 1em;
+	margin-bottom: 30px;
 }
 
 .footer__links {

@@ -1,0 +1,15 @@
+---
+import Route_ from 'src/components/route.astro';
+
+import { getProps } from 'src/js/astro';
+
+import { routes } from 'src/routes';
+
+const { props, rest } = getProps(Astro.props);
+---
+
+<address class={props.class} {...rest}>4 3rd Street SW, Suite 305b<br />
+Rochester, MN 55902<br />
+<Route_ href={`mailto:${routes.email}`}>{routes.email}</Route_><br />
+<Route_ href={`tel:${routes.phone_brand}`}>{routes.phone_brand}</Route_><br />
+<Route_ href={`tel:${routes.phone}`}>{routes.phone}</Route_></address>

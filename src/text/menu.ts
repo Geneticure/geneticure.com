@@ -6,7 +6,7 @@ const _menu: Array<
 	[`home`, `About`],
 	[`providers`, `Providers`],
 	[`faqs`, `FAQs`],
-	[`team`, `Team`],
+	[`company`, `Company`],
 	[`login`, `Login`],
 	[`buy`, `Buy now`],
 ];
