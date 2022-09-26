@@ -81,8 +81,8 @@ const steps: Array<[
 						/>
 					}
 					<div class="step__body">
-						<h3 class="text--hdg--2 step__body__title" set:html={ title }></h3>
-						<p class="step__body__text" set:html={ body }></p>
+						<h3 class="text--hdg--2 step__title" set:html={ title }></h3>
+						<p set:html={ body }></p>
 
 						{
 							buttons &&
@@ -121,35 +121,35 @@ const steps: Array<[
 @use '/src/scss/vars';
 
 .steps {
-	margin-left: calc(var(--icon-width) + var(--icon-offset));
+	margin-left: calc(var(--icon-width) + var(--text-margin-left));
 	text-align: left;
 }
 
 .step {
 	display: flex;
-	padding-left: var(--icon-offset);
+	padding-left: var(--text-margin-left);
 	position: relative;
-}
 
-.step__body {
-	position: relative;
-	top: -.4em;
-}
+	&__body {
+		position: relative;
+		top: -.4em;
+	}
 
-.step__body__title {
-	color: vars.$color--brand;
-	position: relative;
-}
+	&__icon {
+		aspect-ratio: 1;
+		position: absolute;
+		right: calc(100% + var(--text-margin-left));
+		top: calc((-.5 * var(--icon-width)) + 10px);
+		width: var(--icon-width);
 
-.step__icon {
-	aspect-ratio: 1;
-	position: absolute;
-	right: calc(100% + var(--icon-offset));
-	top: calc((-.5 * var(--icon-width)) + 10px);
-	width: var(--icon-width);
+		:global(path) {
+			fill: vars.$color--text;
+		}
+	}
 
-	:global(path) {
-		fill: vars.$color--text;
+	&__title {
+		color: vars.$color--brand;
+		position: relative;
 	}
 }
 
@@ -189,13 +189,13 @@ const steps: Array<[
 
 @include vars.if-viewport('<', lg) {
 	.howitworks {
-		--bg-width: auto;
 		--bg-offset: calc(var(--content-padding-x) + 50px);
+		--bg-width: auto;
 	}
 
 	.steps {
-		--icon-offset: 20px;
 		--icon-width: 50px;
+		--text-margin-left: 20px;
 
 		margin-top: 30px;
 	}
@@ -207,13 +207,13 @@ const steps: Array<[
 
 @include vars.if-viewport('>=', lg) {
 	.howitworks {
-		--bg-width: 1100px;
 		--bg-offset: calc(100vw - var(--bg-width) + 200px);
+		--bg-width: 1100px;
 	}
 
 	.steps {
-		--icon-offset: 30px;
 		--icon-width: 100px;
+		--text-margin-left: 30px;
 
 		margin-top: 80px;
 	}
