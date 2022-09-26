@@ -75,21 +75,21 @@ import { team, teamDescription } from 'src/text/team';
 		</div>
 	</Section_>
 
-	<SvgPattern_
-		class="team__bg"
-		id="team__bg--left"
-		src="public/img/icon/helix-pattern.svg"
-		width="100"
-		height="100"
-	/>
+	<div class="team__bg">
+		<SvgPattern_
+			id="team__bg__left"
+			src="public/img/icon/helix-pattern.svg"
+			width="100"
+			height="100"
+		/>
 
-	<SvgPattern_
-		class="team__bg"
-		id="team__bg--right"
-		src="public/img/icon/helix-pattern.svg"
-		width="100"
-		height="100"
-	/>
+		<SvgPattern_
+			id="team__bg__right"
+			src="public/img/icon/helix-pattern.svg"
+			width="100"
+			height="100"
+		/>
+	</div>
 </HomeLayout_>
 
 <style lang="scss">
@@ -97,6 +97,7 @@ import { team, teamDescription } from 'src/text/team';
 
 .team {
 	:global(main) {
+		overflow: hidden;
 		position: relative;
 	}
 
@@ -115,10 +116,9 @@ import { team, teamDescription } from 'src/text/team';
 	}
 
 	&__bg {
-		height: 100%;
-		position: absolute;
-		top: 0;
-		width: 50px;
+		@include vars.expand;
+
+		overflow: hidden;
 		z-index: -1;
 
 		:global(path) {
@@ -126,7 +126,15 @@ import { team, teamDescription } from 'src/text/team';
 			stroke-width: 1;
 		}
 
-		&--left {
+		&__left,
+		&__right {
+			height: 100%;
+			position: absolute;
+			top: 0;
+			width: 50px;
+		}
+
+		&__left {
 			right: calc(100% - var(--content-padding-x) + 10px);
 
 			:global(path) {
@@ -134,7 +142,7 @@ import { team, teamDescription } from 'src/text/team';
 			}
 		}
 
-		&--right {
+		&__right {
 			left: calc(100% - var(--content-padding-x) + 10px);
 
 			:global(path) {
