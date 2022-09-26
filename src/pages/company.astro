@@ -46,7 +46,7 @@ import { team, teamDescription } from 'src/text/team';
 							</div>
 
 							<div class="person__text">
-								<h2 class="text--hdg--2">
+								<h2 class="text--hdg--2 person__name">
 									{person.name}
 
 									{
@@ -64,7 +64,7 @@ import { team, teamDescription } from 'src/text/team';
 										)
 									}
 								</h2>
-								<p class="text--hdg--3">{person.title}</p>
+								<p class="text--hdg--3 person__title">{person.title}</p>
 
 								<p>{person.description}</p>
 							</div>
@@ -152,12 +152,6 @@ import { team, teamDescription } from 'src/text/team';
 	}
 }
 
-.person {
-	align-items: flex-start;
-	display: flex;
-	padding-top: 80px;
-}
-
 .person__img {
 	aspect-ratio: 1;
 	background-color: vars.$color--bg--offset--sink;
@@ -181,22 +175,37 @@ import { team, teamDescription } from 'src/text/team';
 }
 
 @include vars.if-viewport('==', sm) {
-	.person__img {
-		width: 80px;
-	}
+	.person {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		padding-top: 80px;
 
-	.person__text {
-		padding-left: 10px;
+		&__img {
+			margin-bottom: 1em;
+			width: 150px;
+		}
+
+		&__name,
+		&__title {
+			text-align: center;
+		}
 	}
 }
 
 @include vars.if-viewport('>', sm) {
-	.person__img {
-		width: 130px;
-	}
+	.person {
+		align-items: flex-start;
+		display: flex;
+		padding-top: 80px;
 
-	.person__text {
-		padding-left: 30px;
+		&__img {
+			width: 130px;
+		}
+
+		&__text {
+			padding-left: 30px;
+		}
 	}
 }
 </style>
