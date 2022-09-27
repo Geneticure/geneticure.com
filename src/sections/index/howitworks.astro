@@ -64,25 +64,25 @@ const steps: Array<[
 
 		<hr class="fancy" />
 
-		<ol class="steps list--dotted">
+		<ol class="steps">
 			{ steps.map(([[iconType, iconSrc], title, body, buttons]) =>
-				<li class="step">
+				<li class="steps__step">
 					{ iconType === `svg` &&
 						<Svg_
-							class="step__icon"
+							class="steps__step__icon"
 							src={`public/img/icon/${iconSrc}.svg`}
 						/>
 					}
 					{ iconType === `img` &&
 						<Img_
 							alt={title}
-							class="step__icon"
+							class="steps__step__icon"
 							src={iconSrc}
 						/>
 					}
-					<div class="step__body">
-						<h3 class="text--hdg--2 step__body__title" set:html={ title }></h3>
-						<p class="step__body__text" set:html={ body }></p>
+					<div class="steps__step__body">
+						<h3 class="text--hdg--2 steps__step__title" set:html={ title }></h3>
+						<p set:html={ body }></p>
 
 						{
 							buttons &&
@@ -121,35 +121,103 @@ const steps: Array<[
 @use '/src/scss/vars';
 
 .steps {
-	margin-left: calc(var(--icon-width) + var(--icon-offset));
-	text-align: left;
-}
+	--icon-diameter: 0;
 
-.step {
-	display: flex;
-	padding-left: var(--icon-offset);
-	position: relative;
-}
+	&__step {
+		&__icon {
+			aspect-ratio: 1;
+			width: var(--icon-diameter);
 
-.step__body {
-	position: relative;
-	top: -.4em;
-}
+			:global(path) {
+				fill: vars.$color--text;
+			}
+		}
 
-.step__body__title {
-	color: vars.$color--brand;
-	position: relative;
-}
+		&__title {
+			color: vars.$color--brand;
+		}
 
-.step__icon {
-	aspect-ratio: 1;
-	position: absolute;
-	right: calc(100% + var(--icon-offset));
-	top: calc((-.5 * var(--icon-width)) + 10px);
-	width: var(--icon-width);
+		.buttonset {
+			margin-top: 1em;
+		}
+	}
 
-	:global(path) {
-		fill: vars.$color--text;
+	@include vars.if-viewport('==', sm) {
+		$border__width: 3px;
+
+		--icon-diameter: 50px;
+
+		border-left: $border__width solid vars.$color--bg--offset--sink;
+
+		&__step {
+			margin-top: 30px;
+			padding-left: calc(.5 * var(--icon-diameter) + 5px);
+			position: relative;
+
+			&__icon {
+				background: vars.$color--bg;
+				box-shadow: -5px 0 0 5px vars.$color--bg;
+				left: calc(-.5 * (var(--icon-diameter) + #{$border__width}));
+				position: absolute;
+				z-index: 1;
+			}
+
+			&__title {
+				align-items: center;
+				display: flex;
+				height: var(--icon-diameter);
+			}
+		}
+	}
+
+	@include vars.if-viewport('>', sm) {
+		--icon-diameter: 50px;
+		--text-margin-left: 20px;
+
+		@include vars.list--dotted((
+			border__color: vars.$color--bg--offset--sink,
+			border__offset: 10px,
+			border__width: 3px,
+			dot__background: vars.$color--bg,
+			dot__color: vars.$color--brand,
+			dot__diameter: 10px,
+		));
+
+		margin-left: calc(var(--icon-diameter) + var(--text-margin-left));
+		margin-top: 30px;
+
+		&__step {
+			display: flex;
+			padding-left: var(--text-margin-left);
+
+			&__body {
+				position: relative;
+				top: -.4em;
+			}
+
+			&__icon {
+				position: absolute;
+				right: calc(100% + var(--text-margin-left));
+				top: calc((-.5 * var(--icon-diameter)) + 10px);
+			}
+
+			&:not(:last-child) {
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+	@include vars.if-viewport('>=', lg) {
+		--icon-diameter: 100px;
+		--text-margin-left: 30px;
+
+		margin-top: 80px;
+
+		&__step {
+			&:not(:last-child) {
+				padding-bottom: 80px;
+			}
+		}
 	}
 }
 
@@ -185,41 +253,15 @@ const steps: Array<[
 			stroke-width: 2;
 		}
 	}
-}
 
-@include vars.if-viewport('<', lg) {
-	.howitworks {
-		--bg-width: auto;
+	@include vars.if-viewport('<', lg) {
 		--bg-offset: calc(var(--content-padding-x) + 50px);
+		--bg-width: auto;
 	}
 
-	.steps {
-		--icon-offset: 20px;
-		--icon-width: 50px;
-
-		margin-top: 30px;
-	}
-
-	.step:not(:last-child) {
-		padding-bottom: 30px;
-	}
-}
-
-@include vars.if-viewport('>=', lg) {
-	.howitworks {
-		--bg-width: 1100px;
+	@include vars.if-viewport('>=', lg) {
 		--bg-offset: calc(100vw - var(--bg-width) + 200px);
-	}
-
-	.steps {
-		--icon-offset: 30px;
-		--icon-width: 100px;
-
-		margin-top: 80px;
-	}
-
-	.step:not(:last-child) {
-		padding-bottom: 80px;
+		--bg-width: 1100px;
 	}
 }
 </style>

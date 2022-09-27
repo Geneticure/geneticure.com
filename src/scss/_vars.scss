@@ -474,7 +474,6 @@ $typefaces: (
 
 @mixin list--dotted($options: ()) {
 	$border__color: vars.get($options, border__color, #000000);
-	$border__offset: vars.get($options, border__offset, 30px);
 	$border__width: vars.get($options, border__width, 3px);
 	$dot__background: vars.get($options, dot__background, #FFFFFF);
 	$dot__color: vars.get($options, dot__color, red);
@@ -482,7 +481,6 @@ $typefaces: (
 
 	& > * {
 		border-left: $border__width solid $border__color;
-		padding-left: $border__offset;
 		position: relative;
 	}
 
