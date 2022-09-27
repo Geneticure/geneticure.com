@@ -59,6 +59,10 @@ h6 {
 
 	em {
 		color: vars.$color--brand;
+
+		.text--on-dark & {
+			color: vars.$color--brand--offset--sink;
+		}
 	}
 }
 
