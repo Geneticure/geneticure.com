@@ -91,9 +91,9 @@ const _team: Array<[
 	[
 		`Robin Thomas`,
 		`robin`,
-		`Technical Architect`,
+		`Staff Software Engineer`,
 		`robin.jpg`,
-		`Robin is a passionate coding teacher, manager, and mentor. His career includes management of machine learning for a Fortune 100 company, architecture of web and Salesforce solutions for an international software development agency, and supervision of merchant integrations at the world's largest Bitcoin company. He lives in Minneapolis with his wife and identical twin sons.`,
+		`Robin has implemented new design systems at Google, managed merchant Bitcoin adoption for Coinbase, and lead machine learning initiatives at Best Buy's digital headquarters. He loves teaching code as much as writing it, and was among the highest-rated instructors of General Assembly's Web Development Immersive.`,
 		`robertakarobin`,
 	],
 ];
