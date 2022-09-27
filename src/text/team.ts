@@ -96,14 +96,6 @@ const _team: Array<[
 		`Robin is a passionate coding teacher, manager, and mentor. His career includes management of machine learning for a Fortune 100 company, architecture of web and Salesforce solutions for an international software development agency, and supervision of merchant integrations at the world's largest Bitcoin company. He lives in Minneapolis with his wife and identical twin sons.`,
 		`robertakarobin`,
 	],
-	[
-		`Matthew Sprissler`,
-		`matthew`,
-		`Internal Counsel`,
-		`matt.jpg`,
-		`Matthew has a broad spectrum of experience in business related legal affairs, including funding agreements, employment law, patent and trademark law, contract law, and Federal, State, and Local Agency regulation. He has also managed many litigation matters to include patent infringement, trademark infringement, and contract and employment disputes.`,
-		`matt-sprissler-8594878`,
-	],
 ];
 
 export const teamDescription = `We're a team of hypertension expert scientists and doctors based in Rochester, Minnesota, home of the Mayo Clinic &mdash; which is also an investor in Geneticure. For 10 years we've put science and innovation to work, taking personalized medicine to the next level, unmatched in the world of pharmacogenomics. <a href="${routes.contact}">Contact us.</a>`;
