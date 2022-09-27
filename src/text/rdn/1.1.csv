@@ -1,0 +1,7 @@
+"Company","Technology","Outcome Variable","Treatment Effect Compared to Sham(mmHg)","Effect Corrected for Variable","Year"
+"Medtronic","RF Ablation (Off-Med)","24hr SBP/Office SBP","3.9mmHg/6.5mmHg","N","2020"
+"Medtronic","RF (On-Med Proof of Concept)","24hr SBP/DBP: Office SBP/DBP","7.4mmHg/4.1mmHg: 6.8mmHg/6.5mmHg","N","2018"
+"Medtronic","RF (Off-Med)","24hr SBP/24HR DBP","5.2mmHg/2.7mmHg","Y (Renin)","2021"
+"Medtronic","RF (Off-Med)","24hr SBP","66.1mmHg","Y (Heart Rate)","2021"
+"ReCor Medical","Ultrasound (Radiance Trio)","Daytime SBP","~5mmHg","N","2021"
+"ReCor Medical","Ultrasound (Require)","24hr BP","No differences compared to sham","N","2021"

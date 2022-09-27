@@ -1,0 +1,58 @@
+---
+import * as fs from 'fs';
+import { parse } from 'csv-parse/sync';
+
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props, {
+	header: true,
+	src: `` as string,
+});
+
+let csv = ``;
+try {
+	csv = fs.readFileSync(props.src, `utf8`);
+} catch (error) {
+	console.error(`Cannot import '${props.src}'`);
+}
+
+let rows: Array<Array<string | number>> = [];
+try { // TODO3: Remove try/catch when this is fixed: https://github.com/withastro/astro/issues/4894
+	rows = parse(csv, { skip_empty_lines: true }) as Array<Array<string | number>>;
+} catch (error) {
+	console.log(error);
+}
+
+const header = props.header ? rows.shift() : null;
+---
+
+<table class={props.class} {...rest}>
+	<slot />
+
+	{
+		header &&
+			<thead>
+				<tr>
+					{
+						header.map((cell) =>
+							<td set:html={cell}></td>,
+						)
+					}
+				</tr>
+			</thead>
+	}
+
+	<tbody>
+		{
+			rows.map((row) =>
+				<tr>
+					{
+						row.map((cell) =>
+							<td set:html={cell}></td>,
+						)
+					}
+				</tr>,
+			)
+		}
+	</tbody>
+</table>

@@ -59,6 +59,10 @@ h6 {
 
 	em {
 		color: vars.$color--brand;
+
+		.text--on-dark & {
+			color: vars.$color--brand--offset--sink;
+		}
 	}
 }
 
@@ -312,12 +316,15 @@ summary {
 		margin-top: 1em;
 	}
 
-	figure {
+	figure,
+	table {
 		background-color: vars.$color--bg--offset;
-		border: 1px solid vars.$color--shadow;
+		border: 1em solid transparent;
+		box-shadow: 0 0 0 1px vars.$color--shadow--sink;
 		margin: 1em auto;
-		padding: 1em;
+	}
 
+	figure {
 		@include vars.if-viewport('>=', lg) {
 			width: 40%;
 		}
@@ -332,6 +339,42 @@ summary {
 
 	hr {
 		margin: 2em auto;
+	}
+
+	table {
+		td,
+		th {
+			padding-bottom: 5px;
+			padding-top: 5px;
+			vertical-align: top;
+			white-space: pre-line;
+
+			&:not(:last-child) {
+				padding-right: 20px;
+			}
+		}
+
+		thead {
+			td,
+			th {
+				font-weight: bold;
+			}
+
+			tr {
+				border-bottom: 1px solid black;
+			}
+		}
+
+		tbody {
+			tr {
+				border-bottom: 1px solid vars.$color--shadow;
+			}
+		}
+
+		caption {
+			caption-side: bottom;
+			padding-top: .5em;
+		}
 	}
 }
 

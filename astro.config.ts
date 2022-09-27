@@ -1,4 +1,11 @@
-import type { AstroUserConfig } from "astro";
-import compress from "astro-compress";
+import { defineConfig } from "astro/config";
 
-export default (): AstroUserConfig => ({ integrations: [compress()] });
+import compress from "astro-compress";
+import mdx from '@astrojs/mdx';
+
+export default defineConfig({
+	integrations: [
+		mdx(),
+		compress(),
+	],
+});

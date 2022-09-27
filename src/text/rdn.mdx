@@ -1,6 +1,7 @@
 ---
-# TODO2: Convert images to tables
 ---
+
+import CsvTable_ from 'src/components/csv-table.astro';
 
 # Geneticure Estimates a 250% Increase in Renal Denervation Adoption by Using Genetic Screening to Eliminate Non-responders
 
@@ -53,15 +54,13 @@ Patients who likely have elevated sympathetic nervous system (SNS) activity (bas
 
 Recent data published using a newer denervation device from Medtronic (the Symplicity Spyral™ device) has demonstrated a statistically significant drop in 24-hour systolic blood pressure (SBP) of **3.9mmHG** with denervation, when compared to patients who underwent a sham procedure. Importantly, this trial utilized patients who were not on any medications (SPYRAL OFF-MED trial: _Lancet_: VOLUME 395, ISSUE 10234, P1444-1451, MAY 02, 2020). Additional trials from the past two years have demonstrated differences in BP between 0 and 7.4mmHg, even when corrected for physiologic variables (i.e. renin and heart rate), and a recent meta-analysis of denervation trials using >1300 patients has found an average drop in 24-hour SBP of **3.61mmHg**, when compared to sham ([DOI 10.1016/ J.JCIN2021.09.020](https://www.jacc.org/doi/abs/10.1016/j.jcin.2021.09.020)) (table 1). One recent trial determined that patients in the RDN group required less intensive stepped-up pharmacologic care and fewer hypertension medications when compared to patients in the sham-controlled group (0.9 vs. 1.3 medications in RDN vs sham, respectively); however, this trial also demonstrated a relatively small difference in daytime ambulatory BP between RDN and sham (2.1mmHg, when not corrected for “medication changes”) ([DOI 10.1161/ CIRCULATIONAHA.119.040451](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.119.040451)).
 
-<figure>
-    <img alt="Table 1.1" src="/img/fig/table1.png" />
-    <figcaption>Table 1.1. Recent Findings with Renal Denervation</figcaption>
-</figure>
+<CsvTable_ src="src/text/rdn/1.1.csv">
+    <caption>Table 1.1. Recent findings with renal denervation.</caption>
+</CsvTable_>
 
-<figure>
-    <img alt="Table 1.2" src="/img/fig/table1.2.png" />
-    <figcaption>Table 1.2. Related publications.</figcaption>
-</figure>
+<CsvTable_ src="src/text/rdn/1.2.csv">
+    <caption>Table 1.2. Related publications.</caption>
+</CsvTable_>
 
 ### Introducing The Geneticure for Renal Denervation Panel
 
@@ -99,10 +98,9 @@ While Symplicity HTN-3 did demonstrate an effect of RDN (approximately 15mmHg bl
 
 Collectively, based on detailed animal studies and more mechanistic studies in humans, renal denervation acts most like a drug that inhibits the SNS, followed by a β-blocker, an ACE-inhibitor/angiotensin-II receptor blocker and least like a diuretic. Renal denervation decreases catecholamine levels within the kidney as well as catecholamine spillover \[14, 15\] and increases the expression of β1 and β2-adrenergic receptors in the heart (which is a similar physiologic response to β-blockade and demonstrates the importance of these receptors in renal denervation/ablation procedures)(table 2)\[14\]. In heart failure models, renal denervation improves cardiac function, attenuates left-ventricular hypertrophy, and improves left-ventricular function (similar to the expected response of β-blockade)\[16-18\]. Renal denervation also decreases the expression (mRNA) of renin, ACE and the angiotensin-II receptors (therefore acting physiologically similar to an ACE-inhibitor and angiotensin-receptor blocker and demonstrating the importance of the renin-angiotensin aldosterone system on renal denervation/ablation). Based on this previous work, we hypothesize that we can use genetics as a means for determining and categorizing very high responders, moderately high responders, moderate responders, minimal responders, and those who are not likely to respond to a renal denervation procedure and have a compensatory increase in blood pressure \[19\].
 
-<figure>
-    <img alt="Table 2" src="/img/fig/table2.png" />
-    <figcaption>Table 2. Renal Denervation Compared to Pharmacologic Intervention</figcaption>
-</figure>
+<CsvTable_ src="src/text/rdn/2.1.csv">
+    <caption>Table 2. Renal denervation compared to pharmacologic intervention.</caption>
+</CsvTable_>
 
 #### Response According to Genetic Variants of the Sympathetic Nervous System, Renin-Angiotensin Aldosterone System, the Cardiac System, and the Renal System
 
@@ -126,10 +124,9 @@ Within the gene that encodes the ADRB2, amino acids 16 and 27 have common functi
 
 The distribution of the alpha adrenergic and β1 and β2-adrenergic receptor variants differs significantly among different racial groups, particularly between white and black individuals.
 
-<figure>
-    <img alt="Table 3" src="/img/fig/table3.png" />
-    <figcaption>Table 3. Genetic Variants of SNS and Cardiac Systems and the Hypothetical Predictive Response to Renal Denervation</figcaption>
-</figure>
+<CsvTable_ src="src/text/rdn/3.1.csv">
+    <caption>Table 3. Genetic variants of SNS and cardiac systems and the hypothetical predictive response to renal denervation</caption>
+</CsvTable_>
 
 #### Renin-Angiotensin Aldosterone System and Vascular Function
 
@@ -147,10 +144,9 @@ A common functional polymorphism of an angiotensin receptor (type-I) has been de
 
 In addition to angiotensin, angiotensin II receptors and ACE, renin has been shown to be a potent vasoconstrictor that can result in high blood pressure. Renin converts angiotensinogen to angiotensin I which results in vasoconstriction due to the down-stream effects (angiotensin-I conversion to angiotensin II through ACE). There is one functional and common polymorphism of renin that demonstrates an altered blood pressure response to vasodilator therapy, a cytosine to threonine substitution at nucleotide 5312 (rs12750834)\[15\]. Within this polymorphism of renin, the thymine substitution and the heterozygous condition demonstrate higher renin levels as well as a greater reduction in blood pressure in response to valsartan (which is an angiotensin II receptor blocker). Given that renal denervation surgery results in attenuation of renin release and ACE activity, along with down-regulation of the angiotensin-II receptor, according to the hypothesis of the present study, this same variant (thymine) of renin will be one that responds better to renal denervation therapy.
 
-<figure>
-    <img alt="Table 4" src="/img/fig/table4.png" />
-    <figcaption>Table 4. Genetic Variation of the Renin-Angiotensin Aldosterone System and the Hypothetical Predictive Response to Renal Denervation</figcaption>
-</figure>
+<CsvTable_ src="src/text/rdn/4.1.csv">
+    <caption>Table 4. Genetic variants of renin-angiotensin aldosterone system and the hypothetical predictive response to renal denervation.</caption>
+</CsvTable_>
 
 #### Sodium (Na+) Reabsorption in the Kidney
 
@@ -166,10 +162,9 @@ A functional and common polymorphism of the gene that encodes the epithelial Na+
 
 It is, therefore, likely that hypertensive patients with a functional polymorphism of the SCNN1A (threonine 663) variant), ADD1 (tryptophan 460 variant), SLC12A3 (alanine 264 variant), and WNK (cytosine for rs1159744, rs227869, and rs2107614) will be most responsive to renal denervation surgery, particularly when all are functional and when the renal system is considered along with the renin-angiotensin aldosterone and cardiac systems.
 
-<figure>
-    <img alt="Table 5" src="/img/fig/table5.png" />
-    <figcaption>Table 5. Genetic Variants Proteins Important in Renal Na+ Handling and the Hypothetical Predictive Response to Renal Denervation</figcaption>
-</figure>
+<CsvTable_ src="src/text/rdn/5.1.csv">
+    <caption>Table 5. Genetic variants of proteins important in renal Na+ handling and the hypothetical predictive response to renal denervation.</caption>
+</CsvTable_>
 
 ## Association Between a Multi-Gene Panel and Renal Denervation Effectiveness in Patients With Hypertension
 
@@ -202,7 +197,7 @@ The present study will assess if subjects who have a high genetic score, based o
 11.  Li, Z.Z., H. Jiang, D. Chen, _et al., Renal sympathetic denervation improves cardiac dysfunction in rats with chronic pressure overload._ Physiol Res, 2015. **64**(5): p. 653-62.
 12.  Smithwick, R.H. and J.E. Thompson, _Splanchnicectomy for essential hypertension; results in 1,266 cases._ J Am Med Assoc, 1953. **152**(16): p. 1501-4.
 13.  Symplicity, H.T.N.I., M.D. Esler, H. Krum, _et al., Renal sympathetic denervation in patients with treatment-resistant hypertension (The Symplicity HTN-2 Trial): a randomised controlled trial._ Lancet, 2010. **376**(9756): p. 1903-9.
-14.  Snyder, E.M., S.T. Turner, M.J. Joyner, _et al., The Arg16Gly polymorphism of the {beta}2-adrenergic receptor and the natriuretic response to rapid saline infusion in humans._ J Physiol, 2006. **574**(Pt 3): p. 947-54.
+14.  Snyder, E.M., S.T. Turner, M.J. Joyner, _et al., The Arg16Gly polymorphism of the β2-adrenergic receptor and the natriuretic response to rapid saline infusion in humans._ J Physiol, 2006. **574**(Pt 3): p. 947-54.
 15.  Vangjeli, C., N. Clarke, U. Quinn, _et al., Confirmation that the renin gene distal enhancer polymorphism REN-5312C/T is associated with increased blood pressure._ Circ Cardiovasc Genet, 2010. **3**(1): p. 53-9.
 16.  Tsioufis, C., K. Dimitriadis, C. Thomopoulos, _et al., Renal and cardiac effects of renal sympathetic denervation and carotid baroreceptor stimulation._ Curr Vasc Pharmacol, 2014. **12**(1): p. 55-62.
 17.  Pinkham, M.I., M.T. Loftus, S. Amirapu, _et al., Renal denervation in male rats with heart failure improves ventricular sympathetic nerve innervation and function._ Am J Physiol Regul Integr Comp Physiol, 2017. **312**(3): p. R368-R379.
@@ -210,8 +205,8 @@ The present study will assess if subjects who have a high genetic score, based o
 19.  Gupta, A.K., _Racial differences in response to antihypertensive therapy: does one size fits all?_ Int J Prev Med, 2010. **1**(4): p. 217-9.
 20.  Brodde, O.E., _The functional importance of beta 1 and beta 2 adrenoceptors in the human heart._ Am J Cardiol, 1988. **62**(5): p. 24C-29C.
 21.  Bristow, M.R., R.E. Hershberger, J.D. Port, _et al., Beta 1- and beta 2-adrenergic receptor-mediated adenylate cyclase stimulation in nonfailing and failing human ventricular myocardium._ Mol Pharmacol, 1989. **35**(3): p. 295-303.
-22.  Busjahn, A., G.-H. Li, H.-D. Faulhaber, _et al., {beta}-2 Adrenergic Receptor Gene Variations, Blood Pressure, and Heart Size in Normal Twins._ Hypertension, 2000. **35**(2): p. 555-560.
-23.  Snyder, E.M., K.C. Beck, N.M. Dietz, _et al., Arg16Gly polymorphism of the {beta}2-adrenergic receptor is associated with differences in cardiovascular function at rest and during exercise in humans._ J Physiol, 2006. **571**(Pt 1): p. 121-30.
+22.  Busjahn, A., G.-H. Li, H.-D. Faulhaber, _et al., β-2 Adrenergic Receptor Gene Variations, Blood Pressure, and Heart Size in Normal Twins._ Hypertension, 2000. **35**(2): p. 555-560.
+23.  Snyder, E.M., K.C. Beck, N.M. Dietz, _et al., Arg16Gly polymorphism of the β2-adrenergic receptor is associated with differences in cardiovascular function at rest and during exercise in humans._ J Physiol, 2006. **571**(Pt 1): p. 121-30.
 24.  Dhakal, P., K. Liu, H. Kozman, _et al., Renal Denervation in Heart Failure: A New Therapeutic Paradigm._ Clin Med Insights Cardiol, 2015. **9**(Suppl 1): p. 101-4.
 25.  Shekelle, P.G., M.W. Rich, S.C. Morton, _et al., Efficacy of angiotensin-converting enzyme inhibitors and beta-blockers in the management of left ventricular systolic dysfunction according to race, gender, and diabetic status: a meta-analysis of major clinical trials._ J Am Coll Cardiol, 2003. **41**(9): p. 1529-38.
 26.  Kurnik, D., E.A. Friedman, M. Muszkat, _et al., Genetic variants in the alpha2C-adrenoceptor and G-protein contribute to ethnic differences in cardiovascular stress responses._ Pharmacogenet Genomics, 2008. **18**(9): p. 743-50.
