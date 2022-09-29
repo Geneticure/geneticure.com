@@ -50,10 +50,6 @@ $helix__aspect: 1;
 $helix__width: 250px;
 $helix__height: ($helix__width * $helix__aspect);
 
-.section {
-	min-height: 100vh;
-}
-
 .hero__helix {
 	height: 100%;
 	position: absolute;
@@ -171,6 +167,11 @@ em {
 }
 
 @include vars.if-viewport('>=', lg) {
+	.section {
+		height: 100vh;
+		max-height: 1000px;
+	}
+
 	.hero__button {
 		margin-top: 25px;
 	}
