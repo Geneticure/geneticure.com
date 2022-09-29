@@ -1,0 +1,18 @@
+---
+import HomeLayout_ from 'src/layouts/home.astro';
+import Section_ from 'src/components/section.astro';
+
+import { getProps } from 'src/js/astro';
+
+const { props } = getProps(Astro.props.frontmatter, {
+	title: null as string,
+});
+---
+
+<HomeLayout_ title={props.title} class={props.class}>
+	<Section_ cols={0}>
+		<div class="article text-defaults">
+			<slot />
+		</div>
+	</Section_>
+</HomeLayout_>
