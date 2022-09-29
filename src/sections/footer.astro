@@ -2,6 +2,7 @@
 import Contact_ from 'src/sections/contact.astro';
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
+import SvgPattern_ from 'src/components/svg-pattern.astro';
 
 import { menu } from 'src/text/menu';
 import { socials } from 'src/text/social';
@@ -10,18 +11,27 @@ const year = (new Date()).getFullYear();
 ---
 
 <footer>
-	<div class="footer__wrap">
-		<div class="content footer">
-			<div>
-				<Route_ href="home">
-					<Img_
-						alt="Geneticure logo"
-						class="footer__logo"
-						src="/img/logo/geneticure.svg"
-					/>
-				</Route_>
+	<div class="content footer">
+		<div>
+			<Route_ href="home">
+				<Img_
+					alt="Geneticure logo"
+					class="footer__logo"
+					src="/img/logo/geneticure.svg"
+				/>
+			</Route_>
 
-				<Contact_ class="footer__contact" />
+			<Contact_ class="footer__contact" />
+		</div>
+
+		<div>
+			<div class="footer__menu">
+				{
+					menu.map((link) =>
+						<Route_ href={link.href}>{link.label}</Route_>,
+					)
+				}
+				<Route_ to="contact">Contact us</Route_>
 			</div>
 
 			<div class="footer__social">
@@ -33,16 +43,15 @@ const year = (new Date()).getFullYear();
 					)
 				}
 			</div>
-
-			<div class="footer__links">
-				{
-					menu.map((link) =>
-						<Route_ href={link.href}>{link.label}</Route_>,
-					)
-				}
-				<Route_ to="contact">Contact us</Route_>
-			</div>
 		</div>
+
+		<SvgPattern_
+			height="30"
+			id="footer__bg"
+			src="public/img/icon/helix-pattern.svg"
+			patternTransform="rotate(35)"
+			width="30"
+		/>
 	</div>
 
 	<div class="content disclaimer">
@@ -61,72 +70,106 @@ const year = (new Date()).getFullYear();
 <style lang="scss">
 @use 'src/scss/vars';
 
-.footer__wrap {
-	background-color: vars.$color--shadow;
-
-	@media print {
-		background-color: transparent;
-		border-top: 1px solid #000000;
-	}
-}
-
 .footer {
-	display: flex;
-	justify-content: space-between;
-
-	@include vars.if-viewport('<', lg) {
-		flex-direction: column;
-	}
-}
-
-.footer a {
-	color: inherit;
-	font-weight: normal;
-
-	&:hover {
-		color: vars.$color--brand--sink;
-	}
-}
-
-.footer__logo {
-	margin-bottom: .5em;
-	max-width: 300px;
-}
-
-.footer__social {
-	font-size: 0;
-	margin-bottom: 20px;
-
-	.img {
-		display: inline-block;
-		height: 40px;
-		width: 40px;
-	}
-
-	a:not(:last-child) {
-		margin-right: 10px;
-	}
-}
-
-.footer__contact {
 	line-height: 2em;
-	margin-bottom: 30px;
-}
+	position: relative;
 
-.footer__links {
-	display: flex;
-	flex-direction: column;
+	&__bg {
+		@include vars.expand;
+
+		background-color: vars.$color--bg;
+		z-index: -1;
+
+		&::after {
+			@include vars.expand;
+
+			background-image: linear-gradient(-60deg, transparent, vars.$color--bg--offset);
+			z-index: 1;
+		}
+
+		:global(path) {
+			fill: none;
+			stroke: vars.$color--bg--offset--sink;
+		}
+	}
+
+	&__menu {
+		margin-bottom: 1rem;
+
+		a {
+			color: vars.$color--lowlight;
+
+			&:hover {
+				color: vars.$color--brand--sink;
+			}
+		}
+	}
+
+	&__logo {
+		margin-bottom: .5em;
+		max-width: 300px;
+	}
+
+	&__social {
+		.img {
+			height: 40px;
+			width: 40px;
+		}
+
+		a {
+			display: inline-flex;
+			font-size: 0;
+
+			&:not(:last-child) {
+				margin-right: .5rem;
+			}
+		}
+	}
+
+	@include vars.if-viewport('==', sm) {
+		&__menu {
+			display: flex;
+			flex-direction: column;
+			text-align: left;
+		}
+
+		&__social {
+			display: flex;
+		}
+	}
+
+	@include vars.if-viewport('>', sm) {
+		display: flex;
+		justify-content: space-between;
+
+		&__social {
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
+
+	@include vars.if-viewport('==', md) {
+		&__menu {
+			display: flex;
+			flex-direction: column;
+			text-align: right;
+		}
+	}
 
 	@include vars.if-viewport('>=', lg) {
-		align-items: flex-end;
+		&__menu {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+
+			a {
+				padding: 0 .5rem;
+
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+		}
 	}
-}
-
-.footer__links a {
-	margin-bottom: 1em;
-}
-
-.disclaimer {
-	min-height: 0;
 }
 </style>

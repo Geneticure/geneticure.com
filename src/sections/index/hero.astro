@@ -20,7 +20,7 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 				<p>Geneticure's patented test uses a sample of your DNA to recommend a personalized treatment plan, <em>just for you.</em></p>
 			</div>
 
-			<p class="text--center hero__button">
+			<p class="hero__button">
 				<Route_
 					class="button--hero"
 					to="buy"
@@ -32,7 +32,7 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 	<div class="hero__images">
 		<Img_
 			alt="Kit with contents"
-			src="/img/kit/kit-w-contents.webp"
+			src="/img/hero.svg"
 		/>
 	</div>
 
@@ -57,10 +57,6 @@ $helix__height: ($helix__width * $helix__aspect);
 .hero__helix {
 	height: 100%;
 	position: absolute;
-	right: 0%;
-	top: 0;
-	transform: rotateZ(-15deg);
-	transform-origin: top;
 	width: $helix__width;
 	z-index: 2;
 
@@ -154,6 +150,13 @@ em {
 		order: -1;
 	}
 
+	.hero__helix {
+		bottom: 0;
+		left: 100%;
+		transform: rotateZ(-10deg);
+		transform-origin: bottom;
+	}
+
 	.hero__images {
 		order: -1;
 		padding-bottom: 0 !important;
@@ -170,6 +173,13 @@ em {
 @include vars.if-viewport('>=', lg) {
 	.hero__button {
 		margin-top: 25px;
+	}
+
+	.hero__helix {
+		bottom: 0;
+		right: 0;
+		transform: rotateZ(-10deg);
+		transform-origin: bottom;
 	}
 }
 </style>
