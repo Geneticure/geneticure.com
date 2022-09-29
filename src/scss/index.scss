@@ -342,6 +342,8 @@ summary {
 	}
 
 	table {
+		@include vars.type(small);
+
 		td,
 		th {
 			padding-bottom: 5px;
