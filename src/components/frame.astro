@@ -1,15 +1,17 @@
 ---
-const { type, ...props } = {
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props, {
 	type: `tablet`,
 	...Astro.props,
-} as const;
+});
 ---
 
-<div class={`_frame _frame--${type}`} {...props}>
+<div class={`_frame _frame--${props.type} ${props.class}`} {...rest}>
 	<img
-		alt={`${type}-shaped frame around other image`}
+		alt={`${props.type}-shaped frame around other image`}
 		class="_frame__graphic"
-		src={`/img/${type}-frame.svg`}
+		src={`/img/${props.type}-frame.svg`}
 		width="60"
 		height="80"
 	/>

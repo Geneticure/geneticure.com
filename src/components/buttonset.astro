@@ -1,7 +1,9 @@
 ---
-const props = Astro.props;
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props);
 ---
 
-<div class={`buttonset ${props.class}`}>
+<div class={`buttonset ${props.class}`} {...rest}>
 	<slot />
 </div>
