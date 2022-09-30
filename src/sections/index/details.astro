@@ -34,8 +34,8 @@ import Section_ from 'src/components/section.astro';
 <style lang="scss">
 @use 'src/scss/vars';
 
-@include vars.if-viewport('<', lg) {
-	._details {
+._details {
+	@include vars.if-viewport('<', lg) {
 		&__body {
 			padding-top: 0 !important;
 		}
@@ -45,10 +45,8 @@ import Section_ from 'src/components/section.astro';
 			padding-bottom: 0 !important;
 		}
 	}
-}
 
-@include vars.if-viewport('==', lg) {
-	._details {
+	@include vars.if-viewport('==', lg) {
 		&__body {
 			padding-right: 0 !important;
 		}

@@ -96,6 +96,29 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 		width: var(--columns-width) !important;
 		z-index: 1;
 	}
+
+
+
+	@include vars.if-viewport('<', lg) {
+		--background-width: 0;
+		--columns-qty: 2;
+		--columns-width: 100%;
+		--pie-diameter: 100px;
+	}
+
+	@include vars.if-viewport('==', lg) {
+		--background-width: 50%;
+		--columns-qty: 2;
+		--columns-width: 50%;
+		--pie-diameter: 150px;
+	}
+
+	@include vars.if-viewport('>', lg) {
+		--background-width: 30%;
+		--columns-qty: 4;
+		--columns-width: 80%;
+		--pie-diameter: 200px;
+	}
 }
 
 ._figure {
@@ -138,32 +161,5 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 
 ._pie {
 	width: var(--pie-diameter) !important;
-}
-
-@include vars.if-viewport('<', lg) {
-	._stats {
-		--background-width: 0;
-		--columns-qty: 2;
-		--columns-width: 100%;
-		--pie-diameter: 100px;
-	}
-}
-
-@include vars.if-viewport('==', lg) {
-	._stats {
-		--background-width: 50%;
-		--columns-qty: 2;
-		--columns-width: 50%;
-		--pie-diameter: 150px;
-	}
-}
-
-@include vars.if-viewport('>', lg) {
-	._stats {
-		--background-width: 30%;
-		--columns-qty: 4;
-		--columns-width: 80%;
-		--pie-diameter: 200px;
-	}
 }
 </style>

@@ -36,12 +36,8 @@ import Section_ from 'src/components/section.astro';
 <style lang="scss">
 @use 'src/scss/vars';
 
-@include vars.if-viewport('<', lg) {
-	._thanks {
-		&__text {
-			z-index: 1;
-		}
-
+._thanks {
+	@include vars.if-viewport('<', lg) {
 		&__img {
 			@include vars.expand;
 
@@ -49,11 +45,13 @@ import Section_ from 'src/components/section.astro';
 				object-fit: cover;
 			}
 		}
-	}
-}
 
-@include vars.if-viewport('>=', lg) {
-	._thanks {
+		&__text {
+			z-index: 1;
+		}
+	}
+
+	@include vars.if-viewport('>=', lg) {
 		:global(.section__content) {
 			flex-wrap: nowrap;
 		}

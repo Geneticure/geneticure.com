@@ -100,10 +100,8 @@ import { faqs } from 'src/text/faqs';
 			}
 		}
 	}
-}
 
-@include vars.if-viewport('<', lg) {
-	._faqs {
+	@include vars.if-viewport('<', lg) {
 		&__body {
 			&__toggle {
 				bottom: 10px;
@@ -112,10 +110,8 @@ import { faqs } from 'src/text/faqs';
 			}
 		}
 	}
-}
 
-@include vars.if-viewport('>=', lg) {
-	._faqs {
+	@include vars.if-viewport('>=', lg) {
 		&__body {
 			&__toggle {
 				margin-left: auto;

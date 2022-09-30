@@ -62,6 +62,18 @@ import { quotes } from 'src/text/quotes';
 <style lang="scss">
 @use 'src/scss/vars';
 
+._quotes-icon-gradient {
+	:global(stop) {
+		&:nth-child(1) {
+			stop-color: vars.$color--brand--sink;
+		}
+
+		&:nth-child(2) {
+			stop-color: vars.$color--brand;
+		}
+	}
+}
+
 ._quotes {
 	background: vars.$color--bg--offset;
 
@@ -96,16 +108,54 @@ import { quotes } from 'src/text/quotes';
 			fill: url('#_quotes-icon-gradient');
 		}
 	}
-}
 
-._quotes-icon-gradient {
-	:global(stop) {
-		&:nth-child(1) {
-			stop-color: vars.$color--brand--sink;
+
+	@include vars.if-viewport('==', sm) {
+		:global(.carousel__arrow) {
+			font-size: 60px;
+			width: var(--content-padding-x);
+		}
+	}
+
+	@include vars.if-viewport('<', lg) {
+		&__icon {
+			width: 40px;
 		}
 
-		&:nth-child(2) {
-			stop-color: vars.$color--brand;
+		&__images {
+			order: -1;
+			padding: 0 !important;
+
+			&__bg {
+				aspect-ratio: auto !important;
+				padding: 50px !important;
+			}
+		}
+
+		&__text {
+			padding-bottom: 50px !important;
+			padding-top: 50px !important;
+		}
+	}
+
+	@include vars.if-viewport('>=', lg) {
+		&__icon {
+			width: 60px;
+		}
+
+		&__images {
+			padding-bottom: 0 !important;
+			padding-top: 0 !important;
+
+			&__bg {
+				aspect-ratio: 1;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+		}
+
+		&__text {
+			padding-right: 50px !important;
 		}
 	}
 }
@@ -131,67 +181,6 @@ import { quotes } from 'src/text/quotes';
 			margin-right: 1ex;
 			vertical-align: middle;
 			width: 30px;
-		}
-	}
-}
-
-@include vars.if-viewport('==', sm) {
-	._quotes {
-		:global(.carousel__arrow) {
-			font-size: 60px;
-			width: var(--content-padding-x);
-		}
-	}
-}
-
-@include vars.if-viewport('<', lg) {
-	._quotes {
-		&__icon {
-			width: 40px;
-		}
-
-		&__images {
-			order: -1;
-			padding: 0 !important;
-
-			&__bg {
-				aspect-ratio: auto !important;
-				padding: 50px !important;
-			}
-		}
-
-		&__text {
-			padding-bottom: 50px !important;
-			padding-top: 50px !important;
-		}
-	}
-}
-
-@include vars.if-viewport('>=', lg) {
-	._quotes {
-		&__icon {
-			width: 60px;
-		}
-
-		&__images {
-			padding-bottom: 0 !important;
-			padding-top: 0 !important;
-
-			&__bg {
-				aspect-ratio: 1;
-				border-radius: 50%;
-				overflow: hidden;
-			}
-		}
-
-		&__text {
-			padding-right: 50px !important;
-		}
-	}
-
-	._quote {
-		&__author {
-			margin-left: 50%;
 		}
 	}
 }

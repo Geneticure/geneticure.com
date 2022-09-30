@@ -23,7 +23,7 @@ TODO2: Make everything actually follow these guidelines.
 
     e.g. `<div class="hero"><img class="hero__bg"></div>
 
-    This makes the CSS better reflect the structure of the HTML, and is less to write.
+    This makes the CSS better reflect the structure of the HTML, is less to write, and means you get a nice collapsible tree in VSCode.
 
     Start a new compound class when an element is stylistically independent of its parent. Hard rule to enforce; you sorta know it when you see it.
 

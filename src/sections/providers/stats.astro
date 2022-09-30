@@ -93,17 +93,13 @@ $background__color: vars.$color--bg;
 		margin-right: 10px;
 		width: 60px !important;
 	}
-}
 
-@include vars.if-viewport('<', lg) {
-	._stats {
+	@include vars.if-viewport('<', lg) {
 		--grid-columns: 1;
 		--grid-gap: 30px 0;
 	}
-}
 
-@include vars.if-viewport('>=', lg) {
-	._stats {
+	@include vars.if-viewport('>=', lg) {
 		--grid-columns: 3;
 		--grid-gap: 50px 10px;
 	}

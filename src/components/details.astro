@@ -101,28 +101,28 @@ $border__width: 3px;
 	}
 
 	@include vars.if-viewport('<', lg) {
+		&__body {
+			padding: 20px;
+			padding-top: 0 !important;
+		}
+
 		&__trigger {
 			.icon {
 				width: 60px;
 			}
 		}
-
-		&__body {
-			padding: 20px;
-			padding-top: 0 !important;
-		}
 	}
 
 	@include vars.if-viewport('>=', lg) {
+		&__body {
+			padding: $height;
+			padding-top: 20px !important;
+		}
+
 		&__trigger {
 			.icon {
 				width: $height;
 			}
-		}
-
-		&__body {
-			padding: $height;
-			padding-top: 20px !important;
 		}
 	}
 }

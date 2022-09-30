@@ -66,8 +66,10 @@ hr {
 }
 
 @include vars.if-viewport('>=', md) {
-	._hero__fg {
-		width: 60% !important;
+	._hero {
+		&__fg {
+			width: 60% !important;
+		}
 	}
 }
 

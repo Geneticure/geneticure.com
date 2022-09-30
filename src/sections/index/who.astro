@@ -96,29 +96,25 @@ import { teamDescription } from 'src/text/team';
 			}
 		}
 	}
-}
 
-@include vars.if-viewport('<', lg) {
-	._who {
+	@include vars.if-viewport('<', lg) {
 		&__team__hdg {
 			margin-top: 50px;
 		}
-	}
 
-	._team-grid {
-		--team-columns: 2;
-	}
-}
-
-@include vars.if-viewport('>=', lg) {
-	._who {
-		&__team__hdg {
-			display: none;
+		._team-grid {
+			--team-columns: 2;
 		}
 	}
 
-	._team-grid {
-		--team-columns: 3;
+	@include vars.if-viewport('>=', lg) {
+		&__team__hdg {
+			display: none;
+		}
+
+		._team-grid {
+			--team-columns: 3;
+		}
 	}
 }
 </style>

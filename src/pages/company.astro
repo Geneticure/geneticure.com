@@ -152,30 +152,31 @@ import { team, teamDescription } from 'src/text/team';
 	}
 }
 
-._person__img {
-	aspect-ratio: 1;
-	background-color: vars.$color--bg--offset--sink;
-	border-radius: 50%;
-	flex-shrink: 0;
-	height: auto;
-	overflow: hidden;
+._person {
+	&__img {
+		aspect-ratio: 1;
+		background-color: vars.$color--bg--offset--sink;
+		border-radius: 50%;
+		flex-shrink: 0;
+		height: auto;
+		overflow: hidden;
 
-	img {
-		height: 100%;
-		object-fit: cover;
-		width: 100%;
+		img {
+			height: 100%;
+			object-fit: cover;
+			width: 100%;
+		}
 	}
-}
 
-._person__social__icon {
-	display: inline-block;
-	height: .6em;
-	vertical-align: middle;
-	width: auto;
-}
+	&__social__icon {
+		display: inline-block;
+		height: .6em;
+		vertical-align: middle;
+		width: auto;
+	}
 
-@include vars.if-viewport('==', sm) {
-	._person {
+
+	@include vars.if-viewport('==', sm) {
 		align-items: center;
 		display: flex;
 		flex-direction: column;
@@ -191,10 +192,8 @@ import { team, teamDescription } from 'src/text/team';
 			text-align: center;
 		}
 	}
-}
 
-@include vars.if-viewport('>', sm) {
-	._person {
+	@include vars.if-viewport('>', sm) {
 		align-items: flex-start;
 		display: flex;
 		padding-top: 80px;

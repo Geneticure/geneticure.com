@@ -98,6 +98,22 @@ $background__color: vars.$color--lowlight;
 	}
 }
 
+._organs {
+	@include vars.if-viewport('<', lg) {
+		padding-bottom: 40px;
+	}
+}
+
+._organ-icon-gradient :global(stop) {
+	&:nth-child(1) {
+		stop-color: vars.$color--brand;
+	}
+
+	&:nth-child(2) {
+		stop-color: vars.$color--brand--offset--sink;
+	}
+}
+
 ._organ {
 	align-items: center;
 	display: flex;
@@ -123,22 +139,6 @@ $background__color: vars.$color--lowlight;
 			stroke-linecap: round;
 			stroke-width: 2;
 		}
-	}
-}
-
-._organ-icon-gradient :global(stop) {
-	&:nth-child(1) {
-		stop-color: vars.$color--brand;
-	}
-
-	&:nth-child(2) {
-		stop-color: vars.$color--brand--offset--sink;
-	}
-}
-
-@include vars.if-viewport('<', lg) {
-	._organs {
-		padding-bottom: 40px;
 	}
 }
 </style>
