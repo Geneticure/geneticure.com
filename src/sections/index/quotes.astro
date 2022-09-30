@@ -8,31 +8,31 @@ import Svg_ from 'src/components/svg.astro';
 import { quotes } from 'src/text/quotes';
 ---
 
-<Section_ class="quotes">
-	<div class="quotes__text">
-		<h2 class="quotes__text__headline text--hdg--2">
+<Section_ class="_quotes">
+	<div class="_quotes__text">
+		<h2 class="text--hdg--2">
 			<Svg_
 				aria-hidden="true"
-				class="quotes__icon"
+				class="_quotes__icon"
 				src="public/img/icon/quote.svg"
 			/>
 
 			What our patients say:
 		</h2>
 
-		<SvgGradient_ id="quotes__icon__gradient" />
+		<SvgGradient_ id="_quotes__icon__gradient" />
 
-		<Carousel_ id="quote" source={quotes}>
+		<Carousel_ id="_quote" source={quotes}>
 			{quotes.map((quote, index) =>
 				<div
-					class="quote"
+					class="_quote"
 					data-toggle-target="quote"
 					data-toggle-target-isdefault={index === 0}
 					data-toggle-index={index}
 				>
-					<blockquote class="quote__body" set:html={quote.text}></blockquote>
+					<blockquote class="_quote__body" set:html={quote.text}></blockquote>
 
-					<p class="quote__author">
+					<p class="_quote__author">
 						<strong>{quote.name}</strong>
 					</p>
 				</div>,
@@ -40,10 +40,10 @@ import { quotes } from 'src/text/quotes';
 		</Carousel_>
 	</div>
 
-	<div class="quotes__images">
+	<div class="_quotes__images">
 		<Img_
 			alt="Faces"
-			class="quotes__images__bg"
+			class="_quotes__images__bg"
 			src="/img/bg/faces.jpg"
 		>
 			<Img_
@@ -62,7 +62,7 @@ import { quotes } from 'src/text/quotes';
 <style lang="scss">
 @use 'src/scss/vars';
 
-.quotes {
+._quotes {
 	background: vars.$color--bg--offset;
 
 	&__images {
@@ -108,7 +108,7 @@ import { quotes } from 'src/text/quotes';
 	}
 }
 
-.quote {
+._quote {
 	background-color: vars.$color--bg;
 	border-radius: 10px;
 	box-sizing: border-box;
@@ -134,7 +134,7 @@ import { quotes } from 'src/text/quotes';
 }
 
 @include vars.if-viewport('==', sm) {
-	.quotes {
+	._quotes {
 		:global(.carousel__arrow) {
 			font-size: 60px;
 			width: var(--content-padding-x);
@@ -143,7 +143,7 @@ import { quotes } from 'src/text/quotes';
 }
 
 @include vars.if-viewport('<', lg) {
-	.quotes {
+	._quotes {
 		&__icon {
 			width: 40px;
 		}
@@ -166,7 +166,7 @@ import { quotes } from 'src/text/quotes';
 }
 
 @include vars.if-viewport('>=', lg) {
-	.quotes {
+	._quotes {
 		&__icon {
 			width: 60px;
 		}
@@ -187,7 +187,7 @@ import { quotes } from 'src/text/quotes';
 		}
 	}
 
-	.quote {
+	._quote {
 		&__author {
 			margin-left: 50%;
 		}
