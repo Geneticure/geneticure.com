@@ -62,7 +62,7 @@ export const _faqs: Array<[
 			[
 				`refunds`,
 				`What is your refund policy?`,
-				`If our ordering physician determines that you are not a candidate for the test at this time, we will reimburse you for the cost of the test. All other returns for the test are handled by Amazon. We cannot accept returns for any kits that have been used.`,
+				`If our ordering physician determines that you are not a candidate for the test at this time, we will reimburse you for the cost of the test. We cannot accept returns for any kits that have been used.`,
 			],
 			[
 				`insurance`,
