@@ -324,9 +324,10 @@ $typefaces: (
 	box-sizing: border-box;
 	cursor: pointer;
 	display: inline-flex;
-	height: rem(34);
 	justify-content: center;
-	padding: 0 1rem;
+	min-height: rem(34);
+	padding: .3rem 1rem;
+	text-align: center;
 	text-decoration: none;
 	text-shadow: none !important;
 	transition: color .2s, background-color .2s;
@@ -423,10 +424,10 @@ $typefaces: (
 	color: $color--text--on-dark !important;
 	display: inline-flex;
 	font-size: 20px;
-	height: 60px;
+	line-height: 25px;
+	min-height: 60px;
 	min-width: 200px;
-	padding-left: 60px;
-	padding-right: 60px;
+	padding: 15px 60px;
 	transition: box-shadow .2s;
 
 	&:hover {
@@ -497,30 +498,6 @@ $typefaces: (
 		left: -#{(.5 * $border__width) + $dot__diameter};
 		position: absolute;
 		top: 0;
-	}
-}
-
-@mixin overlay($options: ()) {
-	$border__radius: vars.get($options, border__radius, 10px);
-	$position: vars.get($options, position, left);
-
-	backdrop-filter: blur(3px);
-	background-color: $color--overlay;
-
-	@include if-viewport('>=', lg) {
-		@if $position == left {
-			border-radius: 0 $border__radius $border__radius 0;
-			margin-right: auto;
-		} @else if $position == right {
-			border-radius: $border__radius 0 0 $border__radius;
-			margin-left: auto;
-		} @else if $position == center {
-			border-radius: $border__radius;
-			margin-left: auto;
-			margin-right: auto;
-		} @else {
-			@error "'#{$position}' is not a valid overlay position.";
-		}
 	}
 }
 // #endregion

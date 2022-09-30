@@ -29,19 +29,19 @@
 
 	--content-padding-y: #{vars.$height--nav + 40px};
 	@include vars.if-viewport('==', sm) {
-		--content-padding-x: 30px;
+		--content-gutter-x: 30px;
 	}
 
-	@include vars.if-viewport('==', md) {
-		--content-padding-x: 50px;
+	@include vars.if-viewport('>', sm) {
+		--content-gutter-x: 50px;
 	}
 
-	@include vars.if-viewport('==', lg) {
-		--content-padding-x: 50px;
+	@include vars.if-viewport('<', xl) {
+		--content-padding-x: var(--content-gutter-x);
 	}
 
 	@include vars.if-viewport('>=', xl) {
-		--content-padding-x: calc((.5 * (100vw - #{vars.get(vars.$bps, xl)})) + 30px);
+		--content-padding-x: calc((.5 * (100vw - #{vars.get(vars.$bps, xl)})) + var(--content-gutter-x));
 	}
 }
 
@@ -248,7 +248,27 @@ input {
 }
 
 .overlay {
-	@include vars.overlay;
+	--border-radius: 10px;
+
+	backdrop-filter: blur(3px);
+	background-color: vars.$color--overlay;
+	border-radius: var(--border-radius);
+	margin: 100px auto;
+	padding: var(--content-padding-y) var(--content-gutter-x);
+
+	&--left {
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+		margin-left: 0;
+		padding-left: var(--content-padding-x);
+	}
+
+	&--right {
+		border-bottom-right-radius: 0;
+		border-top-right-radius: 0;
+		margin-right: 0;
+		padding-right: var(--content-padding-x);
+	}
 }
 
 small {
