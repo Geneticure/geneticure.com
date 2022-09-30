@@ -34,3 +34,7 @@ TODO2: Make everything actually follow these guidelines.
 - In HTML, put scoped/component classes after global classes
 
     e.g. `<div class="global _local">`. Local classes should override global classes.
+
+- Nest `@media` inside a compound class's topmost element, if possible.
+
+    e.g. `.foo { @media ... }` instad of `@media { .foo ... }`. The exception is if a media query targets multiple unrelated elements. This makes it easier to see what media queries target.
