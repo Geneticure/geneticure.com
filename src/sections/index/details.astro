@@ -4,8 +4,8 @@ import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 ---
 
-<Section_ class="science">
-	<div class="science__body">
+<Section_ class="details">
+	<div class="details__body">
 		<h2 class="text--hdg--1">
 			Fewer prescriptions.<br />
 			Fewer office visits.<br />
@@ -23,7 +23,7 @@ import Section_ from 'src/components/section.astro';
 		</aside>
 	</div>
 
-	<div class="science__img">
+	<div class="details__img">
 		<Img_
 			alt="Geneticure kit with literature"
 			src="/img/kit/kit-w-contents.jpg"
@@ -35,7 +35,7 @@ import Section_ from 'src/components/section.astro';
 @use 'src/scss/vars';
 
 @include vars.if-viewport('<', lg) {
-	.science {
+	.details {
 		&__body {
 			padding-top: 0 !important;
 		}
@@ -48,8 +48,10 @@ import Section_ from 'src/components/section.astro';
 }
 
 @include vars.if-viewport('==', lg) {
-	.science__body {
-		padding-right: 0 !important;
+	.details {
+		&__body {
+			padding-right: 0 !important;
+		}
 	}
 }
 </style>
