@@ -51,9 +51,16 @@
 	@return $keys;
 }
 
+// Loops recursively through the given map, declaring each key/value pair as a CSS property/value
 @mixin map-to-props($map) {
-	@each $property, $value in $map {
-		#{$property}: #{$value};
+	@if type-of($map) == map {
+		@each $prop, $value in $map {
+			@if type-of($value) != map {
+				#{$prop}: #{$value};
+			} @else {
+				@include map-to-props($value);
+			}
+		}
 	}
 }
 
