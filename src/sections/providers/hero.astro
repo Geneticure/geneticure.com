@@ -37,7 +37,9 @@ import { routes } from 'src/routes';
 @use 'src/scss/vars';
 
 .hero {
-	min-height: 100vh;
+	&__fg {
+		padding-right: 30px !important;
+	}
 
 	&__bg {
 		@include vars.expand;
@@ -66,6 +68,13 @@ hr {
 @include vars.if-viewport('>=', md) {
 	.hero__fg {
 		width: 60% !important;
+	}
+}
+
+@include vars.if-viewport('>=', lg) {
+	.hero {
+		height: 100vh;
+		max-height: 1000px;
 	}
 }
 </style>
