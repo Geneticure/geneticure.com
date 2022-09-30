@@ -20,9 +20,9 @@ import { quotes } from 'src/text/quotes';
 			What our patients say:
 		</h2>
 
-		<SvgGradient_ id="_quotes__icon__gradient" />
+		<SvgGradient_ id="_quotes-icon-gradient" />
 
-		<Carousel_ id="_quote" source={quotes}>
+		<Carousel_ id="quote" source={quotes}>
 			{quotes.map((quote, index) =>
 				<div
 					class="_quote"
@@ -93,17 +93,19 @@ import { quotes } from 'src/text/quotes';
 		vertical-align: bottom;
 
 		:global(path) {
-			fill: url('#quotes__icon__gradient');
+			fill: url('#_quotes-icon-gradient');
+		}
+	}
+}
+
+._quotes-icon-gradient {
+	:global(stop) {
+		&:nth-child(1) {
+			stop-color: vars.$color--brand--sink;
 		}
 
-		&__gradient :global(stop) {
-			&:nth-child(1) {
-				stop-color: vars.$color--brand--sink;
-			}
-
-			&:nth-child(2) {
-				stop-color: vars.$color--brand;
-			}
+		&:nth-child(2) {
+			stop-color: vars.$color--brand;
 		}
 	}
 }
