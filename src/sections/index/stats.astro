@@ -9,29 +9,29 @@ import { statsById } from 'src/text/stats';
 const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsById[id]);
 ---
 
-<Section_ class="stats" cols={0}>
-	<div class="stats">
+<Section_ class="_stats" cols={0}>
+	<div>
 		<h2 class="text--hdg--2">Using the DNA on a cheek swab, Geneticure recommends which hypertension medication(s) may give you <em>the biggest drop in blood pressure</em>:</h2>
 
-		<div class="stats__figures">
+		<div class="_stats__figures">
 			{stats.map((stat) =>
-				<figure class="figure">
+				<figure class="_figure">
 					<Pie_
 						segments={[[100 - stat.value]]}
 						total={100}
 					>
-						<div class="text--hdg--1 figure__value">
+						<div class="text--hdg--1 _figure__value">
 							{stat.value}
-							<sup class="figure__value__symbol">%</sup>
+							<sup class="_figure__value__symbol">%</sup>
 						</div>
 					</Pie_>
 
-					<figcaption class="text--hdg--3 figure__text">
-						<strong class="figure__value">
+					<figcaption class="text--hdg--3 _figure__text">
+						<strong class="_figure__value">
 
 						</strong>
 
-						<span class="figure__description">
+						<span class="_figure__description">
 							{stat.title}<Cite_ to={stat.cite} />
 						</span>
 					</figcaption>
@@ -44,7 +44,7 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 
 	<Fragment slot="background">
 		<Img_
-			class="stats__bg"
+			class="_stats__bg"
 			css={true}
 			src="/img/bg/pills-crop.jpg"
 		/>
@@ -56,7 +56,7 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 
 @use 'src/scss/vars';
 
-.stats {
+._stats {
 	--background-width: 0;
 	--columns-qty: 0;
 	--columns-width: 0;
@@ -98,7 +98,7 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 	}
 }
 
-.figure {
+._figure {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
@@ -119,29 +119,29 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 		margin-top: 10px;
 		text-align: center;
 	}
+
+	$colors: (
+		vars.$color--brand,
+		vars.$color--brand,
+		vars.$color--accent,
+		vars.$color--accent,
+	);
+	@for $index from 1 through list.length($colors) {
+		$color: list.nth($colors, $index);
+		&:nth-child(#{$index}) {
+			:global(circle) {
+				fill: $color !important;
+			}
+		}
+	}
 }
 
 ._pie {
 	width: var(--pie-diameter) !important;
 }
 
-$colors: (
-	vars.$color--brand,
-	vars.$color--brand,
-	vars.$color--accent,
-	vars.$color--accent,
-);
-@for $index from 1 through list.length($colors) {
-	$color: list.nth($colors, $index);
-	.figure:nth-child(#{$index}) {
-		:global(circle) {
-			fill: $color !important;
-		}
-	}
-}
-
 @include vars.if-viewport('<', lg) {
-	.stats {
+	._stats {
 		--background-width: 0;
 		--columns-qty: 2;
 		--columns-width: 100%;
@@ -150,7 +150,7 @@ $colors: (
 }
 
 @include vars.if-viewport('==', lg) {
-	.stats {
+	._stats {
 		--background-width: 50%;
 		--columns-qty: 2;
 		--columns-width: 50%;
@@ -159,7 +159,7 @@ $colors: (
 }
 
 @include vars.if-viewport('>', lg) {
-	.stats {
+	._stats {
 		--background-width: 30%;
 		--columns-qty: 4;
 		--columns-width: 80%;
