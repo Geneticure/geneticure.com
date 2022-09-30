@@ -1,4 +1,11 @@
+---
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props);
+---
+
 <i
 	aria-hidden="true"
-	class={ `icon material-icons ${Astro.props.class}` }
+	class={`_icon material-icons ${props.class}`}
+	{...rest}
 ><slot /></i>

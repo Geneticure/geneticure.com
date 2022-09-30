@@ -58,30 +58,30 @@ const steps: Array<[
 ];
 ---
 
-<Section_ class="howitworks" cols={0}>
-	<div class="section__col--padless howitworks__body">
+<Section_ class="_howitworks" cols={0}>
+	<div class="section__col--padless _howitworks__body">
 		<h2 class="text--hdg--1">How does it <em>work</em>?</h2>
 
 		<hr class="fancy" />
 
-		<ol class="steps">
+		<ol class="_steps">
 			{ steps.map(([[iconType, iconSrc], title, body, buttons]) =>
-				<li class="steps__step">
+				<li class="_steps__step">
 					{ iconType === `svg` &&
 						<Svg_
-							class="steps__step__icon"
+							class="_steps__step__icon"
 							src={`public/img/icon/${iconSrc}.svg`}
 						/>
 					}
 					{ iconType === `img` &&
 						<Img_
 							alt={title}
-							class="steps__step__icon"
+							class="_steps__step__icon"
 							src={iconSrc}
 						/>
 					}
-					<div class="steps__step__body">
-						<h3 class="text--hdg--2 steps__step__title" set:html={ title }></h3>
+					<div class="_steps__step__body">
+						<h3 class="text--hdg--2 _steps__step__title" set:html={ title }></h3>
 						<p set:html={ body }></p>
 
 						{
@@ -108,7 +108,7 @@ const steps: Array<[
 	<Fragment slot="background">
 		<SvgPattern_
 			height="100"
-			id="howitworks__bg"
+			id="_howitworks__bg"
 			patternTransform="rotate(35)"
 			src="public/img/icon/helix-pattern.svg"
 			width="150"
@@ -120,7 +120,7 @@ const steps: Array<[
 @use 'sass:math';
 @use '/src/scss/vars';
 
-.steps {
+._steps {
 	--icon-diameter: 0;
 
 	&__step {
@@ -221,7 +221,7 @@ const steps: Array<[
 	}
 }
 
-.howitworks {
+._howitworks {
 	--bg-width: 0;
 	--bg-offset: 0;
 

@@ -11,21 +11,21 @@ const year = (new Date()).getFullYear();
 ---
 
 <footer>
-	<div class="content footer">
+	<div class="content _footer">
 		<div>
 			<Route_ href="home">
 				<Img_
 					alt="Geneticure logo"
-					class="footer__logo"
+					class="_footer__logo"
 					src="/img/logo/geneticure.svg"
 				/>
 			</Route_>
 
-			<Contact_ class="footer__contact" />
+			<Contact_ class="_footer__contact" />
 		</div>
 
 		<div>
-			<div class="footer__menu">
+			<div class="_footer__menu">
 				{
 					menu.map((link) =>
 						<Route_ href={link.href}>{link.label}</Route_>,
@@ -34,7 +34,7 @@ const year = (new Date()).getFullYear();
 				<Route_ to="contact">Contact us</Route_>
 			</div>
 
-			<div class="footer__social">
+			<div class="_footer__social">
 				{
 					socials.map((social) =>
 						<Route_ href={social.href}>
@@ -47,14 +47,14 @@ const year = (new Date()).getFullYear();
 
 		<SvgPattern_
 			height="30"
-			id="footer__bg"
+			id="_footer__bg"
 			src="public/img/icon/helix-pattern.svg"
 			patternTransform="rotate(35)"
 			width="30"
 		/>
 	</div>
 
-	<div class="content disclaimer">
+	<div class="content">
 		<p><small>These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. This test, like all medical tests, should be used by your healthcare provider as an aid in decision making about your health, which includes much more information than genetics. Do not start or stop taking any medications without first consulting your healthcare provider.</small></p>
 
 		<p class="list--inline--links">
@@ -70,7 +70,7 @@ const year = (new Date()).getFullYear();
 <style lang="scss">
 @use 'src/scss/vars';
 
-.footer {
+._footer {
 	line-height: 2em;
 	position: relative;
 

@@ -2,42 +2,49 @@
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 
+import { getProps } from 'src/js/astro';
+
 import { team } from 'src/text/team';
+
+const { props, rest } = getProps(Astro.props);
 ---
 
-<ul class="team-grid text--small">
+<ul
+	class={`text--small _team-grid ${props.class}`}
+	{...rest}
+>
 	{
 		team.map((person) =>
 			<li
-				class="person"
+				class="_person"
 				data-person
 				tabindex={0}
 			>
-				<div class="person__header">
-					<span class="person__img">
+				<div class="_person__header">
+					<span class="_person__img">
 						<Img_
 							alt={person.title}
 							bgColor={false}
 							src={person.img}
 						/>
 					</span>
-					<h3 class="person__name">{person.name}</h3>
-					<p class="person__title">{person.titleAbbr}</p>
+					<h3 class="_person__name">{person.name}</h3>
+					<p class="_person__title">{person.titleAbbr}</p>
 				</div>
 
-				<div class="person__body">
+				<div class="_person__body">
 					<template>
 						<p>
 							{person.description}
 							{
 								person.social.map((social) =>
 									<Route_
-										class="person__social"
+										class="_person__social"
 										href={social.href}
 									>
 										<Img_
 											alt={`${social.title} account for ${person.name}`}
-											class="person__social__icon"
+											class="_person__social__icon"
 											lazy={false}
 											src={social.img}
 										/>
@@ -50,7 +57,7 @@ import { team } from 'src/text/team';
 			</li>,
 		)
 	}
-	<li class="team-grid__rest">
+	<li class="_team-grid__rest">
 		<Route_ to="company">See our full team &rsaquo;</Route_>
 	</li>
 </ul>
@@ -58,28 +65,27 @@ import { team } from 'src/text/team';
 <style lang="scss">
 @use 'src/scss/vars';
 
-.team-grid {
-	--team-columns: 3;
-
+._team-grid {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-template-columns: repeat(var(--team-columns), minmax(0, 1fr));
 	position: relative;
-}
 
-.team-grid__rest {
-	align-items: center;
-	display: flex;
-	justify-content: center;
+	&__rest {
+		align-items: center;
+		display: flex;
+		justify-content: center;
 
-	a {
-		font-weight: normal;
+		a {
+			font-weight: normal;
 
-		.icon {
-			text-decoration: none;
+			.icon {
+				text-decoration: none;
+			}
 		}
 	}
 }
+
 
 $person__bg: vars.$color--bg;
 $person__border__color: vars.$color--brand;
@@ -88,7 +94,7 @@ $person__border__width: 2px;
 $person__img__diameter: 100px;
 $person__z: 9;
 
-.person {
+._person {
 	outline: none;
 
 	&::after {
@@ -112,101 +118,101 @@ $person__z: 9;
 			opacity: 1;
 		}
 	}
-}
 
-.person__img {
-	background-color: vars.$color--brand--offset;
-	border-radius: 50%;
-	display: block;
-	flex-shrink: 0;
-	height: $person__img__diameter;
-	overflow: hidden;
-	transition: background-color .2s;
-	width: $person__img__diameter;
+	&__body {
+		background: $person__bg;
+		border-radius: $person__border__radius;
+		border-top: $person__border__width solid $person__border__color;
+		box-shadow: 0 0 50px 20px #00001020;
+		box-sizing: border-box;
+		left: 0;
+		margin-top: 5px;
+		padding: 20px;
+		position: absolute;
+		width: 100%;
+		z-index: 8;
 
-	:global(img) {
-		mix-blend-mode: multiply;
-
-		.person:focus &,
-		.person:focus-within & {
-			filter: sepia(.2);
+		._person:not(:focus, :focus-within) & {
+			display: none;
 		}
 	}
 
-	.person:hover & {
-		background-color: vars.$color--brand--offset--sink;
+	&__header {
+		align-items: center;
+		border-bottom: $person__border__width solid transparent;
+		border-radius: $person__border__radius;
+		box-sizing: border-box;
+		color: inherit;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		font-weight: inherit;
+		padding: 20px 10px 10px;
+		position: relative;
+		text-align: center;
+		text-decoration: none;
+
+		> * {
+			margin: 0;
+		}
+
+		._person:focus &,
+		._person:focus-within & {
+			background-color: $person__bg;
+			border-bottom-color: $person__border__color;
+			z-index: 9;
+		}
 	}
 
-	.person:focus &,
-	.person:focus-within & {
-		background-color: #FFFFFF;
+	&__img {
+		background-color: vars.$color--brand--offset;
+		border-radius: 50%;
+		display: block;
+		flex-shrink: 0;
+		height: $person__img__diameter;
+		overflow: hidden;
+		transition: background-color .2s;
+		width: $person__img__diameter;
+
+		:global(img) {
+			mix-blend-mode: multiply;
+
+			._person:focus &,
+			._person:focus-within & {
+				filter: sepia(.2);
+			}
+		}
+
+		._person:hover & {
+			background-color: vars.$color--brand--offset--sink;
+		}
+
+		._person:focus &,
+		._person:focus-within & {
+			background-color: #FFFFFF;
+		}
 	}
-}
 
-.person__header {
-	align-items: center;
-	border-bottom: $person__border__width solid transparent;
-	border-radius: $person__border__radius;
-	box-sizing: border-box;
-	color: inherit;
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	font-weight: inherit;
-	padding: 20px 10px 10px;
-	position: relative;
-	text-align: center;
-	text-decoration: none;
-
-	> * {
-		margin: 0;
+	&__name {
+		flex-wrap: nowrap;
+		margin-bottom: .5em !important;
 	}
 
-	.person:focus &,
-	.person:focus-within & {
-		background-color: $person__bg;
-		border-bottom-color: $person__border__color;
-		z-index: 9;
+	&__social {
+		display: inline-block;
+		height: 15px;
+		position: relative;
+		top: 2px;
+
+		&__icon {
+			height: 100%;
+			width: auto;
+		}
 	}
-}
 
-.person__body {
-	background: $person__bg;
-	border-radius: $person__border__radius;
-	border-top: $person__border__width solid $person__border__color;
-	box-shadow: 0 0 50px 20px #00001020;
-	box-sizing: border-box;
-	left: 0;
-	margin-top: 5px;
-	padding: 20px;
-	position: absolute;
-	width: 100%;
-	z-index: 8;
-
-	.person:not(:focus, :focus-within) & {
-		display: none;
+	&__title {
+		color: vars.$color--brand--sink;
 	}
-}
-
-.person__name {
-	flex-wrap: nowrap;
-	margin-bottom: .5em !important;
-}
-
-.person__title {
-	color: vars.$color--brand--sink;
-}
-
-.person__social {
-	display: inline-block;
-	height: 15px;
-	position: relative;
-	top: 2px;
-}
-
-.person__social__icon {
-	height: 100%;
-	width: auto;
 }
 </style>
 

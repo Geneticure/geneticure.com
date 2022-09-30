@@ -15,10 +15,10 @@ const { props, rest } = getProps(Astro.props, {
 });
 ---
 
-<ul class={`logo-list ${props.class}`} {...rest}>
+<ul class={`_logo-list ${props.class}`} {...rest}>
 	{
 		props.logos.map((logo) =>
-			<li class="logo">
+			<li class="_logo">
 				<Route_
 					href={logo.url}
 					title={logo.name}
@@ -26,7 +26,7 @@ const { props, rest } = getProps(Astro.props, {
 					<Img_
 						alt={logo.name}
 						bgColor={false}
-						class="logo__img"
+						class="_logo__img"
 						lazy={true}
 						src={logo.icon}
 					/>
@@ -39,16 +39,17 @@ const { props, rest } = getProps(Astro.props, {
 <style lang="scss">
 @use 'src/scss/vars';
 
-.logo-list {
+._logo-list {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
-.logo {
+._logo {
 	display: block;
 	flex-shrink: 0;
 	margin: 0 20px;
+	mix-blend-mode: multiply;
 
 	&__img {
 		aspect-ratio: 1 !important;
@@ -58,7 +59,7 @@ const { props, rest } = getProps(Astro.props, {
 			filter: grayscale(1);
 			transition: filter .2s;
 
-			.logo:hover & {
+			._logo:hover & {
 				filter: none;
 			}
 		}

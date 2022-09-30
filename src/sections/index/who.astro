@@ -9,38 +9,38 @@ import { partners } from 'src/text/partners';
 import { teamDescription } from 'src/text/team';
 ---
 
-<Section_ class="who">
-	<div class="who__text">
+<Section_ class="_who">
+	<div class="_who__text">
 		<h2 class="text--hdg--1">Who is <em>Geneticure</em>?</h2>
 
 		<hr class="fancy" />
 
 		<p set:html={ teamDescription }></p>
 
-		<div class="who__partners">
+		<div class="_who__partners">
 			<h2 class="text--hdg--5 text--center">Notable investors:</h2>
 
 			<LogoList_ logos={partners} />
 		</div>
 	</div>
 
-	<div class="who__team">
-		<h2 class="text--hdg--5 text--center who__team__hdg">Our team:</h2>
+	<div class="_who__team">
+		<h2 class="text--hdg--5 text--center _who__team__hdg">Our team:</h2>
 
 		<TeamGrid_ />
 	</div>
 
 	<Fragment slot="background">
 		<SvgPattern_
-			class="who__bg"
-			id="who__bg--left"
+			class="_who__bg"
+			id="_who__bg--left"
 			src="public/img/icon/helix-pattern.svg"
 			width="100"
 			height="100"
 		/>
 		<SvgPattern_
-			class="who__bg"
-			id="who__bg--right"
+			class="_who__bg"
+			id="_who__bg--right"
 			src="public/img/icon/helix-pattern.svg"
 			width="100"
 			height="100"
@@ -51,7 +51,7 @@ import { teamDescription } from 'src/text/team';
 <style lang="scss">
 @use 'src/scss/vars';
 
-.who {
+._who {
 	overflow: visible;
 
 	&__partners {
@@ -96,28 +96,24 @@ import { teamDescription } from 'src/text/team';
 			}
 		}
 	}
-}
 
-@include vars.if-viewport('<', lg) {
-	.who {
-		:global(.team-grid) {
-			--team-columns: 2;
-		}
-
+	@include vars.if-viewport('<', lg) {
 		&__team__hdg {
 			margin-top: 50px;
 		}
-	}
-}
 
-@include vars.if-viewport('>=', lg) {
-	.who {
-		:global(.team-grid) {
-			--team-columns: 3;
+		._team-grid {
+			--team-columns: 2;
 		}
+	}
 
+	@include vars.if-viewport('>=', lg) {
 		&__team__hdg {
 			display: none;
+		}
+
+		._team-grid {
+			--team-columns: 3;
 		}
 	}
 }

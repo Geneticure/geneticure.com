@@ -1,15 +1,17 @@
 ---
-const { type, ...props } = {
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props, {
 	type: `tablet`,
 	...Astro.props,
-} as const;
+});
 ---
 
-<div class={`frame frame--${type}`} {...props}>
+<div class={`_frame _frame--${props.type} ${props.class}`} {...rest}>
 	<img
-		alt={`${type}-shaped frame around other image`}
-		class="frame__graphic"
-		src={`/img/${type}-frame.svg`}
+		alt={`${props.type}-shaped frame around other image`}
+		class="_frame__graphic"
+		src={`/img/${props.type}-frame.svg`}
 		width="60"
 		height="80"
 	/>
@@ -27,44 +29,44 @@ const { type, ...props } = {
 	width: math.percentage(math.div($width__in, $width__out));
 }
 
-.frame {
+._frame {
 	display: block;
 	margin: 0 auto;
 	max-width: 400px;
 	page-break-inside: avoid;
 	position: relative;
 	width: 100%;
-}
 
-.frame__graphic {
-	display: block;
-	width: 100%;
-}
+	&__graphic {
+		display: block;
+		width: 100%;
 
-.frame__graphic + :global(img) {
-	object-fit: cover;
-	object-position: top;
-	position: absolute;
-	z-index: 1;
+		& + :global(img) {
+			object-fit: cover;
+			object-position: top;
+			position: absolute;
+			z-index: 1;
 
-	.frame--laptop & {
-		@include place(
-			$height__in: 46,
-			$height__out: 80,
-			$top__in: 15,
-			$width__in: 74,
-			$width__out: 100,
-		);
-	}
+			._frame--laptop & {
+				@include place(
+					$height__in: 46,
+					$height__out: 80,
+					$top__in: 15,
+					$width__in: 74,
+					$width__out: 100,
+				);
+			}
 
-	.frame--tablet & {
-		@include place(
-			$height__in: 58.24,
-			$height__out: 80,
-			$top__in: 10.88,
-			$width__in: 45,
-			$width__out: 60,
-		);
+			._frame--tablet & {
+				@include place(
+					$height__in: 58.24,
+					$height__out: 80,
+					$top__in: 10.88,
+					$width__in: 45,
+					$width__out: 60,
+				);
+			}
+		}
 	}
 }
 </style>

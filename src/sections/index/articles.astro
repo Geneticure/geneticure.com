@@ -6,7 +6,7 @@ import { news } from 'src/text/news';
 
 ---
 
-<Section_ class="text--on-dark">
+<Section_ class="text--on-dark _articles">
 	<div>
 		<h2 class="text--hdg--2">More things we're working on:</h2>
 	</div>
@@ -27,18 +27,18 @@ import { news } from 'src/text/news';
 <style lang="scss">
 @use 'src/scss/vars';
 
-.section {
+._articles {
 	background-color: vars.$color--brand--sink;
 	color: vars.$color--text--on-dark;
-}
 
-.section a {
-	font-weight: normal;
-}
+	a {
+		font-weight: normal;
+	}
 
-.section li {
-	list-style-position: outside;
-	list-style-type: disc;
-	margin: 10px 0;
+	li {
+		list-style-position: outside;
+		list-style-type: disc;
+		margin: 10px 0;
+	}
 }
 </style>

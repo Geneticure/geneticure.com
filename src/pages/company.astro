@@ -10,8 +10,8 @@ import { team, teamDescription } from 'src/text/team';
 
 ---
 
-<HomeLayout_ class="team" title="Company" navFixed={true} navOpaqueAtTop={true}>
-	<Section_ class="hero team__hero">
+<HomeLayout_ class="_company" title="Company" navFixed={true} navOpaqueAtTop={true}>
+	<Section_ class="hero _company__hero">
 		<div class="overlay">
 			<h1 class="text--hdg--1">Our team</h1>
 		</div>
@@ -19,7 +19,7 @@ import { team, teamDescription } from 'src/text/team';
 		<Fragment slot="background">
 			<Img_
 				alt="Rochester, MN skyline"
-				class="team__hero__bg"
+				class="_company__hero__bg"
 				src="/img/bg/rochester.jpg"
 			/>
 		</Fragment>
@@ -29,42 +29,42 @@ import { team, teamDescription } from 'src/text/team';
 		<div>
 			<p set:html={ teamDescription }></p>
 
-			<div class="team__contact">
+			<div class="_company__contact">
 				<strong>Geneticure, LLC</strong>
-				<Contact_ class="team__contact" />
+				<Contact_ class="_company__contact" />
 			</div>
 
-			<ul class="people">
+			<ul class="_persons">
 				{
 					team.map((person) =>
-						<li class="person">
-							<div class="person__img">
+						<li class="_person">
+							<div class="_person__img">
 								<Img_
 									alt={person.title}
 									src={person.img}
 								/>
 							</div>
 
-							<div class="person__text">
+							<div class="_person__text">
 								<h2 class="text--hdg--2 person__name">
 									{person.name}
 
 									{
 										person.social.map((social) =>
 											<Route_
-												class="person__social"
+												class="_person__social"
 												href={social.href}
 											>
 												<Img_
 													alt={`${social.title} account for ${person.name}`}
-													class="person__social__icon"
+													class="_person__social__icon"
 													src={social.img}
 												/>
 											</Route_>,
 										)
 									}
 								</h2>
-								<p class="text--hdg--3 person__title">{person.title}</p>
+								<p class="text--hdg--3 _person__title">{person.title}</p>
 
 								<p>{person.description}</p>
 							</div>
@@ -75,16 +75,16 @@ import { team, teamDescription } from 'src/text/team';
 		</div>
 	</Section_>
 
-	<div class="team__bg">
+	<div class="_company__bg">
 		<SvgPattern_
-			id="team__bg__left"
+			id="_company__bg__left"
 			src="public/img/icon/helix-pattern.svg"
 			width="100"
 			height="100"
 		/>
 
 		<SvgPattern_
-			id="team__bg__right"
+			id="_company__bg__right"
 			src="public/img/icon/helix-pattern.svg"
 			width="100"
 			height="100"
@@ -95,7 +95,7 @@ import { team, teamDescription } from 'src/text/team';
 <style lang="scss">
 @use 'src/scss/vars';
 
-.team {
+._company {
 	:global(main) {
 		overflow: hidden;
 		position: relative;
@@ -152,30 +152,31 @@ import { team, teamDescription } from 'src/text/team';
 	}
 }
 
-.person__img {
-	aspect-ratio: 1;
-	background-color: vars.$color--bg--offset--sink;
-	border-radius: 50%;
-	flex-shrink: 0;
-	height: auto;
-	overflow: hidden;
+._person {
+	&__img {
+		aspect-ratio: 1;
+		background-color: vars.$color--bg--offset--sink;
+		border-radius: 50%;
+		flex-shrink: 0;
+		height: auto;
+		overflow: hidden;
 
-	img {
-		height: 100%;
-		object-fit: cover;
-		width: 100%;
+		img {
+			height: 100%;
+			object-fit: cover;
+			width: 100%;
+		}
 	}
-}
 
-.person__social__icon {
-	display: inline-block;
-	height: .6em;
-	vertical-align: middle;
-	width: auto;
-}
+	&__social__icon {
+		display: inline-block;
+		height: .6em;
+		vertical-align: middle;
+		width: auto;
+	}
 
-@include vars.if-viewport('==', sm) {
-	.person {
+
+	@include vars.if-viewport('==', sm) {
 		align-items: center;
 		display: flex;
 		flex-direction: column;
@@ -191,10 +192,8 @@ import { team, teamDescription } from 'src/text/team';
 			text-align: center;
 		}
 	}
-}
 
-@include vars.if-viewport('>', sm) {
-	.person {
+	@include vars.if-viewport('>', sm) {
 		align-items: flex-start;
 		display: flex;
 		padding-top: 80px;

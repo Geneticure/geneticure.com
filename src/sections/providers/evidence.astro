@@ -9,7 +9,7 @@ import { news } from 'src/text/news';
 import { research } from 'src/text/research';
 ---
 
-<Section_ class="evidence" cols={0}>
+<Section_ class="_evidence" cols={0}>
 	<div>
 		<h2 class="text--hdg--1">An <em>evidence-first approach</em> to personalized medicine.</h2>
 
@@ -21,14 +21,14 @@ import { research } from 'src/text/research';
 
 		{
 			research.map((category) =>
-				<Details_ class="evidence__section">
+				<Details_ class="_evidence__section">
 					<Fragment slot="title">
 						{category.title}
 					</Fragment>
 
 					{
 						category.citations.map((cite) =>
-							<p class="evidence__cite" set:html={cite.full}></p>,
+							<p class="_evidence__cite" set:html={cite.full}></p>,
 						)
 					}
 				</Details_>,
@@ -52,7 +52,7 @@ import { research } from 'src/text/research';
 <style lang="scss">
 @use 'src/scss/vars';
 
-.evidence {
+._evidence {
 	&__section {
 		margin: 50px 0;
 	}

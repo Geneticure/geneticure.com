@@ -24,32 +24,32 @@ const organs: Array<[string, string, string]> = [
 ];
 ---
 
-<Section_ class="text--on-dark report">
-	<div class="report__body">
+<Section_ class="text--on-dark _report">
+	<div class="_report__body">
 		<h2 class="text--hdg--1">What's in <em>my report?</em></h2>
 
 		<hr class="fancy" />
 
-		<SvgGradient_ id="organ__icon__gradient" transform="rotate(0)" />
+		<SvgGradient_ id="_organ-icon-gradient" />
 
 		<p>Different blood pressure treatments target different systems in your body. Your DNA can predict which system is most likely to respond to treatment. Your Geneticure report describes the responsiveness of 3 of your body's main organ systems:</p>
 
-		<ul class="organs">
+		<ul class="_organs">
 			{ organs.map(([title, body, icon]) =>
 				<li
-					class="organ"
+					class="_organ"
 					style={ `height: ${100 * (1 / organs.length)}%` }
 				>
 					<Svg_
-						class="organ__icon"
+						class="_organ__icon"
 						src={`public/img/icon/${icon}.svg`}
 					/>
 
-					<div class="organ__body">
-						<h3 class="organ__body__title">
+					<div class="_organ__body">
+						<h3 class="text--hdg--4">
 							<span>{ title } system</span>
 						</h3>
-						<p class="organ__body__text">{ body }</p>
+						<p>{ body }</p>
 					</div>
 				</li>,
 			) }
@@ -73,37 +73,38 @@ const organs: Array<[string, string, string]> = [
 
 $background__color: vars.$color--lowlight;
 
-.report {
+._report {
 	text-shadow: 1px 1px 0 rgba(0 0 0 / .2);
-}
 
-.report__body {
-	display: flex;
-	flex-direction: column;
-}
+	&__body {
+		display: flex;
+		flex-direction: column;
+	}
 
-.organ {
-	align-items: center;
-	display: flex;
-	padding-bottom: 20px;
-}
+	:global(.section__bg) {
+		background-color: $background__color;
 
-.organ__icon {
-	aspect-ratio: 1;
-	flex-shrink: 0;
-	margin-right: 10px;
-	width: 100px;
-	z-index: 1;
+		&::after {
+			@include vars.expand;
 
-	:global(path) {
-		fill: none;
-		stroke: url('#organ__icon__gradient');
-		stroke-linecap: round;
-		stroke-width: 2;
+			background-image: linear-gradient(45deg, vars.gradient-split($background__color, 99, 50%));
+		}
+
+		:global(path) {
+			fill: none;
+			stroke: vars.$color--lowlight--offset;
+			stroke-width: 6;
+		}
 	}
 }
 
-.organ__icon__gradient :global(stop) {
+._organs {
+	@include vars.if-viewport('<', lg) {
+		padding-bottom: 40px;
+	}
+}
+
+._organ-icon-gradient :global(stop) {
 	&:nth-child(1) {
 		stop-color: vars.$color--brand;
 	}
@@ -113,30 +114,31 @@ $background__color: vars.$color--lowlight;
 	}
 }
 
-.organ__body__title {
-	font-weight: bold;
-	position: relative;
-}
+._organ {
+	align-items: center;
+	display: flex;
+	padding-bottom: 20px;
 
-.report :global(.section__bg) {
-	background-color: $background__color;
-
-	&::after {
-		@include vars.expand;
-
-		background-image: linear-gradient(45deg, vars.gradient-split($background__color, 99, 50%));
+	&__body {
+		&__title {
+			font-weight: bold;
+			position: relative;
+		}
 	}
 
-	:global(path) {
-		fill: none;
-		stroke: vars.$color--lowlight--offset;
-		stroke-width: 6;
-	}
-}
+	&__icon {
+		aspect-ratio: 1;
+		flex-shrink: 0;
+		margin-right: 10px;
+		width: 100px;
+		z-index: 1;
 
-@include vars.if-viewport('<', lg) {
-	.organs {
-		padding-bottom: 40px;
+		:global(path) {
+			fill: none;
+			stroke: url('#_organ-icon-gradient');
+			stroke-linecap: round;
+			stroke-width: 2;
+		}
 	}
 }
 </style>

@@ -1,10 +1,11 @@
 ---
-const props = {
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props, {
 	gradientTransform: ``,
 	id: ``,
 	stops: 2 as number | Array<number>,
-	...Astro.props,
-};
+});
 
 let stops: Array<number>;
 if (Array.isArray(props.stops)) {
@@ -18,7 +19,11 @@ if (Array.isArray(props.stops)) {
 }
 ---
 
-<svg aria-hidden="true" class={`hidden ${Astro.props.class} ${props.id}`}>
+<svg
+	aria-hidden="true"
+	class={`hidden ${props.class} ${props.id}`}
+	{...rest}
+>
 	<linearGradient id={props.id} gradientTransform={props.gradientTransform}>
 		{stops.map((offset) =>
 			<stop offset={offset} />,

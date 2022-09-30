@@ -5,25 +5,25 @@ import Section_ from 'src/components/section.astro';
 import { faqs } from 'src/text/faqs';
 ---
 
-<HomeLayout_ class="faqs" title="FAQs" navFixed={false}>
-	<Section_ cols={0} class="hero faqs__hero">
-		<div class="overlay faqs__hero__text">
+<HomeLayout_ class="_faqs" title="FAQs" navFixed={false}>
+	<Section_ cols={0} class="hero _faqs__hero">
+		<div class="overlay _faqs__hero__text">
 			<h1 class="text--hdg--1">Frequently asked questions</h1>
 		</div>
 
 		<Fragment slot="background">
 			<img
 				alt="Doctor with patient"
-				class="faqs__hero__bg"
+				class="_faqs__hero__bg"
 				src="/img/bg/doctor-consult.jpg"
 			/>
 		</Fragment>
 	</Section_>
 
-	<div class="content faqs__body">
+	<div class="content _faqs__body">
 		<div
 			aria-hidden="true"
-			class="faqs__body__toggle"
+			class="_faqs__body__toggle"
 		>
 			<button data-details-toggle>
 				Expand / collapse all
@@ -32,25 +32,25 @@ import { faqs } from 'src/text/faqs';
 
 		{
 			faqs.map((section) =>
-				<section class="faqs__body__category">
+				<section class="_faqs__body__category">
 					<h2 class="text--hdg--2">{section.title}</h2>
 
 					{
 						section.questions.map((question) =>
 							<details
-								class="faq"
+								class="_faq"
 								id={question.id}
 							>
-								<summary class="faq__trigger">
-									<span class="faq__trigger__text">{question.title}</span>
+								<summary class="_faq__trigger">
+									<span class="_faq__trigger__text">{question.title}</span>
 									<a
-										class="faq__link"
+										class="_faq__link"
 										href={`#${question.id}`}
 										title="Link to this answer"
 									>#</a>
 								</summary>
 
-								<p class="faq__body" set:html={question.text}></p>
+								<p class="_faq__body" set:html={question.text}></p>
 							</details>,
 						)
 					}
@@ -63,7 +63,7 @@ import { faqs } from 'src/text/faqs';
 <style lang="scss">
 @use 'src/scss/vars';
 
-.faqs {
+._faqs {
 	&__hero {
 		&__bg {
 			object-position: top;
@@ -100,10 +100,8 @@ import { faqs } from 'src/text/faqs';
 			}
 		}
 	}
-}
 
-@include vars.if-viewport('<', lg) {
-	.faqs {
+	@include vars.if-viewport('<', lg) {
 		&__body {
 			&__toggle {
 				bottom: 10px;
@@ -112,10 +110,8 @@ import { faqs } from 'src/text/faqs';
 			}
 		}
 	}
-}
 
-@include vars.if-viewport('>=', lg) {
-	.faqs {
+	@include vars.if-viewport('>=', lg) {
 		&__body {
 			&__toggle {
 				margin-left: auto;
@@ -132,7 +128,7 @@ import { faqs } from 'src/text/faqs';
 	}
 }
 
-.faq {
+._faq {
 	$icon__margin: 1em;
 
 	margin-bottom: .5em;

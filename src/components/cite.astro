@@ -14,14 +14,14 @@ if (!researchById[props.to]) {
 const cite = researchById[props.to];
 ---
 <span
-	class="cite"
+	class="_cite"
 	role="tooltip"
 	tabindex="0"
 	{...rest}
-><span class="cite__icon">&sect;</span>
+><span class="_cite__icon">&sect;</span>
 
 	<span
-		class="cite__text"
+		class="_cite__text"
 		data-align-viewport
 		set:html={cite.full}
 	></span>
@@ -30,10 +30,31 @@ const cite = researchById[props.to];
 <style lang="scss">
 @use 'src/scss/vars';
 
-.cite {
+._cite {
 	display: inline-block;
 	line-height: 1em;
 	position: relative;
+
+	&:hover {
+		&::after {
+			content: '';
+			cursor: pointer;
+			height: 30px;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 30px;
+		}
+	}
+
+	&__icon {
+		color: vars.$color--brand--sink;
+		cursor: pointer;
+		font-size: .6em;
+		font-weight: bold;
+		position: relative;
+		vertical-align: super;
+	}
 
 	&__text {
 		@include vars.type(small);
@@ -61,34 +82,13 @@ const cite = researchById[props.to];
 			}
 		}
 
-		.cite:hover &,
 		&:hover,
-		.cite:focus &,
-		.cite:focus-within & {
+		._cite:hover &,
+		._cite:focus &,
+		._cite:focus-within & {
 			display: block;
 			z-index: vars.z(tooltip);
 		}
-	}
-
-	&:hover {
-		&::after {
-			content: '';
-			cursor: pointer;
-			height: 30px;
-			left: 0;
-			position: absolute;
-			top: 0;
-			width: 30px;
-		}
-	}
-
-	&__icon {
-		color: vars.$color--brand--sink;
-		cursor: pointer;
-		font-size: .6em;
-		font-weight: bold;
-		position: relative;
-		vertical-align: super;
 	}
 }
 </style>
