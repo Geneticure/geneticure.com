@@ -5,22 +5,22 @@ import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
 ---
 
-<Section_>
-	<div class="hero__text">
+<Section_ class="_hero">
+	<div class="_hero__text">
 		<h1 class="text--hdg--1">
 			Find the right<br /> blood pressure medication<br /> using <em>your DNA</em>.
 		</h1>
 
 		<hr class="fancy" />
 
-		<div class="hero__text__body">
+		<div class="_hero__text__body">
 			<div>
 				<p>Hypertension is the leading preventable cause of death <b>in the world.</b></p>
 
 				<p>Geneticure's patented test uses a sample of your DNA to recommend a personalized treatment plan, <em>just for you.</em></p>
 			</div>
 
-			<p class="hero__button">
+			<p class="_hero__button">
 				<Route_
 					class="button--hero"
 					to="buy"
@@ -29,7 +29,7 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 		</div>
 	</div>
 
-	<div class="hero__images">
+	<div class="_hero__images">
 		<Img_
 			alt="Kit with contents"
 			src="/img/hero.svg"
@@ -37,8 +37,8 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 	</div>
 
 	<Fragment slot="background">
-		<SvgPattern_ id="hero__helix" src="public/img/icon/helix.svg" />
-		<SvgPattern_ id="hero__helix-pattern" src="public/img/icon/helix-pattern.svg" width="30" height="30" />
+		<SvgPattern_ id="_helix" src="public/img/icon/helix.svg" />
+		<SvgPattern_ id="_helix-pattern" src="public/img/icon/helix-pattern.svg" width="30" height="30" />
 	</Fragment>
 </Section_>
 
@@ -50,7 +50,7 @@ $helix__aspect: 1;
 $helix__width: 250px;
 $helix__height: ($helix__width * $helix__aspect);
 
-.hero__helix {
+._helix {
 	height: 100%;
 	position: absolute;
 	width: $helix__width;
@@ -88,24 +88,24 @@ $helix__height: ($helix__width * $helix__aspect);
 			top: #{-2 * $helix__height};
 		}
 	}
-}
 
-.hero__helix-pattern {
-	@include vars.expand;
-
-	background-color: vars.$color--brand--offset;
-
-	:global(path) {
-		fill: none;
-		stroke: vars.$color--brand--offset--sink;
-		stroke-width: 3;
-	}
-
-	&::before {
+	&-pattern {
 		@include vars.expand;
 
-		background-image: linear-gradient(75deg, vars.gradient-split(vars.$color--bg, '00', 25%));
-		z-index: 1;
+		background-color: vars.$color--brand--offset;
+
+		:global(path) {
+			fill: none;
+			stroke: vars.$color--brand--offset--sink;
+			stroke-width: 3;
+		}
+
+		&::before {
+			@include vars.expand;
+
+			background-image: linear-gradient(75deg, vars.gradient-split(vars.$color--bg, '00', 25%));
+			z-index: 1;
+		}
 	}
 }
 
@@ -130,39 +130,41 @@ em {
 		display: none;
 	}
 
-	.hero__text {
-		padding-bottom: var(--content-padding-y) !important;
-		padding-top: 0 !important;
-		text-align: center;
+	._hero {
+		&__text {
+			padding-bottom: var(--content-padding-y) !important;
+			padding-top: 0 !important;
+			text-align: center;
+		}
+
+		&__text__body {
+			display: flex;
+			flex-direction: column;
+		}
+
+		&__button {
+			margin-bottom: 25px;
+			order: -1;
+		}
+
+		&__images {
+			order: -1;
+			padding-bottom: 0 !important;
+			padding-top: var(--content-padding-y) !important;
+
+			.img {
+				margin: 0 auto;
+				max-height: 300px;
+				width: 100%;
+			}
+		}
 	}
 
-	.hero__text__body {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.hero__button {
-		margin-bottom: 25px;
-		order: -1;
-	}
-
-	.hero__helix {
+	._helix {
 		bottom: 0;
 		left: 100%;
 		transform: rotateZ(-10deg);
 		transform-origin: bottom;
-	}
-
-	.hero__images {
-		order: -1;
-		padding-bottom: 0 !important;
-		padding-top: var(--content-padding-y) !important;
-
-		.img {
-			margin: 0 auto;
-			max-height: 300px;
-			width: 100%;
-		}
 	}
 }
 
@@ -172,11 +174,13 @@ em {
 		max-height: 1000px;
 	}
 
-	.hero__button {
-		margin-top: 25px;
+	._hero {
+		&__button {
+			margin-top: 25px;
+		}
 	}
 
-	.hero__helix {
+	._helix {
 		bottom: 0;
 		right: 0;
 		transform: rotateZ(-10deg);
