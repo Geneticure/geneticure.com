@@ -82,7 +82,7 @@ export const _faqs: Array<[
 			[
 				`usa-states`,
 				`Is Geneticure available in all US states?`,
-				`At this time our test is not available to residents of New York and Maryland. Please check back periodically as we hope to be able to offer the test in these states soon.`,
+				`At this time our test is not available to residents of New York. Please check back periodically as we hope to be able to offer the test in this state soon.`,
 			],
 			[
 				`international`,
