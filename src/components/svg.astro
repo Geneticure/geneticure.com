@@ -3,17 +3,22 @@ import * as fs from 'fs';
 import * as parser from 'htmlparser2';
 import { render } from 'dom-serializer';
 
-const props = {
+import { getProps } from 'src/js/astro';
+
+const { props, rest } = getProps(Astro.props, {
 	src: ``,
-	...Astro.props,
-};
+});
 
 const file = fs.readFileSync(props.src, `utf8`);
 const doc = parser.parseDocument(file);
 const svg = parser.DomUtils.getElementsByTagName(`svg`, doc)[0];
 const contents = render(svg.children);
-const attributes = { ...svg.attribs };
+const attributes = { ...svg.attribs, ...rest };
 delete attributes[`class`];
 ---
 
-<svg {...attributes} class={Astro.props.class} set:html={contents}></svg>
+<svg
+	{...attributes}
+	class={Astro.props.class}
+	set:html={contents}
+></svg>
