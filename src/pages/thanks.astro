@@ -6,8 +6,8 @@ import Section_ from 'src/components/section.astro';
 ---
 
 <HomeLayout_ title="Order confirmation">
-	<Section_ class="thanks" cols={0}>
-		<div class="overlay thanks__text">
+	<Section_ class="_thanks">
+		<div class="overlay _thanks__text">
 			<h1 class="text--hdg--1">Thanks for your order!</h1>
 
 			<hr class="fancy" />
@@ -27,7 +27,7 @@ import Section_ from 'src/components/section.astro';
 		</div>
 
 		<Img_
-			class="thanks__img"
+			class="_thanks__img"
 			src="/img/bg/heart-pills.jpg"
 		/>
 	</Section_>
@@ -37,9 +37,7 @@ import Section_ from 'src/components/section.astro';
 @use 'src/scss/vars';
 
 @include vars.if-viewport('<', lg) {
-	.thanks {
-		min-height: 100vh;
-
+	._thanks {
 		&__text {
 			z-index: 1;
 		}
@@ -55,13 +53,13 @@ import Section_ from 'src/components/section.astro';
 }
 
 @include vars.if-viewport('>=', lg) {
-	.thanks {
+	._thanks {
 		:global(.section__content) {
 			flex-wrap: nowrap;
 		}
 
 		&__img {
-			height: calc(100vh - #{vars.$height--nav});
+			height: 800px;
 			max-width: 50%;
 
 			:global(img) {
