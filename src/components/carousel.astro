@@ -8,13 +8,13 @@ const { props, rest } = getProps(Astro.props, {
 ---
 
 <div
-	class={`carousel ${props.class}`}
+	class={`_carousel ${props.class}`}
 	id={props.id}
 	{...rest}
 >
 	<button
 		aria-hidden="true"
-		class="carousel__arrow"
+		class="_carousel__arrow"
 		data-toggle-trigger={props.id}
 		data-toggle-index="-1"
 	>
@@ -23,22 +23,22 @@ const { props, rest } = getProps(Astro.props, {
 
 	<button
 		aria-hidden="true"
-		class="carousel__arrow"
+		class="_carousel__arrow"
 		data-toggle-trigger={props.id}
 		data-toggle-index="+1"
 	>
 		&rsaquo;
 	</button>
 
-	<div class="carousel__body">
+	<div class="_carousel__body">
 		<div
-			class="carousel__slides"
+			class="_carousel__slides"
 			id={`${props.id}__slides`}
 		>
 			<slot />
 		</div>
 
-		<p aria-hidden="true" class="carousel__toggles">
+		<p aria-hidden="true" class="_carousel__toggles">
 			{props.source.map((nil, index) =>
 				<button
 					data-toggle-trigger={props.id}
@@ -54,91 +54,91 @@ const { props, rest } = getProps(Astro.props, {
 <style lang="scss">
 @use 'src/scss/vars';
 
-.carousel {
+._carousel {
 	position: relative;
-}
 
-.carousel__body {
-	display: flex;
-	flex-direction: column;
-	flex-grow: 1;
-	height: 100%;
-	justify-content: space-between;
-	position: relative;
-}
+	&__arrow {
+		align-items: center;
+		color: rgba(0 0 0 / .3);
+		display: flex;
+		flex-shrink: 0;
+		font-size: 100px;
+		height: 100%;
+		justify-content: center;
+		line-height: 0;
+		position: absolute;
+		transition: color .2s;
+		width: 50px;
 
-.carousel__slides {
-	display: flex;
-	flex-wrap: nowrap;
-	overflow: hidden;
-}
-
-.carousel__slides > :global(*) {
-	flex-shrink: 0;
-	width: 100%;
-
-	&:first-child {
-		--slide-index: 0;
-
-		margin-left: calc(var(--slide-index) * -100%);
-		transition: margin-left .5s;
-	}
-
-	&:not(.toggle--on) {
-		visibility: hidden;
-	}
-}
-
-.carousel__toggles {
-	display: flex;
-	height: 100%;
-	justify-content: center;
-	margin-top: 10px;
-
-	button {
-		font-size: 0;
-		padding: 15px;
-
-		&::after {
-			@include vars.encircle(5px);
-
-			background-color: rgba(0 0 0 / .3);
-			transition: background-color .2s;
+		&:hover {
+			color: rgba(0 0 0 / .6);
 		}
 
-		&:hover::after {
-			background-color: rgba(0 0 0 / .6);
+		&:first-of-type {
+			right: 100%;
 		}
 
-		&.toggle--on::after {
-			background-color: vars.$color--brand;
+		&:last-of-type {
+			left: 100%;
 		}
 	}
-}
 
-.carousel__arrow {
-	align-items: center;
-	color: rgba(0 0 0 / .3);
-	display: flex;
-	flex-shrink: 0;
-	font-size: 100px;
-	height: 100%;
-	justify-content: center;
-	line-height: 0;
-	position: absolute;
-	transition: color .2s;
-	width: 50px;
-
-	&:hover {
-		color: rgba(0 0 0 / .6);
+	&__body {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		height: 100%;
+		justify-content: space-between;
+		position: relative;
 	}
 
-	&:first-of-type {
-		right: 100%;
+	&__slides {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow: hidden;
+
+		> :global(*) {
+			flex-shrink: 0;
+			width: 100%;
+
+			&:first-child {
+				--slide-index: 0;
+
+				margin-left: calc(var(--slide-index) * -100%);
+				transition: margin-left .5s;
+			}
+
+			&:not(.toggle--on) {
+				visibility: hidden;
+			}
+		}
 	}
 
-	&:last-of-type {
-		left: 100%;
+	&__toggles {
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		margin-top: 10px;
+
+		button {
+			font-size: 0;
+			padding: 15px;
+
+			&::after {
+				@include vars.encircle(5px);
+
+				background-color: rgba(0 0 0 / .3);
+				transition: background-color .2s;
+			}
+
+			&:hover::after {
+				background-color: rgba(0 0 0 / .6);
+			}
+
+			&.toggle--on::after {
+				background-color: vars.$color--brand;
+			}
+		}
 	}
 }
 </style>
