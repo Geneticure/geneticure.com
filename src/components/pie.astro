@@ -37,8 +37,9 @@ const segments = props.segments.map(([value, color]) => {
 ---
 
 <div
-	class={`pie ${props.animated ? `pie--animated` : ``} ${props.class}`}
+	class={`_pie ${props.animated ? `_pie--animated` : ``} ${props.class}`}
 	data-viewport-visible={props.animated ? `` : undefined}
+	{...rest}
 >
 	<svg
 		aria-hidden="true"
@@ -56,7 +57,7 @@ const segments = props.segments.map(([value, color]) => {
 	</svg>
 
 	{Astro.slots.has(`default`) &&
-		<div class="pie__content">
+		<div class="_pie__content">
 			<slot></slot>
 		</div>
 	}
@@ -65,7 +66,7 @@ const segments = props.segments.map(([value, color]) => {
 <style lang="scss">
 @use 'src/scss/vars';
 
-.pie {
+._pie {
 	--background: #FFFFFFF0;
 
 	align-items: center;
@@ -87,33 +88,33 @@ const segments = props.segments.map(([value, color]) => {
 		width: 70%;
 		z-index: 1;
 	}
-}
 
-.pie--animated {
-	svg {
-		animation: spin 40s linear infinite;
-	}
+	&--animated {
+		svg {
+			animation: spin 40s linear infinite;
+		}
 
-	circle {
-		animation: decrease 2s;
-		animation-play-state: paused;
-	}
-
-	&[data-viewport-visible='true'] {
 		circle {
-			animation-play-state: running;
+			animation: decrease 2s;
+			animation-play-state: paused;
 		}
-	}
 
-	@keyframes decrease {
-		from {
-			stroke-dasharray: 315;
+		&[data-viewport-visible='true'] {
+			circle {
+				animation-play-state: running;
+			}
 		}
-	}
 
-	@keyframes spin {
-		to {
-			transform: rotateZ(270deg);
+		@keyframes decrease {
+			from {
+				stroke-dasharray: 315;
+			}
+		}
+
+		@keyframes spin {
+			to {
+				transform: rotateZ(270deg);
+			}
 		}
 	}
 }
