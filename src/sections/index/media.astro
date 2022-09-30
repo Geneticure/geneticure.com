@@ -20,25 +20,4 @@ import { journals, medias } from 'src/text/media';
 .section {
 	background-color: vars.$color--brand--offset;
 }
-
-.media {
-	--logo-width: 0;
-
-	:global(.section__content) {
-		justify-content: center;
-	}
-
-	:global(.logo img) {
-		mix-blend-mode: multiply;
-		width: var(--logo-width);
-	}
-
-	@include vars.if-viewport('<', lg) {
-		--logo-width: 100px;
-	}
-
-	@include vars.if-viewport('>=', lg) {
-		--logo-width: 150px;
-	}
-}
 </style>
