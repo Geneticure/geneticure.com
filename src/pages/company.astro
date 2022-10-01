@@ -10,19 +10,17 @@ import { team, teamDescription } from 'src/text/team';
 
 ---
 
-<HomeLayout_ class="_company" title="Company" navFixed={true} navOpaqueAtTop={true}>
-	<Section_ class="hero _company__hero">
-		<div class="overlay">
+<HomeLayout_ class="_company" title="Company" navFixed={true}>
+	<Section_ class=" section--overlay _company__hero">
+		<div class="overlay overlay--left">
 			<h1 class="text--hdg--1">Our team</h1>
 		</div>
 
-		<Fragment slot="background">
-			<Img_
-				alt="Rochester, MN skyline"
-				class="_company__hero__bg"
-				src="/img/bg/rochester.jpg"
-			/>
-		</Fragment>
+		<Img_
+			alt="Rochester, MN skyline"
+			class="bg _company__hero__bg"
+			src="/img/bg/rochester.jpg"
+		/>
 	</Section_>
 
 	<Section_ cols={0}>

@@ -9,7 +9,7 @@ import { partners } from 'src/text/partners';
 import { teamDescription } from 'src/text/team';
 ---
 
-<Section_ class="_who">
+<Section_ class="section--columns _who">
 	<div class="_who__text">
 		<h2 class="text--hdg--1">Who is <em>Geneticure</em>?</h2>
 
@@ -30,7 +30,7 @@ import { teamDescription } from 'src/text/team';
 		<TeamGrid_ />
 	</div>
 
-	<Fragment slot="background">
+	<div class="bg">
 		<SvgPattern_
 			class="_who__bg"
 			id="_who__bg--left"
@@ -45,7 +45,7 @@ import { teamDescription } from 'src/text/team';
 			width="100"
 			height="100"
 		/>
-	</Fragment>
+	</div>
 </Section_>
 
 <style lang="scss">

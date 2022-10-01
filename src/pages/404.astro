@@ -1,18 +1,24 @@
 ---
 import HomeLayout_ from 'src/layouts/home.astro';
+import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 ---
 
-<HomeLayout_ title="404: Not found">
-	<Section_ class="_404">
-		<div>
+<HomeLayout_ title="404: Not found"  navOpaqueAtTop={false}>
+	<Section_ class="hero section--overlay _404">
+		<div class="overlay overlay--left">
 			<h1 class="text--hdg--1">404: Page not found.</h1>
 
 			<p>If you think this is an error, please <Route_ to="contact">let us know.</Route_></p>
 
 			<p>Otherwise, <Route_ to="home">go to the homepage.</Route_></p>
 		</div>
+
+		<Img_
+			class="bg"
+			src="/img/bg/chairs.jpg"
+		/>
 	</Section_>
 </HomeLayout_>
 

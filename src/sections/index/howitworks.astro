@@ -58,8 +58,8 @@ const steps: Array<[
 ];
 ---
 
-<Section_ class="_howitworks" cols={0}>
-	<div class="section__col--padless _howitworks__body">
+<Section_ class="_howitworks">
+	<div class="_howitworks__body">
 		<h2 class="text--hdg--1">How does it <em>work</em>?</h2>
 
 		<hr class="fancy" />
@@ -105,15 +105,14 @@ const steps: Array<[
 		</ol>
 	</div>
 
-	<Fragment slot="background">
-		<SvgPattern_
-			height="100"
-			id="_howitworks__bg"
-			patternTransform="rotate(35)"
-			src="public/img/icon/helix-pattern.svg"
-			width="150"
-		/>
-	</Fragment>
+	<SvgPattern_
+		class="bg"
+		height="100"
+		id="_howitworks__bg"
+		patternTransform="rotate(35)"
+		src="public/img/icon/helix-pattern.svg"
+		width="150"
+	/>
 </Section_>
 
 <style lang="scss">
@@ -208,7 +207,7 @@ const steps: Array<[
 	}
 
 	@include vars.if-viewport('>=', lg) {
-		--icon-diameter: 100px;
+		--icon-diameter: 100px !important;
 		--text-margin-left: 30px;
 
 		margin-top: 80px;
@@ -224,12 +223,6 @@ const steps: Array<[
 ._howitworks {
 	--bg-width: 0;
 	--bg-offset: 0;
-
-	@include vars.content;
-
-	:global(.section__content) {
-		justify-content: flex-start;
-	}
 
 	&__body {
 		box-sizing: content-box;

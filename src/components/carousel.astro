@@ -68,7 +68,7 @@ const { props, rest } = getProps(Astro.props, {
 		line-height: 0;
 		position: absolute;
 		transition: color .2s;
-		width: 50px;
+		width: var(--content-gutter-x);
 
 		&:hover {
 			color: rgba(0 0 0 / .6);

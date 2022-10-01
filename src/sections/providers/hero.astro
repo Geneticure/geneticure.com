@@ -6,46 +6,77 @@ import Section_ from 'src/components/section.astro';
 import { routes } from 'src/routes';
 ---
 
-<Section_ class="hero _hero" cols={0}>
-	<div class="overlay _hero__fg">
-		<h1 class="text--hdg--1">
-			Treat hypertension with <em>precision</em>.
-		</h1>
+<Section_ class="section--columns _hero">
+	<div class="_hero__text">
+		<div class="overlay">
+			<h1 class="text--center text--hdg--1">
+				Treat hypertension with <em>precision</em>.
+			</h1>
 
-		<hr class="fancy" />
+			<hr class="fancy" />
 
-		<p>Using a non-invasive cheek swab, Geneticure's patented pharmaco&shy;genomic panel analyzes 17 genotypes in 11 genes to recommend <strong>the best hypertension treatment for your patient.</strong></p>
+			<p>Using a non-invasive cheek swab, Geneticure's patented pharmaco&shy;genomic panel analyzes 17 genotypes in 11 genes to recommend <strong>the best hypertension treatment for your patient.</strong></p>
 
-		<p>
-			<Route_
-				class="button--hero"
-				href={routes.register__clinician}
-			>Register now</Route_>
-		</p>
+			<p class="_hero__cta">We're offering <strong>complimentary testing for providers</strong> to demonstrate the value of the technology. <Route_ to="register__clinician">Register</Route_> for your provider account and we'll coordinate testing at no cost.</p>
+
+			<p class="text--center">
+				<Route_
+					class="button--hero"
+					href={routes.register__clinician}
+				>Register now</Route_>
+			</p>
+		</div>
 	</div>
 
-	<Fragment slot="background">
+	<div class="_hero__img">
 		<Img_
-			alt="Photo of a lab technician"
-			class="_hero__bg"
-			src="/img/bg/lab-test.jpg"
+			alt="Geneticure report"
+			class="_hero__report"
+			src="/img/report.png"
 		/>
-	</Fragment>
+	</div>
+
+	<Img_
+		alt="Photo of a lab technician"
+		class="bg _hero__bg"
+		src="/img/bg/lab-test.jpg"
+	/>
 </Section_>
 
 <style lang="scss">
 @use 'src/scss/vars';
 
 ._hero {
-	&__fg {
-		padding-right: 30px !important;
-	}
+	overflow: hidden;
 
 	&__bg {
-		@include vars.expand;
-
-		object-fit: cover;
 		object-position: center left;
+	}
+
+	&__cta {
+		@include vars.antipad(20px);
+
+		background: vars.$color--brand--offset;
+		border-radius: 10px;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	&__report {
+		box-shadow: 0 0 20px 5px vars.$color--shadow;
+		margin: 0 auto;
+		max-height: 700px;
+
+		@include vars.if-viewport('<', lg) {
+			margin-top: 50px;
+		}
+	}
+
+	.overlay {
+		@include vars.if-viewport('>=', lg) {
+			padding-bottom: var(--content-gutter-y);
+			padding-top: var(--content-gutter-y);
+		}
 	}
 }
 
@@ -63,20 +94,5 @@ hr {
 
 .button--hero {
 	margin-top: 10px;
-}
-
-@include vars.if-viewport('>=', md) {
-	._hero {
-		&__fg {
-			width: 60% !important;
-		}
-	}
-}
-
-@include vars.if-viewport('>=', lg) {
-	._hero {
-		height: 100vh;
-		max-height: 1000px;
-	}
 }
 </style>

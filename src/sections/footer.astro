@@ -11,7 +11,7 @@ const year = (new Date()).getFullYear();
 ---
 
 <footer>
-	<div class="content _footer">
+	<div class="section _footer">
 		<div>
 			<Route_ href="home">
 				<Img_
@@ -54,7 +54,7 @@ const year = (new Date()).getFullYear();
 		/>
 	</div>
 
-	<div class="content">
+	<div class="section _disclaimer">
 		<p><small>These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. This test, like all medical tests, should be used by your healthcare provider as an aid in decision making about your health, which includes much more information than genetics. Do not start or stop taking any medications without first consulting your healthcare provider.</small></p>
 
 		<p class="list--inline--links">
@@ -69,6 +69,12 @@ const year = (new Date()).getFullYear();
 
 <style lang="scss">
 @use 'src/scss/vars';
+
+._disclaimer,
+._footer {
+	padding-bottom: 50px;
+	padding-top: 50px;
+}
 
 ._footer {
 	line-height: 2em;
