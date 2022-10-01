@@ -5,7 +5,7 @@ import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
 ---
 
-<Section_ class="section--columns section--columns--reverse-sm _hero">
+<Section_ class="section--columns section--columns--reverse-sm hero _hero">
 	<div class="_hero__text">
 		<h1 class="text--hdg--1">
 			Find the right<br /> blood pressure medication<br /> using <em>your DNA</em>.
@@ -166,9 +166,6 @@ $helix__height: ($helix__width * $helix__aspect);
 	}
 
 	@include vars.if-viewport('>=', lg) {
-		height: 100vh;
-		max-height: 1000px;
-
 		&__button {
 			margin-top: 25px;
 		}

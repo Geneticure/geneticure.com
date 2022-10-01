@@ -180,16 +180,13 @@ form {
 }
 
 .hero {
-	min-height: 50vh;
-
 	@media print {
-		min-height: 0;
+		height: auto;
 	}
 
-	img {
-		@include vars.expand;
-
-		object-fit: cover;
+	@include vars.if-viewport('>=', md) {
+		height: 100vh;
+		max-height: 900px;
 	}
 }
 
