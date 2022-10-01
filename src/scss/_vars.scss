@@ -434,6 +434,14 @@ $typefaces: (
 
 
 // #region Misc
+@mixin antipad($padding: 20px) {
+	box-sizing: border-box;
+	margin-left: -$padding;
+	padding-left: $padding;
+	padding-right: $padding;
+	width: calc(100% + (2 * #{$padding}));
+}
+
 @mixin encircle($radius: 30px) {
 	$diameter: 2 * $radius;
 

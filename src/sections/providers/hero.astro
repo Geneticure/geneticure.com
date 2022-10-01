@@ -6,22 +6,34 @@ import Section_ from 'src/components/section.astro';
 import { routes } from 'src/routes';
 ---
 
-<Section_ class="hero section--overlay _hero">
-	<div class="overlay overlay--center _hero__fg">
-		<h1 class="text--hdg--1">
-			Treat hypertension with <em>precision</em>.
-		</h1>
+<Section_ class="section--columns _hero">
+	<div class="_hero__text">
+		<div class="overlay">
+			<h1 class="text--center text--hdg--1">
+				Treat hypertension with <em>precision</em>.
+			</h1>
 
-		<hr class="fancy" />
+			<hr class="fancy" />
 
-		<p>Using a non-invasive cheek swab, Geneticure's patented pharmaco&shy;genomic panel analyzes 17 genotypes in 11 genes to recommend <strong>the best hypertension treatment for your patient.</strong></p>
+			<p>Using a non-invasive cheek swab, Geneticure's patented pharmaco&shy;genomic panel analyzes 17 genotypes in 11 genes to recommend <strong>the best hypertension treatment for your patient.</strong></p>
 
-		<p>
-			<Route_
-				class="button--hero"
-				href={routes.register__clinician}
-			>Register now</Route_>
-		</p>
+			<p class="_hero__cta">We're offering <strong>complimentary testing for providers</strong> to demonstrate the value of the technology. <Route_ to="register__clinician">Register</Route_> for your provider account and we'll coordinate testing at no cost.</p>
+
+			<p class="text--center">
+				<Route_
+					class="button--hero"
+					href={routes.register__clinician}
+				>Register now</Route_>
+			</p>
+		</div>
+	</div>
+
+	<div class="_hero__img">
+		<Img_
+			alt="Geneticure report"
+			class="_hero__report"
+			src="/img/report.png"
+		/>
 	</div>
 
 	<Img_
@@ -35,8 +47,36 @@ import { routes } from 'src/routes';
 @use 'src/scss/vars';
 
 ._hero {
+	overflow: hidden;
+
 	&__bg {
 		object-position: center left;
+	}
+
+	&__cta {
+		@include vars.antipad(20px);
+
+		background: vars.$color--brand--offset;
+		border-radius: 10px;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	&__report {
+		box-shadow: 0 0 20px 5px vars.$color--shadow;
+		margin: 0 auto;
+		max-height: 700px;
+
+		@include vars.if-viewport('<', lg) {
+			margin-top: 50px;
+		}
+	}
+
+	.overlay {
+		@include vars.if-viewport('>=', lg) {
+			padding-bottom: var(--content-gutter-y);
+			padding-top: var(--content-gutter-y);
+		}
 	}
 }
 
