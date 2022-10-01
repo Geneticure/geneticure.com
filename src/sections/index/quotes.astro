@@ -1,14 +1,13 @@
 ---
 import Carousel_ from 'src/components/carousel.astro';
 import Img_ from 'src/components/img.astro';
-import Section_ from 'src/components/section.astro';
 import SvgGradient_ from 'src/components/svg-gradient.astro';
 import Svg_ from 'src/components/svg.astro';
 
 import { quotes } from 'src/text/quotes';
 ---
 
-<Section_ class="_quotes">
+<section class="section section--columns _quotes">
 	<div class="_quotes__text">
 		<h2 class="text--hdg--2">
 			<Svg_
@@ -57,7 +56,7 @@ import { quotes } from 'src/text/quotes';
 			/>
 		</Img_>
 	</div>
-</Section_>
+</section>
 
 <style lang="scss">
 @use 'src/scss/vars';
@@ -76,6 +75,8 @@ import { quotes } from 'src/text/quotes';
 
 ._quotes {
 	background: vars.$color--bg--offset;
+	padding-bottom: 0;
+	padding-top: 0;
 
 	&__images {
 		&__bg {
