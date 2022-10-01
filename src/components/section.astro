@@ -13,9 +13,7 @@ const { props, rest } = getProps(Astro.props, {
 	data-viewport-visible
 	{...rest}
 >
-	<div class="section__content">
-		<slot />
-	</div>
+	<slot />
 
 	{ Astro.slots.has(`background`) &&
 		<div aria-hidden="true" class="section__bg">
@@ -29,71 +27,13 @@ const { props, rest } = getProps(Astro.props, {
 
 .section {
 	align-items: center;
-	box-sizing: content-box;
 	display: flex;
 	overflow: hidden;
 	position: relative;
 	width: 100%;
-}
-
-.section :global(hr.fancy) {
-	animation: hr-fancy 1.5s ease-in-out;
-	animation-play-state: paused;
-
-	@keyframes hr-fancy {
-		from {
-			width: 0;
-		}
-
-		to {
-			width: 100%;
-		}
-	}
-}
-
-.section[data-viewport-visible='true'] :global(hr.fancy) {
-	animation-play-state: running;
-}
-
-.section__content {
-	align-items: center;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	width: 100%;
 
 	@include vars.if-viewport('<', lg) {
 		flex-direction: column;
-	}
-}
-
-.section__content > :global(*) {
-	box-sizing: border-box;
-
-	&:not(.section__col--padless) {
-		padding: var(--content-padding-y) var(--content-padding-x);
-
-		.section--cols--2 & {
-			@include vars.if-viewport('>=', lg) {
-				@include vars.space-between(50px);
-			}
-		}
-	}
-
-	@include vars.if-viewport('>=', lg) {
-		.section--cols--2 & {
-			flex-grow: 0;
-			flex-shrink: 0;
-			width: 50%;
-		}
-	}
-
-	@include vars.if-viewport('<', lg) {
-		width: 100%;
-
-		.section--cols--2 & {
-			@include vars.space-between(15px, (direction: y));
-		}
 	}
 }
 

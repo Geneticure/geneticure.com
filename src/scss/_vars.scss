@@ -15,6 +15,9 @@ $bps: (
 	xl: 1440px,
 );
 $bps__order: vars.keys($bps);
+@function bp($name) {
+	@return vars.get($bps, $name);
+}
 
 @function viewport($operator, $bp__name: '') {
 	@if type-of($operator) == 'list' {
@@ -160,17 +163,6 @@ $z-index__value: null;
 $height--nav: 60px;
 
 $margin--text--y: 1rem;
-
-@mixin content {
-	box-sizing: border-box;
-	padding: var(--content-padding-y) var(--content-padding-x);
-	width: 100%;
-
-	@media print {
-		padding: 10px 0;
-	}
-}
-
 @mixin space-between($value, $options: ()) {
 	$direction: vars.get($options, direction, x);
 	$property: vars.get($options, property, padding);

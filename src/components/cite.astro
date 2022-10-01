@@ -31,9 +31,10 @@ const cite = researchById[props.to];
 @use 'src/scss/vars';
 
 ._cite {
-	display: inline-block;
-	line-height: 1em;
+	display: inline;
+	line-height: .3em;
 	position: relative;
+	vertical-align: top;
 
 	&:hover {
 		&::after {
@@ -53,7 +54,6 @@ const cite = researchById[props.to];
 		font-size: .6em;
 		font-weight: bold;
 		position: relative;
-		vertical-align: super;
 	}
 
 	&__text {

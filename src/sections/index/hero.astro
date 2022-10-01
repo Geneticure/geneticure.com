@@ -1,11 +1,10 @@
 ---
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
-import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
 ---
 
-<Section_ class="_hero">
+<section class="section section--columns _hero">
 	<div class="_hero__text">
 		<h1 class="text--hdg--1">
 			Find the right<br /> blood pressure medication<br /> using <em>your DNA</em>.
@@ -29,18 +28,17 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 		</div>
 	</div>
 
-	<div class="_hero__images">
-		<Img_
-			alt="Kit with contents"
-			src="/img/hero.svg"
-		/>
-	</div>
+	<Img_
+		alt="Kit with contents"
+		class="_hero__images"
+		src="/img/hero.svg"
+	/>
 
-	<Fragment slot="background">
+	<div class="bg _hero__bg">
 		<SvgPattern_ id="_helix" src="public/img/icon/helix.svg" />
 		<SvgPattern_ id="_helix-pattern" src="public/img/icon/helix-pattern.svg" width="30" height="30" />
-	</Fragment>
-</Section_>
+	</div>
+</section>
 
 <style lang="scss">
 @use 'sass:math';
@@ -160,15 +158,11 @@ $helix__height: ($helix__width * $helix__aspect);
 		}
 
 		&__images {
+			margin: 0 auto;
+			max-height: 300px;
 			order: -1;
 			padding-bottom: 0 !important;
-			padding-top: var(--content-padding-y) !important;
-
-			.img {
-				margin: 0 auto;
-				max-height: 300px;
-				width: 100%;
-			}
+			width: 100%;
 		}
 	}
 

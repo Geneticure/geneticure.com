@@ -27,7 +27,15 @@
 
 	font-size: vars.$font-size--base + px;
 
-	--content-padding-y: #{vars.$height--nav + 40px};
+	--content-padding-y: calc(#{vars.$height--nav} + var(--content-gutter-y));
+	@include vars.if-viewport('<', lg) {
+		--content-gutter-y: 10px;
+	}
+
+	@include vars.if-viewport('>=', lg) {
+		--content-gutter-y: 40px;
+	}
+
 	@include vars.if-viewport('==', sm) {
 		--content-gutter-x: 30px;
 	}
@@ -41,7 +49,7 @@
 	}
 
 	@include vars.if-viewport('>=', xl) {
-		--content-padding-x: calc((.5 * (100vw - #{vars.get(vars.$bps, xl)})) + var(--content-gutter-x));
+		--content-padding-x: calc((.5 * (100vw - #{vars.bp(xl)})) + var(--content-gutter-x));
 	}
 }
 
@@ -102,6 +110,13 @@ b {
 	display: inline-block; // For preventing text from wrapping within key phrases
 }
 
+.bg {
+	@include vars.expand;
+
+	overflow: hidden;
+	z-index: vars.z(underlay);
+}
+
 button {
 	cursor: pointer;
 }
@@ -116,23 +131,25 @@ button {
 	}
 }
 
-.button--low {
-	@include vars.button;
-	@include vars.button--low;
-}
+.button {
+	&--hero {
+		@include vars.button;
+		@include vars.button--hero;
+	}
 
-.button--high {
-	@include vars.button;
-	@include vars.button--high;
-}
+	&--high {
+		@include vars.button;
+		@include vars.button--high;
+	}
 
-.button--icon {
-	@include vars.button--icon;
-}
+	&--icon {
+		@include vars.button--icon;
+	}
 
-.button--hero {
-	@include vars.button;
-	@include vars.button--hero;
+	&--low {
+		@include vars.button;
+		@include vars.button--low;
+	}
 }
 
 .buttonset {
@@ -146,16 +163,12 @@ button {
 	}
 }
 
-.content {
-	@include vars.content;
-}
-
 .flex {
 	display: flex;
-}
 
-.flex--center {
-	justify-content: center;
+	&--center {
+		justify-content: center;
+	}
 }
 
 .flex-spacer {
@@ -195,12 +208,28 @@ hr {
 	height: 1px;
 	margin: vars.$margin--text--y auto;
 	width: 100%;
-}
 
-hr.fancy {
-	background-image: linear-gradient(to right, vars.$color--brand, vars.$color--brand--offset);
-	height: 3px;
-	margin-left: 0;
+	&.fancy {
+		animation: hr-fancy 1.5s ease-in-out;
+		animation-play-state: paused;
+		background-image: linear-gradient(to right, vars.$color--brand, vars.$color--brand--offset);
+		height: 3px;
+		margin-left: 0;
+
+		[data-viewport-visible='true'] & {
+			animation-play-state: running;
+		}
+
+		@keyframes hr-fancy {
+			from {
+				width: 0;
+			}
+
+			to {
+				width: 100%;
+			}
+		}
+	}
 }
 
 img {
@@ -218,22 +247,24 @@ input {
 	width: 100%;
 }
 
-.list--dotted {
-	@include vars.list--dotted((
-		border__color: vars.$color--bg--offset--sink,
-		dot__background: vars.$color--bg,
-		dot__color: vars.$color--brand,
-	));
-}
+.list {
+	&--dotted {
+		@include vars.list--dotted((
+			border__color: vars.$color--bg--offset--sink,
+			dot__background: vars.$color--bg,
+			dot__color: vars.$color--brand,
+		));
+	}
 
-.list--inline--links {
-	a + a::before {
-		color: vars.$color--text;
-		content: '| ';
-		display: inline-block;
-		font-weight: normal;
-		text-decoration: none;
-		white-space: pre;
+	&--inline--links {
+		a + a::before {
+			color: vars.$color--text;
+			content: '| ';
+			display: inline-block;
+			font-weight: normal;
+			text-decoration: none;
+			white-space: pre;
+		}
 	}
 }
 
@@ -271,6 +302,28 @@ input {
 	}
 }
 
+.section {
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: var(--content-padding-y) var(--content-padding-x);
+	position: relative;
+	width: 100%;
+
+	&--columns {
+		@include vars.if-viewport('<', lg) {
+			display: flex;
+			flex-direction: column;
+		}
+
+		@include vars.if-viewport('>=', lg) {
+			align-items: center;
+			display: grid;
+			grid-column-gap: var(--content-gutter-x);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+}
+
 small {
 	@include vars.type(small);
 }
@@ -287,6 +340,22 @@ summary {
 	&::marker,
 	&::-webkit-details-marker {
 		display: none;
+	}
+}
+
+.text {
+	@each $typefaceName, $typeface in vars.$typefaces {
+		&--#{$typefaceName} {
+			@include vars.type($typefaceName);
+		}
+	}
+
+	&--center {
+		text-align: center;
+	}
+
+	&--on-dark {
+		color: vars.$color--text--on-dark;
 	}
 }
 
@@ -394,18 +463,4 @@ summary {
 			padding-top: .5em;
 		}
 	}
-}
-
-@each $typefaceName, $typeface in vars.$typefaces {
-	.text--#{$typefaceName} {
-		@include vars.type($typefaceName);
-	}
-}
-
-.text--center {
-	text-align: center;
-}
-
-.text--on-dark {
-	color: vars.$color--text--on-dark;
 }

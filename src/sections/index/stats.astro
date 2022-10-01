@@ -2,54 +2,43 @@
 import Cite_ from 'src/components/cite.astro';
 import Img_ from 'src/components/img.astro';
 import Pie_ from 'src/components/pie.astro';
-import Section_ from 'src/components/section.astro';
 
 import { statsById } from 'src/text/stats';
 
 const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsById[id]);
 ---
 
-<Section_ class="_stats" cols={0}>
-	<div>
-		<h2 class="text--hdg--2">Using the DNA on a cheek swab, Geneticure recommends which hypertension medication(s) may give you <em>the biggest drop in blood pressure</em>:</h2>
+<section class="section _stats">
+	<h2 class="text--hdg--2">Using the DNA on a cheek swab, Geneticure recommends which hypertension medication(s) may give you <em>the biggest drop in blood pressure</em>:</h2>
 
-		<div class="_stats__figures">
-			{stats.map((stat) =>
-				<figure class="_figure">
-					<Pie_
-						segments={[[100 - stat.value]]}
-						total={100}
-					>
-						<div class="text--hdg--1 _figure__value">
-							{stat.value}
-							<sup class="_figure__value__symbol">%</sup>
-						</div>
-					</Pie_>
+	<div class="_stats__figures">
+		{stats.map((stat) =>
+			<figure class="_figure">
+				<Pie_
+					segments={[[100 - stat.value]]}
+					total={100}
+				>
+					<div class="text--hdg--1 _figure__value">
+						{stat.value}
+						<sup class="_figure__value__symbol">%</sup>
+					</div>
+				</Pie_>
 
-					<figcaption class="text--hdg--3 _figure__text">
-						<strong class="_figure__value">
-
-						</strong>
-
-						<span class="_figure__description">
-							{stat.title}<Cite_ to={stat.cite} />
-						</span>
-					</figcaption>
-				</figure>,
-			)}
-		</div>
-
-		<aside>Our research supports that the Geneticure approach of DNA-guided therapy is associated with ~7mmHg lower systolic blood pressure and ~6mmHg diastolic blood pressure. This is 22% and 39% lower respectively versus non-genetically matched care.<Cite_ to="article-algorithm" /></aside>
+				<figcaption class="text--hdg--3 _figure__text">
+					{stat.title}<Cite_ to={stat.cite} />
+				</figcaption>
+			</figure>,
+		)}
 	</div>
 
-	<Fragment slot="background">
-		<Img_
-			class="_stats__bg"
-			css={true}
-			src="/img/bg/pills-crop.jpg"
-		/>
-	</Fragment>
-</Section_>
+	<aside>Our research supports that the Geneticure approach of DNA-guided therapy is associated with ~7mmHg lower systolic blood pressure and ~6mmHg diastolic blood pressure. This is 22% and 39% lower respectively versus non-genetically matched care.<Cite_ to="article-algorithm" /></aside>
+
+	<Img_
+		class="bg _stats__bg"
+		css={true}
+		src="/img/bg/pills-crop.jpg"
+	/>
+</section>
 
 <style lang="scss">
 @use 'sass:list';
@@ -63,27 +52,11 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 	--pie-diameter: 0;
 
 	overflow: visible;
-	width: 100%;
 
 	&__bg {
-		@include vars.expand;
-
 		background-position: center right;
 		background-repeat: no-repeat;
 		background-size: var(--background-width);
-	}
-
-	&__img {
-		position: relative;
-
-		img {
-			@include vars.expand;
-
-			left: auto;
-			max-width: none;
-			right: 0;
-			width: 300%;
-		}
 	}
 
 	&__figures {
@@ -96,8 +69,6 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 		width: var(--columns-width) !important;
 		z-index: 1;
 	}
-
-
 
 	@include vars.if-viewport('<', lg) {
 		--background-width: 0;
