@@ -4,11 +4,13 @@ import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
 ---
 
-<Section_ class="_details">
+<Section_ class="section--columns _details">
 	<div class="_details__text">
-		<h2 class="text--hdg--1"><em>The right prescriptions</em> with hypertension-specific pharmaco&shy;genomics.</h2>
+		<div>
+			<h2 class="text--hdg--1"><em>The right prescriptions</em> with hypertension-specific pharmaco&shy;genomics.</h2>
 
-		<p>Our CLIA-certified lab genotypes your patient's DNA from a cheek swab. Then, our patented algorithm uses years of research to predict which treatments will most effectively treat your patient's hypertension. We compile our findings into <strong>a personalized, one-page report</strong>.</p>
+			<p>Our CLIA-certified lab genotypes your patient's DNA from a cheek swab. Then, our patented algorithm uses years of research to predict which treatments will most effectively treat your patient's hypertension. We compile our findings into <strong>a personalized, one-page report</strong>.</p>
+		</div>
 
 		<Img_
 			alt="Geneticure test kit"
@@ -25,9 +27,13 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 		/>
 	</div>
 
-	<Fragment slot="background">
-		<SvgPattern_ id="_details__bg" src="public/img/icon/helix-pattern.svg" width="30" height="30"  />
-	</Fragment>
+	<SvgPattern_
+		class="bg"
+		id="_details__bg"
+		src="public/img/icon/helix-pattern.svg"
+		width="30"
+		height="30"
+	/>
 </Section_>
 
 <style lang="scss">
@@ -54,8 +60,6 @@ strong {
 	}
 
 	&__bg {
-		@include vars.expand;
-
 		background-color: vars.$color--brand--offset;
 
 		:global(path) {
@@ -75,13 +79,9 @@ strong {
 	@include vars.if-viewport('<', lg) {
 		--bg-image: linear-gradient(270deg, #{vars.$color--bg}00, #{vars.$color--bg}FF 20%);
 
-		&__kit {
-			order: -1;
-		}
-
 		&__text {
 			display: flex;
-			flex-direction: column;
+			flex-direction: column-reverse;
 		}
 	}
 

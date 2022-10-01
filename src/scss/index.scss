@@ -308,15 +308,15 @@ input {
 }
 
 .section {
-	align-items: center;
 	box-sizing: border-box;
-	display: flex;
 	overflow: hidden;
 	padding: var(--content-padding-y) var(--content-padding-x);
 	position: relative;
 	width: 100%;
 
 	&--columns {
+		align-items: center;
+		display: flex;
 		padding: 0;
 
 		> .bg {
@@ -376,6 +376,8 @@ input {
 	}
 
 	&--overlay {
+		align-items: center;
+		display: flex;
 		padding-left: 0;
 		padding-right: 0;
 

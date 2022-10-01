@@ -106,8 +106,9 @@ const steps: Array<[
 	</div>
 
 	<SvgPattern_
+		class="bg"
 		height="100"
-		id="bg _howitworks__bg"
+		id="_howitworks__bg"
 		patternTransform="rotate(35)"
 		src="public/img/icon/helix-pattern.svg"
 		width="150"
@@ -206,7 +207,7 @@ const steps: Array<[
 	}
 
 	@include vars.if-viewport('>=', lg) {
-		--icon-diameter: 100px;
+		--icon-diameter: 100px !important;
 		--text-margin-left: 30px;
 
 		margin-top: 80px;
@@ -222,10 +223,6 @@ const steps: Array<[
 ._howitworks {
 	--bg-width: 0;
 	--bg-offset: 0;
-
-	:global(.section__content) {
-		justify-content: flex-start;
-	}
 
 	&__body {
 		box-sizing: content-box;
