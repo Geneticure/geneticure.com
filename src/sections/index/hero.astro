@@ -1,10 +1,11 @@
 ---
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
+import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
 ---
 
-<section class="section section--columns _hero">
+<Section_ class="section--columns _hero">
 	<div class="_hero__text">
 		<h1 class="text--hdg--1">
 			Find the right<br /> blood pressure medication<br /> using <em>your DNA</em>.
@@ -28,17 +29,18 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 		</div>
 	</div>
 
-	<Img_
-		alt="Kit with contents"
-		class="_hero__images"
-		src="/img/hero.svg"
-	/>
+	<div class="_hero__images">
+		<Img_
+			alt="Kit with contents"
+			src="/img/hero.svg"
+		/>
+	</div>
 
 	<div class="bg _hero__bg">
 		<SvgPattern_ id="_helix" src="public/img/icon/helix.svg" />
 		<SvgPattern_ id="_helix-pattern" src="public/img/icon/helix-pattern.svg" width="30" height="30" />
 	</div>
-</section>
+</Section_>
 
 <style lang="scss">
 @use 'sass:math';
@@ -141,6 +143,21 @@ $helix__height: ($helix__width * $helix__aspect);
 			display: none;
 		}
 
+		&__button {
+			margin-bottom: 25px;
+			order: -1;
+		}
+
+		&__images {
+			order: -1;
+			padding-bottom: 0 !important;
+
+			.img {
+				margin: 0 auto;
+				max-height: 300px;
+			}
+		}
+
 		&__text {
 			padding-bottom: var(--content-padding-y) !important;
 			padding-top: 0 !important;
@@ -150,19 +167,6 @@ $helix__height: ($helix__width * $helix__aspect);
 		&__text__body {
 			display: flex;
 			flex-direction: column;
-		}
-
-		&__button {
-			margin-bottom: 25px;
-			order: -1;
-		}
-
-		&__images {
-			margin: 0 auto;
-			max-height: 300px;
-			order: -1;
-			padding-bottom: 0 !important;
-			width: 100%;
 		}
 	}
 

@@ -2,13 +2,14 @@
 import Cite_ from 'src/components/cite.astro';
 import Img_ from 'src/components/img.astro';
 import Pie_ from 'src/components/pie.astro';
+import Section_ from 'src/components/section.astro';
 
 import { statsById } from 'src/text/stats';
 
 const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsById[id]);
 ---
 
-<section class="section _stats">
+<Section_ class="_stats">
 	<h2 class="text--hdg--2">Using the DNA on a cheek swab, Geneticure recommends which hypertension medication(s) may give you <em>the biggest drop in blood pressure</em>:</h2>
 
 	<div class="_stats__figures">
@@ -38,7 +39,7 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 		css={true}
 		src="/img/bg/pills-crop.jpg"
 	/>
-</section>
+</Section_>
 
 <style lang="scss">
 @use 'sass:list';

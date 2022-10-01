@@ -310,6 +310,13 @@ input {
 	width: 100%;
 
 	&--columns {
+		padding: 0;
+
+		& > * {
+			box-sizing: border-box;
+			padding: var(--content-padding-y) var(--content-padding-x);
+		}
+
 		@include vars.if-viewport('<', lg) {
 			display: flex;
 			flex-direction: column;
@@ -320,6 +327,14 @@ input {
 			display: grid;
 			grid-column-gap: var(--content-gutter-x);
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+
+			> :nth-child(1) {
+				padding-right: 0;
+			}
+
+			> :nth-child(2) {
+				padding-left: 0;
+			}
 		}
 	}
 }

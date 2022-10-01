@@ -1,46 +1,13 @@
 ---
 import { getProps } from 'src/js/astro';
 
-const { props, rest } = getProps(Astro.props, {
-	background: `` as string,
-	class: `` as string,
-	cols: 2 as number,
-});
+const { props, rest } = getProps(Astro.props);
 ---
 
 <section
-	class={`section section--cols--${props.cols} ${props.class}`}
+	class={`section ${props.class}`}
 	data-viewport-visible
 	{...rest}
 >
 	<slot />
-
-	{ Astro.slots.has(`background`) &&
-		<div aria-hidden="true" class="section__bg">
-			<slot name="background" />
-		</div>
-	}
 </section>
-
-<style lang="scss">
-@use 'src/scss/vars';
-
-.section {
-	align-items: center;
-	display: flex;
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-
-	@include vars.if-viewport('<', lg) {
-		flex-direction: column;
-	}
-}
-
-.section__bg {
-	@include vars.expand;
-
-	overflow: hidden;
-	z-index: vars.z(underlay);
-}
-</style>

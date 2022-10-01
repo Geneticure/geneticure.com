@@ -1,9 +1,10 @@
 ---
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
+import Section_ from 'src/components/section.astro';
 ---
 
-<section class="section section--columns _details">
+<Section_ class="section--columns _details">
 	<div class="_details__body">
 		<h2 class="text--hdg--1">
 			Fewer prescriptions.<br />
@@ -22,13 +23,14 @@ import Route_ from 'src/components/route.astro';
 		</aside>
 	</div>
 
-	<Img_
-		alt="Geneticure kit with literature"
-		bgColor={false}
-		class="_details__img"
-		src="/img/kit/kit-w-contents.jpg"
-	/>
-</section>
+	<div class="_details__img">
+		<Img_
+			alt="Geneticure kit with literature"
+			bgColor={false}
+			src="/img/kit/kit-w-contents.jpg"
+		/>
+	</div>
+</Section_>
 
 <style lang="scss">
 @use 'src/scss/vars';
@@ -37,6 +39,7 @@ import Route_ from 'src/components/route.astro';
 	@include vars.if-viewport('<', lg) {
 		&__img {
 			order: -1;
+			padding-bottom: 0 !important;
 		}
 	}
 }
