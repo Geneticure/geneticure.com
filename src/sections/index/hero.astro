@@ -5,7 +5,7 @@ import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
 ---
 
-<Section_ class="section--columns _hero">
+<Section_ class="section--columns section--columns--reverse-sm _hero">
 	<div class="_hero__text">
 		<h1 class="text--hdg--1">
 			Find the right<br /> blood pressure medication<br /> using <em>your DNA</em>.
@@ -149,9 +149,6 @@ $helix__height: ($helix__width * $helix__aspect);
 		}
 
 		&__images {
-			order: -1;
-			padding-bottom: 0 !important;
-
 			.img {
 				margin: 0 auto;
 				max-height: 300px;
@@ -159,8 +156,6 @@ $helix__height: ($helix__width * $helix__aspect);
 		}
 
 		&__text {
-			padding-bottom: var(--content-padding-y) !important;
-			padding-top: 0 !important;
 			text-align: center;
 		}
 

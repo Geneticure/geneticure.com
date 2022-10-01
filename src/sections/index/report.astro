@@ -24,7 +24,7 @@ const organs: Array<[string, string, string]> = [
 ];
 ---
 
-<Section_ class="text--on-dark _report">
+<Section_ class="section--columns text--on-dark _report">
 	<div class="_report__body">
 		<h2 class="text--hdg--1">What's in <em>my report?</em></h2>
 
@@ -63,9 +63,9 @@ const organs: Array<[string, string, string]> = [
 		/>
 	</div>
 
-	<Fragment slot="background">
+	<div class="bg _report__bg">
 		<SvgPattern_ id="report-bg" src="public/img/icon/pills-pattern.svg" width="25" height="25" />
-	</Fragment>
+	</div>
 </Section_>
 
 <style lang="scss">
@@ -81,7 +81,7 @@ $background__color: vars.$color--lowlight;
 		flex-direction: column;
 	}
 
-	:global(.section__bg) {
+	&__bg {
 		background-color: $background__color;
 
 		&::after {
@@ -96,11 +96,9 @@ $background__color: vars.$color--lowlight;
 			stroke-width: 6;
 		}
 	}
-}
 
-._organs {
 	@include vars.if-viewport('<', lg) {
-		padding-bottom: 40px;
+		grid-row-gap: 100px !important;
 	}
 }
 

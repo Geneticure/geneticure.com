@@ -312,14 +312,44 @@ input {
 	&--columns {
 		padding: 0;
 
-		& > * {
+		> .bg {
+			padding: 0;
+		}
+
+		> * {
 			box-sizing: border-box;
 			padding: var(--content-padding-y) var(--content-padding-x);
 		}
 
 		@include vars.if-viewport('<', lg) {
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-row-gap: var(--content-gutter-y);
+			grid-template-rows: repeat(1, minmax(0, 1fr));
+
+			> * {
+				width: 100%;
+			}
+
+			&:not(&--reverse-sm) {
+				> :nth-child(1) {
+					padding-bottom: 0;
+				}
+
+				> :nth-child(2) {
+					padding-top: 0;
+				}
+			}
+
+			&--reverse-sm {
+				> :nth-child(1) {
+					padding-top: 0;
+				}
+
+				> :nth-child(2) {
+					order: -1;
+					padding-bottom: 0;
+				}
+			}
 		}
 
 		@include vars.if-viewport('>=', lg) {

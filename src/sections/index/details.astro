@@ -4,7 +4,7 @@ import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 ---
 
-<Section_ class="section--columns _details">
+<Section_ class="section--columns section--columns--reverse-sm _details">
 	<div class="_details__body">
 		<h2 class="text--hdg--1">
 			Fewer prescriptions.<br />
@@ -31,16 +31,3 @@ import Section_ from 'src/components/section.astro';
 		/>
 	</div>
 </Section_>
-
-<style lang="scss">
-@use 'src/scss/vars';
-
-._details {
-	@include vars.if-viewport('<', lg) {
-		&__img {
-			order: -1;
-			padding-bottom: 0 !important;
-		}
-	}
-}
-</style>

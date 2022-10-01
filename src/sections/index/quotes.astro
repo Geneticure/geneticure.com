@@ -7,7 +7,7 @@ import Svg_ from 'src/components/svg.astro';
 import { quotes } from 'src/text/quotes';
 ---
 
-<section class="section section--columns _quotes">
+<section class="section section--columns section--columns--reverse-sm _quotes">
 	<div class="_quotes__text">
 		<h2 class="text--hdg--2">
 			<Svg_
@@ -75,8 +75,16 @@ import { quotes } from 'src/text/quotes';
 
 ._quotes {
 	background: vars.$color--bg--offset;
-	padding-bottom: 0;
-	padding-top: 0;
+
+	&__icon {
+		aspect-ratio: 1;
+		display: inline-block;
+		vertical-align: bottom;
+
+		:global(path) {
+			fill: url('#_quotes-icon-gradient');
+		}
+	}
 
 	&__images {
 		&__bg {
@@ -100,17 +108,6 @@ import { quotes } from 'src/text/quotes';
 		}
 	}
 
-	&__icon {
-		aspect-ratio: 1;
-		display: inline-block;
-		vertical-align: bottom;
-
-		:global(path) {
-			fill: url('#_quotes-icon-gradient');
-		}
-	}
-
-
 	@include vars.if-viewport('==', sm) {
 		:global(.carousel__arrow) {
 			font-size: 60px;
@@ -119,12 +116,13 @@ import { quotes } from 'src/text/quotes';
 	}
 
 	@include vars.if-viewport('<', lg) {
+		grid-row-gap: 30px !important;
+
 		&__icon {
 			width: 40px;
 		}
 
 		&__images {
-			order: -1;
 			padding: 0 !important;
 
 			&__bg {
@@ -134,8 +132,7 @@ import { quotes } from 'src/text/quotes';
 		}
 
 		&__text {
-			padding-bottom: 50px !important;
-			padding-top: 50px !important;
+			overflow: hidden;
 		}
 	}
 
@@ -151,12 +148,7 @@ import { quotes } from 'src/text/quotes';
 			&__bg {
 				aspect-ratio: 1;
 				border-radius: 50%;
-				overflow: hidden;
 			}
-		}
-
-		&__text {
-			padding-right: 50px !important;
 		}
 	}
 }
@@ -166,10 +158,6 @@ import { quotes } from 'src/text/quotes';
 	border-radius: 10px;
 	box-sizing: border-box;
 	padding: 20px;
-
-	&__body {
-		white-space: pre-wrap;
-	}
 
 	&__author {
 		margin-left: 50%;
@@ -183,6 +171,10 @@ import { quotes } from 'src/text/quotes';
 			vertical-align: middle;
 			width: 30px;
 		}
+	}
+
+	&__body {
+		white-space: pre-wrap;
 	}
 }
 </style>
