@@ -1,10 +1,9 @@
 ---
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
-import Section_ from 'src/components/section.astro';
 ---
 
-<Section_ class="_details">
+<section class="section section--columns _details">
 	<div class="_details__body">
 		<h2 class="text--hdg--1">
 			Fewer prescriptions.<br />
@@ -23,32 +22,21 @@ import Section_ from 'src/components/section.astro';
 		</aside>
 	</div>
 
-	<div class="_details__img">
-		<Img_
-			alt="Geneticure kit with literature"
-			src="/img/kit/kit-w-contents.jpg"
-		/>
-	</div>
-</Section_>
+	<Img_
+		alt="Geneticure kit with literature"
+		bgColor={false}
+		class="_details__img"
+		src="/img/kit/kit-w-contents.jpg"
+	/>
+</section>
 
 <style lang="scss">
 @use 'src/scss/vars';
 
 ._details {
 	@include vars.if-viewport('<', lg) {
-		&__body {
-			padding-top: 0 !important;
-		}
-
 		&__img {
 			order: -1;
-			padding-bottom: 0 !important;
-		}
-	}
-
-	@include vars.if-viewport('==', lg) {
-		&__body {
-			padding-right: 0 !important;
 		}
 	}
 }
