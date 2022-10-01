@@ -10,29 +10,31 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 ---
 
 <Section_ class="_stats">
-	<h2 class="text--hdg--2">Using the DNA on a cheek swab, Geneticure recommends which hypertension medication(s) may give you <em>the biggest drop in blood pressure</em>:</h2>
+	<div>
+		<h2 class="text--hdg--2">Using the DNA on a cheek swab, Geneticure recommends which hypertension medication(s) may give you <em>the biggest drop in blood pressure</em>:</h2>
 
-	<div class="_stats__figures">
-		{stats.map((stat) =>
-			<figure class="_figure">
-				<Pie_
-					segments={[[100 - stat.value]]}
-					total={100}
-				>
-					<div class="text--hdg--1 _figure__value">
-						{stat.value}
-						<sup class="_figure__value__symbol">%</sup>
-					</div>
-				</Pie_>
+		<div class="_stats__figures">
+			{stats.map((stat) =>
+				<figure class="_figure">
+					<Pie_
+						segments={[[100 - stat.value]]}
+						total={100}
+					>
+						<div class="text--hdg--1 _figure__value">
+							{stat.value}
+							<sup class="_figure__value__symbol">%</sup>
+						</div>
+					</Pie_>
 
-				<figcaption class="text--hdg--3 _figure__text">
-					{stat.title}<Cite_ to={stat.cite} />
-				</figcaption>
-			</figure>,
-		)}
+					<figcaption class="text--hdg--3 _figure__text">
+						{stat.title}<Cite_ to={stat.cite} />
+					</figcaption>
+				</figure>,
+			)}
+		</div>
+
+		<aside>Our research supports that the Geneticure approach of DNA-guided therapy is associated with ~7mmHg lower systolic blood pressure and ~6mmHg diastolic blood pressure. This is 22% and 39% lower respectively versus non-genetically matched care.<Cite_ to="article-algorithm" /></aside>
 	</div>
-
-	<aside>Our research supports that the Geneticure approach of DNA-guided therapy is associated with ~7mmHg lower systolic blood pressure and ~6mmHg diastolic blood pressure. This is 22% and 39% lower respectively versus non-genetically matched care.<Cite_ to="article-algorithm" /></aside>
 
 	<Img_
 		class="bg _stats__bg"

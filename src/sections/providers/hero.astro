@@ -6,8 +6,8 @@ import Section_ from 'src/components/section.astro';
 import { routes } from 'src/routes';
 ---
 
-<Section_ class="hero _hero" cols={0}>
-	<div class="overlay _hero__fg">
+<Section_ class="hero section--overlay _hero">
+	<div class="overlay overlay--center _hero__fg">
 		<h1 class="text--hdg--1">
 			Treat hypertension with <em>precision</em>.
 		</h1>
@@ -24,27 +24,18 @@ import { routes } from 'src/routes';
 		</p>
 	</div>
 
-	<Fragment slot="background">
-		<Img_
-			alt="Photo of a lab technician"
-			class="_hero__bg"
-			src="/img/bg/lab-test.jpg"
-		/>
-	</Fragment>
+	<Img_
+		alt="Photo of a lab technician"
+		class="bg _hero__bg"
+		src="/img/bg/lab-test.jpg"
+	/>
 </Section_>
 
 <style lang="scss">
 @use 'src/scss/vars';
 
 ._hero {
-	&__fg {
-		padding-right: 30px !important;
-	}
-
 	&__bg {
-		@include vars.expand;
-
-		object-fit: cover;
 		object-position: center left;
 	}
 }
@@ -63,20 +54,5 @@ hr {
 
 .button--hero {
 	margin-top: 10px;
-}
-
-@include vars.if-viewport('>=', md) {
-	._hero {
-		&__fg {
-			width: 60% !important;
-		}
-	}
-}
-
-@include vars.if-viewport('>=', lg) {
-	._hero {
-		height: 100vh;
-		max-height: 1000px;
-	}
 }
 </style>

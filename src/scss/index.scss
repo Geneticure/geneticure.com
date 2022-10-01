@@ -111,10 +111,20 @@ b {
 }
 
 .bg {
-	@include vars.expand;
-
+	background-size: cover;
+	object-fit: cover;
 	overflow: hidden;
 	z-index: vars.z(underlay);
+
+	&,
+	img {
+		@include vars.expand;
+	}
+
+	img {
+		object-fit: inherit;
+		object-position: inherit;
+	}
 }
 
 button {
@@ -182,6 +192,10 @@ form {
 .hero {
 	@media print {
 		height: auto;
+	}
+
+	@include vars.if-viewport('<', md) {
+		min-height: 100vh;
 	}
 
 	@include vars.if-viewport('>=', md) {
@@ -276,31 +290,27 @@ input {
 }
 
 .overlay {
-	--border-radius: 10px;
-
 	backdrop-filter: blur(3px);
 	background-color: vars.$color--overlay;
-	border-radius: var(--border-radius);
-	margin: 100px auto;
+	border-radius: 10px;
+	box-sizing: border-box;
 	padding: var(--content-padding-y) var(--content-gutter-x);
 
 	&--left {
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 0;
-		margin-left: 0;
-		padding-left: var(--content-padding-x);
 	}
 
 	&--right {
 		border-bottom-right-radius: 0;
 		border-top-right-radius: 0;
-		margin-right: 0;
-		padding-right: var(--content-padding-x);
 	}
 }
 
 .section {
+	align-items: center;
 	box-sizing: border-box;
+	display: flex;
 	overflow: hidden;
 	padding: var(--content-padding-y) var(--content-padding-x);
 	position: relative;
@@ -361,6 +371,46 @@ input {
 
 			> :nth-child(2) {
 				padding-left: 0;
+			}
+		}
+	}
+
+	&--overlay {
+		padding-left: 0;
+		padding-right: 0;
+
+		.overlay {
+			&--center {
+				@include vars.if-viewport('<', lg) {
+					margin-left: var(--content-padding-x);
+					margin-right: var(--content-padding-x);
+				}
+
+				@include vars.if-viewport('>=', lg) {
+					margin-left: auto;
+					margin-right: auto;
+					max-width: calc(100vw - (2 * var(--content-padding-x)));
+					width: 60%;
+				}
+			}
+
+			&--left,
+			&--right {
+				@include vars.if-viewport('<', lg) {
+					width: calc(100vw - var(--content-padding-x));
+				}
+
+				@include vars.if-viewport('>=', lg) {
+					width: 60%;
+				}
+			}
+
+			&--left {
+				padding-left: var(--content-padding-x);
+			}
+
+			&--right {
+				padding-right: var(--content-padding-x);
 			}
 		}
 	}
