@@ -3,12 +3,12 @@ import { getProps } from 'src/js/astro';
 
 const { props, rest } = getProps(Astro.props, {
 	id: `carousel`,
-	source: [] as Array<unknown>,
 });
 ---
 
 <div
 	class={`_carousel ${props.class}`}
+	data-carousel
 	id={props.id}
 	{...rest}
 >
@@ -33,20 +33,22 @@ const { props, rest } = getProps(Astro.props, {
 	<div class="_carousel__body">
 		<div
 			class="_carousel__slides"
+			data-carousel-slides
 			id={`${props.id}__slides`}
 		>
 			<slot />
 		</div>
 
-		<p aria-hidden="true" class="_carousel__toggles">
-			{props.source.map((nil, index) =>
+		<p
+			aria-hidden="true"
+			class="_carousel__toggles"
+			data-carousel-toggles
+		>
+			<template data-carousel-toggle>
 				<button
 					data-toggle-trigger={props.id}
-					data-toggle-index={index}
-				>
-					#{index}
-				</button>,
-			)}
+				></button>
+			</template>
 		</p>
 	</div>
 </div>
@@ -144,10 +146,46 @@ const { props, rest } = getProps(Astro.props, {
 </style>
 
 <script>
-import { ToggleEvents, ToggleEndEvent } from 'src/js/toggle';
+import * as Toggle from 'src/js/toggle';
 
-document.addEventListener(ToggleEvents.end, (event: CustomEvent) => {
-	const detail = event.detail as ToggleEndEvent;
+const ATTR__CAROUSEL = `data-carousel`;
+const ATTR__CAROUSEL__TOGGLE_WRAP = `data-carousel-toggles`;
+const ATTR__CAROUSEL__TOGGLE_TEMPLATE = `data-carousel-toggle`;
+const ATTR__CAROUSEL__SLIDE_WRAP = `data-carousel-slides`;
+
+const $carousels = Array.from(document.querySelectorAll(`[${ATTR__CAROUSEL}]`));
+for (const $carousel of $carousels) {
+	carouselSetup($carousel);
+}
+
+function carouselSetup($carousel: Element) {
+	const carouselId = $carousel.getAttribute(`id`);
+	const $toggleWrap = $carousel.querySelector(`[${ATTR__CAROUSEL__TOGGLE_WRAP}]`);
+	const $toggleTemplate = $toggleWrap.querySelector(`[${ATTR__CAROUSEL__TOGGLE_TEMPLATE}]`) as HTMLTemplateElement;
+	$toggleTemplate.remove();
+
+	const $slideWrap = $carousel.querySelector(`[${ATTR__CAROUSEL__SLIDE_WRAP}]`);
+	const $slides = Array.from($slideWrap.children);
+
+	$slides.forEach(($slide, index) => {
+		$slide.setAttribute(Toggle.ATTR__TARGET, carouselId);
+		$slide.setAttribute(Toggle.ATTR__INDEX, index.toString());
+
+		const $toggle = ($toggleTemplate.content.cloneNode(true) as Element).querySelector(`[${Toggle.ATTR__TRIGGER}]`);
+		$toggle.setAttribute(Toggle.ATTR__TRIGGER, carouselId);
+		$toggle.setAttribute(Toggle.ATTR__INDEX, index.toString());
+		$toggle.innerHTML = `#${index}`;
+		$toggleWrap.appendChild($toggle);
+	});
+
+	const $slideAnchor = $slides[0] as HTMLElement;
+	$slideAnchor.setAttribute(Toggle.ATTR__TARGET__ISDEFAULT, `1`);
+
+	Toggle.toggleSetup($carousel);
+}
+
+document.addEventListener(Toggle.ToggleEvents.end, (event: CustomEvent) => {
+	const detail = event.detail as Toggle.ToggleEndEvent;
 	const $slidesContainer = document.getElementById(`${detail.id}__slides`);
 	if (!$slidesContainer) {
 		return;
@@ -156,4 +194,5 @@ document.addEventListener(ToggleEvents.end, (event: CustomEvent) => {
 	const $slide = $slides[0] as HTMLElement;
 	$slide.style.setProperty('--slide-index', detail.state.index.toString());
 });
+
 </script>

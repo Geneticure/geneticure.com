@@ -1,8 +1,8 @@
-const ATTR__INDEX = `data-toggle-index`;
-const ATTR__TARGET = `data-toggle-target`;
-const ATTR__TARGET__ISDEFAULT = `data-toggle-target-isdefault`;
-const ATTR__TRIGGER = `data-toggle-trigger`;
-const CLASS__ON = `toggle--on`;
+export const ATTR__INDEX = `data-toggle-index`;
+export const ATTR__TARGET = `data-toggle-target`;
+export const ATTR__TARGET__ISDEFAULT = `data-toggle-target-isdefault`;
+export const ATTR__TRIGGER = `data-toggle-trigger`;
+export const CLASS__ON = `toggle--on`;
 
 export interface ToggleState {
 	index: number;
@@ -28,9 +28,15 @@ export interface ToggleEndEvent {
 	state: ToggleState;
 }
 
-export function toggleSetup() {
-	const $targets = Array.from(document.querySelectorAll(`[${ATTR__TARGET}]`)) as Array<HTMLElement>;
-	const $triggers = Array.from(document.querySelectorAll(`[${ATTR__TRIGGER}]`)) as Array<HTMLElement>;
+export function toggleSetup($root: Element) {
+	const $targets = [
+		...($root.hasAttribute(ATTR__TARGET) ? [$root] : []),
+		...Array.from($root.querySelectorAll(`[${ATTR__TARGET}]`)),
+	] as Array<HTMLElement>;
+	const $triggers = [
+		...($root.hasAttribute(ATTR__TRIGGER) ? [$root] : []),
+		...Array.from($root.querySelectorAll(`[${ATTR__TRIGGER}]`)),
+	] as Array<HTMLElement>;
 
 	for (const $target of $targets) {
 		const targetId = $target.getAttribute(ATTR__TARGET);
@@ -123,12 +129,12 @@ export function toggleSetup() {
 		// TODO3: Cache events to replay them on subscribe? Rxjs? :-(
 		document.dispatchEvent(new CustomEvent(ToggleEvents.end, { detail: { id, state: state[id] } }));
 	}
+}
 
-	function turnOff($target: HTMLElement) {
-		$target.classList.remove(CLASS__ON);
-	}
+function turnOff($target: HTMLElement) {
+	$target.classList.remove(CLASS__ON);
+}
 
-	function turnOn($target: HTMLElement) {
-		$target.classList.add(CLASS__ON);
-	}
+function turnOn($target: HTMLElement) {
+	$target.classList.add(CLASS__ON);
 }
