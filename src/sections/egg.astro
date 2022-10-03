@@ -7,6 +7,7 @@
 ></div>
 
 <script>
+import { sleep } from 'src/js/timer';
 import * as Konami from 'src/js/konami';
 
 const CLASS__ON = `_egg--on`;
@@ -15,7 +16,7 @@ const state = {
 	isRunning: false,
 };
 
-window.addEventListener(Konami.KONAMI__EVENT, () => {
+window.addEventListener(Konami.KONAMI__EVENT, async () => {
 	if (state.isRunning) {
 		return;
 	}
@@ -27,10 +28,14 @@ window.addEventListener(Konami.KONAMI__EVENT, () => {
 	$img.setAttribute(`src`, `/img/logo/greencutie.svg`);
 	$egg.appendChild($img);
 	$egg.classList.add(CLASS__ON);
-	setTimeout(() => {
-		$egg.classList.remove(CLASS__ON);
-		state.isRunning = false;
-	}, 6000);
+
+	await sleep(6000);
+
+	$egg.classList.remove(CLASS__ON);
+
+	await sleep(500);
+	$img.parentElement.removeChild($img);
+	state.isRunning = false;
 });
 </script>
 
