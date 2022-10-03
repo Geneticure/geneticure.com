@@ -11,8 +11,8 @@ const sequence = [
 	`ArrowRight`,
 	`ArrowLeft`,
 	`ArrowRight`,
-	`KeyB`,
-	`KeyA`,
+	`b`,
+	`a`,
 ];
 
 export const state = {
@@ -21,7 +21,7 @@ export const state = {
 
 
 function konamiListener(event: KeyboardEvent) {
-	state.input.push(event.code);
+	state.input.push(event.key);
 
 	const inputString = state.input.join(`.`);
 	const sequenceString = sequence.join(`.`);

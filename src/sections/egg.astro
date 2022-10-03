@@ -14,6 +14,7 @@ const CLASS__ON = `_egg--on`;
 const $egg = document.getElementById(`egg`);
 const state = {
 	isRunning: false,
+	$source: null as SVGElement,
 };
 
 window.addEventListener(Konami.KONAMI__EVENT, async () => {
@@ -24,9 +25,13 @@ window.addEventListener(Konami.KONAMI__EVENT, async () => {
 	state.isRunning = true;
 	$egg.innerHTML = ``;
 
-	const $img = document.createElement(`IMG`);
-	$img.setAttribute(`src`, `/img/logo/greencutie.svg`);
-	$egg.appendChild($img);
+	if (!state.$source) {
+		const svgData = await (await fetch(`/img/logo/greencutie.svg`)).text();
+		state.$source = (new DOMParser()).parseFromString(svgData, `image/svg+xml`).getElementsByTagName(`svg`)[0];
+	}
+
+	const $svg = state.$source.cloneNode(true);
+	$egg.appendChild($svg);
 	$egg.classList.add(CLASS__ON);
 
 	await sleep(6000);
@@ -34,7 +39,7 @@ window.addEventListener(Konami.KONAMI__EVENT, async () => {
 	$egg.classList.remove(CLASS__ON);
 
 	await sleep(500);
-	$img.parentElement.removeChild($img);
+	$egg.removeChild($svg);
 	state.isRunning = false;
 });
 </script>
@@ -60,7 +65,7 @@ window.addEventListener(Konami.KONAMI__EVENT, async () => {
 		top: 0;
 	}
 
-	:global(img) {
+	:global(svg) {
 		background: #FFFFFF;
 		border-radius: 10px;
 		box-shadow: 0 0 100px 100px vars.$color--shadow--sink;
