@@ -1,11 +1,22 @@
 # Style guide
 
+## JS
+
+- Use `data-` attributes to select items with JS, not CSS classes.
+
 ## CSS
 
-TODO2: Make everything actually follow these guidelines.
-
 - Put classes in alphabetical order.
-- Nest compound classes using `&`
+
+    Otherwise everyone kind-of comes up with their own order. Alphabetical isn't perfect, but at least it's consistent.
+
+- Use compound classes with a prefix, [BEM-style](https://getbem.com/introduction/).
+
+    e.g. `<div class="hero"><img class="hero__bg"></div>`
+
+    This makes the CSS better reflect the structure of the HTML. Start a new compound class when an element is stylistically independent of its parent. Hard rule to enforce; you sorta know it when you see it.
+
+- Nest compound classes using `&`.
 
     For example, instead of:
     ```
@@ -19,15 +30,9 @@ TODO2: Make everything actually follow these guidelines.
     }
     ```
 
-- Use compound classes
+    This cuts down on the amount of CSS we need to write, makes it easier to change class prefixes, makes the CSS better reflect the structure of the HTML, and means you get a nice collapsible tree in VSCode.
 
-    e.g. `<div class="hero"><img class="hero__bg"></div>
-
-    This makes the CSS better reflect the structure of the HTML, is less to write, and means you get a nice collapsible tree in VSCode.
-
-    Start a new compound class when an element is stylistically independent of its parent. Hard rule to enforce; you sorta know it when you see it.
-
-- Prefix scoped/component classes with `_`
+- Prefix scoped/component classes with `_`.
 
     This way it's easier to tell in HTML whether a class is global or local.
 
@@ -37,4 +42,47 @@ TODO2: Make everything actually follow these guidelines.
 
 - Nest `@media` inside a compound class's topmost element, if possible.
 
-    e.g. `.foo { @media ... }` instad of `@media { .foo ... }`. The exception is if a media query targets multiple unrelated elements. This makes it easier to see what media queries target.
+    No, because if @media isn't alongside the elements it affects, things get disorganized.
+    ```
+    .hero {
+        &__bg {}
+    }
+
+    .footer {}
+
+    @media {
+        .hero {
+            &__bg {}
+        }
+    }
+    ```
+
+    The exception is if a @media rule applies the same CSS to multiple elements:
+    ```
+    @media {
+        .hero,
+        .footer {}
+    }
+    ```
+
+    No, because if @media are inside the most specific selectors you end up with a bunch of disjointed @media all over the place.
+    ```
+    .hero {
+        &__bg {
+            @media {}
+        }
+    }
+    ```
+
+    Yes:
+    ``
+    .hero {
+        &__bg {}
+
+        @media {
+            &__bg{}
+        }
+    }
+
+    .footer {}
+    ```
