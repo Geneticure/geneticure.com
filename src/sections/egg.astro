@@ -1,0 +1,66 @@
+---
+---
+
+<div
+	aria-hidden="true"
+	id="egg"
+></div>
+
+<script>
+import * as Konami from 'src/js/konami';
+
+const CLASS__ON = `_egg--on`;
+const $egg = document.getElementById(`egg`);
+const state = {
+	isRunning: false,
+};
+
+window.addEventListener(Konami.KONAMI__EVENT, () => {
+	if (state.isRunning) {
+		return;
+	}
+
+	state.isRunning = true;
+	$egg.innerHTML = ``;
+
+	const $img = document.createElement(`IMG`);
+	$img.setAttribute(`src`, `/img/logo/greencutie.svg`);
+	$egg.appendChild($img);
+	$egg.classList.add(CLASS__ON);
+	setTimeout(() => {
+		$egg.classList.remove(CLASS__ON);
+		state.isRunning = false;
+	}, 6000);
+});
+</script>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+#egg {
+	align-items: center;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	left: 0;
+	opacity: 0;
+	position: fixed;
+	top: 100%;
+	transition: opacity .5s, top .5s;
+	width: 100%;
+
+	&._egg--on {
+		opacity: 1;
+		top: 0;
+	}
+
+	:global(img) {
+		background: #FFFFFF;
+		border-radius: 10px;
+		box-shadow: 0 0 100px 100px vars.$color--shadow--sink;
+		min-width: 300px;
+		padding: 10px;
+		width: 50vw;
+	}
+}
+</style>

@@ -93,7 +93,7 @@ const _team: Array<[
 		`robin`,
 		`Staff Software Engineer`,
 		`robin.jpg`,
-		`Robin has implemented new design systems at Google, managed merchant Bitcoin adoption for Coinbase, and lead machine learning initiatives at Best Buy's digital headquarters. He loves teaching code as much as writing it, and was among the highest-rated instructors of General Assembly's Web Development Immersive.`,
+		`Robin has implemented new design systems at Google, managed merchant Bitcoin adoption for Coinbase, and lead machine learning initiatives at Best Buy's digital headquarters. He loves teaching code as much as writing it, and was among the highest-rated instructors of General Assembly's Web Development Immersive. He encourages you to try the Konami Code on this site.`,
 		`robertakarobin`,
 	],
 ];
