@@ -21,15 +21,13 @@ import { quotes } from 'src/text/quotes';
 
 		<SvgGradient_ id="_quotes-icon-gradient" />
 
-		<Carousel_ id="quote" source={quotes}>
-			{quotes.map((quote, index) =>
-				<div
-					class="_quote"
-					data-toggle-target="quote"
-					data-toggle-target-isdefault={index === 0}
-					data-toggle-index={index}
-				>
-					<blockquote class="_quote__body" set:html={quote.text}></blockquote>
+		<Carousel_>
+			{quotes.map((quote) =>
+				<div class="_quote">
+					<blockquote
+						class="_quote__body"
+						set:html={quote.text}
+					></blockquote>
 
 					<p class="_quote__author">
 						<strong>{quote.name}</strong>

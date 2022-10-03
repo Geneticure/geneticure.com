@@ -1,4 +1,5 @@
 ---
+import Carousel_ from 'src/components/carousel.astro';
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
@@ -24,10 +25,24 @@ import Section_ from 'src/components/section.astro';
 	</div>
 
 	<div>
-		<Img_
-			alt="Geneticure kit with literature"
-			bgColor={false}
-			src="/img/kit/kit-w-contents.jpg"
-		/>
+		<Carousel_ id="product">
+			<Img_
+				alt="Geneticure kit with contents"
+				bgColor={false}
+				src="/img/kit/kit-w-contents.jpg"
+			/>
+
+			<Img_
+				alt="Geneticure kit open"
+				bgColor={false}
+				src="/img/kit/kit-open.jpg"
+			/>
+
+			<Img_
+				alt="Geneticure kit swab"
+				bgColor={false}
+				src="/img/kit/kit-swab.jpg"
+			/>
+		</Carousel_>
 	</div>
 </Section_>

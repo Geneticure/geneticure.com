@@ -20,6 +20,7 @@ const { props, rest } = getProps(Astro.props, {
 
 <nav
 	class={`_nav ${props.fixed ? `_nav--fixed` : ``} ${props.opaqueAtTop ? `_nav--opaque-at-top` : ``}`}
+	data-nav
 	data-toggle-index="0"
 	data-toggle-target="nav__links"
 	data-toggle-target-isdefault
@@ -292,3 +293,10 @@ const { props, rest } = getProps(Astro.props, {
 	}
 }
 </style>
+
+<script>
+import * as Toggle from 'src/js/toggle';
+
+const $nav = document.querySelector(`[data-nav]`);
+Toggle.toggleSetup($nav);
+</script>
