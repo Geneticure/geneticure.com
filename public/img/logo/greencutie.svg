@@ -5,13 +5,26 @@
 			--duration-features: .5s;
 			--duration-spin: 1s;
 			--color-blue: #009ADE;
+			--color-grey: #424143;
 			--color-green: #36DD89;
 			--transform-start: rotateZ(0deg);
 		}
 
 		.eye,
 		.mouth {
-			fill:#424143;
+			animation: eyemouth var(--duration-features) forwards;
+			animation-delay: calc(var(--duration-delay) + var(--duration-spin));
+			fill: var(--color-grey);
+		}
+
+		@keyframes eyemouth {
+			0% {
+				fill: var(--color-grey);
+			}
+
+			100% {
+				fill: #072C1A;
+			}
 		}
 
 		.eyeball {
@@ -86,53 +99,8 @@
 		}
 
 		/* Scripts in embedded SVGs are all weird, so just doing this with CSS */
-		@keyframes text-0 { to { transform: translateX(0px); } } #text > :nth-child(1) { animation-name: text-0; } @keyframes text-1 { to { transform: translateX(21.50354766845703px); } } #text > :nth-child(2) { animation-name: text-1; } @keyframes text-2 { to { transform: translateX(39.90354919433594px); } } #text > :nth-child(3) { animation-name: text-2; } @keyframes text-3 { to { transform: translateX(-3.396453857421875px); } } #text > :nth-child(4) { animation-name: text-3; } @keyframes text-4 { to { transform: translateX(86.72673797607422px); } } #text > :nth-child(5) { animation-name: text-4; } @keyframes text-5 { to { transform: translateX(88.52672576904297px); } } #text > :nth-child(6) { animation-name: text-5; } @keyframes text-6 { to { transform: translateX(15.703544616699219px); } } #text > :nth-child(7) { animation-name: text-6; } @keyframes text-7 { to { transform: translateX(16.626731872558594px); } } #text > :nth-child(8) { animation-name: text-7; } @keyframes text-8 { to { transform: translateX(-128.80001831054688px); } } #text > :nth-child(9) { animation-name: text-8; } @keyframes text-9 { to { transform: translateX(22.626731872558594px); } } #text > :nth-child(10) { animation-name: text-9; } @keyframes text-10 { to { transform: translateX(-83.35645294189453px); } } #text > :nth-child(11) { animation-name: text-10; }
-
+		@keyframes text-0 { to { transform: translateX(0px); } } #text > :nth-child(1) { animation-name: text-0; } @keyframes text-1 { to { transform: translateX(21.5px); } } #text > :nth-child(2) { animation-name: text-1; } @keyframes text-2 { to { transform: translateX(39.9px); } } #text > :nth-child(3) { animation-name: text-2; } @keyframes text-3 { to { transform: translateX(-3.4px); } } #text > :nth-child(4) { animation-name: text-3; } @keyframes text-4 { to { transform: translateX(86.7px); } } #text > :nth-child(5) { animation-name: text-4; } @keyframes text-5 { to { transform: translateX(88.5px); } } #text > :nth-child(6) { animation-name: text-5; } @keyframes text-6 { to { transform: translateX(15.7px); } } #text > :nth-child(7) { animation-name: text-6; } @keyframes text-7 { to { transform: translateX(16.6px); } } #text > :nth-child(8) { animation-name: text-7; } @keyframes text-8 { to { transform: translateX(-128.8px); } } #text > :nth-child(9) { animation-name: text-8; } @keyframes text-9 { to { transform: translateX(22.6px); } } #text > :nth-child(10) { animation-name: text-9; } @keyframes text-10 { to { transform: translateX(-83.4px); } } #text > :nth-child(11) { animation-name: text-10; }
 	</style>
-
-	<!--<script>
-		const ATTR__CHAR = `data-char`;
-		const ATTR__TARGET__INDEX = `data-target-index`;
-		const ATTR__TARGET__POSITION = `data-target-position`;
-
-		document.addEventListener(`DOMContentLoaded`, () => {
-			const $text = document.getElementById(`text`);
-			const $characters = Array.from($text.children);
-
-			const $charactersByOrigin = [...$characters];
-			`green cutie`.split(``).forEach((character, targetIndex) => {
-				const startIndex = $charactersByOrigin.findIndex(($character) => {
-					return $character.getAttribute(ATTR__CHAR) === character;
-				});
-
-				if (startIndex === -1) {
-					return;
-				}
-
-				const $character = $charactersByOrigin[startIndex];
-				$character.setAttribute(ATTR__TARGET__INDEX, targetIndex);
-				$charactersByOrigin.splice(startIndex, 1);
-			});
-
-			const $charactersByTarget = [...$characters];
-			$charactersByTarget.sort(($a, $b) => $a.getAttribute(ATTR__TARGET__INDEX) - $b.getAttribute(ATTR__TARGET__INDEX));
-
-			let targetX = $text.getBBox().x;
-			$charactersByTarget.forEach(($character) => {
-				let { x, width } = $character.getBBox();
-				const difference = targetX - x;
-				$character.setAttribute(ATTR__TARGET__POSITION, difference);
-				targetX = targetX + width + 5;
-			});
-
-			let out = [];
-			$characters.forEach(($character, index) => {
-				const translateX = $character.getAttribute(ATTR__TARGET__POSITION);
-				out.push(`@keyframes text-${index} { to { transform: translateX(${translateX}px); } } #text > :nth-child(${index + 1}) { animation-name: text-${index}; }`);
-			});
-			console.log(out.join(` `));
-		});
-	</script>-->
 
   <g class="face">
     <path class="eye" d="M24.19,2.78h-7.9c-3.41,0-6.29,2.69-6.29,6.29s2.87,6.29,6.29,6.29h7.9V2.78Z"/>
