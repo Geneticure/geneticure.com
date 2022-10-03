@@ -37,3 +37,7 @@ export function throttle(options: Partial<typeof throttleOptions> = throttleOpti
 		}, interval);
 	};
 }
+
+export function sleep(time: number) {
+	return new Promise((resolve) => setTimeout(resolve, time));
+}
