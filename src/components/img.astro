@@ -8,7 +8,7 @@ const { props, rest } = getProps(Astro.props, {
 	alt: ``,
 	bgColor: null,
 	css: null,
-	lazy: true,
+	lazy: true, // TODO3: Not using `[loading="lazy"]` because I want the same behavior on CSS background=image and `<img />`
 	src: null as string,
 });
 
