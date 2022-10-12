@@ -43,16 +43,13 @@ const title = `Geneticure` + (props.title && (` | ` + props.title ));
 			<link rel="stylesheet" href="/css/localfonts.css">
 		}
 
-		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=UA-58090183-1"></script>
-		<script is:inline>
-			/* eslint-disable */
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
+		{ isProd &&
+			<script async type="module" src="/js/tracking.js"></script>
+			<noscript>
+				<img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1300441860085124&ev=PageView&noscript=1"/>
+			</noscript>
+		}
 
-			gtag('config', 'UA-58090183-1');
-			/* eslint-enable */
-		</script>
 		<script src="src/js/index"></script>
 	</head>
 	<body>
