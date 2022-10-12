@@ -1,5 +1,9 @@
 # Geneticure.com
 
+## Styleguide
+
+See [styleguide](gce-lib/styleguide.md)
+
 ## Folders of note
 
 -   `/public/img`: All the images used on the site.
