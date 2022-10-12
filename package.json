@@ -16,27 +16,22 @@
 	"dependencies": {
 		"@astrojs/mdx": "^0.11.4",
 		"@astrojs/sitemap": "^1.0.0",
+		"astro-compress": "^1.0.9",
 		"astro": "^1.4.3",
+		"csv-parse": "^5.3.0",
 		"fast-average-color-node": "^2.4.0",
 		"htmlparser2": "^8.0.1",
-		"image-size": "^1.0.2"
+		"image-size": "^1.0.2",
+		"sass": "^1.55.0"
 	},
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^5.39.0",
-		"@typescript-eslint/parser": "^5.39.0",
-		"astro-compress": "^1.0.9",
-		"astro-eslint-parser": "^0.6.2",
-		"csv-parse": "^5.3.0",
+		"@typescript-eslint/eslint-plugin": "^5.40.0",
+		"@typescript-eslint/parser": "^5.40.0",
 		"eslint": "^8.24.0",
 		"eslint-plugin-astro": "^0.19.0",
+		"gce-lib": "file:gce-lib",
 		"http-server": "^14.1.1",
 		"nodemon": "^2.0.20",
-		"postcss-html": "^1.5.0",
-		"postcss-scss": "^4.0.5",
-		"sass": "^1.55.0",
-		"stylelint": "^14.13.0",
-		"stylelint-config-standard": "^28.0.0",
-		"stylelint-config-standard-scss": "^5.0.0",
-		"stylelint-order": "^5.0.0"
+		"stylelint": "^14.13.0"
 	}
 }

@@ -1,9 +1,7 @@
 {
 	"extends": [
-		"eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-		"plugin:astro/recommended"
+		"plugin:astro/recommended",
+		"./gce-lib/.eslintrc.json"
 	],
 	"globals": {
 		"Astro": "readonly"
@@ -22,46 +20,7 @@
 			}
 		}
 	],
-	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"ecmaFeatures": {
-			"modules": true
-		},
-		"ecmaVersion": "latest",
-		"extraFileExtensions": [".astro"],
-		"project": "./tsconfig.json",
-		"sourceType": "module"
-	},
-	"rules": {
-		"comma-dangle": ["warn", "always-multiline"],
-		"curly": ["warn", "all"],
-		"indent": ["warn", "tab", {
-			"SwitchCase": 1
-		}],
-		"key-spacing": [
-			"warn",
-			{
-				"afterColon": true,
-				"beforeColon": false,
-				"mode": "strict"
-			}
-		],
-		"object-curly-spacing": ["warn", "always"],
-		"quote-props": ["warn", "consistent"],
-		"quotes": ["warn", "backtick"],
-		"semi": ["warn", "always"],
-		"sort-keys": [
-			"warn",
-			"asc",
-			{
-				"allowLineSeparatedGroups": true
-			}
-		],
-		"sort-imports": ["warn", {
-			"allowSeparatedGroups": true
-		}],
-		"space-before-blocks": ["warn", "always"],
-		"space-before-function-paren": ["warn", "never"],
-		"space-infix-ops": ["warn"]
+		"extraFileExtensions": [".astro"]
 	}
 }
