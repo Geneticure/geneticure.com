@@ -192,7 +192,7 @@ document.addEventListener(Toggle.ToggleEvents.end, (event: CustomEvent) => {
 	}
 	const $slides = Array.from($slidesContainer.children);
 	const $slide = $slides[0] as HTMLElement;
-	$slide.style.setProperty('--slide-index', detail.state.index.toString());
+	$slide.style.setProperty(`--slide-index`, detail.state.index.toString());
 });
 
 </script>

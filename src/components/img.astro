@@ -1,8 +1,9 @@
 ---
 import { getAverageColor } from 'fast-average-color-node';
-import { getProps } from 'src/js/astro';
 import { imageSize } from 'image-size';
-import { roundTo } from 'src/js/roundTo';
+import { roundTo } from 'gce-lib/js/roundTo';
+
+import { getProps } from 'src/js/astro';
 
 const { props, rest } = getProps(Astro.props, {
 	alt: ``,

@@ -1,29 +1,8 @@
 {
-	"extends": "stylelint-config-standard-scss",
-	"plugins": ["stylelint-order"],
-	"rules": {
-		"alpha-value-notation": "number",
-		"at-rule-empty-line-before": null,
-		"color-hex-case": "upper",
-		"color-hex-length": "long",
-		"comment-empty-line-before": null,
-		"font-family-name-quotes": "always-unless-keyword",
-		"font-family-no-missing-generic-family-keyword": null,
-		"indentation": "tab",
-		"max-empty-lines": null,
-		"max-line-length": null,
-		"no-descending-specificity": null,
-		"number-leading-zero": "never",
-		"order/properties-alphabetical-order": true,
-		"property-no-vendor-prefix": null,
-		"selector-pseudo-class-no-unknown": null,
-		"scss/at-mixin-pattern": null,
-		"scss/dollar-variable-empty-line-before": null,
-		"scss/dollar-variable-pattern": null,
-		"scss/double-slash-comment-empty-line-before": null,
-		"selector-class-pattern": null,
-		"string-quotes": "single"
-	},
+	"extends": [
+		"stylelint-config-standard-scss",
+		"./gce-lib/.stylelintrc.json"
+	],
 	"overrides": [
 		{
 			"files": [

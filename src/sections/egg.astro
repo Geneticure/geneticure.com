@@ -7,17 +7,18 @@
 ></div>
 
 <script>
-import { sleep } from 'src/js/timer';
+import { sleep } from 'gce-lib/js/timer';
+
 import * as Konami from 'src/js/konami';
 
 const CLASS__ON = `_egg--on`;
 const $egg = document.getElementById(`egg`);
 const state = {
-	isRunning: false,
 	$source: null as SVGElement,
+	isRunning: false,
 };
 
-window.addEventListener(Konami.KONAMI__EVENT, async () => {
+window.addEventListener(Konami.KONAMI__EVENT, async() => {
 	if (state.isRunning) {
 		return;
 	}
