@@ -28,13 +28,15 @@ export async function trackingSetup() {
 	await scriptLoad(`https://www.googletagmanager.com/gtag/js?id=UA-58090183-1`);
 	await scriptLoad(`/js/tracking.js`);
 
-	if (window.location.pathname !== routes.home) {
+	const pathname = window.location.pathname?.replace(/\/$/, ``);
+
+	if (pathname !== routes.home) {
 		trackFb(`ViewContent`);
 	}
 
 	// Verify they're coming from Stripe; if so, delete the queryparam so the event doesn't fire again if they refresh
-	if (window.location.pathname === routes.buy__confirm) {
-		const queryParams = new URLSearchParams(location.search);
+	if (pathname === routes.buy__confirm) {
+		const queryParams = new URLSearchParams(window.location.search);
 		if (queryParams.has(QUERYPARAM__STRIPE)) {
 			trackFb(`Purchase`, {
 				// These don't matter, they're just required by FB
@@ -46,7 +48,7 @@ export async function trackingSetup() {
 			const querystring = Array.from(queryParams.entries()).length > 0 ? `?${queryParams.toString()}` : ``;
 			const updatedUrl = [
 				window.location.origin,
-				window.location.pathname,
+				pathname,
 				querystring,
 			].join(``);
 			window.history.replaceState(null, ``, updatedUrl);
