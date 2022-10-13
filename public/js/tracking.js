@@ -1,5 +1,4 @@
 /* eslint-disable */
-import 'https://www.googletagmanager.com/gtag/js?id=UA-58090183-1';
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
