@@ -1,19 +1,19 @@
 {
 	"extends": [
 		"plugin:astro/recommended",
-		"./gce-lib/.eslintrc.json"
+		"./node_modules/gce-lib/.eslintrc.json"
 	],
 	"globals": {
 		"Astro": "readonly"
 	},
 	"overrides": [
 		{
-      "files": ["*.astro"],
-      "parser": "astro-eslint-parser",
-      "parserOptions": {
-        "parser": "@typescript-eslint/parser",
+			"files": ["*.astro"],
+			"parser": "astro-eslint-parser",
+			"parserOptions": {
+				"parser": "@typescript-eslint/parser",
 				"extraFileExtensions": [".astro"]
-      },
+			},
 			"rules": {
 				"indent": ["off"],
 				"space-infix-ops": ["off"]
