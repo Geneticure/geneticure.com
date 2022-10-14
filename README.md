@@ -9,10 +9,4 @@
 
 ## Dev stuff
 
-### Styleguide
-
-See [styleguide](gce-lib/styleguide.md)
-
-### Installation
-
-Note that `gce-lib` is both a Git submodule and a devDependency in `package.json`. This way `npm install` also installs all the dependencies of `gce-lib`.
+See https://github.com/Geneticure/gce-lib

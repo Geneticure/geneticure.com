@@ -1,7 +1,6 @@
 {
 	"extends": [
-		"stylelint-config-standard-scss",
-		"./gce-lib/.stylelintrc.json"
+		"./node_modules/gce-lib/.stylelintrc.json"
 	],
 	"overrides": [
 		{

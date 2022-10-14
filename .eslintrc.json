@@ -1,7 +1,7 @@
 {
 	"extends": [
 		"plugin:astro/recommended",
-		"./gce-lib/.eslintrc.json"
+		"./node_modules/gce-lib/.eslintrc.json"
 	],
 	"globals": {
 		"Astro": "readonly"

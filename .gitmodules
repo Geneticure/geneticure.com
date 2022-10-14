@@ -1,3 +1,0 @@
-[submodule "gce-lib"]
-	path = gce-lib
-	url = https://github.com/Geneticure/gce-lib.git
