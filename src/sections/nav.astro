@@ -130,18 +130,14 @@ const { props, rest } = getProps(Astro.props, {
 		a {
 			@include vars.type(cta);
 
-			border: 0 solid transparent;
-			border-width: 2px 0;
 			color: vars.$color--text;
 			text-decoration: none;
-			transition: border-color .2s;
 
 			&:hover {
 				color: vars.$color--brand;
 			}
 
 			&.active-href {
-				border-bottom-color: vars.$color--text;
 				pointer-events: none;
 			}
 
@@ -178,6 +174,16 @@ const { props, rest } = getProps(Astro.props, {
 
 			a {
 				padding: 1rem;
+				transition: border-color .2s;
+
+				&:hover {
+					color: vars.$color--brand;
+					transition: color .2s;
+				}
+
+				&.active-href {
+					background-color: vars.$color--brand--offset;
+				}
 			}
 
 			&:not(.toggle--on) {
@@ -246,10 +252,17 @@ const { props, rest } = getProps(Astro.props, {
 
 			a {
 				align-items: center;
+				border: 0 solid transparent;
+				border-width: 2px 0;
 				box-sizing: border-box;
 				display: flex;
 				height: 100%;
 				padding: 0 .6rem;
+				transition: border-color .2s;
+
+				&.active-href {
+					border-bottom-color: vars.$color--text;
+				}
 			}
 
 			&__trigger {
