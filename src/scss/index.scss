@@ -387,6 +387,7 @@ input {
 				}
 
 				@include vars.if-viewport('>=', lg) {
+					flex-shrink: 0;
 					margin-left: auto;
 					margin-right: auto;
 					max-width: calc(100vw - (2 * var(--content-padding-x)));
@@ -396,6 +397,8 @@ input {
 
 			&--left,
 			&--right {
+				flex-shrink: 0;
+
 				@include vars.if-viewport('<', lg) {
 					width: calc(100vw - var(--content-padding-x));
 				}
