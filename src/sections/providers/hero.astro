@@ -28,12 +28,13 @@ import { routes } from 'src/routes';
 		</div>
 	</div>
 
-	<div class="_hero__img">
-		<Img_
-			alt="Geneticure report"
-			class="_hero__report"
-			src="/img/report.png"
-		/>
+	<div>
+		<div class="_hero__report">
+			<Img_
+				alt="Geneticure report"
+				src="/img/report.png"
+			/>
+		</div>
 	</div>
 
 	<Img_
@@ -63,19 +64,29 @@ import { routes } from 'src/routes';
 	}
 
 	&__report {
-		box-shadow: 0 0 20px 5px vars.$color--shadow;
-		margin: 0 auto;
-		max-height: 700px;
+		.img {
+			box-shadow: 0 0 20px 5px vars.$color--shadow;
+		}
+	}
 
-		@include vars.if-viewport('<', lg) {
+	@include vars.if-viewport('<', lg) {
+		&__report {
 			margin-top: 50px;
 		}
 	}
 
-	.overlay {
-		@include vars.if-viewport('>=', lg) {
+	@include vars.if-viewport('>=', lg) {
+		align-items: stretch;
+
+		.overlay {
 			padding-bottom: var(--content-gutter-y);
 			padding-top: var(--content-gutter-y);
+		}
+
+		&__report {
+			display: flex;
+			flex-direction: column;
+			position: relative;
 		}
 	}
 }

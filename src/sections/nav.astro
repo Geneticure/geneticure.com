@@ -146,7 +146,7 @@ const { props, rest } = getProps(Astro.props, {
 	@include vars.if-viewport('<', lg) {
 		@include nav__opaque;
 
-		& + :global(*) {
+		& ~ :global(main) {
 			margin-top: vars.$height--nav;
 		}
 
@@ -236,7 +236,7 @@ const { props, rest } = getProps(Astro.props, {
 		}
 
 		&--opaque-at-top {
-			& + :global(*) {
+			& ~ :global(main) {
 				margin-top: vars.$height--nav;
 			}
 		}
@@ -278,7 +278,7 @@ const { props, rest } = getProps(Astro.props, {
 	@media print {
 		position: static;
 
-		& + :global(*) {
+		& ~ :global(main) {
 			margin-top: 0 !important;
 		}
 

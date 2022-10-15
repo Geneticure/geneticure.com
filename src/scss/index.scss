@@ -190,16 +190,13 @@ form {
 }
 
 .hero {
+	min-height: calc(100vh - #{vars.$height--nav});
+
 	@media print {
 		height: auto;
 	}
 
-	@include vars.if-viewport('<', md) {
-		min-height: 100vh;
-	}
-
-	@include vars.if-viewport('>=', md) {
-		height: 100vh;
+	@include vars.if-viewport('>=', lg) {
 		max-height: 900px;
 	}
 }
