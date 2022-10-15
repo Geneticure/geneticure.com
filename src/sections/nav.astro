@@ -75,16 +75,6 @@ const { props, rest } = getProps(Astro.props, {
 <style lang="scss">
 @use 'src/scss/vars';
 
-@mixin nav__fixed {
-	@include vars.expand;
-
-	position: fixed;
-
-	&._nav--opaque-at-top + :global(*) {
-		margin-top: vars.$height--nav;
-	}
-}
-
 @mixin nav__opaque {
 	._nav__bar {
 		backdrop-filter: blur(5px);
@@ -102,9 +92,14 @@ const { props, rest } = getProps(Astro.props, {
 }
 
 ._nav {
+	@include vars.expand;
+
 	height: vars.$height--nav !important;
-	position: relative;
 	z-index: vars.z(nav);
+
+	&--fixed {
+		position: fixed;
+	}
 
 	&__bar {
 		background: transparent;
@@ -149,8 +144,11 @@ const { props, rest } = getProps(Astro.props, {
 
 
 	@include vars.if-viewport('<', lg) {
-		@include nav__fixed;
 		@include nav__opaque;
+
+		& + :global(*) {
+			margin-top: vars.$height--nav;
+		}
 
 		&__logo {
 			height: 30px;
@@ -232,13 +230,15 @@ const { props, rest } = getProps(Astro.props, {
 	}
 
 	@include vars.if-viewport('>=', lg) {
-		&--fixed {
-			@include nav__fixed;
-		}
-
 		&--opaque-at-top,
 		._nav-dummy[data-viewport-visible='false'] + & {
 			@include nav__opaque;
+		}
+
+		&--opaque-at-top {
+			& + :global(*) {
+				margin-top: vars.$height--nav;
+			}
 		}
 
 		&__links {

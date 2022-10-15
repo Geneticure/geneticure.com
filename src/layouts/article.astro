@@ -9,7 +9,7 @@ const { props } = getProps(Astro.props.frontmatter, {
 });
 ---
 
-<HomeLayout_ title={props.title} class={props.class}>
+<HomeLayout_ title={props.title} class={props.class} navFixed={true} navOpaqueAtTop={true}>
 	<Section_ cols={0}>
 		<div class="article text-defaults">
 			<slot />
