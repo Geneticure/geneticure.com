@@ -72,6 +72,8 @@ import { faqs } from 'src/text/faqs';
 	}
 
 	&__body {
+		overflow: visible; // Needed for position: sticky
+
 		&__category {
 			margin-bottom: 70px;
 		}
@@ -116,7 +118,7 @@ import { faqs } from 'src/text/faqs';
 			&__toggle {
 				margin-left: auto;
 				position: sticky;
-				top: 10px;
+				top: vars.$height--nav + 20px;
 
 				button {
 					position: absolute;
