@@ -11,17 +11,12 @@ import { team, teamDescription } from 'src/text/team';
 
 ---
 
-<HomeLayout_ class="_company" title="Company" navFixed={true}>
+<HomeLayout_ class="_company" title="Company" navFixed={true} navOpaqueAtTop={true}>
 	<Section_ class="section--overlay _company__hero">
 		<div class="overlay overlay--left">
 			<h1 class="text--hdg--1">Our company</h1>
 
 			<p set:html={teamDescription}></p>
-
-			<div>
-				<strong>Geneticure, LLC</strong>
-				<Contact_ />
-			</div>
 		</div>
 
 		<Img_

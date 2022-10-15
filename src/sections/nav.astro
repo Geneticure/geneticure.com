@@ -75,16 +75,6 @@ const { props, rest } = getProps(Astro.props, {
 <style lang="scss">
 @use 'src/scss/vars';
 
-@mixin nav__fixed {
-	@include vars.expand;
-
-	position: fixed;
-
-	&._nav--opaque-at-top + :global(*) {
-		margin-top: vars.$height--nav;
-	}
-}
-
 @mixin nav__opaque {
 	._nav__bar {
 		backdrop-filter: blur(5px);
@@ -102,9 +92,14 @@ const { props, rest } = getProps(Astro.props, {
 }
 
 ._nav {
+	@include vars.expand;
+
 	height: vars.$height--nav !important;
-	position: relative;
 	z-index: vars.z(nav);
+
+	&--fixed {
+		position: fixed;
+	}
 
 	&__bar {
 		background: transparent;
@@ -130,18 +125,14 @@ const { props, rest } = getProps(Astro.props, {
 		a {
 			@include vars.type(cta);
 
-			border: 0 solid transparent;
-			border-width: 2px 0;
 			color: vars.$color--text;
 			text-decoration: none;
-			transition: border-color .2s;
 
 			&:hover {
 				color: vars.$color--brand;
 			}
 
 			&.active-href {
-				border-bottom-color: vars.$color--text;
 				pointer-events: none;
 			}
 
@@ -153,8 +144,11 @@ const { props, rest } = getProps(Astro.props, {
 
 
 	@include vars.if-viewport('<', lg) {
-		@include nav__fixed;
 		@include nav__opaque;
+
+		& ~ :global(main) {
+			margin-top: vars.$height--nav;
+		}
 
 		&__logo {
 			height: 30px;
@@ -178,6 +172,16 @@ const { props, rest } = getProps(Astro.props, {
 
 			a {
 				padding: 1rem;
+				transition: border-color .2s;
+
+				&:hover {
+					color: vars.$color--brand;
+					transition: color .2s;
+				}
+
+				&.active-href {
+					background-color: vars.$color--brand--offset;
+				}
 			}
 
 			&:not(.toggle--on) {
@@ -226,13 +230,15 @@ const { props, rest } = getProps(Astro.props, {
 	}
 
 	@include vars.if-viewport('>=', lg) {
-		&--fixed {
-			@include nav__fixed;
-		}
-
 		&--opaque-at-top,
 		._nav-dummy[data-viewport-visible='false'] + & {
 			@include nav__opaque;
+		}
+
+		&--opaque-at-top {
+			& ~ :global(main) {
+				margin-top: vars.$height--nav;
+			}
 		}
 
 		&__links {
@@ -246,10 +252,17 @@ const { props, rest } = getProps(Astro.props, {
 
 			a {
 				align-items: center;
+				border: 0 solid transparent;
+				border-width: 2px 0;
 				box-sizing: border-box;
 				display: flex;
 				height: 100%;
 				padding: 0 .6rem;
+				transition: border-color .2s;
+
+				&.active-href {
+					border-bottom-color: vars.$color--text;
+				}
 			}
 
 			&__trigger {
@@ -265,7 +278,7 @@ const { props, rest } = getProps(Astro.props, {
 	@media print {
 		position: static;
 
-		& + :global(*) {
+		& ~ :global(main) {
 			margin-top: 0 !important;
 		}
 
