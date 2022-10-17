@@ -16,23 +16,23 @@
 	"dependencies": {
 		"@astrojs/mdx": "^0.11.4",
 		"@astrojs/sitemap": "^1.0.0",
+		"@robertakarobin/util": "^0.0.2",
 		"astro": "^1.5.0",
 		"astro-compress": "^1.0.12",
 		"csv-parse": "^5.3.1",
 		"fast-average-color-node": "^2.4.0",
-		"gce-lib": "github:Geneticure/gce-lib",
 		"htmlparser2": "^8.0.1",
 		"image-size": "^1.0.2",
 		"sass": "^1.55.0"
 	},
 	"devDependencies": {
 		"@types/facebook-pixel": "^0.0.24",
-		"@typescript-eslint/eslint-plugin": "^5.40.0",
-		"@typescript-eslint/parser": "^5.40.0",
+		"@typescript-eslint/eslint-plugin": "^5.40.1",
+		"@typescript-eslint/parser": "^5.40.1",
 		"eslint": "^8.25.0",
 		"eslint-plugin-astro": "^0.20.0",
 		"http-server": "^14.1.1",
 		"nodemon": "^2.0.20",
-		"stylelint": "^14.13.0"
+		"stylelint": "^14.14.0"
 	}
 }

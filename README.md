@@ -9,4 +9,4 @@
 
 ## Dev stuff
 
-See https://github.com/Geneticure/gce-lib
+See https://github.com/robertakarobin/util
