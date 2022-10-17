@@ -1,6 +1,6 @@
 {
 	"extends": [
-		"./node_modules/gce-lib/.stylelintrc.json"
+		"./node_modules/@robertakarobin/util/.stylelintrc.json"
 	],
 	"overrides": [
 		{

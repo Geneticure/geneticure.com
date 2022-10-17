@@ -1,4 +1,4 @@
-import { fromKeys } from 'gce-lib/js/fromKeys';
+import { fromKeys } from '@util/js/util';
 
 const _media: Record<string, [string, string, string]> = {
 	ashp: [

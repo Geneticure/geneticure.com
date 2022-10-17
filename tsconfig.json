@@ -3,6 +3,9 @@
 		"allowJs": true,
 		"baseUrl": ".",
 		"lib": ["ESNext", "DOM"],
+		"paths": {
+			"@util/*": ["./node_modules/@robertakarobin/util/*"]
+		},
 		"resolveJsonModule": true
 	}
 }
