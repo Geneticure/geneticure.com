@@ -1,14 +1,14 @@
 {
 	"extends": [
-		"./node_modules/@geneticure/util/.stylelintrc.json"
+		"./node_modules/@robertakarobin/util/.stylelintrc.json"
 	],
 	"overrides": [
 		{
+			"customSyntax": "postcss-html",
 			"files": [
 				"src/**/*.astro",
 				"src/**/*.md"
-			],
-			"customSyntax": "postcss-html"
+			]
 		}
 	]
 }

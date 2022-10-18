@@ -1,7 +1,7 @@
 {
 	"extends": [
 		"plugin:astro/recommended",
-		"./node_modules/@geneticure/util/.eslintrc.json"
+		"./node_modules/@robertakarobin/util/.eslintrc.json"
 	],
 	"globals": {
 		"Astro": "readonly"
@@ -11,8 +11,8 @@
 			"files": ["*.astro"],
 			"parser": "astro-eslint-parser",
 			"parserOptions": {
-				"parser": "@typescript-eslint/parser",
-				"extraFileExtensions": [".astro"]
+				"extraFileExtensions": [".astro"],
+				"parser": "@typescript-eslint/parser"
 			},
 			"rules": {
 				"indent": ["off"],
