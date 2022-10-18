@@ -9,4 +9,4 @@
 
 ## Dev stuff
 
-See https://github.com/robertakarobin/util
+See https://github.com/geneticure/util

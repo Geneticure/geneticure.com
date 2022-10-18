@@ -1,7 +1,7 @@
 {
 	"extends": [
 		"plugin:astro/recommended",
-		"./node_modules/@robertakarobin/util/.eslintrc.json"
+		"./node_modules/@geneticure/util/.eslintrc.json"
 	],
 	"globals": {
 		"Astro": "readonly"
