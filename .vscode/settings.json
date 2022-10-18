@@ -1,7 +1,13 @@
 {
 	"eslint.enable": true,
+	"eslint.options": {
+		"extensions": [".js", ".json", ".ts", ".vue"]
+	},
 	"eslint.validate": [
 		"astro",
+		"javascript",
+		"json",
+		"jsonc",
 		"typescript"
 	],
 	"stylelint.enable": true,

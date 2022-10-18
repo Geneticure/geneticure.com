@@ -4,7 +4,7 @@
 		"baseUrl": ".",
 		"lib": ["ESNext", "DOM"],
 		"paths": {
-			"@util/*": ["./node_modules/@geneticure/util/*"]
+			"@util/*": ["./node_modules/@robertakarobin/util/*"]
 		},
 		"resolveJsonModule": true
 	}

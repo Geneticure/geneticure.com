@@ -1,30 +1,20 @@
 {
-	"name": "gce-astro",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"build": "astro build",
-		"dev": "astro dev",
-		"lint": "eslint . && stylelint **/*.{css,scss,astro}",
-		"preview": "astro preview",
-		"prod": "nodemon -e astro,jpg,js,png,scss,svg,ts --watch './src/*' --watch './public/*' --exec \"npm run build && http-server -c31536000 ./dist\"",
-		"start": "astro dev"
-	},
 	"author": "",
-	"license": "ISC",
 	"dependencies": {
 		"@astrojs/mdx": "^0.11.4",
 		"@astrojs/sitemap": "^1.0.0",
-		"@geneticure/util": "^0.0.4",
+		"@robertakarobin/util": "github:robertakarobin/util",
 		"astro": "^1.5.0",
 		"astro-compress": "^1.0.12",
 		"csv-parse": "^5.3.1",
 		"fast-average-color-node": "^2.4.0",
 		"htmlparser2": "^8.0.1",
 		"image-size": "^1.0.2",
+		"prettier": "^2.7.1",
+		"prettier-plugin-astro": "^0.6.0",
 		"sass": "^1.55.0"
 	},
+	"description": "",
 	"devDependencies": {
 		"@types/facebook-pixel": "^0.0.24",
 		"@typescript-eslint/eslint-plugin": "^5.40.1",
@@ -34,5 +24,16 @@
 		"http-server": "^14.1.1",
 		"nodemon": "^2.0.20",
 		"stylelint": "^14.14.0"
-	}
+	},
+	"license": "ISC",
+	"name": "gce-astro",
+	"scripts": {
+		"build": "astro build",
+		"dev": "astro dev",
+		"lint": "eslint . && stylelint **/*.{css,scss,astro}",
+		"preview": "astro preview",
+		"prod": "nodemon -e astro,jpg,js,png,scss,svg,ts --watch './src/*' --watch './public/*' --exec \"npm run build && http-server -c31536000 ./dist\"",
+		"start": "astro dev"
+	},
+	"version": "1.0.0"
 }
