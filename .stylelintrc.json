@@ -1,6 +1,9 @@
 {
 	"extends": [
-		"./node_modules/@robertakarobin/util/.stylelintrc.json"
+		"./node_modules/@geneticure/util/.stylelintrc.json"
+	],
+	"ignoreFiles": [
+		"dist/**"
 	],
 	"overrides": [
 		{
