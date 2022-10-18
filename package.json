@@ -3,7 +3,7 @@
 	"dependencies": {
 		"@astrojs/mdx": "^0.11.4",
 		"@astrojs/sitemap": "^1.0.0",
-		"@robertakarobin/util": "github:robertakarobin/util",
+		"@geneticure/util": "^0.0.5",
 		"astro": "^1.5.0",
 		"astro-compress": "^1.0.12",
 		"csv-parse": "^5.3.1",
