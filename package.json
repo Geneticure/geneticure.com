@@ -1,10 +1,10 @@
 {
 	"author": "",
 	"dependencies": {
-		"@astrojs/mdx": "^0.11.4",
+		"@astrojs/mdx": "^0.11.5",
 		"@astrojs/sitemap": "^1.0.0",
-		"@geneticure/util": "^0.0.5",
-		"astro": "^1.5.0",
+		"@geneticure/util": "^0.0.6",
+		"astro": "^1.6.0",
 		"astro-compress": "^1.0.12",
 		"csv-parse": "^5.3.1",
 		"fast-average-color-node": "^2.4.0",
@@ -17,9 +17,9 @@
 	"description": "",
 	"devDependencies": {
 		"@types/facebook-pixel": "^0.0.24",
-		"@typescript-eslint/eslint-plugin": "^5.40.1",
-		"@typescript-eslint/parser": "^5.40.1",
-		"eslint": "^8.25.0",
+		"@typescript-eslint/eslint-plugin": "^5.41.0",
+		"@typescript-eslint/parser": "^5.41.0",
+		"eslint": "^8.26.0",
 		"eslint-plugin-astro": "^0.20.0",
 		"http-server": "^14.1.1",
 		"nodemon": "^2.0.20",

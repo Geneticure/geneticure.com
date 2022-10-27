@@ -5,8 +5,8 @@ export function getProps<
 	all: Rest,
 	defaults: Defaults = {} as Defaults,
 ): {
-	props: Defaults & {class: string},
-	rest: Rest,
+	props: Defaults & {class: string;};
+	rest: Rest;
 } {
 	const props = {
 		...defaults,

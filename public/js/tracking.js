@@ -1,8 +1,8 @@
 /* eslint-disable */
+// This file is just for the copy-pasted boilerplate from Facebook/Google. Anything requiring IDs or custom logic is in src/js/tracking.ts
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'UA-58090183-1');
+gtag(`js`, new Date());
 
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -12,5 +12,3 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1300441860085124');
-fbq('track', 'PageView');
