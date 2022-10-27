@@ -2,22 +2,52 @@ import { routes } from 'src/routes';
 import { scriptLoad } from 'src/js/scriptLoad';
 
 const QUERYPARAM__STRIPE = `stripe_id`;
-const EVENTS__FB = {
-	'InitiateCheckout': {
-		foo: ``,
-	},
+
+const FB__ID = `1300441860085124`;
+const FB__EVENTS = {
+	'InitiateCheckout': null,
+	'PageView': null,
 	'Purchase': {
-		currency: `` as string,
-		value: 0 as number,
+		// These don't matter, they're just required by FB
+		currency: `USD` as string,
+		value: 1 as number,
 	},
 	'ViewContent': null,
 } as const;
 
-function trackFb<EventType extends keyof typeof EVENTS__FB>(
+const GTAG__ID = `UA-58090183-1`;
+const GTAG__EVENTS = {
+	conversion: {
+		'currency': `USD` as string,
+		'send_to': `AW-957485369/JmASCLypqYAYELmiyMgD` as string,
+		'transaction_id': `` as string,
+		'value': 1 as number,
+	},
+} as const;
+
+/*
+Not exporting these and calling them in individual routes, because:
+- I want to be able to easily tear out/modify all this analytics stuff in one file if necessary, and
+- As analytics needs get more complex, trying to trigger things in the correct order gets monumentally more complex when they're in separate files
+ */
+function trackFb<EventType extends keyof typeof FB__EVENTS>(
 	type: EventType,
-	params?: (typeof EVENTS__FB)[EventType],
+	params?: (typeof FB__EVENTS)[EventType],
 ) {
-	return fbq(`track`, type as string, params || {});
+	return window.fbq(`track`, type as string, {
+		...(FB__EVENTS[type] || {}),
+		...(params || {}),
+	});
+}
+
+function trackGtag<EventType extends keyof typeof GTAG__EVENTS>(
+	type: EventType,
+	params?: (typeof GTAG__EVENTS)[EventType]
+) {
+	return window.gtag(`event`, type, {
+		...(GTAG__EVENTS[type] || {}),
+		...(params || {}),
+	});
 }
 
 export async function trackingSetup() {
@@ -25,8 +55,12 @@ export async function trackingSetup() {
 		return;
 	}
 
-	await scriptLoad(`https://www.googletagmanager.com/gtag/js?id=UA-58090183-1`);
+	await scriptLoad(`https://www.googletagmanager.com/gtag/js?id=${GTAG__ID}`);
 	await scriptLoad(`/js/tracking.js`);
+
+	window.gtag(`config`, GTAG__ID);
+	window.fbq(`init`, FB__ID);
+	trackFb(`PageView`);
 
 	const pathname = window.location.pathname?.replace(/\/$/, ``);
 
@@ -38,10 +72,11 @@ export async function trackingSetup() {
 	if (pathname === routes.buy__confirm) {
 		const queryParams = new URLSearchParams(window.location.search);
 		if (queryParams.has(QUERYPARAM__STRIPE)) {
-			trackFb(`Purchase`, {
-				// These don't matter, they're just required by FB
-				'currency': `USD`,
-				'value': 1,
+			trackFb(`Purchase`);
+
+			trackGtag(`conversion`, {
+				...GTAG__EVENTS.conversion,
+				'transaction_id': queryParams.get(QUERYPARAM__STRIPE),
 			});
 
 			queryParams.delete(QUERYPARAM__STRIPE);
