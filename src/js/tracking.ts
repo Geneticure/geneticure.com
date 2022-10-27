@@ -32,7 +32,7 @@ Not exporting these and calling them in individual routes, because:
  */
 function trackFb<EventType extends keyof typeof FB__EVENTS>(
 	type: EventType,
-	params?: (typeof FB__EVENTS)[EventType],
+	params?: Partial<(typeof FB__EVENTS)[EventType]>,
 ) {
 	return window.fbq(`track`, type as string, {
 		...(FB__EVENTS[type] || {}),
@@ -42,7 +42,7 @@ function trackFb<EventType extends keyof typeof FB__EVENTS>(
 
 function trackGtag<EventType extends keyof typeof GTAG__EVENTS>(
 	type: EventType,
-	params?: (typeof GTAG__EVENTS)[EventType]
+	params?: Partial<(typeof GTAG__EVENTS)[EventType]>
 ) {
 	return window.gtag(`event`, type, {
 		...(GTAG__EVENTS[type] || {}),
@@ -75,7 +75,6 @@ export async function trackingSetup() {
 			trackFb(`Purchase`);
 
 			trackGtag(`conversion`, {
-				...GTAG__EVENTS.conversion,
 				'transaction_id': queryParams.get(QUERYPARAM__STRIPE),
 			});
 
