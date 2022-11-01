@@ -15,7 +15,7 @@ const { props, rest } = getProps(Astro.props, {
 const isProd = Boolean(import.meta.env.PROD);
 
 const description = `Hypertension is the leading preventable cause of death in the world. Geneticure's patented test uses a sample of your DNA to recommend a personalized treatment plan, just for you.`;
-const title = `Geneticure` + (props.title && (` | ` + props.title ));
+const title = `Geneticure` + (props.title && (` | ` + props.title));
 ---
 <html lang="en" class={props.class} {...rest}>
 	<head>

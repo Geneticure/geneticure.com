@@ -12,4 +12,4 @@ alignToViewportSetup();
 detailsSetup();
 konamiSetup();
 isInViewportSetup();
-trackingSetup();
+void trackingSetup();
