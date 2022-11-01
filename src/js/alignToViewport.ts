@@ -1,7 +1,7 @@
 export const ATTR__TARGET = `data-align-viewport`;
 
 export function alignToViewportSetup() {
-	const $targets = Array.from(document.querySelectorAll(`[${ATTR__TARGET}]`)) as Array<HTMLElement>;
+	const $targets = Array.from(document.querySelectorAll(`[${ATTR__TARGET}]`));
 
 	const observer = new IntersectionObserver((entries) => {
 		for (const entry of entries) {
