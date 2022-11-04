@@ -6,22 +6,18 @@ import { news } from 'src/text/news';
 
 ---
 
-<Section_ class="section--columns text--on-dark _articles">
-	<div>
-		<h2 class="text--hdg--2">More things we're working on:</h2>
-	</div>
+<Section_ class="text--on-dark _articles text--hdg--2">
+	<h2>More things we're working on:</h2>
 
-	<div>
-		<ul>
-			{
-				news.map((article) =>
-					<li>
-						<Route_ href={article.route}>{article.title}</Route_>
-					</li>,
-				)
-			}
-		</ul>
-	</div>
+	<ul>
+		{
+			news.map((article) =>
+				<li>
+					<Route_ href={article.route}>{article.title}</Route_>
+				</li>,
+			)
+		}
+	</ul>
 </Section_>
 
 <style lang="scss">
@@ -36,9 +32,9 @@ import { news } from 'src/text/news';
 	}
 
 	li {
-		list-style-position: outside;
+		list-style-position: inside;
 		list-style-type: disc;
-		margin: 10px 0;
+		margin: 1em 0;
 	}
 }
 </style>

@@ -4,7 +4,7 @@
 		"@astrojs/mdx": "^0.11.5",
 		"@astrojs/sitemap": "^1.0.0",
 		"@geneticure/util": "^0.0.7",
-		"astro": "^1.6.2",
+		"astro": "^1.6.3",
 		"astro-compress": "^1.1.1",
 		"csv-parse": "^5.3.1",
 		"fast-average-color-node": "^2.4.0",
@@ -12,7 +12,7 @@
 		"image-size": "^1.0.2",
 		"prettier": "^2.7.1",
 		"prettier-plugin-astro": "^0.7.0",
-		"sass": "^1.55.0"
+		"sass": "^1.56.0"
 	},
 	"description": "",
 	"devDependencies": {
@@ -23,7 +23,7 @@
 		"eslint-plugin-astro": "^0.21.0",
 		"http-server": "^14.1.1",
 		"nodemon": "^2.0.20",
-		"stylelint": "^14.14.0"
+		"stylelint": "^14.14.1"
 	},
 	"license": "ISC",
 	"name": "gce-astro",
