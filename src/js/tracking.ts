@@ -19,7 +19,14 @@ const GTAG__ID = `UA-58090183-1`;
 const GTAG__EVENTS = {
 	conversion: {
 		'currency': `USD` as string,
-		// 'send_to': `AW-957485369/JmASCLypqYAYELmiyMgD` as string,
+		'send_to': `AW-957485369/JmASCLypqYAYELmiyMgD` as string,
+		'transaction_id': `` as string,
+		'value': 1 as number,
+	},
+	purchase: {
+		'currency': `USD` as string,
+		'shipping': 0 as number,
+		'tax': 0 as number,
 		'transaction_id': `` as string,
 		'value': 1 as number,
 	},
@@ -34,20 +41,22 @@ function trackFb<EventType extends keyof typeof FB__EVENTS>(
 	type: EventType,
 	params?: Partial<(typeof FB__EVENTS)[EventType]>,
 ) {
-	return window.fbq(`track`, type, {
+	const payload = {
 		...(FB__EVENTS[type] || {}),
 		...(params || {}),
-	});
+	};
+	return window.fbq(`track`, type, payload);
 }
 
 function trackGtag<EventType extends keyof typeof GTAG__EVENTS>(
 	type: EventType,
 	params?: Partial<(typeof GTAG__EVENTS)[EventType]>
 ) {
-	return window.gtag(`event`, type, {
+	const payload = {
 		...(GTAG__EVENTS[type] || {}),
 		...(params || {}),
-	});
+	};
+	return window.gtag(`event`, type, payload);
 }
 
 export async function trackingSetup() {
@@ -75,6 +84,10 @@ export async function trackingSetup() {
 			trackFb(`Purchase`);
 
 			trackGtag(`conversion`, {
+				'transaction_id': queryParams.get(QUERYPARAM__STRIPE),
+			});
+
+			trackGtag(`purchase`, {
 				'transaction_id': queryParams.get(QUERYPARAM__STRIPE),
 			});
 
