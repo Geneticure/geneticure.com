@@ -19,7 +19,7 @@ const GTAG__ID = `UA-58090183-1`;
 const GTAG__EVENTS = {
 	conversion: {
 		'currency': `USD` as string,
-		'send_to': `AW-957485369/JmASCLypqYAYELmiyMgD` as string,
+		// 'send_to': `AW-957485369/JmASCLypqYAYELmiyMgD` as string,
 		'transaction_id': `` as string,
 		'value': 1 as number,
 	},
@@ -34,7 +34,7 @@ function trackFb<EventType extends keyof typeof FB__EVENTS>(
 	type: EventType,
 	params?: Partial<(typeof FB__EVENTS)[EventType]>,
 ) {
-	return window.fbq(`track`, type as string, {
+	return window.fbq(`track`, type, {
 		...(FB__EVENTS[type] || {}),
 		...(params || {}),
 	});
