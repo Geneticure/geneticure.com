@@ -1,6 +1,12 @@
 import { routes } from 'src/routes';
 import { scriptLoad } from 'src/js/scriptLoad';
 
+const PRODUCT = {
+	currency: `USD`,
+	shipping: 0,
+	tax: 0,
+	value: 149,
+};
 const QUERYPARAM__STRIPE = `stripe_id`;
 
 const FB__ID = `1300441860085124`;
@@ -8,9 +14,8 @@ const FB__EVENTS = {
 	'InitiateCheckout': null,
 	'PageView': null,
 	'Purchase': {
-		// These don't matter, they're just required by FB
-		currency: `USD` as string,
-		value: 1 as number,
+		currency: PRODUCT.currency,
+		value: PRODUCT.value,
 	},
 	'ViewContent': null,
 } as const;
@@ -18,17 +23,17 @@ const FB__EVENTS = {
 const GTAG__ID = `UA-58090183-1`;
 const GTAG__EVENTS = {
 	conversion: {
-		'currency': `USD` as string,
+		'currency': PRODUCT.currency,
 		'send_to': `AW-957485369/JmASCLypqYAYELmiyMgD` as string,
 		'transaction_id': `` as string,
-		'value': 1 as number,
+		'value': PRODUCT.value,
 	},
 	purchase: {
-		'currency': `USD` as string,
-		'shipping': 0 as number,
-		'tax': 0 as number,
+		'currency': PRODUCT.currency,
+		'shipping': PRODUCT.shipping,
+		'tax': PRODUCT.tax,
 		'transaction_id': `` as string,
-		'value': 1 as number,
+		'value': PRODUCT.value,
 	},
 } as const;
 
