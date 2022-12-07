@@ -37,6 +37,8 @@ const GTAG__EVENTS = {
 	},
 } as const;
 
+const HUBSPOT__ID = `23495910`;
+
 /*
 Not exporting these and calling them in individual routes, because:
 - I want to be able to easily tear out/modify all this analytics stuff in one file if necessary, and
@@ -70,6 +72,7 @@ export async function trackingSetup() {
 	}
 
 	await scriptLoad(`https://www.googletagmanager.com/gtag/js?id=${GTAG__ID}`);
+	await scriptLoad(`//js.hs-scripts.com/${HUBSPOT__ID}.js`);
 	await scriptLoad(`/js/tracking.js`);
 
 	window.gtag(`config`, GTAG__ID);
