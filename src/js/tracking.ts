@@ -49,68 +49,66 @@ const GTAG__EVENTS = {
 // #region StackAdapt
 
 const STACKADAPT__ID = {
-	REVENUE: `10ySFDyjxY4pm03GVmsfRI`,
-	UNIVERSAL: `EIqSOK9XE-SBt8SBMGsRDA`,
+	conv: `10ySFDyjxY4pm03GVmsfRI`,
+	universal: `EIqSOK9XE-SBt8SBMGsRDA`,
 } as const;
 
 const STACKADAPT__EVENTS = {
-	conversion: {
+	[STACKADAPT__ID.conv]: {
 		'orderId': `` as string,
 		'revenue': PRODUCT.value,
 	},
-	ts: {}, // Don't know what this stands for
-};
+} as const;
+
+// #endregion
+
+type TagFunction = (
+	eventCategory: string,
+	eventId: string,
+	eventData?: unknown
+) => void;
 
 declare global {
 	interface Window {
-		saq: (
-			event: string,
-			id: string,
-			data?: unknown
-		) => void;
+		fbq: TagFunction;
+		gtag: TagFunction;
+		saq: TagFunction;
 	}
 }
 
-// #endregion
+function track<
+	EventMap extends Record<string, unknown>,
+	GlobalFunction extends TagFunction,
+>(
+	eventMap: EventMap,
+	eventCategory: string,
+	getGlobalFunction: () => GlobalFunction,
+) {
+	return function<
+		EventType extends keyof EventMap,
+		EventParams extends EventMap[EventType],
+	>(
+		eventType: EventType,
+		params?: Partial<EventParams>
+	) {
+		const defaults = eventMap[eventType];
+		const payload = {
+			...(defaults || {}),
+			...(params || {}),
+		} as EventParams;
+		getGlobalFunction().call(window, eventCategory, eventType, payload);
+	};
+}
+
+const trackFb = track(FB__EVENTS, `track`, () => window.fbq);
+const trackGtag = track(GTAG__EVENTS, `event`, () => window.gtag);
+const trackSaq = track(STACKADAPT__EVENTS, `conv`, () => window.saq);
 
 /*
 Not exporting these and calling them in individual routes, because:
 - I want to be able to easily tear out/modify all this analytics stuff in one file if necessary, and
 - As analytics needs get more complex, trying to trigger things in the correct order gets monumentally more complex when they're in separate files
  */
-function trackFb<EventType extends keyof typeof FB__EVENTS>(
-	type: EventType,
-	params?: Partial<(typeof FB__EVENTS)[EventType]>,
-) {
-	const payload = {
-		...(FB__EVENTS[type] || {}),
-		...(params || {}),
-	};
-	return window.fbq(`track`, type, payload);
-}
-
-function trackGtag<EventType extends keyof typeof GTAG__EVENTS>(
-	type: EventType,
-	params?: Partial<(typeof GTAG__EVENTS)[EventType]>
-) {
-	const payload = {
-		...(GTAG__EVENTS[type] || {}),
-		...(params || {}),
-	};
-	return window.gtag(`event`, type, payload);
-}
-
-function trackStackAdapt<EventType extends keyof typeof STACKADAPT__EVENTS>(
-	type: EventType,
-	id: string,
-	params?: Partial<(typeof STACKADAPT__EVENTS[EventType])>
-) {
-	const payload = {
-		...(STACKADAPT__EVENTS[type] || {}),
-		...(params || {}),
-	};
-	return window.saq(type, id, payload);
-}
 
 export async function trackingSetup() {
 	if (window.navigator.userAgent?.toLowerCase().includes(`lighthouse`)) { // I'm cheating to improve Lighthouse scores, shh
@@ -123,7 +121,8 @@ export async function trackingSetup() {
 
 	window.gtag(`config`, GTAG__ID);
 	window.fbq(`init`, FB__ID);
-	trackStackAdapt(`ts`, STACKADAPT__ID.UNIVERSAL);
+	window.saq(`ts`, STACKADAPT__ID.universal);
+
 	trackFb(`PageView`);
 
 	const pathname = window.location.pathname?.replace(/\/$/, ``);
@@ -144,7 +143,7 @@ export async function trackingSetup() {
 
 			trackGtag(`purchase`, { 'transaction_id': stripeId });
 
-			trackStackAdapt(`conversion`, STACKADAPT__ID.REVENUE, { 'orderId': stripeId });
+			trackSaq(STACKADAPT__ID.conv, { 'orderId': stripeId });
 
 			queryParams.delete(QUERYPARAM__STRIPE);
 			const querystring = Array.from(queryParams.entries()).length > 0 ? `?${queryParams.toString()}` : ``;
