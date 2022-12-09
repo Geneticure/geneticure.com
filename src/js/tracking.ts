@@ -8,6 +8,9 @@ const PRODUCT = {
 	value: 149,
 };
 const QUERYPARAM__STRIPE = `stripe_id`;
+const HUBSPOT__ID = `23495910`;
+
+// #region Facebook
 
 const FB__ID = `1300441860085124`;
 const FB__EVENTS = {
@@ -19,6 +22,10 @@ const FB__EVENTS = {
 	},
 	'ViewContent': null,
 } as const;
+
+// #endregion
+
+// #region Google
 
 const GTAG__ID = `UA-58090183-1`;
 const GTAG__EVENTS = {
@@ -37,7 +44,34 @@ const GTAG__EVENTS = {
 	},
 } as const;
 
-const HUBSPOT__ID = `23495910`;
+// #endregion
+
+// #region StackAdapt
+
+const STACKADAPT__ID = {
+	REVENUE: `10ySFDyjxY4pm03GVmsfRI`,
+	UNIVERSAL: `EIqSOK9XE-SBt8SBMGsRDA`,
+} as const;
+
+const STACKADAPT__EVENTS = {
+	conversion: {
+		'orderId': `` as string,
+		'revenue': PRODUCT.value,
+	},
+	ts: {}, // Don't know what this stands for
+};
+
+declare global {
+	interface Window {
+		saq: (
+			event: string,
+			id: string,
+			data?: unknown
+		) => void;
+	}
+}
+
+// #endregion
 
 /*
 Not exporting these and calling them in individual routes, because:
@@ -66,6 +100,18 @@ function trackGtag<EventType extends keyof typeof GTAG__EVENTS>(
 	return window.gtag(`event`, type, payload);
 }
 
+function trackStackAdapt<EventType extends keyof typeof STACKADAPT__EVENTS>(
+	type: EventType,
+	id: string,
+	params?: Partial<(typeof STACKADAPT__EVENTS[EventType])>
+) {
+	const payload = {
+		...(STACKADAPT__EVENTS[type] || {}),
+		...(params || {}),
+	};
+	return window.saq(type, id, payload);
+}
+
 export async function trackingSetup() {
 	if (window.navigator.userAgent?.toLowerCase().includes(`lighthouse`)) { // I'm cheating to improve Lighthouse scores, shh
 		return;
@@ -77,6 +123,7 @@ export async function trackingSetup() {
 
 	window.gtag(`config`, GTAG__ID);
 	window.fbq(`init`, FB__ID);
+	trackStackAdapt(`ts`, STACKADAPT__ID.UNIVERSAL);
 	trackFb(`PageView`);
 
 	const pathname = window.location.pathname?.replace(/\/$/, ``);
@@ -89,15 +136,15 @@ export async function trackingSetup() {
 	if (pathname === routes.buy__confirm) {
 		const queryParams = new URLSearchParams(window.location.search);
 		if (queryParams.has(QUERYPARAM__STRIPE)) {
+			const stripeId = queryParams.get(QUERYPARAM__STRIPE);
+
 			trackFb(`Purchase`);
 
-			trackGtag(`conversion`, {
-				'transaction_id': queryParams.get(QUERYPARAM__STRIPE),
-			});
+			trackGtag(`conversion`, { 'transaction_id': stripeId });
 
-			trackGtag(`purchase`, {
-				'transaction_id': queryParams.get(QUERYPARAM__STRIPE),
-			});
+			trackGtag(`purchase`, { 'transaction_id': stripeId });
+
+			trackStackAdapt(`conversion`, STACKADAPT__ID.REVENUE, { 'orderId': stripeId });
 
 			queryParams.delete(QUERYPARAM__STRIPE);
 			const querystring = Array.from(queryParams.entries()).length > 0 ? `?${queryParams.toString()}` : ``;
