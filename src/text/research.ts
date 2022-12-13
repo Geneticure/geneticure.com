@@ -41,7 +41,7 @@ const _research: Array<[
 				`spyral`,
 				`Data at 36 months for the Symplicity SPYRAL HTN-ON MED pilot.`,
 				`Eric M. Snyder, Ryan Sprissler, Thomas P. Olson. The Lancet. 2022 Aug 13;400(10351):491-492. (PMID: 35964607)`,
-				`https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01394-0/fulltext`,
+				`https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01471-4/fulltext`,
 			],
 			[
 				`bblocker`,
