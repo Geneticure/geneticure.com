@@ -29,7 +29,7 @@ const _media: Record<string, [string, string, string]> = {
 	lancet: [
 		`The Lancet`,
 		`lancet.svg`,
-		`https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01394-0/fulltext`,
+		`https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01471-4/fulltext`,
 	],
 	postbulletin: [
 		`Post Bulletin`,
