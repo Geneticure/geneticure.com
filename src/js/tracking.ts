@@ -8,6 +8,9 @@ const PRODUCT = {
 	value: 149,
 };
 const QUERYPARAM__STRIPE = `stripe_id`;
+const HUBSPOT__ID = `23495910`;
+
+// #region Facebook
 
 const FB__ID = `1300441860085124`;
 const FB__EVENTS = {
@@ -19,6 +22,10 @@ const FB__EVENTS = {
 	},
 	'ViewContent': null,
 } as const;
+
+// #endregion
+
+// #region Google
 
 const GTAG__ID = `UA-58090183-1`;
 const GTAG__EVENTS = {
@@ -37,34 +44,71 @@ const GTAG__EVENTS = {
 	},
 } as const;
 
-const HUBSPOT__ID = `23495910`;
+// #endregion
+
+// #region StackAdapt
+
+const STACKADAPT__ID = {
+	conv: `10ySFDyjxY4pm03GVmsfRI`,
+	universal: `EIqSOK9XE-SBt8SBMGsRDA`,
+} as const;
+
+const STACKADAPT__EVENTS = {
+	[STACKADAPT__ID.conv]: {
+		'orderId': `` as string,
+		'revenue': PRODUCT.value,
+	},
+} as const;
+
+// #endregion
+
+type TagFunction = (
+	eventCategory: string,
+	eventId: string,
+	eventData?: unknown
+) => void;
+
+declare global {
+	interface Window {
+		fbq: TagFunction;
+		gtag: TagFunction;
+		saq: TagFunction;
+	}
+}
+
+function track<
+	EventMap extends Record<string, unknown>,
+	GlobalFunction extends TagFunction,
+>(
+	eventMap: EventMap,
+	eventCategory: string,
+	getGlobalFunction: () => GlobalFunction,
+) {
+	return function<
+		EventType extends keyof EventMap,
+		EventParams extends EventMap[EventType],
+	>(
+		eventType: EventType,
+		params?: Partial<EventParams>
+	) {
+		const defaults = eventMap[eventType];
+		const payload = {
+			...(defaults || {}),
+			...(params || {}),
+		} as EventParams;
+		getGlobalFunction().call(window, eventCategory, eventType, payload);
+	};
+}
+
+const trackFb = track(FB__EVENTS, `track`, () => window.fbq);
+const trackGtag = track(GTAG__EVENTS, `event`, () => window.gtag);
+const trackSaq = track(STACKADAPT__EVENTS, `conv`, () => window.saq);
 
 /*
 Not exporting these and calling them in individual routes, because:
 - I want to be able to easily tear out/modify all this analytics stuff in one file if necessary, and
 - As analytics needs get more complex, trying to trigger things in the correct order gets monumentally more complex when they're in separate files
  */
-function trackFb<EventType extends keyof typeof FB__EVENTS>(
-	type: EventType,
-	params?: Partial<(typeof FB__EVENTS)[EventType]>,
-) {
-	const payload = {
-		...(FB__EVENTS[type] || {}),
-		...(params || {}),
-	};
-	return window.fbq(`track`, type, payload);
-}
-
-function trackGtag<EventType extends keyof typeof GTAG__EVENTS>(
-	type: EventType,
-	params?: Partial<(typeof GTAG__EVENTS)[EventType]>
-) {
-	const payload = {
-		...(GTAG__EVENTS[type] || {}),
-		...(params || {}),
-	};
-	return window.gtag(`event`, type, payload);
-}
 
 export async function trackingSetup() {
 	if (window.navigator.userAgent?.toLowerCase().includes(`lighthouse`)) { // I'm cheating to improve Lighthouse scores, shh
@@ -77,6 +121,8 @@ export async function trackingSetup() {
 
 	window.gtag(`config`, GTAG__ID);
 	window.fbq(`init`, FB__ID);
+	window.saq(`ts`, STACKADAPT__ID.universal);
+
 	trackFb(`PageView`);
 
 	const pathname = window.location.pathname?.replace(/\/$/, ``);
@@ -89,15 +135,15 @@ export async function trackingSetup() {
 	if (pathname === routes.buy__confirm) {
 		const queryParams = new URLSearchParams(window.location.search);
 		if (queryParams.has(QUERYPARAM__STRIPE)) {
+			const stripeId = queryParams.get(QUERYPARAM__STRIPE);
+
 			trackFb(`Purchase`);
 
-			trackGtag(`conversion`, {
-				'transaction_id': queryParams.get(QUERYPARAM__STRIPE),
-			});
+			trackGtag(`conversion`, { 'transaction_id': stripeId });
 
-			trackGtag(`purchase`, {
-				'transaction_id': queryParams.get(QUERYPARAM__STRIPE),
-			});
+			trackGtag(`purchase`, { 'transaction_id': stripeId });
+
+			trackSaq(STACKADAPT__ID.conv, { 'orderId': stripeId });
 
 			queryParams.delete(QUERYPARAM__STRIPE);
 			const querystring = Array.from(queryParams.entries()).length > 0 ? `?${queryParams.toString()}` : ``;
