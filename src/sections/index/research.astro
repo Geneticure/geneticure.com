@@ -9,12 +9,12 @@ import { research } from 'src/text/research';
 		<Fragment slot="title">See the science</Fragment>
 
 		{
-			research.map(({ title, citations }) =>
-				<section>
-					<h3>{title}</h3>
+			research.map((category) =>
+				<section id={category.id}>
+					<h3>{category.title}</h3>
 					<>
 						{
-							citations.map((cite) =>
+							category.citations.map((cite) =>
 								<span
 									class="research__target"
 									id={`cite-${cite.id}`}
