@@ -117,7 +117,8 @@ export async function trackingSetup() {
 
 	await scriptLoad(`https://www.googletagmanager.com/gtag/js?id=${GTAG__ID}`);
 	await scriptLoad(`//js.hs-scripts.com/${HUBSPOT__ID}.js`);
-	await scriptLoad(`/js/tracking.js`);
+	await scriptLoad(`/js/tracking.js`); // This is where the tracking boilerplate is loaded
+	// @see public/js/tracking.js
 
 	window.gtag(`config`, GTAG__ID);
 	window.fbq(`init`, FB__ID);
