@@ -57,14 +57,6 @@ const _team: Array<[
 		`bruce-johnson-7062a28`,
 	],
 	[
-		`Dr. Bonny Lewis Van, PhD`,
-		`bonny`,
-		`Laboratory Director`,
-		`bonny.jpg`,
-		`Dr. Lewis Van completed her award-winning clinical laboratory fellowship at the University of Louisville, with an emphasis on pharmacogenetics. She has been on the faculty of Virginia Commonwealth University with appointments in Pharmacy, Pathology and Anesthesiology as well as being a member of the Bioinformatics faculty. Bonny helped to create a nation-wide pharmacogenetic company, and currently holds several leadership positions in the American Association for Clinical Chemistry (AACC), American Association of Bioanalysts (AAB) and the American Board of Bioanalysis (ABB) and is a Clinical Laboratory Informatics Lead for J Michael Consulting.`,
-		`bonnylewisvanphd`,
-	],
-	[
 		`David Herbert`,
 		`david`,
 		[`EVP of Strategy`, `Executive Vice President of Strategy`],
