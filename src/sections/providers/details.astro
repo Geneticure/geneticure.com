@@ -1,7 +1,10 @@
 ---
 import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
+
+import { routes } from 'src/routes';
 ---
 
 <Section_ class="section--columns _details">
@@ -11,6 +14,18 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 
 			<p>Our CLIA-certified lab genotypes your patient's DNA from a cheek swab. Then, our patented algorithm uses years of research to predict which treatments will most effectively treat your patient's hypertension. We compile our findings into <strong>a personalized, one-page report</strong>.</p>
 		</div>
+
+		<p class="buttonset flex--center">
+			<Route_
+				class="button"
+				href={routes.register__clinician}
+			>Register now</Route_>
+
+			<Route_
+				class="button--low"
+				href={routes.contact}
+			>Contact us</Route_>
+		</p>
 	</div>
 
 	<div>
@@ -42,7 +57,7 @@ strong {
 }
 
 ._details {
-	--bg-image: 0;
+	--bg-image: none;
 
 	&__report {
 		box-shadow: 0 0 20px 5px vars.$color--shadow;

@@ -13,28 +13,33 @@ import { routes } from 'src/routes';
 				Treat hypertension with <em>precision</em>.
 			</h1>
 
-			<hr class="fancy" />
-
 			<p>Using a non-invasive cheek swab, Geneticure's patented pharmaco&shy;genomic panel analyzes 17 genotypes in 11 genes to recommend <strong>the best hypertension treatment for your patient.</strong></p>
 
-			<p class="_hero__cta">We're offering <strong>complimentary testing for providers</strong> to demonstrate the value of the technology. <Route_ to="register__clinician">Register</Route_> for your provider account and we'll coordinate testing at no cost.</p>
+			<hr class="fancy" />
+
+			<div class="_hero__cta">
+				<p>We're offering <strong>complimentary testing for providers</strong> to demonstrate the value of the technology. Register for your provider account and we'll coordinate testing at no cost.</p>
+
+				<p class="text--center">
+					<Route_
+						class="button--hero"
+						href={routes.register__clinician}
+					>Register now</Route_>
+				</p>
+			</div>
 
 			<p class="text--center">
-				<Route_
-					class="button--hero"
-					href={routes.register__clinician}
-				>Register now</Route_>
+				<br />
+				<Route_ class="button--low" href={routes.contact}>Contact us</Route_>
 			</p>
 		</div>
 	</div>
 
-	<div>
-		<div class="_hero__report">
-			<Img_
-				alt="Geneticure report"
-				src="/img/report.png"
-			/>
-		</div>
+	<div class="_hero__report">
+		<Img_
+			alt="Geneticure report"
+			src="/img/report.png"
+		/>
 	</div>
 
 	<Img_
@@ -50,6 +55,11 @@ import { routes } from 'src/routes';
 ._hero {
 	overflow: hidden;
 
+	&__text,
+	&__report {
+		padding-top: vars.$height--nav;
+	}
+
 	&__bg {
 		object-position: center left;
 	}
@@ -57,7 +67,7 @@ import { routes } from 'src/routes';
 	&__cta {
 		@include vars.antipad(20px);
 
-		background: vars.$color--brand--offset;
+		background: vars.$color--accent--offset;
 		border-radius: 10px;
 		padding-bottom: 20px;
 		padding-top: 20px;
@@ -101,9 +111,5 @@ h1 {
 
 hr {
 	margin: 35px 0 !important;
-}
-
-.button--hero {
-	margin-top: 10px;
 }
 </style>
