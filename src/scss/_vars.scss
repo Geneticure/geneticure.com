@@ -96,6 +96,7 @@ $font-size--base: 20;
 
 // #region Colors
 $color--accent: #8A00CC;
+$color--accent--offset: #F2E6FA;
 $color--accent--sink: #550099;
 $color--bg: #FFFFFF;
 $color--bg--offset: #EEEEEE;
@@ -110,7 +111,7 @@ $color--error--offset: #FFE0E0;
 $color--lowlight: #414042;
 $color--lowlight--offset: #555555;
 $color--lowlight--sink: #000000;
-$color--overlay: #FFFFFFE0;
+$color--overlay: #FFFFFFF0;
 $color--shadow: rgba(0 0 10 / .07);
 $color--shadow--sink: rgba(0 0 10 / .15);
 $color--social--linkedin: #0A66C2;
