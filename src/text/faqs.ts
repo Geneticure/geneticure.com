@@ -123,7 +123,7 @@ export const _faqs: Array<[
 			[
 				`forgot-activate`,
 				`What should I do if I forgot to activate my kit before mailing it back?`,
-				`As long as you have your kit ID, you can still activate your kit. The kit identification code is on the additional sticker attached to the kit insert. Please note, we will not be able to process your sample until your kit has been activated. If the lab has already received your sample, please allow approximately 10-15 business days for your report to be ready after you have activated your kit.`,
+				`As long as you have your kit ID, you can still activate your kit. The kit identification code is on the additional sticker attached to the kit insert. Please note, we will not be able to process your sample until your kit has been activated.`,
 			],
 			[
 				`after-test`,
@@ -141,7 +141,7 @@ export const _faqs: Array<[
 			[
 				`when-results`,
 				`When will I get my results?`,
-				`It is important to active your kit prior to mailing your sample. Your sample will not be processed prior to kit activation. If your kit has been activated, you can expect to receive your results in approximately 10-15 business days of our lab receiving your sample. Timing can vary based on quality of the sample, transit times, our 3rd party physician approval, among many other factors. You will receive an email notification when your results are ready.`,
+				`It is important to active your kit prior to mailing your sample. Your sample will not be processed prior to kit activation. If your kit has been activated, you can expect to receive your results in approximately 10-15 business days of our lab receiving your sample. <strong>Please note that delays can happen.</strong>. Timing can vary based on quality of the sample, transit times, our 3rd party physician approval, and holidays, among many other factors. You will receive an email notification when your results are ready.`,
 			],
 			[
 				`report`,
