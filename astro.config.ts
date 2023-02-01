@@ -18,5 +18,5 @@ export default defineConfig({
 		}),
 		sitemap(),
 	],
-	site: `https://geneticure.com`,
+	site: `https://geneticure.com/`,
 });
