@@ -7,5 +7,6 @@
 			"@util/*": ["./node_modules/@geneticure/util/*"]
 		},
 		"resolveJsonModule": true
-	}
+	},
+	"extends": "astro/tsconfigs/strict"
 }
