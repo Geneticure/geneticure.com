@@ -39,20 +39,24 @@ export function toggleSetup($root: Element) {
 	] as Array<HTMLElement>;
 
 	for (const $target of $targets) {
-		const targetId = $target.getAttribute(ATTR__TARGET);
-		const targetIsDefault = $target.hasAttribute(ATTR__TARGET__ISDEFAULT);
-		if (targetId in state) {
-			state[targetId].indexMax += 1;
+		const toggleId = $target.getAttribute(ATTR__TARGET);
+		if (!toggleId) {
+			continue;
+		}
+
+		if (toggleId in state) {
+			state[toggleId].indexMax += 1;
 		} else {
-			state[targetId] = {
-				index: undefined,
+			state[toggleId] = {
+				index: 0,
 				indexMax: 0,
 			};
 		}
 
+		const targetIsDefault = $target.hasAttribute(ATTR__TARGET__ISDEFAULT);
 		if (targetIsDefault) {
-			const toggleIndex = parseInt($target.getAttribute(ATTR__INDEX));
-			state[targetId].index = toggleIndex;
+			const targetIndex = parseInt($target.getAttribute(ATTR__INDEX) ?? `0`);
+			state[toggleId].index = targetIndex;
 		}
 	}
 
@@ -60,21 +64,28 @@ export function toggleSetup($root: Element) {
 		$trigger.onclick = handleTrigger;
 	}
 
-	for (const id in state) {
-		if (typeof state[id].index !== `undefined`) {
-			setActiveTarget(id, `${state[id].index}`);
+	for (const toggleId in state) {
+		const toggleState = state[toggleId];
+		if (typeof toggleState.index !== `undefined`) {
+			setActiveTarget(toggleId, `${toggleState.index}`);
 		}
 	}
 
 	function handleTrigger(event: Event) {
 		const $trigger = event.currentTarget as HTMLElement;
-		const targetId = $trigger.getAttribute(ATTR__TRIGGER);
+		const toggleId = $trigger.getAttribute(ATTR__TRIGGER);
 		const targetIndex = $trigger.getAttribute(ATTR__INDEX);
-		setActiveTarget(targetId, targetIndex);
+		if (!toggleId || !targetIndex) {
+			return;
+		}
+		setActiveTarget(toggleId, targetIndex);
 	}
 
-	function setActiveTarget(id: string, input: string) {
-		const currentIndex = state[id].index;
+	function setActiveTarget(toggleId: string, input: string) {
+		const currentIndex = state[toggleId].index;
+		if (typeof currentIndex !== `number`) {
+			return;
+		}
 
 		const indexIncrement = (input.match(/^(\+|-)/) || [])[1];
 		let newIndex = parseInt(input);
@@ -84,21 +95,21 @@ export function toggleSetup($root: Element) {
 				newIndex = currentIndex + newIndex;
 		}
 
-		if (newIndex > state[id].indexMax) {
+		if (newIndex > state[toggleId].indexMax) {
 			newIndex = 0;
 		}
 
 		if (newIndex < 0) {
-			newIndex = state[id].indexMax;
+			newIndex = state[toggleId].indexMax;
 		}
 
-		state[id].index = newIndex;
+		state[toggleId].index = newIndex;
 
 		for (const $trigger of $triggers) {
 			const triggerId = $trigger.getAttribute(ATTR__TRIGGER);
 			const triggerIndex = $trigger.getAttribute(ATTR__INDEX);
 
-			if (triggerId !== id) {
+			if (triggerId !== toggleId) {
 				continue;
 			}
 
@@ -111,10 +122,10 @@ export function toggleSetup($root: Element) {
 		}
 
 		for (const $target of $targets) {
-			const targetId = $target.getAttribute(ATTR__TARGET);
+			const targetToggleId = $target.getAttribute(ATTR__TARGET);
 			const targetIndex = $target.getAttribute(ATTR__INDEX);
 
-			if (targetId !== id) {
+			if (targetToggleId !== toggleId) {
 				continue;
 			}
 
@@ -127,7 +138,14 @@ export function toggleSetup($root: Element) {
 		}
 
 		// TODO3: Cache events to replay them on subscribe? Rxjs? :-(
-		document.dispatchEvent(new CustomEvent(ToggleEvents.end, { detail: { id, state: state[id] } }));
+		document.dispatchEvent(
+			new CustomEvent(ToggleEvents.end, {
+				detail: {
+					id: toggleId,
+					state: state[toggleId],
+				},
+			})
+		);
 	}
 }
 
