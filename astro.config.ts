@@ -2,9 +2,11 @@ import { defineConfig } from "astro/config";
 
 import compress from "astro-compress";
 import mdx from '@astrojs/mdx';
+import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
+	adapter: netlify(),
 	integrations: [
 		mdx(),
 		compress({
@@ -18,5 +20,6 @@ export default defineConfig({
 		}),
 		sitemap(),
 	],
+	output: `server`,
 	site: `https://geneticure.com/`,
 });
