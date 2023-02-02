@@ -12,7 +12,7 @@ if (Array.isArray(props.stops)) {
 	stops = props.stops;
 } else {
 	const length = parseInt(props.stops as unknown as string);
-	stops = Array.from(Array(length), (nil, index) => {
+	stops = Array.from(Array(length), (_, index) => {
 		const offset = Math.round(100 * index / (length - 1)) / 100;
 		return offset;
 	});
