@@ -4,7 +4,7 @@ import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
 
-import { menu } from 'src/text/menu';
+import { menuFooter, menuFooterSub } from 'src/text/menu';
 import { socials } from 'src/text/social';
 
 const year = (new Date()).getFullYear();
@@ -27,11 +27,18 @@ const year = (new Date()).getFullYear();
 		<div>
 			<div class="_footer__menu">
 				{
-					menu.map((link) =>
+					menuFooter.map((link) =>
 						<Route_ href={link.href}>{link.label}</Route_>,
 					)
 				}
-				<Route_ to="contact">Contact us</Route_>
+			</div>
+
+			<div class="_footer__menu">
+				{
+					menuFooterSub.map((link) =>
+						<Route_ href={link.href}>{link.label}</Route_>,
+					)
+				}
 			</div>
 
 			<div class="_footer__social">

@@ -24,3 +24,5 @@ export const routes = {
 	register__clinician: `https://portal.geneticure.com/user/register/clinician`,
 	register__user: `https://portal.geneticure.com/user/register/user`,
 } as const;
+
+export type RouteId = keyof typeof routes;

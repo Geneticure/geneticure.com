@@ -4,7 +4,7 @@ import Route_ from 'src/components/route.astro';
 
 import { getProps } from 'src/js/astro';
 
-import { menu } from 'src/text/menu';
+import { menuTop } from 'src/text/menu';
 
 const { props, rest } = getProps(Astro.props, {
 	fixed: true,
@@ -46,7 +46,7 @@ const { props, rest } = getProps(Astro.props, {
 		data-toggle-target="nav__links"
 	>
 		{
-			menu.map((link) =>
+			menuTop.map((link) =>
 				<Route_
 					data-active-href={link.href}
 					href={link.href}
