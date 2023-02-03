@@ -32,6 +32,7 @@ const categories = [
 
 			<hr class="fancy" />
 
+
 			<p>Geneticure goes well beyond drug metabolism. Developed by <Route_ to="company">scientific leaders in their fields</Route_>, Geneticure's test assesses hypertension treatment in a comprehensive integrative nature, from drug metabolizing enzymes to receptors that are important to heart, blood vessel, and kidney function, with a focus on and appreciation of the complexity of the disease.</p>
 		</div>
 
@@ -49,6 +50,10 @@ const categories = [
 	</Section_>
 
 	<Section_>
+		<h2 class="text--hdg--1">Our research:</h2>
+
+		<hr class="fancy" />
+
 		{
 			categories.map((category) =>
 				<div class="_research__category">
@@ -68,6 +73,7 @@ const categories = [
 										{
 											cite.url
 												? <a
+														class="icon--open"
 														href={cite.url}
 														target="_blank"
 														set:html={cite.title}
@@ -156,6 +162,10 @@ const categories = [
 				color: vars.$color--lowlight;
 				font-style: italic;
 				padding-left: 40px;
+
+				@include vars.if-viewport('<', lg) {
+					padding-left: 0;
+				}
 			}
 		}
 	}

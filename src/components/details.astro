@@ -6,7 +6,7 @@ const { props, rest } = getProps(Astro.props);
 
 <details class={`_details ${props.class}`} {...rest}>
 	<summary
-		class="text--hdg--2 _details__trigger"
+		class="text--hdg--2 icon--open _details__trigger"
 		title="Click to expand"
 	>
 		<slot name="title">Expand</slot>
@@ -57,23 +57,9 @@ $border__width: 3px;
 		user-select: none;
 
 		&::before {
-			@include vars.bounce((
-				bounciness: .6,
-				delay--after: 3,
-				delay--before: 3,
-				distance: 10px,
-				distance--min: 2px,
-				duration: .2,
-				property: bottom,
-			));
-
 			color: vars.$color--brand--offset--sink;
-			content: '\0203A';
 			flex-shrink: 0;
-			font-size: 50px;
-			line-height: 0;
-			margin-bottom: 5px; // Stupid glyph isn't aligned right
-			position: relative;
+			margin-left: 1ex;
 			text-align: center;
 			transform: rotateZ(0deg);
 			transform-origin: center;
@@ -102,24 +88,12 @@ $border__width: 3px;
 			padding: 20px;
 			padding-top: 0 !important;
 		}
-
-		&__trigger {
-			&::before {
-				width: 60px;
-			}
-		}
 	}
 
 	@include vars.if-viewport('>=', lg) {
 		&__body {
 			padding: $height;
 			padding-top: 20px !important;
-		}
-
-		&__trigger {
-			&::before {
-				width: $height;
-			}
 		}
 	}
 }
