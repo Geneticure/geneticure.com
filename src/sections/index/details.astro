@@ -5,7 +5,7 @@ import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 ---
 
-<Section_ class="section--columns section--columns--reverse-sm">
+<Section_ class="section--columns section--columns--reverse-sm _index__details">
 	<div>
 		<h2 class="text--hdg--1">
 			Fewer prescriptions.<br />
@@ -54,3 +54,11 @@ import Section_ from 'src/components/section.astro';
 		</Carousel_>
 	</div>
 </Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+._index__details {
+	background-color: vars.$color--overlay;
+}
+</style>

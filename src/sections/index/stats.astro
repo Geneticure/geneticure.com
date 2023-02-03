@@ -1,6 +1,5 @@
 ---
 import Cite_ from 'src/components/cite.astro';
-import Img_ from 'src/components/img.astro';
 import Pie_ from 'src/components/pie.astro';
 import Section_ from 'src/components/section.astro';
 
@@ -35,12 +34,6 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 
 		<aside>Our research supports that the Geneticure approach of DNA-guided therapy is associated with ~7mmHg lower systolic blood pressure and ~6mmHg diastolic blood pressure. This is 22% and 39% lower respectively versus non-genetically matched care.<Cite_ to="article-algorithm" /></aside>
 	</div>
-
-	<Img_
-		class="bg _stats__bg"
-		css={true}
-		src="/img/bg/pills-crop.jpg"
-	/>
 </Section_>
 
 <style lang="scss">
@@ -49,18 +42,11 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 @use 'src/scss/vars';
 
 ._stats {
-	--background-width: 0;
 	--columns-qty: 0;
 	--columns-width: 0;
 	--pie-diameter: 0;
 
 	overflow: visible;
-
-	&__bg {
-		background-position: center right;
-		background-repeat: no-repeat;
-		background-size: var(--background-width);
-	}
 
 	&__figures {
 		display: grid;
@@ -74,24 +60,25 @@ const stats = [`systolic`, `diastolic`, `strokes`, `attacks`].map(id => statsByI
 	}
 
 	@include vars.if-viewport('<', lg) {
-		--background-width: 0;
 		--columns-qty: 2;
 		--columns-width: 100%;
 		--pie-diameter: 100px;
 	}
 
 	@include vars.if-viewport('==', lg) {
-		--background-width: 50%;
 		--columns-qty: 2;
-		--columns-width: 50%;
+		--columns-width: 100%;
 		--pie-diameter: 150px;
+
+		padding-top: 0;
 	}
 
 	@include vars.if-viewport('>', lg) {
-		--background-width: 30%;
 		--columns-qty: 4;
-		--columns-width: 80%;
+		--columns-width: 100%;
 		--pie-diameter: 200px;
+
+		padding-top: 0;
 	}
 }
 
