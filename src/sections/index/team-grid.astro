@@ -66,22 +66,19 @@ const { props, rest } = getProps(Astro.props);
 @use 'src/scss/vars';
 
 ._team-grid {
-	display: grid;
-	grid-column-gap: 10px;
-	grid-template-columns: repeat(var(--team-columns), minmax(0, 1fr));
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	position: relative;
 
 	&__rest {
 		align-items: center;
 		display: flex;
 		justify-content: center;
+		min-height: 100px;
 
 		a {
 			font-weight: normal;
-
-			.icon {
-				text-decoration: none;
-			}
 		}
 	}
 }
@@ -96,6 +93,7 @@ $person__z: 9;
 
 ._person {
 	outline: none;
+	width: calc(100% / var(--team-columns));
 
 	&__body {
 		background: $person__bg;
