@@ -97,28 +97,6 @@ $person__z: 9;
 ._person {
 	outline: none;
 
-	&::after {
-		@include vars.expand;
-
-		background-color: vars.$color--shadow;
-		display: none;
-		opacity: 0;
-		position: fixed;
-		transition: opacity .2s;
-		z-index: vars.z(underlay);
-
-		:global(.section[data-viewport-visible='true']) & {
-			display: block;
-		}
-	}
-
-	&:focus,
-	&:focus-within {
-		&::after {
-			opacity: 1;
-		}
-	}
-
 	&__body {
 		background: $person__bg;
 		border-radius: $person__border__radius;
