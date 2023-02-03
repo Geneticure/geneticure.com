@@ -68,14 +68,22 @@ const year = (new Date()).getFullYear();
 <style lang="scss">
 @use 'src/scss/vars';
 
+footer {
+	background-color: vars.$color--bg;
+	box-shadow: 0 0 1px 1px vars.$color--shadow;
+}
+
 ._disclaimer,
 ._footer {
 	padding-bottom: 50px;
 	padding-top: 50px;
 }
 
+._disclaimer {
+	background-color: vars.$color--shadow;
+}
+
 ._footer {
-	background-color: vars.$color--overlay;
 	line-height: 2em;
 	position: relative;
 
