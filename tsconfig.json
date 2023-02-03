@@ -8,5 +8,6 @@
 		},
 		"resolveJsonModule": true
 	},
-	"extends": "astro/tsconfigs/strict"
+	// TODO2: astro/tsconfigs/strict
+	"extends": "astro/tsconfigs/base"
 }

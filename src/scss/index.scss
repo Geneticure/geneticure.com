@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:math';
 @use 'src/scss/vars';
 
 * {
@@ -70,6 +71,7 @@ h6 {
 	}
 }
 
+// TODO2: Move to text-defaults
 h1,
 h2,
 h3,
@@ -263,6 +265,52 @@ input {
 	box-sizing: border-box;
 	display: block;
 	width: 100%;
+}
+
+.icon {
+	&--bounce {
+		&::before {
+			@include vars.bounce((
+				bounciness: .6,
+				delay--after: 3,
+				delay--before: 3,
+				distance: 10px,
+				distance--min: 2px,
+				duration: .2,
+				property: bottom,
+			));
+
+			position: relative;
+		}
+	}
+
+	&--open {
+		&::before {
+			content: '\0203A';
+			font-size: #{math.div(50, 32)}em;
+			margin-bottom: #{math.div(5, 32)}em;
+			margin-right: 1ex;
+		}
+	}
+}
+
+.link {
+	&--outline {
+		align-items: center;
+		border: 2px solid vars.$color--brand--offset--sink;
+		border-radius: 25px;
+		box-sizing: border-box;
+		display: flex;
+		height: 50px;
+		margin-bottom: 1em;
+		padding-left: 2ex;
+		text-decoration: none;
+		transition: border-color .2s, color .2s;
+
+		&:hover {
+			border-color: vars.$color--brand--sink;
+		}
+	}
 }
 
 .list {

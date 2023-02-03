@@ -15,6 +15,7 @@ const _news: Array<[
 ];
 
 export const news = _news.map(([title, route]) => ({
+	id: route,
 	route: routes[route],
 	title,
 }));

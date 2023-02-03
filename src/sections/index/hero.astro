@@ -2,7 +2,6 @@
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
-import SvgPattern_ from 'src/components/svg-pattern.astro';
 ---
 
 <Section_ class="section--columns section--columns--reverse-sm hero _hero">
@@ -35,93 +34,11 @@ import SvgPattern_ from 'src/components/svg-pattern.astro';
 			src="/img/hero.svg"
 		/>
 	</div>
-
-	<div class="bg _hero__bg">
-		<SvgPattern_ id="_helix" src="public/img/icon/helix.svg" />
-		<SvgPattern_ id="_helix-pattern" src="public/img/icon/helix-pattern.svg" width="30" height="30" />
-	</div>
 </Section_>
 
 <style lang="scss">
 @use 'sass:math';
 @use 'src/scss/vars';
-
-$helix__aspect: 1;
-$helix__width: 250px;
-$helix__height: ($helix__width * $helix__aspect);
-
-._helix {
-	height: 100%;
-	position: absolute;
-	width: $helix__width;
-	z-index: 2;
-
-	:global(svg) {
-		animation: helix 20s linear infinite;
-		filter: drop-shadow(-1px 1px 0 vars.$color--brand--offset--sink);
-		height: 200vh;
-		left: 0;
-		position: absolute;
-		top: 0;
-		width: 100%;
-	}
-
-	:global(line),
-	:global(path) {
-		fill: none;
-		stroke: vars.$color--brand--offset;
-		stroke-width: 8;
-	}
-
-	:global(rect) {
-		height: 100%;
-		transform: scale(#{math.div($helix__height, 100px)});
-		width: 100px;
-	}
-
-	@keyframes helix {
-		from {
-			top: #{-1 * $helix__height};
-		}
-
-		to {
-			top: #{-2 * $helix__height};
-		}
-	}
-
-	&-pattern {
-		@include vars.expand;
-
-		background-color: vars.$color--brand--offset;
-
-		:global(path) {
-			fill: none;
-			stroke: vars.$color--brand--offset--sink;
-			stroke-width: 3;
-		}
-
-		&::before {
-			@include vars.expand;
-
-			background-image: linear-gradient(75deg, vars.gradient-split(vars.$color--bg, '00', 25%));
-			z-index: 1;
-		}
-	}
-
-	@include vars.if-viewport('<', lg) {
-		bottom: 0;
-		left: 100%;
-		transform: rotateZ(-10deg);
-		transform-origin: bottom;
-	}
-
-	@include vars.if-viewport('>=', lg) {
-		bottom: 0;
-		right: 0;
-		transform: rotateZ(-10deg);
-		transform-origin: bottom;
-	}
-}
 
 ._hero {
 	h1 {
@@ -170,6 +87,11 @@ $helix__height: ($helix__width * $helix__aspect);
 	@include vars.if-viewport('>=', lg) {
 		&__button {
 			margin-top: 25px;
+		}
+
+		&__images {
+			padding-bottom: 0;
+			padding-top: 0;
 		}
 	}
 }

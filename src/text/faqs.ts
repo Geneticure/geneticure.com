@@ -26,12 +26,12 @@ export const _faqs: Array<[
 				`science`,
 				`Is this test validated by science?`,
 				`Yes. In Geneticure's retrospective clinical trial, the data suggests the Geneticure approach is associated with a 7.1mm Hg lower systolic blood pressure (top number) and 5.4mm Hg lower diastolic Blood Pressure (bottom number). This is meaningfully better than the current standard of care -- about 22% and 39% lower, respectively.`,
-				`Blood pressure reductions like this have been shown in previous studies to lead to a 40% reduction in stroke and 25% reduction in heart attacks. Several well published studies (New England Journal of Medicine, American Heart Association, The Journal of the American Medical Association) praise similar therapy reductions in blood pressure when assessing new therapies against placebo. This is particularly meaningful when our genotyping guided-therapy is going head-to-head against standard of care drug therapy in a very well controlled population on multiple medications. For more information, please see <a href="${routes.providers}">our research</a>.`,
+				`Blood pressure reductions like this have been shown in previous studies to lead to a 40% reduction in stroke and 25% reduction in heart attacks. Several well published studies (New England Journal of Medicine, American Heart Association, The Journal of the American Medical Association) praise similar therapy reductions in blood pressure when assessing new therapies against placebo. This is particularly meaningful when our genotyping guided-therapy is going head-to-head against standard of care drug therapy in a very well controlled population on multiple medications. For more information, please see <a href="${routes.research}">our research</a>.`,
 			],
 			[
 				`evidence`,
 				`What is the evidence for the test?`,
-				`Thousands of peer-reviewed research articles have been reviewed and critically assessed to develop this comprehensive panel. The efficacy of the test was then vetted with 2 retrospective, and 1 prospective randomized clinical trial. Our publications can be viewed at <a href="${routes.providers}">geneticure.com/providers</a>.`,
+				`Thousands of peer-reviewed research articles have been reviewed and critically assessed to develop this comprehensive panel. The efficacy of the test was then vetted with 2 retrospective, and 1 prospective randomized clinical trial. Our publications can be viewed at <a href="${routes.research}">geneticure.com${routes.research}</a>.`,
 			],
 			[
 				`interactions`,

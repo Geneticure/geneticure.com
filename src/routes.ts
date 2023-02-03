@@ -6,6 +6,7 @@ export const routes = {
 	home: `/`,
 	privacy: `/privacy`,
 	providers: `/providers`,
+	research: `/research`,
 	terms: `/terms`,
 
 	article__covid: `/covid19`,
@@ -24,3 +25,5 @@ export const routes = {
 	register__clinician: `https://portal.geneticure.com/user/register/clinician`,
 	register__user: `https://portal.geneticure.com/user/register/user`,
 } as const;
+
+export type RouteId = keyof typeof routes;

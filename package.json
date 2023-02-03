@@ -30,7 +30,7 @@
 	"scripts": {
 		"build": "astro build",
 		"dev": "astro dev",
-		"lint": "eslint . && stylelint **/*.{css,scss,astro}",
+		"lint": "npx astro check && eslint . && stylelint **/*.{css,scss,astro}",
 		"preview": "astro preview",
 		"prod": "nodemon -e astro,jpg,js,png,scss,svg,ts --watch './src/*' --watch './public/*' --exec \"npm run build && http-server -c31536000 ./dist\"",
 		"start": "astro dev"

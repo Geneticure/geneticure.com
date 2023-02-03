@@ -5,8 +5,8 @@ import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 ---
 
-<Section_ class="section--columns section--columns--reverse-sm _details">
-	<div class="_details__body">
+<Section_ class="section--columns section--columns--reverse-sm _index__details">
+	<div>
 		<h2 class="text--hdg--1">
 			Fewer prescriptions.<br />
 			Fewer office visits.<br />
@@ -18,6 +18,8 @@ import Section_ from 'src/components/section.astro';
 		<p><strong>Your body is unique.</strong> Doctors don't know if a blood pressure medication will work until you try it. If it doesn't work, they might add or try another. This trial-and-error costs time and money. Some medications can even make your blood pressure go up.</p>
 
 		<p>Geneticure's test looks at 17 genotypes and 11 genes* to determine how your body responds to each medication. Your personalized report helps your doctor <strong>prescribe the right medication from the start.</strong></p>
+
+		<Route_ class="icon--bounce icon--open link--outline" to="research">Read our research</Route_>
 
 		<aside>
 			<p>*We respect your privacy and only look at the DNA that is relevant to blood pressure. The rest is discarded. For more information <Route_ to="faqs">see our FAQs</Route_>.</p>
@@ -52,3 +54,11 @@ import Section_ from 'src/components/section.astro';
 		</Carousel_>
 	</div>
 </Section_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+._index__details {
+	background-color: vars.$color--overlay;
+}
+</style>

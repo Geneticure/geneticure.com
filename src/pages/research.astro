@@ -1,0 +1,173 @@
+---
+export const prerender = true;
+
+import HomeLayout_ from 'src/layouts/home.astro';
+import Img_ from 'src/components/img.astro';
+import LogoList_ from 'src/components/logo-list.astro';
+import Route_ from 'src/components/route.astro';
+import Section_ from 'src/components/section.astro';
+
+import { journals } from 'src/text/media';
+import { news } from 'src/text/news';
+import { research } from 'src/text/research';
+
+const categories = [
+	...research,
+	{
+		citations: news.map((item) => ({
+			id: item.id,
+			title: item.title,
+			url: item.route,
+		})),
+		id: `news`,
+		title: `Other initiatives`,
+	} as typeof research[number],
+];
+---
+
+<HomeLayout_ class="_research" title="Our research"  navFixed={true} navOpaqueAtTop={true}>
+	<Section_ class="section--columns _research__hero">
+		<div>
+			<h2 class="text--hdg--1">An <em>evidence-first approach</em> to personalized medicine.</h2>
+
+			<hr class="fancy" />
+
+
+			<p>Geneticure goes well beyond drug metabolism. Developed by <Route_ to="company">scientific leaders in their fields</Route_>, Geneticure's test assesses hypertension treatment in a comprehensive integrative nature, from drug metabolizing enzymes to receptors that are important to heart, blood vessel, and kidney function, with a focus on and appreciation of the complexity of the disease.</p>
+		</div>
+
+		<div>
+			<LogoList_
+				class="_research__hero__logos"
+				logos={journals}
+			/>
+		</div>
+
+		<Img_
+			class="bg _research__hero__bg"
+			src="/img/bg/dna-graphic.jpg"
+		/>
+	</Section_>
+
+	<Section_>
+		<h2 class="text--hdg--1">Our research:</h2>
+
+		<hr class="fancy" />
+
+		{
+			categories.map((category) =>
+				<div class="_research__category">
+					<h2
+						class="text--hdg--2 _research__category__header"
+						id={category.id}
+					>{category.title}</h2>
+
+					<dl>
+						{
+							category.citations.map((cite) =>
+								<div
+									class="_research__category__item"
+									id={cite.id}
+								>
+									<dt class="_research__category__item__title">
+										{
+											cite.url
+												? <a
+														class="icon--open"
+														href={cite.url}
+														target="_blank"
+														set:html={cite.title}
+													></a>
+												: <span set:html={cite.title}></span>
+										}
+									</dt>
+									<dd
+										class="_research__category__item__body"
+										set:html={cite.description}
+									></dd>
+								</div>,
+							)
+						}
+					</dl>
+				</div>,
+			)
+		}
+	</Section_>
+</HomeLayout_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+._research {
+	&__hero {
+		&__bg {
+			object-position: left;
+		}
+
+		@include vars.if-viewport('<', lg) {
+			&__bg {
+				left: 70%;
+			}
+		}
+
+		@include vars.if-viewport('>=', lg) {
+			&__bg {
+				left: 33%;
+			}
+
+			&__logos {
+				:global(._logo) {
+					background-color: vars.$color--overlay;
+					border: 10px solid transparent;
+					border-radius: 50%;
+					box-shadow: 0 0 10px 5px vars.$color--shadow;
+					mix-blend-mode: normal;
+					transition: .2s;
+
+					:global(img) {
+						filter: none;
+					}
+
+					&:hover {
+						background-color: vars.$color--bg;
+					}
+				}
+			}
+		}
+	}
+
+	&__category {
+		&:not(:last-of-type) {
+			border-bottom: 2px solid vars.$color--shadow--sink;
+			margin-bottom: 4em;
+			padding-bottom: 2em;
+		}
+
+		&__header {
+			margin-bottom: 1.5em !important;
+		}
+
+		&__item {
+			margin-bottom: 2em;
+
+			&__title {
+				font-weight: bold;
+
+				a {
+					text-decoration: none;
+				}
+			}
+
+			&__body {
+				color: vars.$color--lowlight;
+				font-style: italic;
+				padding-left: 40px;
+
+				@include vars.if-viewport('<', lg) {
+					padding-left: 0;
+				}
+			}
+		}
+	}
+}
+</style>

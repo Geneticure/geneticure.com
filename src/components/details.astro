@@ -6,14 +6,10 @@ const { props, rest } = getProps(Astro.props);
 
 <details class={`_details ${props.class}`} {...rest}>
 	<summary
-		class="_details__trigger text--hdg--2"
+		class="text--hdg--2 icon--open _details__trigger"
 		title="Click to expand"
 	>
-		<span class="icon">&rsaquo;</span>
-
-		<span class="_details__trigger__text">
-			<slot name="title">Expand</slot>
-		</span>
+		<slot name="title">Expand</slot>
 	</summary>
 
 	<template>
@@ -60,42 +56,29 @@ $border__width: 3px;
 		position: relative;
 		user-select: none;
 
-		.icon {
-			@include vars.bounce((
-				bounciness: .6,
-				delay--after: 3,
-				delay--before: 3,
-				distance: 10px,
-				distance--min: 2px,
-				duration: .2,
-				property: bottom,
-			));
-
+		&::before {
 			color: vars.$color--brand--offset--sink;
 			flex-shrink: 0;
-			font-size: 50px;
-			line-height: 0;
-			margin-bottom: 5px; // Stupid glyph isn't aligned right
-			position: relative;
+			margin-left: 1ex;
 			text-align: center;
 			transform: rotateZ(0deg);
 			transform-origin: center;
 			transition: color .2s, transform .2s;
 		}
 
-		._details:not([open]):hover & .icon {
+		._details:not([open]):hover &::before {
 			color: vars.$color--brand;
 		}
 
-		._details[open] & .icon {
+		._details[open] &::before {
 			color: vars.$color--brand--sink;
 			transform: rotateZ(90deg);
 		}
 
-		._details[open] & .icon,
-		&:hover .icon,
-		&:active .icon,
-		&:focus .icon {
+		._details[open] &::before,
+		&:hover::before,
+		&:active::before,
+		&:focus::before {
 			animation: none;
 		}
 	}
@@ -105,24 +88,12 @@ $border__width: 3px;
 			padding: 20px;
 			padding-top: 0 !important;
 		}
-
-		&__trigger {
-			.icon {
-				width: 60px;
-			}
-		}
 	}
 
 	@include vars.if-viewport('>=', lg) {
 		&__body {
 			padding: $height;
 			padding-top: 20px !important;
-		}
-
-		&__trigger {
-			.icon {
-				width: $height;
-			}
 		}
 	}
 }

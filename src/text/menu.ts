@@ -1,18 +1,43 @@
-import { routes } from 'src/routes';
+import { RouteId, routes } from 'src/routes';
 
-const _menu: Array<
-	[keyof typeof routes, string]
-> = [
-	[`home`, `About`],
-	[`providers`, `Providers`],
-	[`faqs`, `FAQs`],
-	[`company`, `Company`],
-	[`login`, `Login`],
-	[`buy`, `Buy now`],
-];
+const menuItems: Partial<Record<RouteId, string>> = {
+	buy: `Buy now`,
+	company: `Company`,
+	contact: `Contact us`,
+	faqs: `FAQs`,
+	home: `About`,
+	login: `Login`,
+	providers: `Providers`,
+	research: `Our research`,
+};
 
-export const menu = _menu.map(([route, label]) => ({
-	href: routes[route],
-	label,
-	route,
-}));
+export const menuTop = toMenu([
+	`home`,
+	`providers`,
+	`faqs`,
+	`company`,
+	`login`,
+	`buy`,
+]);
+
+export const menuFooter = toMenu([
+	`home`,
+	`providers`,
+	`faqs`,
+	`company`,
+	`research`,
+]);
+
+export const menuFooterSub = toMenu([
+	`login`,
+	`buy`,
+	`contact`,
+]);
+
+function toMenu(routeIds: Array<RouteId>) {
+	return routeIds.map((routeId) => ({
+		href: routes[routeId],
+		label: menuItems[routeId],
+		route: routeId,
+	}));
+}
