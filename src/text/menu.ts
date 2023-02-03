@@ -8,6 +8,7 @@ const menuItems: Partial<Record<RouteId, string>> = {
 	home: `About`,
 	login: `Login`,
 	providers: `Providers`,
+	research: `Our research`,
 };
 
 export const menuTop = toMenu([
@@ -24,6 +25,7 @@ export const menuFooter = toMenu([
 	`providers`,
 	`faqs`,
 	`company`,
+	`research`,
 ]);
 
 export const menuFooterSub = toMenu([

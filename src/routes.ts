@@ -6,6 +6,7 @@ export const routes = {
 	home: `/`,
 	privacy: `/privacy`,
 	providers: `/providers`,
+	research: `/research`,
 	terms: `/terms`,
 
 	article__covid: `/covid19`,
