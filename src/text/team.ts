@@ -17,7 +17,7 @@ const _team: Array<[
 		`scott-snyder-4233948`,
 	],
 	[
-		`Eric Snyder`,
+		`Eric Snyder, PhD`,
 		`eric`,
 		[`COO`, `Chief Operating Officer`],
 		`eric.jpg`,
