@@ -19,8 +19,13 @@ export const _faqs: Array<[
 			],
 			[
 				`difference`,
-				`What is the difference between this test and other genetic tests (e.g. 23andMe)?`,
+				`What is the difference between this test and other genetic tests (e.g. 23andMe, Ancestry.com)?`,
 				`Unlike novelty or disease-risk tests, this test focuses only on hypertension and only analyzes the genes most-vetted by research to impact response to blood pressure medications. We also use a patent-pending multi-gene algorithm that analyzes the variants both independently and in combination, so that the recommendations are a result of a networked, integrated approach.`,
+			],
+			[
+				`reuse-data`,
+				`I already took a genetic test from another company. Can Geneticure use that data?`,
+				`Unfortunately we cannot use genetic results from other companies. No other known genetic test has sufficient clinical coverage of the sites examined by Geneticure's hypertension panel. Most other tests are primarily for entertainment purposes, whereas Geneticure's looks at very specific sites which have been tested through clinical research to show, collectively, a difference in blood pressure control.`,
 			],
 			[
 				`science`,
