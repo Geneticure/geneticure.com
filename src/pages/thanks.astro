@@ -8,30 +8,39 @@ import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 ---
 
-<HomeLayout_ title="Order confirmation" navFixed={true} navOpaqueAtTop={true}>
-	<Section_ class="section--overlay _thanks">
-		<div class="overlay overlay--center _thanks__text">
-			<h1 class="text--hdg--1">Thanks for your order!</h1>
+<HomeLayout_ class="_thanks" title="Order confirmation" navFixed={true} navOpaqueAtTop={true}>
+	<Section_ class="section--overlay">
+		<div class="overlay overlay--center text-defaults _thanks__text">
+			<h1 class="text--center">Thanks for your order!</h1>
 
-			<hr class="fancy" />
+			<p>We're excited to be working with you toward your health goals. Your kit will be shipped within the next 5 business days. Your next steps:</p>
 
-			<p>We're so excited to be working with you toward your health goals!</p>
+			<ol>
+				<li><strong>Create your account now</strong> on the Geneticure web portal. This is how we'll send you your personalized report.</li>
+				<li><strong>Register your kit</strong> once you receive it. This is how we keep track of which kit belongs to which person. You can register your kit by logging in to the account you created.</li>
+			</ol>
 
-			<p>Your kit will be shipped within the next 5 business days. In the meantime you can <Route_ to="register">register your account</Route_> on the Geneticure patient and provider portal. This is how we'll keep track of your kit and deliver your personalized report.</p>
-
-			<p>Questions? Feel free to <Route_ to="contact">contact us</Route_>.</p>
+			<p>Please note that <strong>we cannot process your test</strong> until you have created your account and registered your kit.</p>
 
 			<p class="text--center">
 				<Route_
 					class="button--hero"
 					to="register"
-				>Register</Route_>
+				>Create account</Route_>
 			</p>
 		</div>
 
-		<Img_
-			class="bg _thanks__img"
-			src="/img/bg/heart-pills.jpg"
-		/>
+		<Img_ class="bg" src="/img/bg/heart-pills.jpg" />
 	</Section_>
 </HomeLayout_>
+
+<style lang="scss">
+@use 'src/scss/vars';
+
+._thanks {
+	&__text {
+		padding-bottom: 50px;
+		padding-top: 50px;
+	}
+}
+</style>
