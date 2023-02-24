@@ -295,9 +295,9 @@ input {
 }
 
 .link {
-	&--outline {
+	&--block {
 		align-items: center;
-		border: 2px solid vars.$color--brand--offset--sink;
+		border: 2px solid transparent;
 		border-radius: 25px;
 		box-sizing: border-box;
 		display: flex;
@@ -305,10 +305,25 @@ input {
 		margin-bottom: 1em;
 		padding-left: 2ex;
 		text-decoration: none;
-		transition: border-color .2s, color .2s;
 
-		&:hover {
-			border-color: vars.$color--brand--sink;
+		&--accent {
+			background-image: linear-gradient(20deg, vars.$color--accent--sink, vars.$color--accent);
+			color: vars.$color--text--on-dark;
+			transition: box-shadow .2s;
+
+			&:hover {
+				box-shadow: 0 0 0 60px #00000022 inset;
+				color: vars.$color--text--on-dark;
+			}
+		}
+
+		&--outline {
+			border-color: vars.$color--brand--offset--sink;
+			transition: border-color .2s, color .2s;
+
+			&:hover {
+				border-color: vars.$color--brand--sink;
+			}
 		}
 	}
 }
