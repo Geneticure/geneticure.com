@@ -1,11 +1,39 @@
 ---
 export const prerender = true;
+
+import HomeLayout_ from 'src/layouts/home.astro';
+
+import Buttonset_ from 'src/components/buttonset.astro';
+import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
+import Section_ from 'src/components/section.astro';
 ---
 
-<head>
-	<script>
-	import { routes } from 'src/routes';
+<HomeLayout_ title="Get your kit" navFixed={true} navOpaqueAtTop={false}>
+	<Section_ class="section--columns _nobuy">
+		<div>
+			<Img_ src="/img/kit/kit-lit.jpg" />
+		</div>
 
-	window.location.href = routes.buy;
-	</script>
-</head>
+		<div>
+			<h1 class="text--hdg--1">Get your Geneticure kit</h1>
+
+			<p>The Geneticure kit is currently available only to clinicians and organizations with clinicians on staff.</p>
+
+			<p><strong>We will continue to process existing orders from non-clinicians</strong> that were placed prior to this announcement.</p>
+
+			<p>We hope to make our test available to everyone again soon.</p>
+
+			<Buttonset_>
+				<Route_
+					class="button--high"
+					to="providers"
+				>Healthcare professionals</Route_>
+
+				<Route_
+					to="contact"
+				>Contact us</Route_>
+			</Buttonset_>
+		</div>
+	</Section_>
+</HomeLayout_>
