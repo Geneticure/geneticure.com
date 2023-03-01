@@ -541,6 +541,10 @@ summary {
 		@include vars.type(hdg--4);
 	}
 
+	.buttonset {
+		margin: 2em 0;
+	}
+
 	ol,
 	ul {
 		margin-left: 3ex;
@@ -588,7 +592,9 @@ summary {
 	}
 
 	hr {
-		margin: 2em auto;
+		&:not(.fancy) {
+			margin: 2em auto;
+		}
 	}
 
 	table {

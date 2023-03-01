@@ -6,6 +6,7 @@ export const routes = {
 	home: `/`,
 	privacy: `/privacy`,
 	providers: `/providers`,
+	report: `/img/report.png`,
 	research: `/research`,
 	terms: `/terms`,
 

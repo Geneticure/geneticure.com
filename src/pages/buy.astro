@@ -15,20 +15,28 @@ import Section_ from 'src/components/section.astro';
 			<Img_ src="/img/kit/kit-lit.jpg" />
 		</div>
 
-		<div>
-			<h1 class="text--hdg--1">Get your Geneticure kit</h1>
+		<div class="text-defaults">
+			<h1>Get your Geneticure kit</h1>
 
-			<p>The Geneticure kit is currently available only to clinicians and organizations with clinicians on staff.</p>
+			<hr class="fancy" />
 
-			<p><strong>We will continue to process existing orders from non-clinicians</strong> that were placed prior to this announcement.</p>
+			<p>We're excited to join you on your journey for better health!</p>
 
-			<p>We hope to make our test available to everyone again soon.</p>
+			<p>Please talk to your doctor about ordering a Geneticure test for you. Here are some tools for that conversation:</p>
+
+			<ul>
+				<li><Route_ to="report" target="_blank">A printable sample Geneticure test report</Route_></li>
+
+				<li><Route_ to="providers">Geneticure.com/providers</Route_>, for healthcare professionals</li>
+
+				<li><Route_ to="research">Geneticure.com/research</Route_>, a list of our publications and research</li>
+			</ul>
 
 			<Buttonset_>
 				<Route_
 					class="button--high"
 					to="providers"
-				>Healthcare professionals</Route_>
+				>For providers</Route_>
 
 				<Route_
 					to="contact"
