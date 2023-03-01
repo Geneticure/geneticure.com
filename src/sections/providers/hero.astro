@@ -1,4 +1,5 @@
 ---
+import Buttonset_ from 'src/components/buttonset.astro';
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
@@ -28,10 +29,13 @@ import { routes } from 'src/routes';
 				</p>
 			</div>
 
-			<p class="text--center">
-				<br />
+			<br />
+
+			<Buttonset_ class="buttonset--center">
 				<Route_ class="button--low" href={routes.contact}>Contact us</Route_>
-			</p>
+
+				<Route_ class="button--low" href={routes.contact}>Our brochure</Route_>
+			</Buttonset_>
 		</div>
 	</div>
 
