@@ -176,14 +176,10 @@ button {
 }
 
 .buttonset {
+	column-gap: 10px;
 	display: flex;
 	flex-wrap: wrap;
-
-	& > * {
-		@include vars.space-between(5px, (property: margin));
-
-		margin-bottom: 5px;
-	}
+	row-gap: 10px;
 }
 
 .flex {
