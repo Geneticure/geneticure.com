@@ -7,6 +7,9 @@
 
 @use './functions' as vars;
 
+$height--nav: 60px;
+$margin--text--y: 1rem;
+
 // #region Breakpoints and viewports
 $bps: (
 	sm: 0,
@@ -156,35 +159,6 @@ $z-index__value: null;
 
 @function z($z-index__name) {
 	@return vars.get($z-indexes, $z-index__name);
-}
-// #endregion
-
-
-// #region Layout
-$height--nav: 60px;
-
-$margin--text--y: 1rem;
-@mixin space-between($value, $options: ()) {
-	$direction: vars.get($options, direction, x);
-	$property: vars.get($options, property, padding);
-
-	&:not(:first-child, :only-child) {
-		@if $direction == x {
-			#{$property}-left: $value;
-		}
-		@if $direction == y {
-			#{$property}-top: $value;
-		}
-	}
-
-	&:not(:last-child, :only-child) {
-		@if $direction == x {
-			#{$property}-right: $value;
-		}
-		@if $direction == y {
-			#{$property}-bottom: $value;
-		}
-	}
 }
 // #endregion
 
