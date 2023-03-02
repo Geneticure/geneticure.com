@@ -1,4 +1,5 @@
 ---
+import Buttonset_ from 'src/components/buttonset.astro';
 import Img_ from 'src/components/img.astro';
 import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
@@ -12,9 +13,9 @@ import { routes } from 'src/routes';
 		<div>
 			<h2 class="text--hdg--1"><em>The right prescriptions</em> with hypertension-specific pharmaco&shy;genomics.</h2>
 
-			<p>Our CLIA-certified lab genotypes your patient's DNA from a cheek swab. Then, our patented algorithm uses years of research to predict which treatments will most effectively treat your patient's hypertension. We compile our findings into <strong>a personalized, one-page report</strong>.</p>
+			<p>Our CLIA-certified lab genotypes your patient's DNA from a cheek swab. Then, our patented algorithm uses years of research to predict which treatments will most effectively treat your patient's hypertension. We compile our findings into <Route_ to="report" target="_blank">a personalized, one-page report</Route_>.</p>
 
-			<p class="buttonset flex--center">
+			<Buttonset_ class="buttonset--center">
 				<Route_
 					class="button"
 					href={routes.register__clinician}
@@ -24,7 +25,7 @@ import { routes } from 'src/routes';
 					class="button--low"
 					href={routes.contact}
 				>Contact us</Route_>
-			</p>
+			</Buttonset_>
 		</div>
 	</div>
 

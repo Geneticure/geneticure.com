@@ -1,11 +1,13 @@
 export const routes = {
-	buy: `https://buy.stripe.com/3cseVHfRO0Hwgz6145`,
+	brochure: `/file/geneticure_htn_pgx_brochure.pdf`,
+	buy: `/buy`,
 	buy__confirm: `/thanks`,
 	company: `/company`,
 	faqs: `/faqs`,
 	home: `/`,
 	privacy: `/privacy`,
 	providers: `/providers`,
+	report: `/file/geneticure_htn_pgx_report.pdf`,
 	research: `/research`,
 	terms: `/terms`,
 

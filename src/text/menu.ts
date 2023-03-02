@@ -1,7 +1,7 @@
 import { RouteId, routes } from 'src/routes';
 
 const menuItems: Partial<Record<RouteId, string>> = {
-	buy: `Buy now`,
+	buy: `Get tested`,
 	company: `Company`,
 	contact: `Contact us`,
 	faqs: `FAQs`,

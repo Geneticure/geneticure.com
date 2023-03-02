@@ -1,11 +1,49 @@
 ---
 export const prerender = true;
+
+import HomeLayout_ from 'src/layouts/home.astro';
+
+import Buttonset_ from 'src/components/buttonset.astro';
+import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
+import Section_ from 'src/components/section.astro';
 ---
 
-<head>
-	<script>
-	import { routes } from 'src/routes';
+<HomeLayout_ title="Get tested" navFixed={true} navOpaqueAtTop={false}>
+	<Section_ class="section--columns _nobuy">
+		<div>
+			<Img_ src="/img/kit/kit-lit.jpg" />
+		</div>
 
-	window.location.href = routes.buy;
-	</script>
-</head>
+		<div class="text-defaults">
+			<h1>How to get tested by Geneticure</h1>
+
+			<hr class="fancy" />
+
+			<p>We're excited to join you on your journey for better health!</p>
+
+			<p>Please talk to your doctor about ordering a Geneticure test for you. Here are some tools for that conversation:</p>
+
+			<ul>
+				<li><Route_ to="report" target="_blank">A printable sample report</Route_> showing the personalized reccomendations produced by our test</li>
+
+				<li><Route_ to="brochure" target="_blank">Geneticure's overview brochure</Route_></li>
+
+				<li>For healthcare professionals: <Route_ to="providers">geneticure.com/providers</Route_></li>
+
+				<li>A list of our publications and research: <Route_ to="research">geneticure.com/research</Route_></li>
+			</ul>
+
+			<Buttonset_>
+				<Route_
+					class="button--high"
+					to="providers"
+				>For providers</Route_>
+
+				<Route_
+					to="contact"
+				>Contact us</Route_>
+			</Buttonset_>
+		</div>
+	</Section_>
+</HomeLayout_>
