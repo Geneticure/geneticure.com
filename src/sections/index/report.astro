@@ -1,5 +1,7 @@
 ---
+import Buttonset_ from 'src/components/buttonset.astro';
 import Img_ from 'src/components/img.astro';
+import Route_ from 'src/components/route.astro';
 import Section_ from 'src/components/section.astro';
 import SvgGradient_ from 'src/components/svg-gradient.astro';
 import SvgPattern_ from 'src/components/svg-pattern.astro';
@@ -54,6 +56,13 @@ const organs: Array<[string, string, string]> = [
 				</li>,
 			) }
 		</ul>
+
+		<br />
+
+		<Buttonset_ class="buttonset--center">
+			<Route_ class="button--hero" to="report" target="_blank">Download a sample report</Route_>
+		</Buttonset_>
+
 	</div>
 
 	<div>
@@ -74,6 +83,7 @@ const organs: Array<[string, string, string]> = [
 $background__color: vars.$color--lowlight;
 
 ._report {
+	align-items: flex-start;
 	text-shadow: 1px 1px 0 rgba(0 0 0 / .2);
 
 	&__body {
