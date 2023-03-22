@@ -40,3 +40,5 @@ adroll_version = "2.0";
 		o.parentNode.insertBefore(e, o);
 })(window, document);
 adroll.track("pageView");
+
+!function(){var e="rest.happierleads.com/v3/script?clientId=7iVLCPidio96GwdXUQzggF&version=4.0.0", t=document.createElement("script");window.location.protocol.split(":")[0]; t.src="https://"+e;var c=document.getElementsByTagName("script")[0]; t.onload = function(){ new Happierleads.default }; c.parentNode.insertBefore(t,c)}();
