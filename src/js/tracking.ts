@@ -27,7 +27,7 @@ const FB__EVENTS = {
 
 // #region Google
 
-const GTAG__ID = `UA-58090183-1`;
+const GTAG__ID = `G-73YQ14W1W8`;
 const GTAG__EVENTS = {
 	conversion: {
 		'currency': PRODUCT.currency,
