@@ -33,6 +33,22 @@ const _team: Array<[
 		`ryan-sprissler-phd-216409b4`,
 	],
 	[
+		`Ramsey Kilani, MD`,
+		`ramsey`,
+		`Board of Directors`,
+		`ramsey.jpg`,
+		`Dr. Ramsey Kilani is a physician, scientist, entrepreneur, and business leader with over twenty-five years of experience across the healthcare, life sciences, and technology sectors. In addition to nearly two decades of investigational molecular biology research in the academic setting, Ramsey has been a founder or C-level executive in multiple companies in the commercial diagnostics space over the past 10 years, leading those organizations to commercial success and acquisition. Dr. Kilani's educational background includes degrees from the University of Arizona, Northwestern University, and Duke University. His career exemplifies a blend of clinical excellence, scientific research, and strategic business acumen, making him a leader in bridging the gap between medicine and technology.`,
+		`ramsey-kilani-md-98313823`,
+	],
+	[
+		`Brad Wilson`,
+		`bard`,
+		`Board of Advisors`,
+		`brad.jpg`,
+		`Brad Wilson is CEO Emeritus of BlueCross BlueShield of NC, the state's largest health insurer. Once a practicing attorney and then General Counsel to N.C. Governor James B Hunt, Jr., Wilson joined BCBSNC as General Counsel where during his 22 year career he served in four different executive leadership roles, the last as President and CEO from 2010-2018. Under his leadership, the company successfully implemented the ACA in all 100 counties, doubled top line revenue and served approximately 3.9 million North Carolinians through a diverse product portfolio. He was a leader within the BCBS Association, serving on the Association Board and numerous standing and special committees.`,
+		`brad-wilson-10b7b93`,
+	],
+	[
 		`Thomas Olson, PhD`,
 		`thomas`,
 		[`CCO`, `Chief Clinical Officer`],
@@ -67,7 +83,7 @@ const _team: Array<[
 	[
 		`Don Wright`,
 		`don`,
-		`Senior Advisor`,
+		`Board of Advisors`,
 		`don.jpg`,
 		`Don Wright spent the past decade growing Assurex Health from technology invented at Mayo Clinic and Cincinnati Children's Hospital Medical Center to a company of almost 500 employees serving over 500,000 people with mental health conditions. Assurex Health was acquired in 2016 by Myriad Genetics allowing Don to use his more than 25 years of experience in the informatics, product development, operations and life sciences fields, to assisting others turn their ideas into hyper-growth companies.`,
 		`donwright`,
