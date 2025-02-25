@@ -6,7 +6,7 @@
 		"@astrojs/sitemap": "^1.0.1",
 		"@geneticure/util": "^0.0.7",
 		"astro": "^2.0.5",
-		"astro-compress": "^1.1.28",
+		"astro-compress": "^2.3.6",
 		"csv-parse": "^5.3.4",
 		"fast-average-color-node": "^2.6.0",
 		"htmlparser2": "^8.0.1",
