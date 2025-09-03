@@ -106,7 +106,7 @@ const _team: Array<[
 	],
 ];
 
-export const teamDescription = `We're a team of hypertension expert scientists and doctors based in Rochester, Minnesota, home of the Mayo Clinic &mdash; which is also an investor in Geneticure. For 10 years we've put science and innovation to work, taking personalized medicine to the next level, unmatched in the world of pharmacogenomics. <a href="${routes.contact}">Contact us.</a>`;
+export const teamDescription = `We're a team of hypertension expert scientists and doctors based in Rochester, Minnesota, home of the Mayo Clinic &mdash; which is also an investor in Geneticure. For 10 years we've put science and innovation to work, taking personalized medicine to the next level, unmatched in the world of precision medicine. <a href="${routes.contact}">Contact us.</a>`;
 
 export const team = _team.map(([name, shortname, title, img, description, linkedin]) => ({
 	description,
