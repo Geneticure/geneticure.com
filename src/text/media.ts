@@ -1,4 +1,4 @@
-import { fromKeys } from '@util/js/util';
+import { fromKeys } from '../js/util/fromKeys';
 
 const _media: Record<string, [string, string, string]> = {
 	ashp: [

@@ -1,7 +1,7 @@
 ---
 import { getAverageColor } from 'fast-average-color-node';
-import { imageSize } from 'image-size';
-import { roundTo } from '@util/js/util';
+import { imageSizeFromFile } from 'image-size/fromFile';
+import { roundTo } from '../js/util/roundTo';
 
 import { getProps } from 'src/js/astro';
 
@@ -16,7 +16,7 @@ const { props, rest } = getProps(Astro.props, {
 const isBackgroundImage = props.css ?? Astro.slots.has(`default`);
 
 const path = `public${props.src}`;
-const dimensions = imageSize(path); // TODO3: Figure out how to get `publicDir` at compile time.
+const dimensions = await imageSizeFromFile(path); // TODO3: Figure out how to get `publicDir` at compile time.
 
 const style={
 	'aspect-ratio': `${roundTo(dimensions.width, 2)} / ${roundTo(dimensions.height, 2)}`,
@@ -48,6 +48,7 @@ if (showBgColor) {
 	<span
 		class={`img ${props.class}`}
 		style={style}
+		{...rest}
 	>
 		<img
 			alt={props.alt}

@@ -4,6 +4,7 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:math';
+@use 'sass:meta';
 
 @use './functions' as vars;
 
@@ -23,7 +24,7 @@ $bps__order: vars.keys($bps);
 }
 
 @function viewport($operator, $bp__name: '') {
-	@if type-of($operator) == 'list' {
+	@if meta.type-of($operator) == 'list' {
 		$result: ();
 		$viewports: $operator;
 		@each $viewport in $viewports {
@@ -147,7 +148,7 @@ $z-indexes__increment: 10;
 $z-index__name: null;
 $z-index__value: null;
 @each $z-level in $z-levels {
-	@if type-of($z-level) == list {
+	@if meta.type-of($z-level) == list {
 		$z-index__name: list.nth($z-level, 1);
 		$z-index__value: list.nth($z-level, 2);
 	} @else {
@@ -358,26 +359,26 @@ $typefaces: (
 }
 
 @mixin button--icon($size: 24px) {
-	@include encircle($size);
-
 	font-size: $size;
 	height: $size;
 	line-height: 0;
 	position: relative;
 	width: $size;
 
-	&::after {
-		@include encircle($size);
+	@include encircle($size);
 
+	&::after {
 		left: -#{$size * .5};
 		position: absolute;
 		top: -#{$size * .5};
 		transition: background-color .2s;
+
+		@include encircle($size);
 	}
 
 	&:hover::after {
 		background-color: #{$color--brand--sink}20;
-	}
+}
 
 	&:active::after {
 		background-color: #{$color--brand--sink}50;
@@ -465,14 +466,14 @@ $typefaces: (
 	}
 
 	& > *::after {
-		@include encircle($dot__diameter);
-
 		background-color: $dot__color;
 		border: $border__width solid $border__color;
 		box-shadow: 0 0 0 $border__width $dot__background inset;
 		left: -#{(.5 * $border__width) + $dot__diameter};
 		position: absolute;
 		top: 0;
+
+		@include encircle($dot__diameter);
 	}
 }
 // #endregion

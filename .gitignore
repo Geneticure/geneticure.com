@@ -1,3 +1,4 @@
 dist
 src/env.d.ts
 .netlify
+.astro

@@ -1,4 +1,4 @@
-import { RouteId, routes } from 'src/routes';
+import { type RouteId, routes } from 'src/routes';
 
 const menuItems: Partial<Record<RouteId, string>> = {
 	buy: `Get tested`,

@@ -2,7 +2,7 @@
 import { getProps } from 'src/js/astro';
 
 const { props, rest } = getProps(Astro.props, {
-	id: `carousel`,
+	id: `carousel`
 });
 ---
 
@@ -127,10 +127,10 @@ const { props, rest } = getProps(Astro.props, {
 			padding: 15px;
 
 			&::after {
-				@include vars.encircle(5px);
-
 				background-color: rgba(0 0 0 / .3);
 				transition: background-color .2s;
+
+				@include vars.encircle(5px);
 			}
 
 			&:hover::after {

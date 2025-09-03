@@ -3,11 +3,12 @@
 		"allowJs": true,
 		"baseUrl": ".",
 		"lib": ["ESNext", "DOM"],
-		"paths": {
-			"@util/*": ["./node_modules/@geneticure/util/*"]
-		},
 		"resolveJsonModule": true
 	},
 	// TODO2: astro/tsconfigs/strict
-	"extends": "astro/tsconfigs/base"
+	"extends": "astro/tsconfigs/base",
+	"exclude": [
+		"dist",
+		"public"
+	]
 }

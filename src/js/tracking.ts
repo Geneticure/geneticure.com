@@ -89,7 +89,7 @@ function track<
 		EventParams extends EventMap[EventType],
 	>(
 		eventType: EventType,
-		params?: Partial<EventParams>
+		params?: Partial<EventParams>,
 	) {
 		const defaults = eventMap[eventType];
 		const payload = {

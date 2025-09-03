@@ -144,7 +144,7 @@ export function toggleSetup($root: Element) {
 					id: toggleId,
 					state: state[toggleId],
 				},
-			})
+			}),
 		);
 	}
 }

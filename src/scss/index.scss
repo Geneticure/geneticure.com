@@ -22,13 +22,14 @@
 	@include vars.type(body);
 	@include vars.text--smooth;
 
+	--content-padding-y: calc(#{vars.$height--nav} + var(--content-gutter-y));
+
+	font-size: vars.$font-size--base + px;
+
 	@media print {
 		@include vars.text--print;
 	}
 
-	font-size: vars.$font-size--base + px;
-
-	--content-padding-y: calc(#{vars.$height--nav} + var(--content-gutter-y));
 	@include vars.if-viewport('<', lg) {
 		--content-gutter-y: 10px;
 	}
@@ -176,10 +177,9 @@ button {
 }
 
 .buttonset {
-	column-gap: 10px;
 	display: flex;
 	flex-wrap: wrap;
-	row-gap: 10px;
+	gap: 10px;
 
 	&--center {
 		justify-content: center;
@@ -270,6 +270,8 @@ input {
 .icon {
 	&--bounce {
 		&::before {
+			position: relative;
+
 			@include vars.bounce((
 				bounciness: .6,
 				delay--after: 3,
@@ -279,8 +281,6 @@ input {
 				duration: .2,
 				property: bottom,
 			));
-
-			position: relative;
 		}
 	}
 

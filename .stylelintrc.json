@@ -1,9 +1,8 @@
 {
-	"extends": [
-		"./node_modules/@geneticure/util/.stylelintrc.json"
-	],
+	"extends": "stylelint-config-standard-scss",
 	"ignoreFiles": [
-		"dist/**"
+		"dist/**",
+		"node_modules/**"
 	],
 	"overrides": [
 		{
@@ -13,5 +12,23 @@
 				"src/**/*.md"
 			]
 		}
-	]
+	],
+	"plugins": ["stylelint-order"],
+	"rules": {
+		"alpha-value-notation": "number",
+		"at-rule-empty-line-before": null,
+		"color-hex-length": "long",
+		"comment-empty-line-before": null,
+		"font-family-name-quotes": "always-unless-keyword",
+		"font-family-no-missing-generic-family-keyword": null,
+		"no-descending-specificity": null,
+		"order/properties-alphabetical-order": true,
+		"property-no-vendor-prefix": null,
+		"scss/at-mixin-pattern": null,
+		"scss/dollar-variable-empty-line-before": null,
+		"scss/dollar-variable-pattern": null,
+		"scss/double-slash-comment-empty-line-before": null,
+		"selector-class-pattern": null,
+		"selector-pseudo-class-no-unknown": null
+	}
 }
