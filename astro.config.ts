@@ -24,5 +24,9 @@ export default defineConfig({
 		sitemap(),
 	],
 	output: `server`,
+	redirects: {
+		'/file/geneticure_htn_pgx_brochure.pdf': `/brochure.pdf`,
+		'/file/geneticure_htn_pgx_report.pdf': `/report.pdf`,
+	},
 	site: `https://geneticure.com/`,
 });
