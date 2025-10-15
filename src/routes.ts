@@ -1,5 +1,4 @@
 export const routes = {
-	brochure: `/file/geneticure_htn_pgx_brochure.pdf`,
 	buy: `/buy`,
 	buy__confirm: `/thanks`,
 	company: `/company`,
@@ -7,7 +6,7 @@ export const routes = {
 	home: `/`,
 	privacy: `/privacy`,
 	providers: `/providers`,
-	report: `/file/geneticure_htn_pgx_report.pdf`,
+	report: `/report.pdf`,
 	research: `/research`,
 	terms: `/terms`,
 
