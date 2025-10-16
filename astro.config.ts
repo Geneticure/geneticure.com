@@ -27,6 +27,8 @@ export default defineConfig({
 	redirects: {
 		'/file/geneticure_htn_pgx_brochure.pdf': `/slides.pdf`,
 		'/file/geneticure_htn_pgx_report.pdf': `/report.pdf`,
+		'/report': `/report.pdf`,
+		'/slides': `/slides.pdf`,
 	},
 	site: `https://geneticure.com/`,
 });
