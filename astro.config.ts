@@ -6,6 +6,8 @@ import sitemap from "@astrojs/sitemap";
 
 import compress from "astro-compress";
 
+import { redirects } from "./src/routes";
+
 export default defineConfig({
 	adapter: netlify(),
 	integrations: [
@@ -24,11 +26,6 @@ export default defineConfig({
 		sitemap(),
 	],
 	output: `server`,
-	redirects: {
-		'/file/geneticure_htn_pgx_brochure.pdf': `/slides`,
-		'/file/geneticure_htn_pgx_report.pdf': `/report.pdf`,
-		'/report': `/report.pdf`,
-		'/slides': `https://www.beautiful.ai/player/-Obh7gr4YEecJI0Licl4`,
-	},
+	redirects,
 	site: `https://geneticure.com/`,
 });
